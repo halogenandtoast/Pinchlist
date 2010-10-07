@@ -7,6 +7,16 @@ gem 'rails', '3.0.0'
 
 gem 'mysql2'
 
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec-rails', ">= 2.0.0.beta.22"
+  gem 'spork'
+  gem 'launchy'    # So you can do Then show me the page
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
