@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/thoughtbot/shoulda.git
+  revision: acb71a69827d4f04555069da0784bc0e79e2d777
+  specs:
+    shoulda (2.11.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -31,6 +37,8 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
+    bourne (1.0)
+      mocha (= 0.9.8)
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -76,6 +84,8 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    mocha (0.9.8)
+      rake
     mysql2 (0.2.4)
     nokogiri (1.4.3.1)
     polyglot (0.3.1)
@@ -128,6 +138,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bourne
   capybara
   cucumber
   cucumber-rails
@@ -137,5 +148,6 @@ DEPENDENCIES
   launchy
   mysql2
   rails (= 3.0.0)
-  rspec-rails (>= 2.0.0.beta.22)
+  rspec-rails (>= 2.0.0.rc)
+  shoulda!
   spork

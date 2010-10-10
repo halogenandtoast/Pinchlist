@@ -4,15 +4,20 @@ gem 'rails', '3.0.0'
 gem 'mysql2'
 gem 'devise'
 
+group :development, :test do
+  gem 'rspec-rails', ">= 2.0.0.rc"
+end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', ">= 2.0.0.beta.22"
+  gem 'bourne'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'factory_girl_rails'
+  gem 'shoulda', :git => 'git://github.com/thoughtbot/shoulda.git'
 end
 
 # Use unicorn as the web server
