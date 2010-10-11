@@ -9,8 +9,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'akephalos'
   gem 'capybara'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '>= 0.6.0.rc.3'
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'bourne'
