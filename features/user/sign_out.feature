@@ -5,6 +5,6 @@ Feature: In order to protect my information
   Scenario: Signing out
     Given I am signed in as "user@example.com/password"
     And I am on the dashboard page
-    When I follow "Sign out"
+    When I follow "Sign Out"
     Then I should see "Signed out successfully."
     And I should see "Sign in"

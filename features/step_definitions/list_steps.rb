@@ -7,5 +7,5 @@ Then /^I should see the list "([^"]*)"$/ do |title|
 end
 
 When /^I submit the new list form$/ do
-  page.execute_script("$('new_list').submit()")
+  page.execute_script("$('#new_list').submit()")
 end

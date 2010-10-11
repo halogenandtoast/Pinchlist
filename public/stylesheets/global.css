@@ -1,0 +1,203 @@
+body {
+  padding: 0;
+  margin: 0;
+    font-family: "Helvetica Neue";
+    color: #333;
+    background-color: #fff;
+}
+
+#header {
+  width: 100%;
+  background-color: #333;
+  height: 44px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Helvetica Neue"
+
+}
+
+#header h1 {
+  float: left;
+  font-size: 18px;
+  color: #fff;
+  width: 120px;
+  margin: 9px 0 0 10px;
+}
+
+#header input {
+  float: left;
+  margin: 9px 0 0 0;
+  width: 180px;
+}
+
+#header input:focus {
+  opacity: 1;
+  outline: none;
+}
+
+#header ul {
+  float: right;
+  width: 200px;
+  margin: 14px 10px 0 0;
+  height: 20px;
+  padding: 0;
+  
+}
+
+#header ul li {
+  display: inline-block;
+  float: right;
+  color: #aaa;
+  margin-left: 10px;
+  font-size: 11px;
+}
+
+#header ul li a {
+  color: #aaa;
+}
+
+
+table {
+  width: 100%;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  min-height: 90%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+tr {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+td {
+  border-collapse: collapse;
+  
+
+}
+
+.list {
+  
+  padding: 0 10px 0 10px;
+  vertical-align: top;
+  min-width: 150px;
+  overflow: hidden;
+  margin: 0;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  -moz-background-clip: padding;     /* Firefox 3.6 */
+  -webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+  background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+
+.list:last-child
+
+ {
+  border-right: none;
+}
+
+.list ul {
+  float: left;
+  padding: 0;
+  margin: 8px 0 10px 0;
+}
+
+
+.list.upcoming {
+  width: 150px;
+}
+
+.list.upcoming ul {
+  margin: 0;
+}
+
+
+
+.list h3 {
+  float: left;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+  padding: 3px 10px 4px 10px;
+  margin: 0 0 10px -10px;
+  font-family: "Helvetica Neue";
+  background-color: #60c2f3;
+  color: #fff;
+}
+
+.list h3 span {
+  opacity: .75;
+}
+
+.list.upcoming h3 {
+  background-color: #dc4d48;
+  margin-bottom: 10px;
+}
+
+
+
+.list ul li {
+  list-style: none;
+  text-indent: none;
+  font-size: 11px;
+  padding: 3px 0;
+}
+
+.list ul li:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.list ul li span {
+  font-size: 8px;
+  color: #dc4d48;
+  margin-right: 5px;
+}
+
+.list ul li.completed {
+  color: #ddd;
+  font-style: italic;
+  font-size: 11px;
+}
+
+.list ul li.completed span {
+  color: #ccc;
+}
+
+input, .editable input {
+  -moz-box-shadow: 0 1px 1px #aaa inset;
+  -webkit-box-shadow: 0 1px 1px #aaa inset;
+  border-top: none;
+  border-left: none;
+  border-bottom: 1px solid #eee;
+  border-right: none;
+  padding: 4px;
+  height: 24px;
+  font-family: "Helvetica Neue";
+}
+
+input:focus, .editable input:focus {
+  background-color: #fffda0;
+  outline: none;
+}
+
+.newtask {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.list input {
+  float: left;
+  width: 100%;
+  max-width: 300px;
+
+
+}

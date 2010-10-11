@@ -10,4 +10,4 @@ Feature: In order to manage my information
     And I fill in "Password" with "password"
     And I press "Sign in"
     Then I should see "Signed in successfully."
-    And I should see "Sign out"
+    And I should see "Sign Out"

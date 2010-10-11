@@ -1,7 +1,69 @@
-<%= link_to 'Sign out', destroy_user_session_path %>
-<%= form_for @list do |form| %>
-  <%= form.text_field :title %>
-<% end %>
-<% @lists.each do |list| %>
-  <%= list.title %>
-<% end %>
+<div id="header">
+  <h1>SeeTask</h1>
+  <%= form_for @list do |form| %>
+    <%= form.text_field :title, :placeholder => 'New List' %>
+  <% end %>
+  <ul id="util">
+    <li><a href="">Help</a></li>
+    <li><%= link_to 'Sign Out', destroy_user_session_path %></li>
+    <li>Benjamin Lehn</li>
+  </ul>
+</div>
+<table cellpadding="0" cellspacing="0">
+  <tr>
+
+    <td class="list upcoming">
+      <h3><span>Upcoming</span></h3>
+      <ul>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+        <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+      </ul>
+
+    </td>
+    <% @lists.each do |list| %>
+      <td class="list">
+        <h3><span><%= list.title %></span></h3>
+        <form class="newtask"><input type="text" /></form>
+
+        <ul>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li>Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed"i>Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit</li>
+          <li class="completed">Lorem Ipsum Dolor Sit<span class="date">10/8</span></li>
+        </ul>
+      </td>
+    <% end %>
+  </tr>
+</table>
