@@ -160,6 +160,12 @@ td {
   margin-right: 5px;
 }
 
+.list ul li a, h3 a {
+  color: blue;
+  text-decoration: underline;
+  font-size: 9px;
+}
+
 .list ul li.completed {
   color: #ddd;
   font-style: italic;
@@ -177,8 +183,8 @@ input, .editable input {
   border-left: none;
   border-bottom: 1px solid #eee;
   border-right: none;
-  padding: 4px;
-  height: 24px;
+  padding: 4px 0 4px 4px;
+  height: 15px;
   font-family: "Helvetica Neue";
 }
 
@@ -198,6 +204,4 @@ input:focus, .editable input:focus {
   float: left;
   width: 100%;
   max-width: 300px;
-
-
 }
