@@ -1,0 +1,43 @@
+#header
+  %h1 SeeTask
+  = form_for @list do |form|
+    = form.text_field :title, :placeholder => 'New List'
+  %ul#util
+    %li
+      %a{:href => ""} Help
+    %li= link_to 'Sign Out', destroy_user_session_path
+    %li Benjamin Lehn
+%table{:cellpadding => "0", :cellspacing => "0"}
+  %tr
+    %td.list.upcoming
+      %h3
+        %span Upcoming
+        %a.edit edit
+      %ul
+        %li
+          %span.date 10/8
+          Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet
+          %a.edit edit
+    - @lists.each do |list|
+      %td.list
+        %h3
+          %span= list.title
+          %a.edit edit
+        %form.newtask
+          %input{:type => "text"}
+        %ul
+          %li
+            Lorem Ipsum Dolor Sit
+            %a.edit edit
+          %li
+            %span.date 10/8
+            Lorem Ipsum Dolor Sit
+            %a.edit edit
+          %li
+            Lorem Ipsum Dolor Sit
+            %a.edit edit
+          %li 
+            Lorem Ipsum Dolor Sit
+            %a.edit edit
+          %li.completed Lorem Ipsum Dolor Sit
+          %li.completed Lorem Ipsum Dolor Sit
