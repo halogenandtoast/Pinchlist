@@ -33,37 +33,19 @@
 
     </td>
     <% @lists.each do |list| %>
-      <td class="list">
+      <%= content_tag_for(:td, list) do %>
         <h3><span><%= list.title %></span></h3>
-        <form class="newtask"><input type="text" /></form>
-
-        <ul>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li><span class="date">10/8</span>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li>Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed"i>Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit</li>
-          <li class="completed">Lorem Ipsum Dolor Sit<span class="date">10/8</span></li>
-        </ul>
-      </td>
+        <%= form_for([list, list.tasks.build], :html => { :id => "new_task_#{list.id}" }) do |form| %>
+          <%= form.text_field :title %>
+        <% end %>
+        <% unless list.tasks.empty? %>
+          <ul>
+            <% list.tasks.each do |task| %>
+              <li><%= task.title %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
     <% end %>
   </tr>
 </table>
