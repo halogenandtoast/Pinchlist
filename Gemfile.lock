@@ -76,6 +76,7 @@ GEM
     gherkin (2.2.8)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
+    haml (3.0.18)
     i18n (0.4.1)
     jruby-jars (1.5.3)
     json (1.4.6)
@@ -150,6 +151,7 @@ DEPENDENCIES
   database_cleaner (>= 0.6.0.rc.3)
   devise
   factory_girl_rails
+  haml
   launchy
   mysql2
   rails (= 3.0.0)
