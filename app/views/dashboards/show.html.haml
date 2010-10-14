@@ -28,4 +28,7 @@
         - unless list.tasks.empty?
           %ul
             - list.tasks.each do |task|
-              %li= task.title
+              %li
+                - if task.due_date?
+                  %span.date= task.due_date.strftime("%d/%m")
+                = task.title
