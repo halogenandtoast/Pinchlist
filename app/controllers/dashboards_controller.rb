@@ -3,6 +3,6 @@ class DashboardsController < ApplicationController
 
   def show
     @list = List.new
-    @lists = current_user.lists
+    @lists = current_user.lists.includes(:tasks).order("lists.created_at asc, tasks.created_at asc")
   end
 end

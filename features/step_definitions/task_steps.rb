@@ -13,3 +13,7 @@ end
 Then /^I should see the task "([^"]*)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
+
+Then /^I should see the task "([^"]*)" followed by the task "([^"]*)"$/ do |task1, task2|
+  page.should have_css("li:contains('#{task1}') ~ li:contains('#{task2}')")
+end
