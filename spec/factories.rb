@@ -11,3 +11,7 @@ end
 Factory.define :list do |list|
   list.association :user
 end
+
+Factory.define :task do |task|
+  task.association :list
+end
