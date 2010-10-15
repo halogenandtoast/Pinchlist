@@ -1,76 +1,62 @@
 body {
   padding: 0;
   margin: 0;
-    font-family: "Helvetica Neue";
-    color: #333;
-    background-color: #fff;
-    background: url(/images/bg.png) 0 0 repeat;
-}
+  font-family: "Helvetica Neue";
+  color: #333333;
+  background-color: white;
+  background: url(/images/bg.png) 0 0 repeat; }
 
 #header {
   width: 100%;
-  background-color: #fff;
+  background-color: white;
   height: 44px;
   position: fixed;
   top: 0;
   left: 0;
-  font-family: "Helvetica Neue"
-
-}
-
-#header h1 {
-  float: left;
-  font-size: 20px;
-  color: #000;
-  width: 120px;
-  margin: 8px 0 0 10px;
-}
-
-#header input {
-  float: left;
-  margin: 9px 0 0 0;
-  width: 20%;
-  max-width: 240px;
-}
-
-#header input:focus {
-  opacity: 1;
-  outline: none;
-}
-
-#header ul {
-  float: right;
-  width: 200px;
-  margin: 14px 10px 0 0;
-  height: 20px;
-  padding: 0;
-  
-}
-
-#header ul li {
-  display: inline-block;
-  float: right;
-  color: #aaa;
-  margin-left: 10px;
-  font-size: 11px;
-}
-
-#header ul li a {
-  color: #aaa;
-}
+  font-family: "Helvetica Neue"; }
+  #header h1 {
+    float: left;
+    font-size: 20px;
+    color: black;
+    width: 120px;
+    margin: 8px 0 0 10px; }
+  #header input {
+    float: left;
+    margin: 9px 0 0 0;
+    width: 20%;
+    max-width: 240px; }
+    #header input:focus {
+      opacity: 1;
+      outline: none; }
+  #header ul {
+    float: right;
+    width: 200px;
+    margin: 14px 10px 0 0;
+    height: 20px;
+    padding: 0; }
+    #header ul li {
+      display: inline-block;
+      float: right;
+      color: #aaaaaa;
+      margin-left: 10px;
+      font-size: 11px; }
+      #header ul li.username {
+        font-weight: bold; }
+      #header ul li a {
+        color: #aaaaaa;
+        text-decoration: none; }
 
 #container {
   position: absolute;
   top: 42px;
   left: 0;
   padding: 0;
-  background-color: #fff;
-  width: auto; 
+  background-color: white;
+  width: auto;
   min-width: 100%;
   min-height: 300px;
   height: auto;
-  overflow: visible;
-}
+  overflow: visible; }
 
 table {
   width: auto;
@@ -78,23 +64,17 @@ table {
   min-height: 90%;
   padding: 0 0 30px 0;
   margin: 0;
-  background-color: #fff;
-  table-layout: fixed;
-}
+  background-color: white;
+  table-layout: fixed; }
 
 tr {
   margin: 0;
-  padding: 0;
-}
-
-
-
+  padding: 0; }
 
 td {
-  border-collapse: collapse;
-}
+  border-collapse: collapse; }
 
-.list {  
+.list {
   padding: 0 10px 0 10px;
   margin: 2px;
   vertical-align: top;
@@ -102,136 +82,91 @@ td {
   width: 280px;
   overflow: hidden;
   margin: 0;
-  border-right: 2px solid #fff;
-  border-left: 2px solid #fff;
-  -moz-background-clip: padding;     /* Firefox 3.6 */
-  -webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
-  background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
-}
-
-
-.list:first-child {
-  border-left: 4px solid #fff;
-}
-
-.list:last-child
-
- {
-  border-right: 6px solid #fff;
-}
-
-.list ul {
-  float: left;
-  padding: 0;
-  margin: 8px 0 10px 0;
-  width: 100%;
-}
-
-
-.list.upcoming {
-
-}
-
-.list.upcoming ul {
-  margin: 0;
-}
-
-
-
-.list h3 {
-  float: left;
-  text-align: left;
-  width: 100%;
-  font-size: 14px;
-  padding: 3px 10px 4px 8px;
-  margin: 0 0 10px -8px;
-  font-family: "Helvetica Neue";
-  background-color: #4da8db;
-  color: #fff;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-}
-
-.list h3 span {
-  opacity: 1;
-}
-
-.list.upcoming h3 {
-  background-color: #dc4d48;
-  margin-bottom: 10px;
-}
-
-
-
-.list ul li {
-  list-style: none;
-  text-indent: none;
-  font-size: 11px;
-  padding: 3px 4px;
-  margin-left: -4px;
-  line-height: 1.2;
-  color: #191919;
-  border-bottom: 1px solid #f6f6f6;
-}
-
-.list ul li:hover {
-  cursor: pointer;
-  color: #999;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-}
-
-.list ul li span {
-  font-size: 9px;
-  color: #dc4d48;
-  margin-right: 2px;
-}
-
-.list ul li a, h3 a {
-  color: blue;
-  text-decoration: underline;
-  font-size: 9px;
-}
-
-.list ul li.completed {
-  color: #ddd;
-  font-style: italic;
-  font-size: 11px;
-}
-
-.list ul li.completed span {
-  color: #ccc;
-}
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box; }
+  .list:first-child {
+    border-left: 4px solid white; }
+  .list:last-child {
+    border-right: 6px solid white; }
+  .list ul {
+    float: left;
+    padding: 0;
+    margin: 8px 0 10px 0;
+    width: 100%; }
+    .list ul li {
+      list-style: none;
+      text-indent: none;
+      font-size: 11px;
+      padding: 3px 4px;
+      margin-left: -4px;
+      line-height: 1.2;
+      color: #191919;
+      border-bottom: 1px solid #f6f6f6; }
+      .list ul li:hover {
+        cursor: pointer;
+        color: #999999;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px; }
+      .list ul li span {
+        font-size: 9px;
+        color: #dc4d48;
+        margin-right: 2px;
+        font-weight: bold; }
+      .list ul li.completed {
+        color: #dddddd;
+        font-style: italic;
+        font-size: 11px; }
+        .list ul li.completed span {
+          color: #cccccc; }
+  .list.upcoming ul {
+    margin: 0; }
+  .list.upcoming h3 {
+    background-color: #dc4d48;
+    margin-bottom: 10px; }
+  .list h3 {
+    float: left;
+    text-align: left;
+    width: 100%;
+    font-size: 14px;
+    padding: 3px 10px 4px 8px;
+    margin: 0 0 10px -8px;
+    font-family: "Helvetica Neue";
+    background-color: #4da8db;
+    color: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px; }
+    .list h3 span {
+      opacity: 1; }
+  .list input {
+    float: left;
+    width: 100%;
+    max-width: 280px; }
 
 input, .editable input {
-  -moz-box-shadow: 0px 1px 1px #aaa inset;
-  -webkit-box-shadow: 0px 1px 1px #aaa inset;
+  -moz-box-shadow: 0px 1px 1px #aaaaaa inset;
+  -webkit-box-shadow: 0px 1px 1px #aaaaaa inset;
   border-top: none;
   border-left: none;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eeeeee;
   border-right: none;
   padding: 4px 4px 4px 4px;
   height: 15px;
   font-family: "Helvetica Neue";
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  margin: 0 0 0 -4px;
-}
+  margin: 0 0 0 -4px; }
+  input:focus, .editable input:focus {
+    background-color: #fffda0;
+    outline: none; }
 
-input:focus, .editable input:focus {
-  background-color: #fffda0;
-  outline: none;
-}
+::-webkit-input-placeholder {
+  color: #cccccc; }
 
 .newtask {
   float: left;
   margin: 0;
   padding: 0;
-  width: 100%;
-}
-
-.list input {
-  float: left;
-  width: 100%;
-  max-width: 280px;
-}
+  width: 100%; }
