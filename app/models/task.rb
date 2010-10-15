@@ -1,21 +1,26 @@
 class Task < ActiveRecord::Base
-  belongs_to :list
   DATE_PATTERN = /@(\d{1,2}\/\d{1,2})/
+  belongs_to :list
+  validates_presence_of :title
 
   def title=(title)
-    if title =~ DATE_PATTERN
-      write_attribute(:due_date, parse_date_format($1))
-    end
+    parse_date_format(title)
     write_attribute(:title, remove_date_format(title))
   end
 
   private
 
   def parse_date_format(str)
-    Date.new(Time.now.year, *str.split('/').map(&:to_i).reverse)
+    write_attribute(:due_date, date_from_format($1)) if str =~ DATE_PATTERN
+  end
+
+  def date_from_format(str)
+    Date.new(Time.now.year, *str.split('/').map(&:to_i))
+  rescue ArgumentError
+    nil
   end
 
   def remove_date_format(str)
-    str.gsub(%r{(\s+#{DATE_PATTERN}|#{DATE_PATTERN}\s+)}, '')
+    self.due_date ? str.try(:gsub, %r{(\s+#{DATE_PATTERN}|#{DATE_PATTERN}\s+)}, '') : str
   end
 end
