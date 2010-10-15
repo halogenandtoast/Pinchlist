@@ -11,7 +11,7 @@ body {
   width: 100%;
   background-color: #fff;
   height: 44px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   font-family: "Helvetica Neue"
@@ -59,16 +59,27 @@ body {
   color: #aaa;
 }
 
+#container {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  padding: 0;
+  background-color: #fff;
+  width: auto; 
+  min-width: 100%;
+  min-height: 300px;
+  height: auto;
+  overflow: visible;
+}
 
 table {
-  width: 100%;
-  position: absolute;
-  top: 44px;
-  left: 0;
+  width: auto;
+  float: left;
   min-height: 90%;
   padding: 0 0 30px 0;
   margin: 0;
   background-color: #fff;
+  table-layout: fixed;
 }
 
 tr {
@@ -81,17 +92,14 @@ tr {
 
 td {
   border-collapse: collapse;
-  
-
 }
 
-.list {
-  
+.list {  
   padding: 0 10px 0 10px;
   margin: 2px;
   vertical-align: top;
   min-width: 150px;
-  max-width: 300px;
+  width: 280px;
   overflow: hidden;
   margin: 0;
   border-right: 2px solid #fff;
@@ -116,11 +124,12 @@ td {
   float: left;
   padding: 0;
   margin: 8px 0 10px 0;
+  width: 100%;
 }
 
 
 .list.upcoming {
-  width: 150px;
+
 }
 
 .list.upcoming ul {
@@ -140,6 +149,7 @@ td {
   background-color: #4da8db;
   color: #fff;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
 }
 
 .list h3 span {
@@ -168,6 +178,7 @@ td {
   cursor: pointer;
   color: #999;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
 }
 
 .list ul li span {
@@ -203,6 +214,7 @@ input, .editable input {
   height: 15px;
   font-family: "Helvetica Neue";
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   margin: 0 0 0 -4px;
 }
 
@@ -221,5 +233,5 @@ input:focus, .editable input:focus {
 .list input {
   float: left;
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
 }

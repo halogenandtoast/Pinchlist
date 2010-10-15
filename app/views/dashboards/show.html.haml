@@ -7,25 +7,26 @@
       %a{:href => ""} Help
     %li= link_to 'Sign Out', destroy_user_session_path
     %li Benjamin Lehn
-%table{:cellpadding => "0", :cellspacing => "0"}
-  %tr
-    %td.list.upcoming
-      %h3
-        %span Upcoming
-      %ul
-        %li
-          %span.date 10/8
-          Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet
-    - @lists.each do |list|
-      %td[list]
-        %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
-          %span= list.title
-        = form_for [list, list.tasks.build], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
-          = form.text_field :title
-        - unless list.tasks.empty?
-          %ul
-            - list.tasks.each do |task|
-              %li
-                - if task.due_date?
-                  %span.date= task.due_date.strftime("%d/%m")
-                = task.title
+#container
+  %table{:cellpadding => "0", :cellspacing => "0"}
+    %tr
+      %td.list.upcoming
+        %h3
+          %span Upcoming
+        %ul
+          %li
+            %span.date 10/8
+            Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet
+      - @lists.each do |list|
+        %td[list]
+          %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
+            %span= list.title
+          = form_for [list, list.tasks.build], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
+            = form.text_field :title
+          - unless list.tasks.empty?
+            %ul
+              - list.tasks.each do |task|
+                %li
+                  - if task.due_date?
+                    %span.date= task.due_date.strftime("%d/%m")
+                  = task.title
