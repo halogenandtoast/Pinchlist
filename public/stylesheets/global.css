@@ -4,11 +4,12 @@ body {
     font-family: "Helvetica Neue";
     color: #333;
     background-color: #fff;
+    background: url(/images/bg.png) 0 0 repeat;
 }
 
 #header {
   width: 100%;
-  background-color: #333;
+  background-color: #fff;
   height: 44px;
   position: absolute;
   top: 0;
@@ -19,16 +20,17 @@ body {
 
 #header h1 {
   float: left;
-  font-size: 18px;
-  color: #fff;
+  font-size: 20px;
+  color: #000;
   width: 120px;
-  margin: 9px 0 0 10px;
+  margin: 8px 0 0 10px;
 }
 
 #header input {
   float: left;
   margin: 9px 0 0 0;
-  width: 180px;
+  width: 20%;
+  max-width: 240px;
 }
 
 #header input:focus {
@@ -64,7 +66,7 @@ table {
   top: 44px;
   left: 0;
   min-height: 90%;
-  padding: 0;
+  padding: 0 0 30px 0;
   margin: 0;
   background-color: #fff;
 }
@@ -86,20 +88,28 @@ td {
 .list {
   
   padding: 0 10px 0 10px;
+  margin: 2px;
   vertical-align: top;
   min-width: 150px;
+  max-width: 300px;
   overflow: hidden;
   margin: 0;
-  border-right: 1px solid rgba(0,0,0,0.05);
+  border-right: 2px solid #fff;
+  border-left: 2px solid #fff;
   -moz-background-clip: padding;     /* Firefox 3.6 */
   -webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
   background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
 
+
+.list:first-child {
+  border-left: 4px solid #fff;
+}
+
 .list:last-child
 
  {
-  border-right: none;
+  border-right: 6px solid #fff;
 }
 
 .list ul {
@@ -124,15 +134,16 @@ td {
   text-align: left;
   width: 100%;
   font-size: 14px;
-  padding: 3px 10px 4px 10px;
-  margin: 0 0 10px -10px;
+  padding: 3px 10px 4px 8px;
+  margin: 0 0 10px -8px;
   font-family: "Helvetica Neue";
-  background-color: #60c2f3;
+  background-color: #4da8db;
   color: #fff;
+  -webkit-border-radius: 2px;
 }
 
 .list h3 span {
-  opacity: .75;
+  opacity: 1;
 }
 
 .list.upcoming h3 {
@@ -146,18 +157,23 @@ td {
   list-style: none;
   text-indent: none;
   font-size: 11px;
-  padding: 3px 0;
+  padding: 3px 4px;
+  margin-left: -4px;
+  line-height: 1.2;
+  color: #191919;
+  border-bottom: 1px solid #f6f6f6;
 }
 
 .list ul li:hover {
   cursor: pointer;
-  background-color: #eee;
+  color: #999;
+  -webkit-border-radius: 2px;
 }
 
 .list ul li span {
-  font-size: 8px;
+  font-size: 9px;
   color: #dc4d48;
-  margin-right: 5px;
+  margin-right: 2px;
 }
 
 .list ul li a, h3 a {
@@ -177,15 +193,17 @@ td {
 }
 
 input, .editable input {
-  -moz-box-shadow: 0 1px 1px #aaa inset;
-  -webkit-box-shadow: 0 1px 1px #aaa inset;
+  -moz-box-shadow: 0px 1px 1px #aaa inset;
+  -webkit-box-shadow: 0px 1px 1px #aaa inset;
   border-top: none;
   border-left: none;
   border-bottom: 1px solid #eee;
   border-right: none;
-  padding: 4px 0 4px 4px;
+  padding: 4px 4px 4px 4px;
   height: 15px;
   font-family: "Helvetica Neue";
+  -webkit-border-radius: 2px;
+  margin: 0 0 0 -4px;
 }
 
 input:focus, .editable input:focus {
@@ -203,5 +221,5 @@ input:focus, .editable input:focus {
 .list input {
   float: left;
   width: 100%;
-  max-width: 300px;
+  max-width: 260px;
 }

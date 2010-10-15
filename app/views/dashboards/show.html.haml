@@ -1,5 +1,5 @@
 #header
-  %h1 SeeTask
+  %h1 Taskwerk
   = form_for @list do |form|
     = form.text_field :title, :placeholder => 'New List'
   %ul#util
@@ -12,17 +12,14 @@
     %td.list.upcoming
       %h3
         %span Upcoming
-        %a.edit edit
       %ul
         %li
           %span.date 10/8
           Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet
-          %a.edit edit
     - @lists.each do |list|
       %td[list]
-        %h3
+        %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
           %span= list.title
-          %a.edit edit
         = form_for [list, list.tasks.build], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
           = form.text_field :title
         - unless list.tasks.empty?
