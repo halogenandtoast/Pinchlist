@@ -26,7 +26,15 @@ describe Task, 'whose title has a due date' do
 end
 
 describe Task, 'whose title has an invalid date' do
-  subject { Factory(:task, :title => "@20/10 Build foo") }
+  subject { Factory(:task, :title => "@31/31 Build foo") }
   its(:due_date) { should_not be }
-  its(:title) { should == "@20/10 Build foo" }
+  its(:title) { should == "@31/31 Build foo" }
+end
+
+describe Task, 'whose title has a chronic date format' do
+  Timecop.freeze("10/16/10") do
+    subject { Factory(:task, :title => "@wednesday do something") }
+    its(:due_date) { should == Chronic.parse("wednesday").to_date }
+    its(:title) { should == "do something" }
+  end
 end

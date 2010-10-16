@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
-  DATE_PATTERN = /@(\d{1,2}\/\d{1,2})/
+  DATE_PATTERN = /@([^\s]+)/
+  MONTH_DAY_FORMAT = /(\d{1,2}\/\d{1,2})/
+
   belongs_to :list
   validates_presence_of :title
 
@@ -15,9 +17,7 @@ class Task < ActiveRecord::Base
   end
 
   def date_from_format(str)
-    Date.new(Time.now.year, *str.split('/').map(&:to_i))
-  rescue ArgumentError
-    nil
+    Chronic.parse(str.gsub(MONTH_DAY_FORMAT) { |date| "#{date}/#{Time.now.year}" }).try(:to_date)
   end
 
   def remove_date_format(str)
