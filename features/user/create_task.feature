@@ -33,7 +33,7 @@ Feature: In order to track what needs to be done
       | title   | user                    |
       | My List | email: user@example.com |
     When I am on the dashboard page
-    And I fill in "My List"'s task title with "@20/10 Learn to ride a shark"
+    And I fill in "My List"'s task title with "@10/20 Learn to ride a shark"
     And I submit "My List"'s task form
-    Then I should see the task "Learn to ride a shark" with a due date of "20/10"
+    Then I should see the task "Learn to ride a shark" with a due date of "10/20"
 

@@ -38,3 +38,13 @@ describe Task, 'whose title has a chronic date format' do
     its(:title) { should == "do something" }
   end
 end
+
+describe Task, '#upcoming' do
+  before do
+    @upcoming_tasks = [*1..3].map { Factory(:task, :title => "@10/20 do foo") }
+    @other_tasks = [*1..3].map { Factory(:task, :title => "Other things") }
+  end
+  it 'knows upcoming tasks' do
+    Task.upcoming.should == @upcoming_tasks
+  end
+end

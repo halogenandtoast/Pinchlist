@@ -13,10 +13,11 @@
       %td.list.upcoming
         %h3
           %span Upcoming
-        %ul
-          %li
-            %span.date 10/8
-            Lorem Ipsum Dolor Sit Lorem ipsum dolor sit amet
+        %ul#upcoming_tasks
+          - @upcoming_tasks.each do |task|
+            %li
+              %span.date= task.due_date.strftime("%m/%d")
+              = task.title
       - @lists.each do |list|
         %td[list]
           %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
@@ -28,5 +29,5 @@
               - list.tasks.each do |task|
                 %li
                   - if task.due_date?
-                    %span.date= task.due_date.strftime("%d/%m")
+                    %span.date= task.due_date.strftime("%m/%d")
                   = task.title
