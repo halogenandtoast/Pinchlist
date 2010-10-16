@@ -22,7 +22,7 @@
         %td[list]
           %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
             %span= list.title
-          = form_for [list, list.tasks.build], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
+          = form_for [list, Task.new], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
             = form.text_field :title
           - unless list.tasks.empty?
             %ul
