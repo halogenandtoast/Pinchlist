@@ -83,7 +83,7 @@ div.color_picker {
   div.color_picker:hover {
     -webkit-box-shadow: 0 0 2px black; }
 
-.list h3:hover div.color_picker {
+.list .list_title:hover div.color_picker {
   display: block; }
 
 div#color_selector {
@@ -234,10 +234,10 @@ table {
           color: #cccccc; }
   .list.upcoming ul {
     margin: 0; }
-  .list.upcoming h3 {
+  .list.upcoming .list_title {
     background-color: #dc4d48;
     margin-bottom: 10px; }
-  .list h3 {
+  .list .list_title {
     float: left;
     text-align: left;
     width: 100%;
@@ -249,7 +249,7 @@ table {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     position: relative; }
-    .list h3 span {
+    .list .list_title h3 {
       opacity: 1; }
   .list input {
     float: left;

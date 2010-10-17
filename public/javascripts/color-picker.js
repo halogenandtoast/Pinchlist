@@ -114,7 +114,7 @@
   
   changeColor = function(value){
     if(selectedValue = toHex(value)){
-      $(selectorOwner).closest('h3').css("background-color", selectedValue);
+      $(selectorOwner).closest('.list_title').css("background-color", selectedValue);
       $(selectorOwner).prev("input").val(selectedValue).change();
     
       //close the selector
