@@ -15,7 +15,7 @@
           %h3 Upcoming
         %ul#upcoming_tasks
           - @upcoming_tasks.each do |task|
-            %li
+            = content_tag_for(:li, task, :upcoming, :class => (task.completed ? 'completed' : nil)) do
               %span.date= task.due_date.strftime("%m/%d")
               = task.title
       - @lists.each do |list|
@@ -28,7 +28,7 @@
           - unless list.tasks.empty?
             %ul
               - list.tasks.each do |task|
-                %li
+                = content_tag_for(:li, task, :class => (task.completed ? 'completed' : nil)) do
                   - if task.due_date?
                     %span.date= task.due_date.strftime("%m/%d")
                   = task.title

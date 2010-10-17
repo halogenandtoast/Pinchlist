@@ -28,6 +28,7 @@ Feature: In order to track what needs to be done
 
   @javascript
   Scenario: Adding a task with a due date
+    Given today is "October 16, 2010"
     Given I am signed in as "user@example.com/password"
     And the following list exists:
       | title   | user                    |
