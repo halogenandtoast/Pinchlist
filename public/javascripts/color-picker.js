@@ -45,6 +45,7 @@
      $.each($.fn.colorPicker.defaultColors, function(i){
       swatch = $("<div class='color_swatch'>&nbsp;</div>")
       swatch.css("background-color", "#" + this);
+      swatch.css("border-color", "#" + this);
       swatch.bind("click", function(e){ changeColor($(this).css("background-color")) });
       swatch.bind("mouseover", function(e){ 
         // $(this).css("border-color", "#598FEF"); 
@@ -95,7 +96,7 @@
     
     selector.css({
       top: $(selectorOwner).offset().top - 2,
-      left: $(selectorOwner).offset().left - $('#color_selector').width() - 3
+      left: $(selectorOwner).offset().left - $('#color_selector').width() - 2
     }); 
     hexColor = $(selectorOwner).prev("input").val();
     $("input#color_value").val(hexColor);

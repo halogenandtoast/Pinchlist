@@ -72,8 +72,8 @@ div.color_picker {
   position: absolute;
   top: 6px;
   right: 6px;
-  height: 11px;
-  width: 11px;
+  height: 12px;
+  width: 12px;
   padding: 0 !important;
   background: url(/images/picker.png) no-repeat top right;
   cursor: pointer;
@@ -81,22 +81,19 @@ div.color_picker {
   text-indent: -10000px;
   display: none; }
   div.color_picker:hover {
-    -webkit-box-shadow: 0 0 3px black; }
-  div.color_picker:active {
-    -webkit-box-shadow: none; }
+    -webkit-box-shadow: 0 0 2px black; }
 
 .list h3:hover div.color_picker {
   display: block; }
 
 div#color_selector {
-  width: 112px;
+  width: 102px;
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #f9f9f9;
+  background-color: #eeeeee;
   padding: 8px 8px 4px;
-  -webkit-border-radius: 2px;
-  -webkit-box-shadow: 0 0 2px #aaaaaa; }
+  -webkit-border-radius: 2px; }
 
 div#color_custom {
   width: 100%; }
@@ -104,21 +101,22 @@ div#color_custom {
     margin: 8px 0 4px;
     padding: 2px 3px;
     font-size: 95%;
-    width: 104px;
+    width: 94px;
     font-size: 11px;
     font-weight: bold;
     -webkit-box-shadow: none;
     border: 1px solid #cccccc; }
 
 div.color_swatch {
-  height: 16px;
-  width: 16px;
+  height: 15px;
+  width: 15px;
   margin: 0px;
   float: left;
   cursor: pointer;
-  line-height: 12px; }
+  line-height: 12px;
+  border: 1px solid transparent; }
   div.color_swatch:hover {
-    -webkit-box-shadow: 0 0 4px black; }
+    border-color: white !important; }
 
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
