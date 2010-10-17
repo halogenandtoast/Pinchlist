@@ -29,7 +29,7 @@ $(document).ready(function(){
   $("#upcoming_tasks li").single_double_click(function () {
       var task_id = $(this).attr('id').split('_')[2];
       $(this).toggleClass('completed');
-      // $('task_'+task_id).toggleClass('completed');
+      $('#task_'+task_id).toggleClass('completed');
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
     }, function () {
       // $(this).html($(this).html() + "EDTED");

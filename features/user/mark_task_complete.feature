@@ -4,7 +4,7 @@ Feature: Marking a task complete
   I want to click the task to mark it complete or incomplete
 
   @javascript
-  Scenario: Marking a task as complete
+  Scenario: Marking an upcoming task as complete
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
     And the following list exists:
@@ -15,6 +15,8 @@ Feature: Marking a task complete
       | Ride a shark | title: My List | 2010-10-20 |
     When I go to the dashboard page
     And I click on the upcoming task "Ride a shark"
-    Then I should see the completed task "Ride a shark"
+    Then I should see the completed upcoming task "Ride a shark"
+    And I should see the completed task "Ride a shark" in "My List"
     When I go to the dashboard page
-    Then I should see the completed task "Ride a shark"
+    Then I should see the completed upcoming task "Ride a shark"
+    And I should see the completed task "Ride a shark" in "My List"

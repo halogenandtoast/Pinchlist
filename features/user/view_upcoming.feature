@@ -20,3 +20,22 @@ Feature: View upcoming tasks
         | One more thing |
         | Something      |
         | Something else |
+
+  Scenario: Completed tasks exist
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title  | user                    |
+      | First  | email: user@example.com |
+      | Second | email: user@example.com |
+    And the following tasks exist:
+      | title          | list          | due date   | completed |
+      | Something      | title: First  | 2010-10-20 | true      |
+      | Something else | title: Second | 2010-10-21 | false     |
+      | One more thing | title: First  | 2010-10-19 | false     |
+      When I am on the dashboard page
+      Then I should see the following upcoming tasks in order:
+        | One more thing |
+        | Something else |
+        | Something      |
+
