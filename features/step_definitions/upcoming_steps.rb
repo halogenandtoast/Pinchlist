@@ -10,6 +10,6 @@ When /^I click on the upcoming task "([^"]*)"$/ do |title|
   sleep 0.5
 end
 
-Then /^I should see the completed task "([^"]*)"$/ do |title|
+Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
   page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
 end
