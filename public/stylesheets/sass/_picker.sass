@@ -1,0 +1,54 @@
+div.color_picker 
+  position: absolute
+  top: 6px
+  right: 6px
+  height: 11px
+  width: 11px
+  padding: 0 !important
+  background: url(/images/picker.png) no-repeat top right
+  cursor: pointer
+  line-height: 16px
+  text-indent: -10000px
+  display: none
+  &:hover
+    -webkit-box-shadow: 0 0 3px #000
+  &:active
+    -webkit-box-shadow: none
+.list h3:hover div.color_picker
+  display: block
+div#color_selector 
+  width: 112px
+  position: absolute
+  top: 0
+  right: 0
+  background-color: #f9f9f9
+  padding: 8px 8px 4px
+  -webkit-border-radius: 2px
+  -webkit-box-shadow: 0 0 2px #aaa
+div#color_custom 
+  width: 100% 
+  float:left 
+  // label 
+  //   font-size: 10px 
+  //   color: #2F2F2F 
+  //   margin: 5px 2px 
+  //   width: 25%
+  input 
+    margin: 8px 0 4px 
+    padding: 2px 3px 
+    font-size: 95% 
+    width: 104px
+    font-size: 11px
+    font-weight: bold
+    -webkit-box-shadow: none
+    border: 1px solid #ccc
+div.color_swatch 
+  height: 16px
+  width: 16px
+  margin: 0px
+  float: left
+  cursor: pointer
+  line-height: 12px
+  &:hover
+    -webkit-box-shadow: 0 0 4px #000
+

@@ -21,6 +21,7 @@
       - @lists.each do |list|
         %td[list]
           %h3{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
+            .picker choose color
             %span= list.title
           = form_for [list, Task.new], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
             = form.text_field :title

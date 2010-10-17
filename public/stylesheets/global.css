@@ -1,10 +1,129 @@
-body {
-  padding: 0;
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header,
+hgroup, menu, nav, section,
+time, textarea, mark, audio, video {
   margin: 0;
-  font-family: "Helvetica Neue";
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+article, aside, figure, footer, header,
+hgroup, nav, section {
+  display: block; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a:focus, input:focus, button:focus {
+  outline: none; }
+
+/* END RESET CSS */
+/* www.aestheticallyloyal.com/public/optimize-legibility/ */
+a:hover, a:active {
+  outline: none; }
+
+/* align checkboxes, radios, text inputs with their label
+ * by:  Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] {
+  vertical-align: text-bottom; }
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+  *vertical-align: baseline; }
+
+.ie6 input {
+  vertical-align: text-bottom; }
+
+/* hand cursor on clickable input elements */
+label, input[type=button], input[type=submit], button {
+  cursor: pointer; }
+
+/* make buttons play nice in IE:
+ * www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {
+  width: auto;
+  overflow: visible; }
+
+/* bicubic resizing for non-native sized IMG:
+ * code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+  -ms-interpolation-mode: bicubic; }
+
+/* Prevent iOS, WinMobile from adjusting font size */
+html {
+  -webkit-appearance: none; }
+
+input, button, textarea {
+  -webkit-appearance: none; }
+
+div.color_picker {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  height: 11px;
+  width: 11px;
+  padding: 0 !important;
+  background: url(/images/picker.png) no-repeat top right;
+  cursor: pointer;
+  line-height: 16px;
+  text-indent: -10000px;
+  display: none; }
+  div.color_picker:hover {
+    -webkit-box-shadow: 0 0 3px black; }
+  div.color_picker:active {
+    -webkit-box-shadow: none; }
+
+.list h3:hover div.color_picker {
+  display: block; }
+
+div#color_selector {
+  width: 112px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  padding: 8px 8px 4px;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0 0 2px #aaaaaa; }
+
+div#color_custom {
+  width: 100%; }
+  div#color_custom input {
+    margin: 8px 0 4px;
+    padding: 2px 3px;
+    font-size: 95%;
+    width: 104px;
+    font-size: 11px;
+    font-weight: bold;
+    -webkit-box-shadow: none;
+    border: 1px solid #cccccc; }
+
+div.color_swatch {
+  height: 16px;
+  width: 16px;
+  margin: 0px;
+  float: left;
+  cursor: pointer;
+  line-height: 12px; }
+  div.color_swatch:hover {
+    -webkit-box-shadow: 0 0 4px black; }
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333333;
-  background-color: white;
-  background: url(/images/bg.png) 0 0 repeat; }
+  background: white url(/images/bg.png) 0 0 repeat; }
 
 #header {
   width: 100%;
@@ -12,19 +131,18 @@ body {
   height: 44px;
   position: fixed;
   top: 0;
-  left: 0;
-  font-family: "Helvetica Neue"; }
+  left: 0; }
   #header h1 {
     float: left;
     font-size: 20px;
     color: black;
     width: 120px;
-    margin: 8px 0 0 10px; }
+    margin: 8px 0 0 8px; }
   #header input {
     float: left;
     margin: 9px 0 0 0;
     width: 20%;
-    max-width: 240px; }
+    max-width: 166px; }
     #header input:focus {
       opacity: 1;
       outline: none; }
@@ -67,13 +185,6 @@ table {
   background-color: white;
   table-layout: fixed; }
 
-tr {
-  margin: 0;
-  padding: 0; }
-
-td {
-  border-collapse: collapse; }
-
 .list {
   padding: 0 10px 0 10px;
   margin: 2px;
@@ -82,15 +193,15 @@ td {
   width: 280px;
   overflow: hidden;
   margin: 0;
-  border-right: 2px solid white;
-  border-left: 2px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   background-clip: padding-box; }
   .list:first-child {
-    border-left: 4px solid white; }
+    border-left: 2px solid white; }
   .list:last-child {
-    border-right: 6px solid white; }
+    border-right: 4px solid white; }
   .list ul {
     float: left;
     padding: 0;
@@ -103,8 +214,10 @@ td {
       padding: 3px 4px;
       margin-left: -4px;
       line-height: 1.2;
-      color: #191919;
-      border-bottom: 1px solid #f6f6f6; }
+      color: #333333;
+      border-top: 1px solid #f6f6f6; }
+      .list ul li:first-child {
+        border: none; }
       .list ul li:hover {
         cursor: pointer;
         color: #999999;
@@ -133,11 +246,11 @@ td {
     font-size: 14px;
     padding: 3px 10px 4px 8px;
     margin: 0 0 10px -8px;
-    font-family: "Helvetica Neue";
     background-color: #4da8db;
     color: white;
     -webkit-border-radius: 2px;
-    -moz-border-radius: 2px; }
+    -moz-border-radius: 2px;
+    position: relative; }
     .list h3 span {
       opacity: 1; }
   .list input {
