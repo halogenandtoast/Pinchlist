@@ -70,18 +70,19 @@ input, button, textarea {
 
 div.color_picker {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  height: 12px;
-  width: 12px;
+  top: 5px;
+  right: 24px;
+  height: 16px;
+  width: 16px;
   padding: 0 !important;
-  background: url(/images/picker.png) no-repeat top right;
+  background: url(/images/picker4.png) no-repeat top right;
   cursor: pointer;
   line-height: 16px;
   text-indent: -10000px;
-  display: none; }
+  display: none;
+  opacity: 0.85; }
   div.color_picker:hover {
-    -webkit-box-shadow: 0 0 2px black; }
+    opacity: 1; }
 
 .list .list_title:hover div.color_picker {
   display: block; }
@@ -138,9 +139,8 @@ body {
     margin: 8px 0 0 8px; }
   #header input {
     float: left;
-    margin: 9px 0 0 0;
-    width: 20%;
-    max-width: 166px; }
+    margin: 10px 0 0 0;
+    width: 166px; }
     #header input:focus {
       opacity: 1;
       outline: none; }
@@ -178,7 +178,7 @@ table {
   width: auto;
   float: left;
   min-height: 90%;
-  padding: 0 0 30px 0;
+  padding: 0;
   margin: 0;
   background-color: white;
   table-layout: fixed; }
@@ -203,22 +203,22 @@ table {
   .list ul {
     float: left;
     padding: 0;
-    margin: 8px 0 10px 0;
+    margin: 1px 0 10px 0;
     width: 100%; }
     .list ul li {
       list-style: none;
       text-indent: none;
       font-size: 11px;
-      padding: 3px 4px;
+      padding: 4px 4px;
       margin-left: -4px;
       line-height: 1.2;
-      color: #333333;
-      border-top: 1px solid #f6f6f6; }
-      .list ul li:first-child {
+      color: #111111;
+      border-bottom: 1px solid #efefef; }
+      .list ul li:last-child {
         border: none; }
       .list ul li:hover {
         cursor: pointer;
-        color: #999999;
+        color: #777777;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px; }
       .list ul li span {
@@ -227,13 +227,15 @@ table {
         margin-right: 2px;
         font-weight: bold; }
       .list ul li.completed {
-        color: #dddddd;
+        color: #cccccc;
         font-style: italic;
         font-size: 11px; }
+        .list ul li.completed:hover {
+          color: #dddddd; }
         .list ul li.completed span {
-          color: #cccccc; }
+          color: #bbbbbb; }
   .list.upcoming ul {
-    margin: 0; }
+    margin: -8px 0 0 0; }
   .list.upcoming .list_title {
     background-color: #dc4d48;
     margin-bottom: 10px; }
@@ -248,9 +250,24 @@ table {
     color: white;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    position: relative; }
+    position: relative;
+    overflow: hidden; }
+    .list .list_title .delete {
+      background: transparent url(/images/delete.png) 0 0 no-repeat;
+      height: 16px;
+      width: 16px;
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      overflow: hidden;
+      text-indent: -10000px;
+      opacity: 0.4; }
+      .list .list_title .delete:hover {
+        opacity: 0.8; }
     .list .list_title h3 {
-      opacity: 1; }
+      opacity: 1;
+      width: 80%;
+      white-space: nowrap; }
   .list input {
     float: left;
     width: 100%;
@@ -263,7 +280,7 @@ input, .editable input {
   border-left: none;
   border-bottom: 1px solid #eeeeee;
   border-right: none;
-  padding: 4px 4px 4px 4px;
+  padding: 3px 4px 3px 4px;
   height: 15px;
   font-family: "Helvetica Neue";
   -webkit-border-radius: 2px;

@@ -19,9 +19,8 @@ body
     margin: 8px 0 0 8px
   input 
     float: left
-    margin: 9px 0 0 0
-    width: 20%
-    max-width: 166px
+    margin: 10px 0 0 0
+    width: 166px
     &:focus 
       opacity: 1
       outline: none
@@ -57,7 +56,7 @@ table
   width: auto
   float: left
   min-height: 90%
-  padding: 0 0 30px 0
+  padding: 0
   margin: 0
   background-color: #fff
   table-layout: fixed
@@ -81,22 +80,22 @@ table
   ul 
     float: left
     padding: 0
-    margin: 8px 0 10px 0
+    margin: 1px 0 10px 0
     width: 100%
     li 
       list-style: none
       text-indent: none
       font-size: 11px
-      padding: 3px 4px
+      padding: 4px 4px
       margin-left: -4px
       line-height: 1.2
-      color: #333
-      border-top: 1px solid #f6f6f6
-      &:first-child
+      color: #111
+      border-bottom: 1px solid #efefef
+      &:last-child
         border: none
       &:hover 
         cursor: pointer
-        color: #999
+        color: #777
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
       span 
@@ -105,14 +104,16 @@ table
         margin-right: 2px
         font-weight: bold
       &.completed 
-        color: #ddd
+        color: #ccc
         font-style: italic
         font-size: 11px
+        &:hover
+          color: #ddd
         span 
-          color: #ccc
+          color: #bbb
   &.upcoming 
     ul 
-      margin: 0
+      margin: -8px 0 0 0
     .list_title 
       background-color: #dc4d48
       margin-bottom: 10px
@@ -128,12 +129,35 @@ table
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
     position: relative
+    overflow: hidden
+    .delete
+      background: transparent url(/images/delete.png) 0 0 no-repeat
+      height: 16px
+      width: 16px
+      position: absolute
+      right: 4px
+      top: 4px
+      overflow: hidden
+      text-indent: -10000px
+      opacity: .4
+      &:hover
+        opacity: .8
     h3 
       opacity: 1
+      width: 80%
+      white-space: nowrap
   input 
     float: left
     width: 100%
     max-width: 280px
+  // input[type="checkbox"]
+  //   border: none
+  //   padding: 0
+  //   height: 14px
+  //   width: 14px
+  //   -webkit-border-radius: none
+  //   -moz-border-radius: none
+  //   margin: 0 5px 0 0
 input, .editable input 
   -moz-box-shadow: 0px 1px 1px #aaa inset
   -webkit-box-shadow: 0px 1px 1px #aaa inset
@@ -141,7 +165,7 @@ input, .editable input
   border-left: none
   border-bottom: 1px solid #eee
   border-right: none
-  padding: 4px 4px 4px 4px
+  padding: 3px 4px 3px 4px
   height: 15px
   font-family: "Helvetica Neue"
   -webkit-border-radius: 2px
@@ -158,3 +182,4 @@ input, .editable input
   padding: 0
   width: 100%
 
+  

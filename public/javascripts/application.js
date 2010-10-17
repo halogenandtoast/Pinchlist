@@ -15,7 +15,7 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
             double_click_callback.call(self, event);
           }
           clicks = 0;
-        }, timeout || 300);
+        }, timeout || 250);
       }
     });
   });
