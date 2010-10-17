@@ -4,7 +4,8 @@ Feature: View upcoming tasks
   I want to see upcoming tasks in order
 
   Scenario: Upcoming tasks exist
-    Given I am signed in as "user@example.com/password"
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
     And the following lists exist:
       | title  | user                    |
       | First  | email: user@example.com |
