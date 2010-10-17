@@ -14,3 +14,11 @@ Then /^I should see the completed task "([^"]*)" in "([^"]*)"$/ do |title, list_
   list = List.find_by_title!(list_title)
   page.should have_css("#list_#{list.id} li.completed:contains('#{title}')")
 end
+
+Then /^I should see the following "([^"]*)" tasks in order:$/ do |title, table|
+  css_matcher = table.raw.flatten.map { |title| "li:contains('#{title}')" }.join(' ~ ')
+  list = List.find_by_title!(title)
+  within "#list_#{list.id}" do
+    page.should have_css(css_matcher)
+  end
+end

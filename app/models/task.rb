@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   belongs_to :list
   validates_presence_of :title
 
-  scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.due_date asc")
+  scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
 
   def title=(title)
     parse_date_format(title)
