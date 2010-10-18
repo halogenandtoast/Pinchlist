@@ -25,3 +25,9 @@ end
 Then /^I should not see the task "([^"]*)"$/ do |task|
   page.should_not have_css("li:contains('#{task}')")
 end
+
+When /^I click on the task "([^"]*)"$/ do |title|
+  task = Task.find_by_title!(title)
+  page.evaluate_script %{$("#list_#{task.list.id} li:contains('#{title}')").trigger('click');}
+  sleep 0.5
+end

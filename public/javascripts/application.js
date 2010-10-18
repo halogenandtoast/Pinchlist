@@ -33,5 +33,12 @@ $(document).ready(function(){
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
     }, function () {
       // $(this).html($(this).html() + "EDTED");
-    })
+    });
+  $(".list:not(.upcoming) li").single_double_click(function() {
+      var task_id = $(this).attr('id').split('_')[1];
+      $(this).toggleClass('completed');
+      $("#upcoming_task_"+task_id).toggleClass('completed');
+      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
+    }, function() {
+    });
 });
