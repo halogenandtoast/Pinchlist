@@ -60,7 +60,7 @@ table
   margin: 0
   background-color: #fff
   table-layout: fixed
-
+.ui-placeholder-highlight
 .list   
   padding: 0 10px 0 10px
   margin: 2px
@@ -78,12 +78,15 @@ table
     background-color: #fff
     margin: 4px 0 0
     border: 0
-    // -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
-    //     -moz-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
     padding-left: 8px
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
-    cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto
+    &:hover
+      cursor: move
+    &:active
+      cursor: move
     &:last-child
       border-right: none
       margin: 0
@@ -130,16 +133,19 @@ table
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
         background-color: #fff
-        margin-left: 10px
-        cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto
+        margin-left: 6px
+        color: #111
+        &:active
+          cursor: move
       &.ui-placeholder-highlight
-        background-color: #fff
-  &.upcoming 
+        background-color: #eee
+  &.upcoming
     ul 
       margin: -8px 0 0 0
     .list_title 
       background-color: #dc4d48
       margin-bottom: 10px
+      cursor: default
       h3
         cursor: default
         &:hover
@@ -157,6 +163,9 @@ table
     -moz-border-radius: 2px
     position: relative
     overflow: hidden
+    cursor: move
+    &:active
+      cursor: move
     .delete
       background: transparent url(/images/delete.png) 0 0 no-repeat
       height: 16px
@@ -173,9 +182,6 @@ table
       opacity: 1
       width: 80%
       white-space: nowrap
-      cursor: -moz-grab
-      &:active
-        cursor: -moz-grabbing
   input 
     float: left
     width: 100%
@@ -195,7 +201,7 @@ input, .editable input
   border-left: none
   border-bottom: 1px solid #eee
   border-right: none
-  padding: 3px 4px 3px 4px
+  padding: 4px
   height: 15px
   font-family: "Helvetica Neue"
   -webkit-border-radius: 2px

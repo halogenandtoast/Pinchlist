@@ -56,6 +56,8 @@ $(document).ready(function(){
       forceHelperSize: true,
       forcePlaceholderSize: true,
       tolerance: 'pointer',
+      cursor: 'move',
+      distance: 6,      
       sort: function(e,ui) { 
         ui.placeholder 
         .width(ui.helper.width()) 
@@ -71,7 +73,7 @@ $(document).ready(function(){
     	});
     	return ui;
     };
-
+  
   $("tr").sortable({
       axis: "x",
       placeholder: 'ui-placeholder-highlight',

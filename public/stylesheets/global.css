@@ -94,7 +94,8 @@ div#color_selector {
   right: 0;
   background-color: #eeeeee;
   padding: 8px 8px 4px;
-  -webkit-border-radius: 2px; }
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px; }
 
 div#color_custom {
   width: 100%; }
@@ -106,7 +107,8 @@ div#color_custom {
     font-size: 11px;
     font-weight: bold;
     -webkit-box-shadow: none;
-    border: 1px solid #cccccc; }
+    border: 1px solid #cccccc;
+    -moz-box-shadow: none; }
 
 div.color_swatch {
   height: 15px;
@@ -200,10 +202,15 @@ table {
     background-color: white;
     margin: 4px 0 0;
     border: 0;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     padding-left: 8px;
     -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto; }
+    -moz-border-radius: 2px; }
+    .list.ui-sortable-helper:hover {
+      cursor: move; }
+    .list.ui-sortable-helper:active {
+      cursor: move; }
     .list.ui-sortable-helper:last-child {
       border-right: none;
       margin: 0; }
@@ -250,15 +257,18 @@ table {
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         background-color: white;
-        margin-left: 10px;
-        cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto; }
+        margin-left: 6px;
+        color: #111111; }
+        .list ul li.ui-sortable-helper:active {
+          cursor: move; }
       .list ul li.ui-placeholder-highlight {
-        background-color: white; }
+        background-color: #eeeeee; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .list_title {
     background-color: #dc4d48;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    cursor: default; }
     .list.upcoming .list_title h3 {
       cursor: default; }
       .list.upcoming .list_title h3:hover {
@@ -275,7 +285,10 @@ table {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+    cursor: move; }
+    .list .list_title:active {
+      cursor: move; }
     .list .list_title .delete {
       background: transparent url(/images/delete.png) 0 0 no-repeat;
       height: 16px;
@@ -291,10 +304,7 @@ table {
     .list .list_title h3 {
       opacity: 1;
       width: 80%;
-      white-space: nowrap;
-      cursor: -moz-grab; }
-      .list .list_title h3:active {
-        cursor: -moz-grabbing; }
+      white-space: nowrap; }
   .list input {
     float: left;
     width: 100%;
@@ -307,7 +317,7 @@ input, .editable input {
   border-left: none;
   border-bottom: 1px solid #eeeeee;
   border-right: none;
-  padding: 3px 4px 3px 4px;
+  padding: 4px;
   height: 15px;
   font-family: "Helvetica Neue";
   -webkit-border-radius: 2px;
