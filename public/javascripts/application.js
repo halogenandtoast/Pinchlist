@@ -49,11 +49,38 @@ $(document).ready(function(){
     
   // drag and drop tasks
   $(".list:not(.upcoming) ul").sortable({ 
-      containment: 'parent',
+      // containment: 'parent',
       axis: 'y',
       placeholder: 'ui-placeholder-highlight',
-      helper: 'clone'
+      helper: 'clone',
+      forceHelperSize: true,
+      forcePlaceholderSize: true,
+      tolerance: 'pointer',
+      sort: function(e,ui) { 
+        ui.placeholder 
+        .width(ui.helper.width()) 
+        .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned 
+    }
+  }).disableSelection();
+
+
+  // drag and drop lists
+    var fixHelper = function(e, ui) {
+    	ui.children().each(function() {
+    		$(this).width($(this).width());
+    	});
+    	return ui;
+    };
+
+  $("tr").sortable({
+      axis: "x",
+      placeholder: 'ui-placeholder-highlight',
+      items: '.list:not(.upcoming)',
+      handle: '.list_title',
+      cursor: 'move',
+      tolerance: 'pointer',
+      forcePlaceholderSize: true
   });
-  $(".list:not(.upcoming) ul").disableSelection();
+  $("tr").data("sortable").floating = true;
   
 });

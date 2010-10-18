@@ -196,6 +196,17 @@ table {
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   background-clip: padding-box; }
+  .list.ui-sortable-helper {
+    background-color: white;
+    margin: 4px 0 0;
+    border: 0;
+    padding-left: 8px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto; }
+    .list.ui-sortable-helper:last-child {
+      border-right: none;
+      margin: 0; }
   .list:first-child {
     border-left: 2px solid white; }
   .list:last-child {
@@ -234,13 +245,15 @@ table {
           color: #bbbbbb; }
       .list ul li.ui-sortable-helper {
         border-bottom: none;
-        -webkit-box-shadow: 0 0 2px #999999;
-        -moz-box-shadow: 0 0 2px #999999;
+        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
         background-color: white;
-        margin-left: 10px; }
+        margin-left: 10px;
+        cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto; }
       .list ul li.ui-placeholder-highlight {
-        background-color: #eeeeee;
-        height: 13px; }
+        background-color: white; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .list_title {

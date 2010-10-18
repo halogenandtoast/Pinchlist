@@ -60,6 +60,7 @@ table
   margin: 0
   background-color: #fff
   table-layout: fixed
+
 .list   
   padding: 0 10px 0 10px
   margin: 2px
@@ -73,6 +74,19 @@ table
   -moz-background-clip: padding
   -webkit-background-clip: padding
   background-clip: padding-box
+  &.ui-sortable-helper
+    background-color: #fff
+    margin: 4px 0 0
+    border: 0
+    // -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
+    //     -moz-box-shadow: 0 0 6px rgba(0, 0, 0, .5)
+    padding-left: 8px
+    -webkit-border-radius: 2px
+    -moz-border-radius: 2px
+    cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto
+    &:last-child
+      border-right: none
+      margin: 0
   &:first-child 
     border-left: 2px solid #fff
   &:last-child
@@ -111,13 +125,15 @@ table
           color: #bbb
       &.ui-sortable-helper
         border-bottom: none
-        -webkit-box-shadow: 0 0 2px #999
-        -moz-box-shadow: 0 0 2px #999
+        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .5)
+        -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .5)
+        -webkit-border-radius: 2px
+        -moz-border-radius: 2px
         background-color: #fff
         margin-left: 10px
+        cursor: -moz-grabbing, url(http://maps.live.com/cursors/grabbing.cur), auto
       &.ui-placeholder-highlight
-        background-color: #eee
-        height: 13px
+        background-color: #fff
   &.upcoming 
     ul 
       margin: -8px 0 0 0
