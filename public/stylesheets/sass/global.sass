@@ -96,8 +96,6 @@ table
       &:hover 
         cursor: pointer
         color: #777
-        -webkit-border-radius: 2px
-        -moz-border-radius: 2px
       span 
         font-size: 9px
         color: #dc4d48
@@ -111,12 +109,25 @@ table
           color: #ddd
         span 
           color: #bbb
+      &.ui-sortable-helper
+        border-bottom: none
+        -webkit-box-shadow: 0 0 2px #999
+        -moz-box-shadow: 0 0 2px #999
+        background-color: #fff
+        margin-left: 10px
+      &.ui-placeholder-highlight
+        background-color: #eee
+        height: 13px
   &.upcoming 
     ul 
       margin: -8px 0 0 0
     .list_title 
       background-color: #dc4d48
       margin-bottom: 10px
+      h3
+        cursor: default
+        &:hover
+          cursor: default
   .list_title
     float: left
     text-align: left
@@ -146,6 +157,9 @@ table
       opacity: 1
       width: 80%
       white-space: nowrap
+      cursor: -moz-grab
+      &:active
+        cursor: -moz-grabbing
   input 
     float: left
     width: 100%
@@ -181,5 +195,5 @@ input, .editable input
   margin: 0
   padding: 0
   width: 100%
-
+  
   

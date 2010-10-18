@@ -218,9 +218,7 @@ table {
         border: none; }
       .list ul li:hover {
         cursor: pointer;
-        color: #777777;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px; }
+        color: #777777; }
       .list ul li span {
         font-size: 9px;
         color: #dc4d48;
@@ -234,11 +232,24 @@ table {
           color: #dddddd; }
         .list ul li.completed span {
           color: #bbbbbb; }
+      .list ul li.ui-sortable-helper {
+        border-bottom: none;
+        -webkit-box-shadow: 0 0 2px #999999;
+        -moz-box-shadow: 0 0 2px #999999;
+        background-color: white;
+        margin-left: 10px; }
+      .list ul li.ui-placeholder-highlight {
+        background-color: #eeeeee;
+        height: 13px; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .list_title {
     background-color: #dc4d48;
     margin-bottom: 10px; }
+    .list.upcoming .list_title h3 {
+      cursor: default; }
+      .list.upcoming .list_title h3:hover {
+        cursor: default; }
   .list .list_title {
     float: left;
     text-align: left;
@@ -267,7 +278,10 @@ table {
     .list .list_title h3 {
       opacity: 1;
       width: 80%;
-      white-space: nowrap; }
+      white-space: nowrap;
+      cursor: -moz-grab; }
+      .list .list_title h3:active {
+        cursor: -moz-grabbing; }
   .list input {
     float: left;
     width: 100%;
