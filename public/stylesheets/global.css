@@ -200,7 +200,7 @@ table {
   background-clip: padding-box; }
   .list.ui-sortable-helper {
     background-color: white;
-    margin: 4px 0 0;
+    margin: 0;
     border: 0;
     -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
@@ -257,12 +257,14 @@ table {
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         background-color: white;
-        margin-left: 6px;
+        margin-left: 3px;
         color: #111111; }
         .list ul li.ui-sortable-helper:active {
           cursor: move; }
       .list ul li.ui-placeholder-highlight {
-        background-color: #eeeeee; }
+        background-color: #eeeeee;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .list_title {

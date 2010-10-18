@@ -58,11 +58,12 @@ $(document).ready(function(){
       tolerance: 'pointer',
       cursor: 'move',
       distance: 6,      
-      sort: function(e,ui) { 
-        ui.placeholder 
-        .width(ui.helper.width()) 
-        .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned 
-    }
+      opacity: .8,
+    //   sort: function(e,ui) { 
+    //     ui.placeholder 
+    //     .width(ui.helper.width()) 
+    //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned 
+    // }
   }).disableSelection();
 
 
@@ -80,7 +81,7 @@ $(document).ready(function(){
       items: '.list:not(.upcoming)',
       handle: '.list_title',
       cursor: 'move',
-      tolerance: 'pointer',
+      opacity: .8,
       forcePlaceholderSize: true
   });
   $("tr").data("sortable").floating = true;
