@@ -48,3 +48,13 @@ describe Task, '#upcoming' do
     Task.upcoming.should == @upcoming_tasks
   end
 end
+
+describe Task, 'completed' do
+  subject { Factory(:task) }
+  before { Timecop.freeze(Date.parse("October 16, 2010")) }
+  it 'sets its completed at date' do
+    subject.update_attributes({:completed => true})
+    subject.completed_at.should == "2010-10-16".to_date
+  end
+  after { Timecop.return }
+end

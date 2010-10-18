@@ -13,5 +13,6 @@ Factory.define :list do |list|
 end
 
 Factory.define :task do |task|
+  task.title { "Task Title" }
   task.association :list
 end

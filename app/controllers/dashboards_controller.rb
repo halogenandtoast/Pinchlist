@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
 
   def show
     @list = List.new
-    @lists = current_user.lists.includes(:tasks).by_task_status
-    @upcoming_tasks = current_user.tasks.upcoming
+    @lists = current_user.lists.includes(:tasks).current_tasks.by_task_status
+    @upcoming_tasks = current_user.tasks.upcoming.current
   end
 end
