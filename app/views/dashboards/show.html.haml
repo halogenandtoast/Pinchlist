@@ -17,7 +17,7 @@
           - @upcoming_tasks.each do |task|
             = content_tag_for(:li, task, :upcoming, :class => (task.completed ? 'completed' : nil)) do
               %span.date= task.due_date.strftime("%m/%d")
-              = task.title
+              %span.task_title= task.title
       - @lists.each do |list|
         %td[list]
           .list_title{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
@@ -32,4 +32,4 @@
                 = content_tag_for(:li, task, :class => (task.completed ? 'completed' : nil)) do
                   - if task.due_date?
                     %span.date= task.due_date.strftime("%m/%d")
-                  = task.title
+                  %span.task_title= task.title

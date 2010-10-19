@@ -105,25 +105,28 @@ table
       padding: 4px 4px
       margin-left: -4px
       line-height: 1.2
-      color: #111
       border-bottom: 1px solid #efefef
+      cursor: move
+      .task_title
+        color: #111
+        &:hover
+          cursor: pointer
+          color: #777
       &:last-child
         border: none
-      &:hover 
-        cursor: pointer
-        color: #777
-      span 
+      .date 
         font-size: 9px
         color: #dc4d48
         margin-right: 2px
         font-weight: bold
-      &.completed 
-        color: #ccc
-        font-style: italic
-        font-size: 11px
-        &:hover
-          color: #ddd
-        span 
+      &.completed
+        .task_title
+          color: #ccc
+          font-style: italic
+          font-size: 11px
+          &:hover
+            color: #ddd
+        .date 
           color: #bbb
       &.ui-sortable-helper
         border-bottom: none
@@ -181,8 +184,11 @@ table
         opacity: .8
     h3 
       opacity: 1
-      width: 80%
+      display: inline
+      width: auto
       white-space: nowrap
+      &:hover
+        cursor: pointer
   input 
     float: left
     width: 100%

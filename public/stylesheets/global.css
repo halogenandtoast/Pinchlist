@@ -80,7 +80,7 @@ div.color_picker {
   line-height: 16px;
   text-indent: -10000px;
   display: none;
-  opacity: 0.85; }
+  opacity: 0.7; }
   div.color_picker:hover {
     opacity: 1; }
 
@@ -230,26 +230,28 @@ table {
       padding: 4px 4px;
       margin-left: -4px;
       line-height: 1.2;
-      color: #111111;
-      border-bottom: 1px solid #efefef; }
+      border-bottom: 1px solid #efefef;
+      cursor: move; }
+      .list ul li .task_title {
+        color: #111111; }
+        .list ul li .task_title:hover {
+          cursor: pointer;
+          color: #777777; }
       .list ul li:last-child {
         border: none; }
-      .list ul li:hover {
-        cursor: pointer;
-        color: #777777; }
-      .list ul li span {
+      .list ul li .date {
         font-size: 9px;
         color: #dc4d48;
         margin-right: 2px;
         font-weight: bold; }
-      .list ul li.completed {
+      .list ul li.completed .task_title {
         color: #cccccc;
         font-style: italic;
         font-size: 11px; }
-        .list ul li.completed:hover {
+        .list ul li.completed .task_title:hover {
           color: #dddddd; }
-        .list ul li.completed span {
-          color: #bbbbbb; }
+      .list ul li.completed .date {
+        color: #bbbbbb; }
       .list ul li.ui-sortable-helper {
         border-bottom: none;
         -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
@@ -305,8 +307,11 @@ table {
         opacity: 0.8; }
     .list .list_title h3 {
       opacity: 1;
-      width: 80%;
+      display: inline;
+      width: auto;
       white-space: nowrap; }
+      .list .list_title h3:hover {
+        cursor: pointer; }
   .list input {
     float: left;
     width: 100%;

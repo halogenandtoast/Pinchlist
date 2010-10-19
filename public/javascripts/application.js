@@ -81,7 +81,7 @@ $(document).ready(function(){
       items: '.list:not(.upcoming)',
       handle: '.list_title',
       cursor: 'move',
-      opacity: .8,
+      opacity: .93,
       forcePlaceholderSize: true
   });
   $("tr").data("sortable").floating = true;
