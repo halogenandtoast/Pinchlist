@@ -21,13 +21,27 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
   });
 }
 
+function task_edit(task, task_id) {
+  var self = task;
+  var task_title = $(self).children("span.task_title").text();
+  var form = $('<form>');
+  form.append("<input type='text' name='task[title]' id='task_title' value='"+task_title+"' />");
+  form.bind('submit',{task_id:task_id}, function(e) {
+      $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
+      $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
+      $(this).replaceWith('<span class="title">'+$(this).children('#task_title').val()+'</span>');
+    return false;
+  });
+  // $(self).unbind('click.'+self.id);
+  $(self).children("span.task_title").replaceWith(form);
+}
+
 $(document).ready(function(){
-//   var maxWidth = 300;    
+//   var maxWidth = 300;
 //   if ( $('.list').width() > maxWidth ) $('.list').width(maxWidth);
-  
-  // color picker
+
   $('.picker').colorPicker();
-  
+
   // mark upcoming tasks completed
   $("#upcoming_tasks li").single_double_click(function () {
       var task_id = $(this).attr('id').split('_')[2];
@@ -35,9 +49,10 @@ $(document).ready(function(){
       $('#task_'+task_id).toggleClass('completed');
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
     }, function () {
-      // $(this).html($(this).html() + "EDTED");
+      var task_id = $(this).attr('id').split('_')[2];
+      task_edit(this, task_id);
   });
-    
+
   // mark normal tasks completed
   $(".list:not(.upcoming) li").single_double_click(function() {
       var task_id = $(this).attr('id').split('_')[1];
@@ -46,9 +61,9 @@ $(document).ready(function(){
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
     }, function() {
   });
-    
+
   // drag and drop tasks
-  $(".list:not(.upcoming) ul").sortable({ 
+  $(".list:not(.upcoming) ul").sortable({
       // containment: 'parent',
       axis: 'y',
       placeholder: 'ui-placeholder-highlight',
@@ -57,24 +72,25 @@ $(document).ready(function(){
       forcePlaceholderSize: true,
       tolerance: 'pointer',
       cursor: 'move',
-      distance: 6,      
+      distance: 6,
       opacity: .8,
-    //   sort: function(e,ui) { 
-    //     ui.placeholder 
-    //     .width(ui.helper.width()) 
-    //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned 
+    //   sort: function(e,ui) {
+    //     ui.placeholder
+    //     .width(ui.helper.width())
+    //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned
     // }
   }).disableSelection();
 
 
   // drag and drop lists
-    var fixHelper = function(e, ui) {
-    	ui.children().each(function() {
-    		$(this).width($(this).width());
-    	});
-    	return ui;
-    };
-  
+    // var fixHelper = function(e, ui) {
+    //  ui.children().each(function() {
+    //    $(this).width($(this).width());
+    //  });
+    //  return ui;
+    // };
+
+
   $("tr").sortable({
       axis: "x",
       placeholder: 'ui-placeholder-highlight',
@@ -85,5 +101,5 @@ $(document).ready(function(){
       forcePlaceholderSize: true,
   });
   $("tr").data("sortable").floating = true;
-  
+
 });
