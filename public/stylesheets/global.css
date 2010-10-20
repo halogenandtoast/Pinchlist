@@ -231,7 +231,7 @@ table {
       margin-left: -4px;
       line-height: 1.2;
       border-bottom: 1px solid #efefef;
-      cursor: move; }
+      cursor: pointer; }
       .list ul li .task_title {
         color: #111111; }
         .list ul li .task_title:hover {
@@ -244,14 +244,17 @@ table {
         color: #dc4d48;
         margin-right: 2px;
         font-weight: bold; }
-      .list ul li.completed .task_title {
-        color: #cccccc;
-        font-style: italic;
-        font-size: 11px; }
-        .list ul li.completed .task_title:hover {
-          color: #dddddd; }
-      .list ul li.completed .date {
-        color: #bbbbbb; }
+      .list ul li.completed {
+        background: url(/images/check.png) 0 6px no-repeat;
+        padding: 3px 4px 4px 13px; }
+        .list ul li.completed .task_title {
+          color: #cccccc;
+          font-style: italic;
+          font-size: 11px; }
+          .list ul li.completed .task_title:hover {
+            color: #dddddd; }
+        .list ul li.completed .date {
+          color: #bbbbbb; }
       .list ul li.ui-sortable-helper {
         border-bottom: none;
         -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
@@ -326,12 +329,15 @@ input, .editable input {
   border-right: none;
   padding: 4px;
   height: 15px;
+  background-color: #f9f9f9;
   font-family: "Helvetica Neue";
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   margin: 0 0 0 -4px; }
   input:focus, .editable input:focus {
+    -webkit-box-shadow: 0px 1px 2px #666666 inset;
     background-color: #fffda0;
+    border-bottom-color: #dddddd;
     outline: none; }
 
 ::-webkit-input-placeholder {

@@ -68,13 +68,13 @@ $(document).ready(function(){
 
 
   // drag and drop lists
-    var fixHelper = function(e, ui) {
-    	ui.children().each(function() {
-    		$(this).width($(this).width());
-    	});
-    	return ui;
-    };
-  
+    // var fixHelper = function(e, ui) {
+    //    ui.children().each(function() {
+    //      $(this).width($(this).width());
+    //    });
+    //    return ui;
+    //   };
+    // 
   $("tr").sortable({
       axis: "x",
       placeholder: 'ui-placeholder-highlight',
@@ -82,7 +82,7 @@ $(document).ready(function(){
       handle: '.list_title',
       cursor: 'move',
       opacity: .93,
-      forcePlaceholderSize: true
+      forcePlaceholderSize: true,
   });
   $("tr").data("sortable").floating = true;
   
