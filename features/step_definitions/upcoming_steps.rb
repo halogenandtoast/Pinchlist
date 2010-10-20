@@ -13,3 +13,20 @@ end
 Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
   page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
 end
+
+When /^I double click the upcoming task "([^"]*)"$/ do |title|
+  task = Task.find_by_title!(title)
+  page.evaluate_script %{ task_edit($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}') }
+end
+
+When /^I fill in the upcoming title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|
+  task = Task.find_by_title!(title)
+  within "#upcoming_task_#{task.id}" do
+    fill_in 'task_title', :with => new_title
+  end
+end
+
+When /^I submit the upcoming title form for "([^"]*)"$/ do |title|
+  task = Task.find_by_title!(title)
+  page.evaluate_script %{ $('#upcoming_task_#{task.id} form').submit() }
+end
