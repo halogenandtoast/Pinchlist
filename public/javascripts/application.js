@@ -40,9 +40,7 @@ function task_edit(task, task_id, prefix) {
 function setup_single_and_double_click(element, prefix) {
   element.single_double_click(function() {
       var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      if(prefix != "") {
-        $("#"+prefix+"_task_"+task_id).toggleClass('completed');
-      }
+      $("#upcoming_task_"+task_id).toggleClass('completed');
       $("#task_"+task_id).toggleClass('completed');
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
     }, function() {
@@ -100,6 +98,6 @@ $(document).ready(function(){
       opacity: .93,
       forcePlaceholderSize: true,
   });
-  $("tr").data("sortable").floating = true;
+  // $("tr").data("sortable").floating = true;
 
 });

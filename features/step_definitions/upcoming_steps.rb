@@ -5,13 +5,12 @@ Then /^I should see the following upcoming tasks in order:$/ do |table|
   end
 end
 
-When /^I click on the upcoming task "([^"]*)"$/ do |title|
-  page.evaluate_script %{$("#upcoming_tasks li:contains('#{title}')").trigger('click');}
-  sleep 2
+Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
+  page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
 end
 
-Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
-
+When /^I click on the upcoming task "([^"]*)"$/ do |title|
+  find("#upcoming_tasks li:contains('#{title}')").click
 end
 
 When /^I double click the upcoming task "([^"]*)"$/ do |title|
@@ -28,5 +27,5 @@ end
 
 When /^I submit the upcoming title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{ $('#upcoming_task_#{task.id} form').submit() }
+  find("#upcoming_task_#{task.id} form").trigger("submit")
 end

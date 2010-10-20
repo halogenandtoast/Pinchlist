@@ -7,7 +7,7 @@ end
 
 When /^I submit "([^"]*)"'s task form$/ do |title|
   list = List.find_by_title!(title)
-  page.execute_script("$('#new_task_#{list.id}').submit()")
+  page.execute_script("$('#new_task_#{list.id}').trigger('submit')")
 end
 
 Then /^I should see the task "([^"]*)"$/ do |task_title|
@@ -33,6 +33,5 @@ end
 
 When /^I click on the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{$("#list_#{task.list.id} li:contains('#{title}')").trigger('click');}
-  sleep 0.5
+  find("#list_#{task.list.id} li:contains('#{title}')").click
 end

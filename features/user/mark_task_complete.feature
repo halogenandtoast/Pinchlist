@@ -17,8 +17,8 @@ Feature: Marking a task complete
     And I click on the upcoming task "Ride a shark"
     Then I should see the completed upcoming task "Ride a shark"
     And I should see the completed task "Ride a shark" in "My List"
-    When I go to the dashboard page
-    Then I should see the completed upcoming task "Ride a shark"
+    Then I go to the dashboard page
+    And I should see the completed upcoming task "Ride a shark"
     And I should see the completed task "Ride a shark" in "My List"
 
   @javascript
