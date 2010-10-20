@@ -7,11 +7,11 @@ end
 
 When /^I click on the upcoming task "([^"]*)"$/ do |title|
   page.evaluate_script %{$("#upcoming_tasks li:contains('#{title}')").trigger('click');}
-  sleep 0.5
+  sleep 2
 end
 
 Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
-  page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
+
 end
 
 When /^I double click the upcoming task "([^"]*)"$/ do |title|

@@ -2,10 +2,10 @@
 // Author:  Jacek Becela
 // Source:  http://gist.github.com/399624
 // License: MIT
-jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout) {
+jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout, event_data) {
   return this.each(function(){
     var clicks = 0, self = this;
-    jQuery(this).click(function(event){
+    jQuery(this).bind('click', event_data, function(event){
       clicks++;
       if (clicks == 1) {
         setTimeout(function(){
@@ -21,19 +21,34 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
   });
 }
 
-function task_edit(task, task_id) {
+function task_edit(task, task_id, prefix) {
   var self = task;
   var task_title = $(self).children("span.task_title").text();
   var form = $('<form>');
+  $(self).unbind('click');
   form.append("<input type='text' name='task[title]' id='task_title' value='"+task_title+"' />");
-  form.bind('submit',{task_id:task_id}, function(e) {
-      $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
-      $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-      $(this).replaceWith('<span class="title">'+$(this).children('#task_title').val()+'</span>');
+  form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, function(e) {
+    $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
+    $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
+    $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
+    setup_single_and_double_click($(e.data.element), e.data.prefix);
     return false;
   });
-  // $(self).unbind('click.'+self.id);
   $(self).children("span.task_title").replaceWith(form);
+}
+
+function setup_single_and_double_click(element, prefix) {
+  element.single_double_click(function() {
+      var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
+      if(prefix != "") {
+        $("#"+prefix+"_task_"+task_id).toggleClass('completed');
+      }
+      $("#task_"+task_id).toggleClass('completed');
+      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
+    }, function() {
+      var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
+      task_edit(this, task_id, prefix);
+    }, 225, {prefix:prefix});
 }
 
 $(document).ready(function(){
@@ -41,26 +56,11 @@ $(document).ready(function(){
 //   if ( $('.list').width() > maxWidth ) $('.list').width(maxWidth);
 
   $('.picker').colorPicker();
-
   // mark upcoming tasks completed
-  $("#upcoming_tasks li").single_double_click(function () {
-      var task_id = $(this).attr('id').split('_')[2];
-      $(this).toggleClass('completed');
-      $('#task_'+task_id).toggleClass('completed');
-      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
-    }, function () {
-      var task_id = $(this).attr('id').split('_')[2];
-      task_edit(this, task_id);
-  });
+  setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
 
   // mark normal tasks completed
-  $(".list:not(.upcoming) li").single_double_click(function() {
-      var task_id = $(this).attr('id').split('_')[1];
-      $(this).toggleClass('completed');
-      $("#upcoming_task_"+task_id).toggleClass('completed');
-      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
-    }, function() {
-  });
+  setup_single_and_double_click($(".list:not(.upcoming) li"), "");
 
   // drag and drop tasks
   $(".list:not(.upcoming) ul").sortable({
