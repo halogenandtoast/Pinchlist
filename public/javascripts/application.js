@@ -73,7 +73,7 @@ $(document).ready(function(){
       tolerance: 'pointer',
       cursor: 'move',
       distance: 6,
-      opacity: .8,
+      opacity: .93,
     //   sort: function(e,ui) {
     //     ui.placeholder
     //     .width(ui.helper.width())
