@@ -32,6 +32,7 @@ function task_edit(task, task_id, prefix) {
     $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
     $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
     setup_single_and_double_click($(e.data.element), e.data.prefix);
+    $(".list:not(.upcoming) ul span").disableSelection();
     return false;
   });
   $(self).children("span.task_title").replaceWith(form);
@@ -48,6 +49,7 @@ function setup_single_and_double_click(element, prefix) {
       task_edit(this, task_id, prefix);
     }, 225, {prefix:prefix});
 }
+// Note that I took the event string to bind to out of the jQuery.ui.js file.
 
 $(document).ready(function(){
 //   var maxWidth = 300;
@@ -77,8 +79,8 @@ $(document).ready(function(){
     //     .width(ui.helper.width())
     //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned
     // }
-  }).disableSelection();
-
+  })
+  $(".list:not(.upcoming) ul span").disableSelection();
 
   // drag and drop lists
     // var fixHelper = function(e, ui) {
