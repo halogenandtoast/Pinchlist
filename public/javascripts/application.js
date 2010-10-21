@@ -103,7 +103,10 @@ $(document).ready(function(){
       handle: '.list_title',
       cursor: 'move',
       opacity: .93,
-      forcePlaceholderSize: true,
+      forceHelperSize: true,
+      sort: function(e,ui) {
+         $('.ui-placeholder-highlight').css("width", $('.ui-sortable-helper').outerWidth());
+     }
   });
   // $("tr").data("sortable").floating = true;
 
