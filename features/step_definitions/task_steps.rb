@@ -11,8 +11,7 @@ When /^I submit "([^"]*)"'s task form$/ do |title|
 end
 
 Then /^I should see the task "([^"]*)"$/ do |task_title|
-  task = Task.find_by_title!(task_title)
-  page.should have_css("#list_#{task.list_id} li:contains('#{task_title}')")
+  page.should have_css(".list:not(.upcoming) li:contains('#{task_title}')")
 end
 
 Then /^I should see the upcoming task "([^"]*)"$/ do |task_title|
@@ -34,4 +33,23 @@ end
 When /^I click on the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
   find("#list_#{task.list.id} li:contains('#{title}')").click
+end
+
+
+When /^I double click "([^"]*)"'s task "([^"]*)"$/ do |list_title, title|
+  task = Task.find_by_title!(title)
+  list = task.list
+  page.evaluate_script %{ task_edit($("#list_#{list.id} li:contains('#{title}')"), '#{task.id}') }
+end
+
+When /^I fill in the title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|
+  task = Task.find_by_title!(title)
+  within "#task_#{task.id}" do
+    fill_in 'task_title', :with => new_title
+  end
+end
+
+When /^I submit the title form for "([^"]*)"$/ do |title|
+  task = Task.find_by_title!(title)
+  find("#task_#{task.id} form").trigger("submit")
 end

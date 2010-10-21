@@ -29,8 +29,13 @@ function task_edit(task, task_id, prefix) {
   form.append("<input type='text' name='task[title]' id='task_title' value='"+task_title+"' />");
   form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, function(e) {
     $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
-    $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-    $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
+    if(prefix == "upcoming") {
+      $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
+      $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
+    } else {
+      $('#upcoming_task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
+      $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
+    }
     setup_single_and_double_click($(e.data.element), e.data.prefix);
     $(".list:not(.upcoming) ul span").disableSelection();
     return false;

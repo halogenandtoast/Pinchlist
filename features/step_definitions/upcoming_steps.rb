@@ -15,7 +15,7 @@ end
 
 When /^I double click the upcoming task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{ task_edit($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}') }
+  page.evaluate_script %{ task_edit($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}', "upcoming") }
 end
 
 When /^I fill in the upcoming title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|

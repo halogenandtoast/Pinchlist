@@ -22,3 +22,23 @@ Feature: Edit a task
     When I go to the dashboard page
     Then I should see the upcoming task "Lasso a shark"
     And I should see the task "Lasso a shark"
+
+  @javascript
+  Scenario: Renaming a task in it's list
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    And the following task exists:
+      | title        | list           | due date   |
+      | Ride a shark | title: My List | 2010-10-20 |
+    When I go to the dashboard page
+    And I double click "My List"'s task "Ride a shark"
+    And I fill in the title for "Ride a shark" with "Lasso a shark"
+    And I submit the title form for "Ride a shark"
+    Then I should see the upcoming task "Lasso a shark"
+    And I should see the task "Lasso a shark"
+    When I go to the dashboard page
+    Then I should see the upcoming task "Lasso a shark"
+    And I should see the task "Lasso a shark"
