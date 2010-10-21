@@ -124,7 +124,31 @@ div.color_swatch {
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333333;
-  background: white url(/images/bg.png) 0 0 repeat; }
+  background: white url(/images/bg.png) 0 0 repeat;
+  height: 100%; }
+
+#page {
+  background-color: white;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 70%; }
+  #page #content {
+    padding: 30px;
+    margin: 50px 0 0 0;
+    width: auto; }
+    #page #content h1 {
+      font-size: 24px; }
+    #page #content p {
+      margin: 40px 0 20px;
+      width: 280px;
+      line-height: 1.4;
+      font-size: 13px; }
+    #page #content input {
+      width: 180px;
+      float: left;
+      clear: right; }
 
 #header {
   width: 100%;

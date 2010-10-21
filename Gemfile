@@ -9,6 +9,8 @@ gem 'chronic'
 group :development, :test do
   gem 'rspec-rails', ">= 2.0.0.rc"
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'hpricot'
+  gem 'ruby_parser'
 end
 
 group :test do
