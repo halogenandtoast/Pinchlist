@@ -41,6 +41,7 @@ function task_edit(task, task_id, prefix) {
     return false;
   });
   $(self).children("span.task_title").replaceWith(form);
+  form.children('input').focus();
 }
 
 function setup_single_and_double_click(element, prefix) {
