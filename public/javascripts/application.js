@@ -27,15 +27,34 @@ function task_edit(task, task_id, prefix) {
   var form = $('<form>');
   $(self).unbind('click');
   form.append("<input type='text' name='task[title]' id='task_title' value='"+task_title+"' />");
+  $(form).children('input').bind('keyup',{task_title:task_title,element:self,prefix:prefix}, function(e) {
+    if(e.keyCode == 27) {
+      $(this).unbind('keyup');
+      $(this).unbind('blur');
+      $(this).parent('form').replaceWith('<span class="task_title">'+task_title+'</span>');
+      setup_single_and_double_click($(e.data.element), e.data.prefix);
+    }
+  });
+  $(form).children('input').bind('blur',{task_title:task_title,task_id:task_id,element:self,prefix:prefix}, function(e) {
+    $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).val()}}, function(data){});
+    $(this).unbind('keyup');
+    $(this).unbind('blur');
+    if(prefix == "upcoming") {
+      $('#task_'+e.data.task_id+' .task_title').html($(this).val());
+    } else {
+      $('#upcoming_task_'+e.data.task_id+' .task_title').html($(this).val());
+    }
+    $(this).parent('form').replaceWith('<span class="task_title">'+$(this).val()+'</span>');
+    setup_single_and_double_click($(e.data.element), e.data.prefix);
+  });
   form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, function(e) {
     $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
     if(prefix == "upcoming") {
       $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-      $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
     } else {
       $('#upcoming_task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-      $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
     }
+    $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
     setup_single_and_double_click($(e.data.element), e.data.prefix);
     $(".list:not(.upcoming) ul span").disableSelection();
     return false;

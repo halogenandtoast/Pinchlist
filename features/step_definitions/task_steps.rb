@@ -53,3 +53,8 @@ When /^I submit the title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
   find("#task_#{task.id} form").trigger("submit")
 end
+
+When /^I blur the title form for "([^"]*)"$/ do |title|
+  task = Task.find_by_title!(title)
+  find("#task_#{task.id} form input").trigger("blur")
+end
