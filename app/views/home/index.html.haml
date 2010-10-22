@@ -1,11 +1,11 @@
 #page
   #content
     %h1 Listwerk
-    %p 
+    %p
       = link_to 'Sign up', new_user_registration_path
-      for only $10, forever. 
-    
-    = form_tag new_user_session_path do
-      = text_field_tag 'user[email]'
-      = password_field_tag 'user[password]'
-      %button Login
+      for only $10, forever.
+
+    = form_for :user, :url => new_user_session_path do |form|
+      = form.text_field :email
+      = form.password_field :password
+      %button(type='submit') Login

@@ -17,3 +17,11 @@ Given /^I am signed in as "(.*)\/(.*)"$/ do |email, password|
     And I sign in as "#{email}/#{password}"
   }
 end
+
+Given /^I fill in email with "([^"]*)"$/ do |email|
+  fill_in 'user_email', :with => email
+end
+
+Given /^I fill in password with "([^"]*)"$/ do |password|
+  fill_in 'user_password', :with => password
+end
