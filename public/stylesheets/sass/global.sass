@@ -10,23 +10,41 @@ body
   height: 100%
   position: absolute
   top: 0
-  left: 30%
-  width: 70%
+  left: 35%
+  width: 65%
+  #login
+    position: absolute
+    top: 5px
+    right: 10px
+    width: 200px
   #content
     padding: 30px
-    margin: 50px 0 0 0
+    margin: 40px 0 0 0
     width: auto
     h1
-      font-size: 24px
+      font-size: 26px
+      margin: 30px 0 100px 0
+      color: #000
+      letter-spacing: -1px
     p
-      margin: 40px 0 20px
-      width: 280px
-      line-height: 1.4
-      font-size: 13px
-    input
-      width: 180px
-      float: left
-      clear: right
+      margin: 20px 0 20px
+      max-width: 330px
+      line-height: 1.6
+      font-size: 12px
+      color: #555
+    a
+      text-decoration: none
+      color: #aaa
+      margin-left: 20px
+      font-size: 14px
+      font-family: "Helvetica Neue", Arial, sans-serif
+      &:hover
+        text-decoration: underline
+      &.signup
+        color: #9C1659
+        font-weight: bold
+        font-size: 16px
+        margin-left: 0
 #header 
   width: 100%
   background-color: #fff
@@ -34,6 +52,8 @@ body
   position: fixed
   top: 0
   left: 0
+  &:hover
+    cursor: default !important
   h1 
     float: left
     font-size: 20px
@@ -75,6 +95,8 @@ body
   min-height: 300px
   height: auto
   overflow: visible
+  &:hover
+    cursor: default !important
 table 
   width: auto
   float: left
@@ -100,6 +122,8 @@ td
   -moz-background-clip: padding
   -webkit-background-clip: padding
   background-clip: padding-box
+  &:hover
+    cursor: default !important
   &.ui-sortable-helper
     background-color: #fff
     margin: 0
@@ -109,10 +133,6 @@ td
     padding-left: 8px
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
-    &:hover
-      cursor: move
-    &:active
-      cursor: move
     &:last-child
       border-right: none
       margin: 0
@@ -124,7 +144,7 @@ td
     float: left
     padding: 0
     margin: 1px 0 10px 0
-    width: 101%
+    width: 101.5%
     li 
       list-style: none
       text-indent: none
@@ -133,7 +153,8 @@ td
       margin-left: -4px
       line-height: 1.2
       border-bottom: 1px solid #efefef
-      cursor: pointer
+      &:hover
+        cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
       .task_title
         color: #111
         &:hover
@@ -144,8 +165,9 @@ td
       .date 
         font-size: 9px
         color: #dc4d48
-        margin-right: 2px
         font-weight: bold
+        &:hover
+          cursor: pointer
       &.completed
         background: url(/images/check.png) 4px 6px no-repeat
         padding: 3px 4px 4px 16px
@@ -157,6 +179,8 @@ td
             color: #ddd
         .date 
           color: #bbb
+          &:hover
+            cursor: pointer
       &.ui-sortable-helper
         border-bottom: none
         -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .5)
@@ -167,13 +191,16 @@ td
         margin-left: 3px
         color: #111
         &:active
-          cursor: move
+          cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+        .task_title
+          &:hover
+            cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
       &.ui-placeholder-highlight
         background-color: #eee
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
       input
-        padding: 4px 4px 4px 3px
+        padding: 3px 5px 3px 3px
         margin: -4px 0 -4px -4px
         height: auto
         border: none
@@ -184,6 +211,10 @@ td
         -webkit-box-shadow: none
         -moz-box-shadow: none
         float: none
+        &::selection 
+          background: red
+        &::-moz-selection
+          background: red
   &.upcoming
     ul 
       margin: -8px 0 0 0
@@ -214,9 +245,10 @@ td
     -moz-border-radius: 2px
     position: relative
     overflow: hidden
-    cursor: move
+    &:hover
+      cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
     &:active
-      cursor: move
+      cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
     .delete
       background: transparent url(/images/delete.png) 0 0 no-repeat
       height: 16px
@@ -236,6 +268,8 @@ td
       white-space: nowrap
       &:hover
         cursor: pointer
+      &:active
+        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
   input 
     float: left
     width: 100%

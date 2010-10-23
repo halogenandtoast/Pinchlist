@@ -96,7 +96,7 @@ $(document).ready(function(){
       forceHelperSize: true,
       forcePlaceholderSize: true,
       tolerance: 'pointer',
-      cursor: 'move',
+      cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
       distance: 6,
       opacity: .93,
     //   sort: function(e,ui) {
@@ -105,6 +105,7 @@ $(document).ready(function(){
     //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned
     // }
   })
+  this.onselectstart = function () { return false; };
   $(".list:not(.upcoming) ul span").disableSelection();
 
   // drag and drop lists
@@ -121,7 +122,7 @@ $(document).ready(function(){
       placeholder: 'ui-placeholder-highlight',
       items: '.list:not(.upcoming)',
       handle: '.list_title',
-      cursor: 'move',
+      cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
       opacity: .93,
       forceHelperSize: true,
       sort: function(e,ui) {
