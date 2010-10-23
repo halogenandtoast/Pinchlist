@@ -26,7 +26,7 @@
             .picker choose color
             %a.delete{:href => ""} delete list
           = form_for [list, Task.new], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
-            = form.text_field :title, :id => "new_task_title_#{list.id}"
+            = form.text_field :title, :id => "new_task_title_#{list.id}", :autocomplete => "off"
           - unless list.tasks.empty?
             %ul
               - list.tasks.each do |task|
