@@ -275,14 +275,16 @@ td.ui-placeholder-highlight {
       list-style: none;
       text-indent: none;
       font-size: 11px;
-      padding: 4px 4px;
-      margin-left: -4px;
+      padding: 0 4px;
+      margin: 0 0 0 -4px;
       line-height: 1.2;
       border-bottom: 1px solid #efefef; }
       .list ul li:hover {
         cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
       .list ul li .task_title {
-        color: #111111; }
+        color: #111111;
+        display: inline-block;
+        padding: 4px 0 4px; }
         .list ul li .task_title:hover {
           cursor: pointer;
           color: #777777; }
@@ -296,11 +298,12 @@ td.ui-placeholder-highlight {
           cursor: pointer; }
       .list ul li.completed {
         background: url(/images/check.png) 4px 6px no-repeat;
-        padding: 3px 4px 4px 16px; }
+        padding: 0 4px 0 16px; }
         .list ul li.completed .task_title {
           color: #cccccc;
           font-style: italic;
-          font-size: 11px; }
+          font-size: 11px;
+          padding: 3px 0 5px; }
           .list ul li.completed .task_title:hover {
             color: #dddddd; }
         .list ul li.completed .date {
@@ -325,14 +328,12 @@ td.ui-placeholder-highlight {
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px; }
       .list ul li input {
-        padding: 3px 5px 3px 3px;
-        margin: -4px 0 -4px -4px;
+        padding: 4px 5px 4px 3px;
+        margin: 0px 0 0px -4px;
         height: auto;
         border: none;
         line-height: 1.2;
         background-color: #fffda0;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         float: none; }
@@ -414,9 +415,8 @@ input, .editable input {
   -moz-border-radius: 2px;
   margin: 0 0 0 -4px; }
   input:focus, .editable input:focus {
-    -webkit-box-shadow: 0px 1px 1px #666666 inset;
+    -webkit-box-shadow: 0px 1px 1px #999999 inset;
     background-color: #fffda0;
-    border-bottom-color: #dddddd;
     outline: none; }
 
 ::-webkit-input-placeholder {
@@ -427,3 +427,13 @@ input, .editable input {
   margin: 0;
   padding: 0;
   width: 100%; }
+
+@-moz-document url-prefix() {
+  .list ul li .task_title {
+    padding: 4px 0 4px; }
+  .list ul li.completed .task_title {
+    padding: 4px 0 4px; }
+
+  .list ul li input {
+    padding: 3px 5px 4px 3px;
+    margin: 0 0 0 -4px; } }
