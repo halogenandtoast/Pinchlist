@@ -178,7 +178,7 @@ body {
   left: 0;
   z-index: 2;
   -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25); }
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); }
   #header:hover {
     cursor: default !important; }
   #header h1 {
