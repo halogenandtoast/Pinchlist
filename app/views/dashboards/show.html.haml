@@ -25,7 +25,7 @@
           .list_title{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
             %h3= list.title
             .picker choose color
-            %a.delete{:href => ""} delete list
+            = link_to 'delete list', list, :method => :delete, :confirm => 'Are you sure?', :class => 'delete'
           = form_for [list, Task.new], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
             = form.text_field :title, :id => "new_task_title_#{list.id}"
           - unless list.tasks.empty?
