@@ -96,7 +96,9 @@ div#color_selector {
   background-color: #eeeeee;
   padding: 8px 8px 4px;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px; }
+  -moz-border-radius: 2px;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4); }
 
 div#color_custom {
   width: 100%; }
@@ -177,8 +179,8 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
-  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); }
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -260,8 +262,8 @@ td.ui-placeholder-highlight {
     background-color: white;
     margin: 0;
     border: 0;
-    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     padding-left: 8px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px; }
