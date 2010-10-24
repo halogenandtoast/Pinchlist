@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   before_update :set_completed_at
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
-  scope :current, where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago])
+  scope :current, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
 
   def title=(title)
     parse_date_format(title)

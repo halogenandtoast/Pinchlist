@@ -27,5 +27,16 @@ end
 
 When /^I submit the upcoming title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#upcoming_task_#{task.id} form").trigger("submit")
+  page.execute_script %{ $('#upcoming_task_#{task.id} form').trigger('submit') }
+  sleep 2
+end
+
+Then /^the upcoming title field for "([^"]*)" should contain "([^"]*)"$/ do |original_title, expected_title|
+  task = Task.find_by_title!(original_title)
+  find("#upcoming_task_#{task.id} form input").value.should == expected_title
+end
+
+Then /^I should see the upcoming task "([^"]*)" with a due date of "([^"]*)"$/ do |title, due_date|
+  page.should have_css("li span.date:contains('#{due_date}')")
+  page.should have_css("li span.task_title:contains('#{title}')")
 end
