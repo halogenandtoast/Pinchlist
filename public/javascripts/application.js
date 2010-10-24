@@ -61,29 +61,31 @@ function set_task_title_and_date(e) {
       var form = $('#new_task_title');
       var upcoming = is_upcoming(form);
       var due_date = null;
+      var li = $(form).parent('li');
       if(data.task.due_date != null) {
         split_date = data.task.due_date.split('-');
         due_date= split_date[1]+'/'+split_date[2];
       }
       if(upcoming) {
-        var task_id = form.parent('li').attr('id').split('_')[2];
+        var task_id = li.attr('id').split('_')[2];
         $('#task_'+task_id+' .task_title').html(data.task.title);
         if(due_date != null) {
           $('#task_'+task_id+' .date').html(due_date);
         }
       } else {
-        var task_id = form.parent('li').attr('id').split('_')[1];
+        var task_id = li.attr('id').split('_')[1];
         $('#upcoming_task_'+task_id+' .task_title').html(data.task.title);
         if(due_date != null) {
           $('#upcoming_task_'+task_id+' .date').html(due_date);
         }
       }
-      span = $('<span class="task_title">'+data.task.title+'</span>');
-      form.replaceWith(span);
+      span_html = '<span class="task_title">'+data.task.title+'</span>';
       if(due_date != null) {
-        span.parent('li').prepend($('<span class="date">'+due_date+'</span>'));
+        span_html = '<span class="date">'+due_date+'</span>'+"\n" + span_html;
       }
-      setup_single_and_double_click(span.parent('li'), upcoming ? "upcoming" : "");
+
+      form.replaceWith(span_html);
+      setup_single_and_double_click(li, upcoming ? "upcoming" : "");
       $(".list:not(.upcoming) ul span").disableSelection();
     },
     "json"
