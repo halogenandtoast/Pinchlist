@@ -24,6 +24,25 @@ Feature: Edit a task
     And I should see the task "Lasso a shark"
 
   @javascript
+  Scenario: Renaming a task in the upcoming list and changing it's due date
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    And the following task exists:
+      | title        | list           | due date   |
+      | Ride a shark | title: My List | 2010-10-20 |
+    When I go to the dashboard page
+    And I double click the upcoming task "Ride a shark"
+    Then the upcoming title field for "Ride a shark" should contain "@10/20 Ride a shark"
+    And I fill in the upcoming title for "Ride a shark" with "@10/30 Lasso a shark"
+    And I submit the upcoming title form for "Ride a shark"
+    Then I should see the upcoming task "Lasso a shark" with a due date of "10/30"
+    When I go to the dashboard page
+    Then I should see the upcoming task "Lasso a shark" with a due date of "10/30"
+
+  @javascript
   Scenario: Renaming a task in it's list
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

@@ -8,6 +8,7 @@ end
 When /^I submit "([^"]*)"'s task form$/ do |title|
   list = List.find_by_title!(title)
   page.execute_script("$('#new_task_#{list.id}').trigger('submit')")
+  sleep 2
 end
 
 Then /^I should see the task "([^"]*)"$/ do |task_title|
@@ -51,10 +52,12 @@ end
 
 When /^I submit the title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#task_#{task.id} form").trigger("submit")
+  page.execute_script %{ $("#task_#{task.id} form").trigger('submit') }
+  sleep 2
 end
 
 When /^I blur the title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#task_#{task.id} form input").trigger("blur")
+  page.execute_script %{ $('#task_#{task.id} form input').trigger('blur') }
+  sleep 2
 end

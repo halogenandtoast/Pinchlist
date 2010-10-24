@@ -21,13 +21,20 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
   });
 }
 
+function is_upcoming(form) {
+  return form.parent('li').attr('id').split('_')[0] == "upcoming";
+}
+
+
 function task_edit(task, task_id, prefix) {
   var self = task;
   var task_title = $(self).children("span.task_title").text();
-  var form = $('<form>');
+  var task_due_date = $(self).children("span.date").text();
+  var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
+  var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
-  form.append("<input type='text' name='task[title]' id='task_title' value='"+task_title+"' />");
-  $(form).children('input').bind('keyup',{task_title:task_title,element:self,prefix:prefix}, function(e) {
+  form.append("<input type='text' name='task[title]' id='task_title' value='"+title_field+"' />");
+  $(form).children('input').bind('keyup',{task_title:task_title,task_due_date:task_due_date,element:self,prefix:prefix}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
@@ -35,32 +42,53 @@ function task_edit(task, task_id, prefix) {
       setup_single_and_double_click($(e.data.element), e.data.prefix);
     }
   });
-  $(form).children('input').bind('blur',{task_title:task_title,task_id:task_id,element:self,prefix:prefix}, function(e) {
-    $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).val()}}, function(data){});
-    $(this).unbind('keyup');
-    $(this).unbind('blur');
-    if(prefix == "upcoming") {
-      $('#task_'+e.data.task_id+' .task_title').html($(this).val());
-    } else {
-      $('#upcoming_task_'+e.data.task_id+' .task_title').html($(this).val());
+  $(form).children('input').bind('blur',
+    {task_title:task_title,task_id:task_id,element:self,prefix:prefix}, function(e) {
+      set_task_title_and_date.call($(this).parent('form'), e)
     }
-    $(this).parent('form').replaceWith('<span class="task_title">'+$(this).val()+'</span>');
-    setup_single_and_double_click($(e.data.element), e.data.prefix);
-  });
-  form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, function(e) {
-    $.post('/tasks/'+e.data.task_id, {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}}, function(data){});
-    if(prefix == "upcoming") {
-      $('#task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-    } else {
-      $('#upcoming_task_'+e.data.task_id+' .task_title').html($(this).children('#task_title').val());
-    }
-    $(this).replaceWith('<span class="task_title">'+$(this).children('#task_title').val()+'</span>');
-    setup_single_and_double_click($(e.data.element), e.data.prefix);
-    $(".list:not(.upcoming) ul span").disableSelection();
-    return false;
-  });
-  $(self).children("span.task_title").replaceWith(form);
+  );
+  form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, set_task_title_and_date);
+  $(self).html(form);
   form.children('input').focus();
+}
+
+function set_task_title_and_date(e) {
+  var task_id = e.data.task_id;
+  $.post(
+    '/tasks/'+task_id,
+    {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}},
+    function(data) {
+      var form = $('#new_task_title');
+      var upcoming = is_upcoming(form);
+      var due_date = null;
+      if(data.task.due_date != null) {
+        split_date = data.task.due_date.split('-');
+        due_date= split_date[1]+'/'+split_date[2];
+      }
+      if(upcoming) {
+        var task_id = form.parent('li').attr('id').split('_')[2];
+        $('#task_'+task_id+' .task_title').html(data.task.title);
+        if(due_date != null) {
+          $('#task_'+task_id+' .date').html(due_date);
+        }
+      } else {
+        var task_id = form.parent('li').attr('id').split('_')[1];
+        $('#upcoming_task_'+task_id+' .task_title').html(data.task.title);
+        if(due_date != null) {
+          $('#upcoming_task_'+task_id+' .date').html(due_date);
+        }
+      }
+      span = $('<span class="task_title">'+data.task.title+'</span>');
+      form.replaceWith(span);
+      if(due_date != null) {
+        span.parent('li').prepend($('<span class="date">'+due_date+'</span>'));
+      }
+      setup_single_and_double_click(span.parent('li'), upcoming ? "upcoming" : "");
+      $(".list:not(.upcoming) ul span").disableSelection();
+    },
+    "json"
+  );
+  return false;
 }
 
 function setup_single_and_double_click(element, prefix) {
@@ -74,17 +102,12 @@ function setup_single_and_double_click(element, prefix) {
       task_edit(this, task_id, prefix);
     }, 225, {prefix:prefix});
 }
-// Note that I took the event string to bind to out of the jQuery.ui.js file.
 
 $(document).ready(function(){
-//   var maxWidth = 300;
-//   if ( $('.list').width() > maxWidth ) $('.list').width(maxWidth);
-
   $('.picker').colorPicker();
-  // mark upcoming tasks completed
+  //
+  // mark normal and upcoming tasks completed
   setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
-
-  // mark normal tasks completed
   setup_single_and_double_click($(".list:not(.upcoming) li"), "");
 
   // drag and drop tasks
