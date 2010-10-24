@@ -40,3 +40,8 @@ Then /^I should see the upcoming task "([^"]*)" with a due date of "([^"]*)"$/ d
   page.should have_css("li span.date:contains('#{due_date}')")
   page.should have_css("li span.task_title:contains('#{title}')")
 end
+
+Then /^I do not see the upcoming tasks list$/ do
+  page.should_not have_css("#upcoming_tasks")
+end
+
