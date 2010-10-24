@@ -3,6 +3,11 @@ Feature: View upcoming tasks
   As a user
   I want to see upcoming tasks in order
 
+  Scenario: Upcoming tasks do not exist
+    Given I am signed in as "user@example.com/password"
+    When I am on the dashboard page
+    Then I do not see the upcoming tasks list
+
   Scenario: Upcoming tasks exist
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

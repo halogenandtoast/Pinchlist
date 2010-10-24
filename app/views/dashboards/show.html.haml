@@ -10,15 +10,16 @@
 #container
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr
-      %td.list.upcoming
-        .list_title
-          %h3 Upcoming
-          .today #{Time.now.strftime("%m/%d")}
-        %ul#upcoming_tasks
-          - @upcoming_tasks.each do |task|
-            = content_tag_for(:li, task, :upcoming, :class => (task.completed ? 'completed' : nil)) do
-              %span.date= task.due_date.strftime("%m/%d")
-              %span.task_title= task.title
+      - unless @upcoming_tasks.empty?
+        %td.list.upcoming
+          .list_title
+            %h3 Upcoming
+            .today #{Time.now.strftime("%m/%d")}
+          %ul#upcoming_tasks
+            - @upcoming_tasks.each do |task|
+              = content_tag_for(:li, task, :upcoming, :class => (task.completed ? 'completed' : nil)) do
+                %span.date= task.due_date.strftime("%m/%d")
+                %span.task_title= task.title
       - @lists.each do |list|
         %td[list]
           .list_title{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
