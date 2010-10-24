@@ -22,3 +22,13 @@ Then /^I should see the following "([^"]*)" tasks in order:$/ do |title, table|
     page.should have_css(css_matcher)
   end
 end
+
+When /^I click the delete link for "([^"]*)"$/ do |title|
+  list = List.find_by_title!(title)
+  find("#list_#{list.id} a.delete").click
+end
+
+Then /^I should not see the list "([^"]*)"$/ do |title|
+  page.should_not have_css(".list:contains('#{title}')")
+end
+

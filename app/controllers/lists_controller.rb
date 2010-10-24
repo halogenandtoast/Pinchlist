@@ -9,4 +9,10 @@ class ListsController < ApplicationController
       render 'dashboards/show'
     end
   end
+
+  def destroy
+    list = current_user.lists.find(params[:id])
+    list.destroy
+    redirect_to dashboard_path, :notice => 'List deleted.'
+  end
 end
