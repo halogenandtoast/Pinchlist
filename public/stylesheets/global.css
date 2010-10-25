@@ -179,8 +179,8 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); }
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -252,10 +252,7 @@ td.ui-placeholder-highlight {
   overflow: hidden;
   margin: 0;
   border-right: 1px solid white;
-  border-left: 1px solid white;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding;
-  background-clip: padding-box; }
+  border-left: 1px solid white; }
   .list:hover {
     cursor: default !important; }
   .list.ui-sortable-helper {

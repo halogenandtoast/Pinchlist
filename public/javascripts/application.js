@@ -130,7 +130,7 @@ $(document).ready(function(){
     //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned
     // }
   })
-  this.onselectstart = function () { return false; };
+  // this.onselectstart = function () { return false; };
   $(".list:not(.upcoming) ul span").disableSelection();
 
   // drag and drop lists
