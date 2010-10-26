@@ -185,9 +185,8 @@ input[type="text"], input[type="password"] {
     width: 220px;
     font-size: 16px;
     color: #333333; }
-    .input input[type="text"].error, .input input[type="password"].error {
-      border: 2px solid #eb7378;
-      margin-bottom: 20px; }
+    .input input[type="text"].fieldError, .input input[type="password"].fieldError {
+      border-left: 1px solid #dc4d48; }
     .input input[type="text"]#card-cid, .input input[type="password"]#card-cid {
       width: 90px;
       margin-right: 10px; }
@@ -233,17 +232,19 @@ input[type="text"], input[type="password"] {
         color: #005f8b;
         text-decoration: none; }
   #content form #error_explanation, #content fieldset #error_explanation {
-    margin: 10px 0 15px;
+    margin: 10px 0 10px;
     float: left;
     clear: both;
-    color: red; }
+    color: #dc4d48;
+    width: 280px; }
     #content form #error_explanation h2, #content fieldset #error_explanation h2 {
-      font-size: 1.2em;
-      font-weight: bold; }
-    #content form #error_explanation ul li, #content fieldset #error_explanation ul li {
-      display: list-item;
-      list-style-position: inside;
-      list-style-type: square; }
+      display: none; }
+    #content form #error_explanation ul, #content fieldset #error_explanation ul {
+      width: 280px; }
+      #content form #error_explanation ul li, #content fieldset #error_explanation ul li {
+        display: list-item;
+        list-style: none;
+        font-weight: bold; }
 #content input[type="submit"] {
   cursor: pointer;
   display: inline-block;

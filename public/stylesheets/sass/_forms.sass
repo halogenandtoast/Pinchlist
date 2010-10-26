@@ -62,9 +62,10 @@ input[type="text"], input[type="password"]
     color: #333
     // -webkit-box-shadow: none
     //  -moz-box-shadow: none
-    &.error 
-      border: 2px solid #EB7378 
-      margin-bottom: 20px
+    &.fieldError 
+      border-left: 1px solid #dc4d48 
+      // -webkit-box-shadow: none
+      // -moz-box-shadow: none
     &#card-cid 
       width: 90px
       margin-right: 10px   
@@ -121,18 +122,19 @@ input[type="text"], input[type="password"]
     //    padding: 0
     //    margin: 0 0 10px 0
     #error_explanation
-      margin: 10px 0 15px
+      margin: 10px 0 10px
       float: left
       clear: both
-      color: red
+      color: #dc4d48
+      width: 280px
       h2
-        font-size: 1.2em
-        font-weight: bold
+        display: none
       ul
+        width: 280px
         li
           display: list-item
-          list-style-position: inside
-          list-style-type: square
+          list-style: none
+          font-weight: bold
   input[type="submit"]
     cursor: pointer
     display: inline-block
