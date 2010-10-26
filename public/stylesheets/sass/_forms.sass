@@ -1,11 +1,11 @@
 input[type="text"], input[type="password"]
-  -moz-box-shadow: 0px 1px 1px #aaa inset
-  -webkit-box-shadow: 0px 1px 1px #aaa inset
+  -moz-box-shadow: 0px 1px 1px #ddd inset
+  -webkit-box-shadow: 0px 1px 1px #ddd inset
   border: none
   border-bottom: 1px solid #eee
   padding: 3px 4px
   height: 15px
-  background-color: #fff
+  background-color: #f9f9f9
   font-family: "Helvetica Neue", Arial, sans-serif
   // -webkit-border-radius: 2px
   // -moz-border-radius: 2px
@@ -22,14 +22,16 @@ input[type="text"], input[type="password"]
   h1
     margin-bottom: 0px
   h2
-    margin: 0 0 30px 0
-    font-size: 16px
+    margin: -6px 0 30px 0
+    font-size: 20px
   .links
     width: 240px
     float: left
     height: auto
     a
-      color: #aaa
+      color: #ccc
+      font-size: 12px
+      font-weight: normal
 .input 
   margin: 12px 0 0 0
   background: #fff
@@ -39,25 +41,24 @@ input[type="text"], input[type="password"]
   span 
     position: absolute
     padding: 5px
-    margin: 0 0 0 4px
-    color: #ccc
-    line-height: 15px
-    font-size: 11px
+    margin: 1px 0 0 4px
+    color: #ddd
+    font-size: 13px
+    font-weight: bold
   input[type="text"], input[type="password"]
     position: relative
     margin: 0
     background: transparent
-    background-color: rgba(200, 200, 200, .1)
+    background-color: rgba(200, 200, 200, .07)
     display: block 
     margin: 0  
     padding: 4px 6px 
     // border: 1px solid #ddd
     position: relative 
     z-index: 3
-    line-height: 15px 
-    height: 16px
-    width: 200px
-    font-size: 11px
+    height: 20px
+    width: 220px
+    font-size: 16px
     color: #333
     // -webkit-box-shadow: none
     //  -moz-box-shadow: none
@@ -136,31 +137,35 @@ input[type="text"], input[type="password"]
     cursor: pointer
     display: inline-block
     line-height: 1.8
-    margin: 12px 0 10px 0
-    padding: 3px 13px
+    margin: 12px 200px 10px 0
+    padding: 2px 13px
     text-transform: uppercase
-    height: auto
+    height: 27px
     width: auto
     text-align: center
     vertical-align: middle
     white-space: nowrap
     float: left 
-    background: #5D9
-    font-size: 11px
+    background: #eee
+    font-size: 12px
     font-weight: bold
-    color: #fff
+    color: #333
     font-family: "Helvetica Neue", Arial, sans-serif
-    border: none
+    border: 1px solid #ddd
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
-    -moz-box-shadow: 0 0 2px #ccc
-    -webkit-box-shadow: 0 0 2px #ccc
+    // -moz-box-shadow: 0 0 2px #ccc
+    // -webkit-box-shadow: 0 0 2px #ccc
+    text-shadow: 0 1px 0 #fff
     &:hover
-      -moz-box-shadow: 0 0 6px #aaa
-      -webkit-box-shadow: 0 0 6px #aaa
+      // -moz-box-shadow: 0 1px 1px #aaa
+      // -webkit-box-shadow: 0 1px 1px #aaa
+      border-color: #999
+      text-shadow: none
     &:active
-      -moz-box-shadow: 0 0 2px #ddd
-      -webkit-box-shadow: 0 0 2px #ddd
+      -moz-box-shadow: none
+      -webkit-box-shadow: none
+      background: #ddd
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus 
   outline: 0
 fieldset 
@@ -176,7 +181,7 @@ legend
 .checkbox 
   float: left
   width: 100%
-  margin: 3px 0 5px 0
+  margin: 8px 0 5px 0
   height: 16px
 .remember 
   width: 100%

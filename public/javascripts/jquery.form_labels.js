@@ -34,7 +34,7 @@
         $(this).prev('span').css('color', '#E5E59E');
     });
     $('input, textarea').live('focusout', function() {
-        $(this).prev('span').css('color', '#ccc');
+        $(this).prev('span').css('color', '#ddd');
     });
 
     $(function() {

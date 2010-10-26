@@ -4,60 +4,63 @@
 body 
   font-family: "Helvetica Neue", Arial, sans-serif
   color: #191919
-  background: #fff url(/images/bg2.png) 0 0 repeat
+  background: #fff url(/images/bg.png) 0 0 repeat
   height: 100%
   &.show
     background: #fff
 #page
   background-color: #fff
-  height: 100%
+  min-height: 100%
   position: absolute
   top: 0
   left: 35%
   width: 65%
   #content
-    padding: 30px
+    padding: 60px
     margin: 40px 0 0 0
-    width: 300px
+    max-width: 450px
     height: auto
     overflow: auto
     #login
       float: left
-      margin: 60px 0 0 0
-      width: 200px
+      margin: 30px 0 0 0
+      width: 260px
       p
-        font-size: 11px
+        font-size: 12px
         margin: 2px 0
+        color: #ccc
+        font-weight: normal
     h1
       font-size: 28px
       margin: 30px 0 100px 0
-      color: #000
+      color: #333
       letter-spacing: -1px
     h2
       font-size: 22px
       margin: 0 0 20px 0
-      font-weight: normal
       color: #ccc
     p
       margin: 20px 0 20px
-      max-width: 330px
-      line-height: 1.6
-      font-size: 13px
-      color: #999
+      max-width: 450px
+      line-height: 1.2
+      font-size: 19px
+      font-weight: bold
+      color: #ccc
       strong
-        color: #222
+        color: #555
     a
       text-decoration: none
-      color: #aaa
-      margin-right: 20px
+      color: #BEEBCE
+      margin-right: 5px
       width: auto
-      font-size: 12px
+      font-size: 20px
       font-family: "Helvetica Neue", Arial, sans-serif
       &:hover
         text-decoration: underline
       &.signup
-        color: #71DCED
-        font-size: 16px
+        color: #06C251
+        font-size: 20px
+        font-weight: bold
 #header 
   width: 100%
   background-color: #f5f5f5
@@ -77,14 +80,21 @@ body
     color: #000
     width: 120px
     margin: 8px 0 0 8px
-  input 
-    float: left
-    margin: 9px 0 0 0
-    width: 166px
-    padding: 4px
-    &:focus 
-      opacity: 1
-      outline: none
+    color: #ddd
+  .input
+    margin: 9px 0 0 0 
+    span
+      margin: 1px 0 0 2px
+      font-weight: normal
+      font-size: 12px
+    input 
+      width: 180px
+      padding: 2px 4px 0
+      font-size: 13px
+      height: 22px
+      &:focus 
+        opacity: 1
+        outline: none
   ul 
     float: right
     width: 200px
@@ -250,6 +260,8 @@ td
       background-color: #dc4d48
       margin-bottom: 10px
       cursor: default
+      &:hover
+        cursor: default
       h3
         cursor: default
         &:hover
@@ -297,23 +309,27 @@ td
     width: 100%
     max-width: 280px
 ::-webkit-input-placeholder
-  color: #ccc
+  color: #ddd
+  font-weight: normal
 .newtask 
   float: left
   margin: 0
   padding: 0
   width: 100%
-#flash_alert
+#flash_alert, #flash_notice
   position: fixed
-  top: 0
+  bottom: 0
   left: 0
   padding: 2px
-  background-color: #dc4d48
   color: #fff
   width: 100%
   text-align: center
   z-index: 100000
   font-size: 12px
   font-weight: bold
+#flash_alert
+  background-color: #dc4d48
+#flash_notice
+  background-color: #06C251
 @import moz.sass
   

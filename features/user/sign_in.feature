@@ -7,6 +7,6 @@ Feature: In order to manage my information
     And I am on the home page
     And I fill in email with "user@example.com"
     And I fill in password with "password"
-    And I press "Login"
+    And I press "Sign In"
     Then I should be on the dashboard page
     And I should see "Sign Out"

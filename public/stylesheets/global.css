@@ -125,13 +125,13 @@ div.color_swatch {
     border-color: white !important; }
 
 input[type="text"], input[type="password"] {
-  -moz-box-shadow: 0px 1px 1px #aaaaaa inset;
-  -webkit-box-shadow: 0px 1px 1px #aaaaaa inset;
+  -moz-box-shadow: 0px 1px 1px #dddddd inset;
+  -webkit-box-shadow: 0px 1px 1px #dddddd inset;
   border: none;
   border-bottom: 1px solid #eeeeee;
   padding: 3px 4px;
   height: 15px;
-  background-color: white;
+  background-color: #f9f9f9;
   font-family: "Helvetica Neue", Arial, sans-serif;
   margin: 0 0 0 -4px;
   font-weight: bold; }
@@ -147,14 +147,16 @@ input[type="text"], input[type="password"] {
   #page #content.form h1 {
     margin-bottom: 0px; }
   #page #content.form h2 {
-    margin: 0 0 30px 0;
-    font-size: 16px; }
+    margin: -6px 0 30px 0;
+    font-size: 20px; }
   #page #content.form .links {
     width: 240px;
     float: left;
     height: auto; }
     #page #content.form .links a {
-      color: #aaaaaa; }
+      color: #cccccc;
+      font-size: 12px;
+      font-weight: normal; }
 
 .input {
   margin: 12px 0 0 0;
@@ -165,24 +167,23 @@ input[type="text"], input[type="password"] {
   .input span {
     position: absolute;
     padding: 5px;
-    margin: 0 0 0 4px;
-    color: #cccccc;
-    line-height: 15px;
-    font-size: 11px; }
+    margin: 1px 0 0 4px;
+    color: #dddddd;
+    font-size: 13px;
+    font-weight: bold; }
   .input input[type="text"], .input input[type="password"] {
     position: relative;
     margin: 0;
     background: transparent;
-    background-color: rgba(200, 200, 200, 0.1);
+    background-color: rgba(200, 200, 200, 0.07);
     display: block;
     margin: 0;
     padding: 4px 6px;
     position: relative;
     z-index: 3;
-    line-height: 15px;
-    height: 16px;
-    width: 200px;
-    font-size: 11px;
+    height: 20px;
+    width: 220px;
+    font-size: 16px;
     color: #333333; }
     .input input[type="text"].error, .input input[type="password"].error {
       border: 2px solid #eb7378;
@@ -247,31 +248,31 @@ input[type="text"], input[type="password"] {
   cursor: pointer;
   display: inline-block;
   line-height: 1.8;
-  margin: 12px 0 10px 0;
-  padding: 3px 13px;
+  margin: 12px 200px 10px 0;
+  padding: 2px 13px;
   text-transform: uppercase;
-  height: auto;
+  height: 27px;
   width: auto;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
   float: left;
-  background: #55dd99;
-  font-size: 11px;
+  background: #eeeeee;
+  font-size: 12px;
   font-weight: bold;
-  color: white;
+  color: #333333;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  border: none;
+  border: 1px solid #dddddd;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -moz-box-shadow: 0 0 2px #cccccc;
-  -webkit-box-shadow: 0 0 2px #cccccc; }
+  text-shadow: 0 1px 0 white; }
   #content input[type="submit"]:hover {
-    -moz-box-shadow: 0 0 6px #aaaaaa;
-    -webkit-box-shadow: 0 0 6px #aaaaaa; }
+    border-color: #999999;
+    text-shadow: none; }
   #content input[type="submit"]:active {
-    -moz-box-shadow: 0 0 2px #dddddd;
-    -webkit-box-shadow: 0 0 2px #dddddd; }
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    background: #dddddd; }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   outline: 0; }
@@ -291,7 +292,7 @@ legend {
 .checkbox {
   float: left;
   width: 100%;
-  margin: 3px 0 5px 0;
+  margin: 8px 0 5px 0;
   height: 16px; }
 
 .remember {
@@ -340,61 +341,64 @@ a.cancel:hover {
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #191919;
-  background: white url(/images/bg2.png) 0 0 repeat;
+  background: white url(/images/bg.png) 0 0 repeat;
   height: 100%; }
   body.show {
     background: white; }
 
 #page {
   background-color: white;
-  height: 100%;
+  min-height: 100%;
   position: absolute;
   top: 0;
   left: 35%;
   width: 65%; }
   #page #content {
-    padding: 30px;
+    padding: 60px;
     margin: 40px 0 0 0;
-    width: 300px;
+    max-width: 450px;
     height: auto;
     overflow: auto; }
     #page #content #login {
       float: left;
-      margin: 60px 0 0 0;
-      width: 200px; }
+      margin: 30px 0 0 0;
+      width: 260px; }
       #page #content #login p {
-        font-size: 11px;
-        margin: 2px 0; }
+        font-size: 12px;
+        margin: 2px 0;
+        color: #cccccc;
+        font-weight: normal; }
     #page #content h1 {
       font-size: 28px;
       margin: 30px 0 100px 0;
-      color: black;
+      color: #333333;
       letter-spacing: -1px; }
     #page #content h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
-      font-weight: normal;
       color: #cccccc; }
     #page #content p {
       margin: 20px 0 20px;
-      max-width: 330px;
-      line-height: 1.6;
-      font-size: 13px;
-      color: #999999; }
+      max-width: 450px;
+      line-height: 1.2;
+      font-size: 19px;
+      font-weight: bold;
+      color: #cccccc; }
       #page #content p strong {
-        color: #222222; }
+        color: #555555; }
     #page #content a {
       text-decoration: none;
-      color: #aaaaaa;
-      margin-right: 20px;
+      color: #beebce;
+      margin-right: 5px;
       width: auto;
-      font-size: 12px;
+      font-size: 20px;
       font-family: "Helvetica Neue", Arial, sans-serif; }
       #page #content a:hover {
         text-decoration: underline; }
       #page #content a.signup {
-        color: #71dced;
-        font-size: 16px; }
+        color: #06c251;
+        font-size: 20px;
+        font-weight: bold; }
 
 #header {
   width: 100%;
@@ -412,15 +416,22 @@ body {
     font-size: 20px;
     color: black;
     width: 120px;
-    margin: 8px 0 0 8px; }
-  #header input {
-    float: left;
-    margin: 9px 0 0 0;
-    width: 166px;
-    padding: 4px; }
-    #header input:focus {
-      opacity: 1;
-      outline: none; }
+    margin: 8px 0 0 8px;
+    color: #dddddd; }
+  #header .input {
+    margin: 9px 0 0 0; }
+    #header .input span {
+      margin: 1px 0 0 2px;
+      font-weight: normal;
+      font-size: 12px; }
+    #header .input input {
+      width: 180px;
+      padding: 2px 4px 0;
+      font-size: 13px;
+      height: 22px; }
+      #header .input input:focus {
+        opacity: 1;
+        outline: none; }
   #header ul {
     float: right;
     width: 200px;
@@ -584,6 +595,8 @@ td.ui-placeholder-highlight {
     background-color: #dc4d48;
     margin-bottom: 10px;
     cursor: default; }
+    .list.upcoming .list_title:hover {
+      cursor: default; }
     .list.upcoming .list_title h3 {
       cursor: default; }
       .list.upcoming .list_title h3:hover {
@@ -632,7 +645,8 @@ td.ui-placeholder-highlight {
     max-width: 280px; }
 
 ::-webkit-input-placeholder {
-  color: #cccccc; }
+  color: #dddddd;
+  font-weight: normal; }
 
 .newtask {
   float: left;
@@ -640,18 +654,23 @@ td.ui-placeholder-highlight {
   padding: 0;
   width: 100%; }
 
-#flash_alert {
+#flash_alert, #flash_notice {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   padding: 2px;
-  background-color: #dc4d48;
   color: white;
   width: 100%;
   text-align: center;
   z-index: 100000;
   font-size: 12px;
   font-weight: bold; }
+
+#flash_alert {
+  background-color: #dc4d48; }
+
+#flash_notice {
+  background-color: #06c251; }
 
 @-moz-document url-prefix() {
   .list ul li .task_title {
