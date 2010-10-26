@@ -7,4 +7,3 @@ Feature: In order to protect my information
     And I am on the dashboard page
     When I follow "Sign Out"
     Then I should see "Signed out successfully."
-    And I should see "Login"

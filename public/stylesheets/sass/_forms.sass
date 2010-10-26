@@ -1,0 +1,217 @@
+input[type="text"], input[type="password"]
+  -moz-box-shadow: 0px 1px 1px #aaa inset
+  -webkit-box-shadow: 0px 1px 1px #aaa inset
+  border: none
+  border-bottom: 1px solid #eee
+  padding: 3px 4px
+  height: 15px
+  background-color: #fff
+  font-family: "Helvetica Neue", Arial, sans-serif
+  // -webkit-border-radius: 2px
+  // -moz-border-radius: 2px
+  margin: 0 0 0 -4px
+  font-weight: bold
+  &:focus 
+    -moz-box-shadow: 0px 1px 1px #D0D053 inset
+    -webkit-box-shadow: 0px 1px 1px #D0D053 inset  
+    background-color: #FDFEAD
+    outline: none
+    border-bottom-color: transparent
+#page #content.form
+  width: 240px
+  h1
+    margin-bottom: 0px
+  h2
+    margin: 0 0 30px 0
+    font-size: 16px
+  .links
+    width: 240px
+    float: left
+    height: auto
+    a
+      color: #aaa
+.input 
+  margin: 12px 0 0 0
+  background: #fff
+  float: left
+  position: relative
+  cursor: default	
+  span 
+    position: absolute
+    padding: 5px
+    margin: 0 0 0 4px
+    color: #ccc
+    line-height: 15px
+    font-size: 11px
+  input[type="text"], input[type="password"]
+    position: relative
+    margin: 0
+    background: transparent
+    background-color: rgba(200, 200, 200, .1)
+    display: block 
+    margin: 0  
+    padding: 4px 6px 
+    // border: 1px solid #ddd
+    position: relative 
+    z-index: 3
+    line-height: 15px 
+    height: 16px
+    width: 200px
+    font-size: 11px
+    color: #333
+    // -webkit-box-shadow: none
+    //  -moz-box-shadow: none
+    &.error 
+      border: 2px solid #EB7378 
+      margin-bottom: 20px
+    &#card-cid 
+      width: 90px
+      margin-right: 10px   
+    &#card-exp 
+      width: 120px  
+    &:focus 
+      background: transparent
+      background: rgba(254, 254, 6, .2)
+      // border: 1px solid #A6D4E8
+      //     -webkit-box-shadow: 0 0 3px #A6D4E8
+      //     -moz-box-shadow: 0 0 3px #A6D4E8
+  .form-error 
+    position: absolute
+    left: -10px
+    top: 21px
+    width: 100%
+    color: #EB7378
+    font-size: .9em
+    font-weight: bold
+#content
+  form, fieldset
+    margin: 0
+    width: 250px
+    height: auto
+    float: left
+    h3 
+      float: left
+      font-size: 1.2em
+      font-weight: bold
+      margin: 0 0 15px 0
+      width: 100%
+    ul
+      float: left
+      width: 180px
+      padding: 0
+      margin: -5px 0 0 0
+      li
+        font-size: .7em
+        display: inline-block
+        width: auto
+        margin: 0 0 0 0
+        a
+          display: block
+          width: auto
+          padding: 0px 5px 2px 0
+          color: #005F8B
+          text-decoration: none
+    // p
+    //    font-size: 1em
+    //    color: #999
+    //    display: block
+    //    float: left
+    //    clear: both
+    //    padding: 0
+    //    margin: 0 0 10px 0
+    #error_explanation
+      margin: 10px 0 15px
+      float: left
+      clear: both
+      color: red
+      h2
+        font-size: 1.2em
+        font-weight: bold
+      ul
+        li
+          display: list-item
+          list-style-position: inside
+          list-style-type: square
+  input[type="submit"]
+    cursor: pointer
+    display: inline-block
+    line-height: 1.8
+    margin: 12px 0 10px 0
+    padding: 3px 13px
+    text-transform: uppercase
+    height: auto
+    width: auto
+    text-align: center
+    vertical-align: middle
+    white-space: nowrap
+    float: left 
+    background: #5D9
+    font-size: 11px
+    font-weight: bold
+    color: #fff
+    font-family: "Helvetica Neue", Arial, sans-serif
+    border: none
+    -webkit-border-radius: 2px
+    -moz-border-radius: 2px
+    -moz-box-shadow: 0 0 2px #ccc
+    -webkit-box-shadow: 0 0 2px #ccc
+    &:hover
+      -moz-box-shadow: 0 0 6px #aaa
+      -webkit-box-shadow: 0 0 6px #aaa
+    &:active
+      -moz-box-shadow: 0 0 2px #ddd
+      -webkit-box-shadow: 0 0 2px #ddd
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus 
+  outline: 0
+fieldset 
+  float: left
+  width: 300px
+  height: auto
+  margin: 0 0 5px 0
+legend 
+  float: left
+  font-size: 1.1em
+  margin: 0 10px 0 0
+  width:  70px
+.checkbox 
+  float: left
+  width: 100%
+  margin: 3px 0 5px 0
+  height: 16px
+.remember 
+  width: 100%
+.forgot 
+  float: left
+  width: 100%
+  margin: 15px 0 15px 0
+  text-align: left
+  color: #ccc
+  font-size: 1em
+.radio label, .radio input 
+  float: left
+  margin-top: 2px
+.radio label 
+  margin: 2px 6px 0 0 
+.checkbox label, .radio label 
+  vertical-align: middle
+  font-size: 11px
+  font-weight: normal
+  color: #ccc
+.checkbox input, .radio input 
+  vertical-align: middle
+  padding: 0
+  margin: 0
+select 
+  float: left
+  width: 160px
+  margin: 0 60px 10px 0
+.cancel 
+  margin: 1.3em 0 0 15px
+  font-size: 1.1em
+  color: #ccc
+  float: left
+a.cancel:hover 
+  color: #666
+
+
+    

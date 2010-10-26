@@ -1,12 +1,11 @@
 #page
-  #content
+  #content.form
     %h1 Listwerk
     %h2 Forgot your password?
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
       = devise_error_messages!
-      %p
-        = f.label :email
-        %br/
+      %label.input{:for => "email"}
+        %span Email Address
         = f.text_field :email
-      %p= f.submit "Send me reset password instructions"
+      = f.submit "Reset"
     = render :partial => "devise/shared/links"

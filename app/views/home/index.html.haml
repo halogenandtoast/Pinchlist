@@ -1,6 +1,7 @@
 #page
   #content
-    %h1 Listwerk
+    %h1 
+      %img{:src => "images/logo.png", :alt => "Listwerk"}
     %p
       %strong Listwerk is an elegant list-making application. 
       %br
@@ -15,10 +16,13 @@
     /   %param{:name => "flashvars", :value => "i=121409"}/
     /   %param{:name => "allowFullScreen", :value => "true"}/
     /   %embed{:allowFullScreen => "true", :flashvars => "i=121409", :height => "345", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "560"}
-  #login
-    = form_for :user, :url => new_user_session_path do |form|
-      = form.label :email
-      = form.text_field :email
-      = form.label :password
-      = form.password_field :password
-      %button(type='submit') Login
+    #login
+      %p Already have an account? Log in here.
+      = form_for :user, :url => new_user_session_path do |f|
+        %label.input{:for => "email"}
+          %span Email Address
+          = f.text_field :email
+        %label.input{:for => "password"} 
+          %span Password
+          = f.password_field :password
+        = f.submit "Login"
