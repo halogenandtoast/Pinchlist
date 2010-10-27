@@ -31,7 +31,7 @@
     $('select').live('change', toggleLabel);
 
     $('input, textarea').live('focusin', function() {
-        $(this).prev('span').css('color', '#E5E59E');
+        $(this).prev('span').css('color', '#F0E9C1');
     });
     $('input, textarea').live('focusout', function() {
         $(this).prev('span').css('color', '#ddd');
