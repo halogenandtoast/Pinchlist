@@ -1,6 +1,7 @@
 #page
   #content
-    %h1 Listwerk
+    %h1
+      = link_to 'Listwerk', root_url
     %h2 Resend confirmation instructions
     = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
       = devise_error_messages!

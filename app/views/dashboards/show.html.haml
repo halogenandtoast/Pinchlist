@@ -1,5 +1,6 @@
 #header
-  %h1 Listwerk
+  %h1
+    = link_to 'Listwerk', root_url
   = form_for @list do |form|
     %label.input{:for => "title"}
       %span New List

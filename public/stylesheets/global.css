@@ -170,7 +170,7 @@ input[type="text"], input[type="password"] {
     margin: 1px 0 0 4px;
     color: #dddddd;
     font-size: 13px;
-    font-weight: bold; }
+    font-weight: normal; }
   .input input[type="text"], .input input[type="password"] {
     position: relative;
     margin: 0;
@@ -354,11 +354,12 @@ body {
   min-height: 100%;
   position: absolute;
   top: 0;
-  left: 35%;
-  width: 65%; }
+  left: 0;
+  min-width: 700px;
+  width: 70%; }
   #page #content {
     padding: 60px;
-    margin: 40px 0 0 0;
+    margin: 40px 100px 0 60px;
     max-width: 450px;
     height: auto;
     overflow: auto; }
@@ -372,10 +373,13 @@ body {
         color: #cccccc;
         font-weight: normal; }
     #page #content h1 {
-      font-size: 28px;
+      font-size: 24px;
       margin: 30px 0 100px 0;
       color: #333333;
       letter-spacing: -1px; }
+      #page #content h1 a {
+        font-size: 24px;
+        color: #333333; }
     #page #content h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
@@ -385,7 +389,7 @@ body {
       margin: 20px 0 20px;
       max-width: 450px;
       line-height: 23px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: normal;
       color: #cccccc; }
       #page #content p strong {
@@ -393,7 +397,7 @@ body {
         font-weight: normal; }
     #page #content a {
       text-decoration: none;
-      color: #beebce;
+      color: #5fd3d3;
       margin-right: 5px;
       width: auto;
       font-size: 20px;
@@ -402,8 +406,7 @@ body {
         text-decoration: underline; }
       #page #content a.signup {
         color: #06c251;
-        font-size: 20px;
-        font-weight: bold; }
+        font-size: 20px; }
 
 #header {
   width: 100%;
