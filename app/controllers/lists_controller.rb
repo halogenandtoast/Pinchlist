@@ -10,6 +10,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = current_user.lists.find(params[:id])
+    @list.update_attributes(params[:list])
+    respond_to do |format|
+      format.js { render :json => @list }
+    end
+  end
+
   def destroy
     list = current_user.lists.find(params[:id])
     list.destroy
