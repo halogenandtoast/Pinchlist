@@ -180,6 +180,20 @@ $(document).ready(function(){
      }
   });
   // $("tr").data("sortable").floating = true;
+  
+  //toggle demo video
+  $("#demo, #close").click(function () {
+    $('#demo').text($('#demo').text() == 'Close the demo' ? 'Watch the demo' : 'Close the demo');
+    $("#demo_video").toggle();
+    return false; 
+  });
+  
+  // $("demo").click(function(){
+  //    
+  // });
+	
+  
+  
   	
 });
 

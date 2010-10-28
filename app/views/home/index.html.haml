@@ -1,4 +1,11 @@
 #page
+  #demo_video
+    %a#close{:href => "#"} Close
+    %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0", :height => "345", :width => "560"}
+      %param{:name => "movie", :value => "http://screenr.com/Content/assets/screenr_1116090935.swf"}/
+      %param{:name => "flashvars", :value => "i=123600"}/
+      %param{:name => "allowFullScreen", :value => "true"}/
+      %embed{:allowFullScreen => "true", :flashvars => "i=123600", :height => "345", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "560"}
   #content
     %h1
       = link_to 'Listwerk', root_url
@@ -8,13 +15,7 @@
       Use it for tasks, to-dos, things, actions, items, stuff, and anything else you can put in a list. Create, view, and manage all of your lists in a single window with speed, simplicity, and happy colors. Listwerk is ten dollars.
     %p
       = link_to 'Sign up now', new_user_registration_path, :class => "signup" 
-      %a{:href => ""} Watch a demo    
-    
-    / %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase =>   "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0", :height => "345", :width => "560"}
-    /   %param{:name => "movie", :value => "http://screenr.com/Content/assets/screenr_1116090935.swf"}/
-    /   %param{:name => "flashvars", :value => "i=121409"}/
-    /   %param{:name => "allowFullScreen", :value => "true"}/
-    /   %embed{:allowFullScreen => "true", :flashvars => "i=121409", :height => "345", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "560"}
+      %a#demo{:href => "#"} Watch the demo    
     #login
       %p Already have an account? Sign in here.
       = form_for :user, :url => new_user_session_path do |f|
