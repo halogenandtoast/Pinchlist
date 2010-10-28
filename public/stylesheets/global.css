@@ -26,7 +26,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-a:focus, input:focus, button:focus {
+a:focus, input:focus, button:focus, input:active, button:active {
   outline: none; }
 
 /* END RESET CSS */
@@ -153,9 +153,9 @@ input[type="text"], input[type="password"] {
     float: left;
     height: auto; }
     #page #content.form .links a {
-      color: #cccccc;
+      color: #95dcdf;
       font-size: 12px;
-      font-weight: normal; }
+      font-weight: bold; }
 
 .input {
   margin: 12px 0 0 0;
@@ -166,24 +166,24 @@ input[type="text"], input[type="password"] {
   .input span {
     position: absolute;
     padding: 5px;
-    margin: 1px 0 0 4px;
+    margin: 1px 0 0 3px;
     color: #dddddd;
-    font-size: 13px;
-    font-weight: normal; }
+    font-size: 14px;
+    font-weight: bold; }
   .input input[type="text"], .input input[type="password"] {
     position: relative;
     margin: 0;
     background: transparent;
     background-color: rgba(200, 200, 200, 0.07);
     display: block;
-    margin: 0;
     padding: 4px 6px;
     position: relative;
     z-index: 3;
     height: 20px;
     width: 220px;
-    font-size: 16px;
-    color: #333333; }
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold; }
     .input input[type="text"].fieldError, .input input[type="password"].fieldError {
       border-left: 1px solid #dc4d48; }
     .input input[type="text"]#card-cid, .input input[type="password"]#card-cid {
@@ -252,29 +252,32 @@ input[type="text"], input[type="password"] {
   line-height: 1.8;
   margin: 12px 200px 10px 0;
   padding: 2px 13px;
-  text-transform: uppercase;
-  height: 27px;
+  height: auto;
   width: auto;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
   float: left;
   background: #eeeeee;
-  font-size: 12px;
+  background: -moz-linear-gradient(center top, white, white 55%, #e4e4e4) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#e4e4e4));
+  font-size: 14px;
   font-weight: bold;
   color: #333333;
   font-family: "Helvetica Neue", Arial, sans-serif;
   border: 1px solid #dddddd;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  text-shadow: 0 1px 0 white; }
-  #content input[type="submit"]:hover {
-    border-color: #999999;
+  text-shadow: 0 1px 0 white;
+  outline: none; }
+  #content input[type="submit"]:hover, #content input[type="submit"]:focus {
+    border-color: #aaaaaa;
     text-shadow: none; }
   #content input[type="submit"]:active {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    background: #dddddd; }
+    background: #eeeeee;
+    outline: none; }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   outline: 0; }
@@ -295,7 +298,8 @@ legend {
   float: left;
   width: 100%;
   margin: 8px 0 5px 0;
-  height: 16px; }
+  height: 16px;
+  color: #dddddd; }
 
 .remember {
   width: 100%; }
@@ -318,8 +322,8 @@ legend {
 .checkbox label, .radio label {
   vertical-align: middle;
   font-size: 11px;
-  font-weight: normal;
-  color: #cccccc; }
+  font-weight: bold;
+  color: #dddddd; }
 
 .checkbox input, .radio input {
   vertical-align: middle;
@@ -343,7 +347,7 @@ a.cancel:hover {
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #191919;
-  background: white url(/images/bg.png) 0 0 repeat;
+  background: white url(/images/g.png) 0 0 repeat;
   height: 100%; }
   body.show {
     background: white; }
@@ -364,13 +368,18 @@ body {
     overflow: auto; }
     #page #content #login {
       float: left;
-      margin: 30px 0 0 0;
-      width: 260px; }
+      margin: 25px 0 0 0;
+      width: 260px;
+      display: none; }
       #page #content #login p {
         font-size: 12px;
         margin: 2px 0;
-        color: #cccccc;
-        font-weight: normal; }
+        color: #cccccc; }
+      #page #content #login a {
+        color: #95dcdf;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 15px 0 0 0; }
     #page #content h1 {
       font-size: 24px;
       margin: 30px 0 100px 0;
@@ -382,30 +391,30 @@ body {
     #page #content h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
-      color: #cccccc;
-      font-weight: normal; }
+      color: #eeeeee; }
     #page #content p {
       margin: 20px 0 20px;
-      max-width: 450px;
-      line-height: 23px;
+      max-width: 460px;
+      line-height: 1.25;
       font-size: 18px;
-      font-weight: normal;
+      font-weight: bold;
       color: #cccccc; }
+      #page #content p#sign_in {
+        margin: 60px 0 0; }
       #page #content p strong {
-        color: #555555;
-        font-weight: normal; }
+        color: #666666; }
     #page #content a {
       text-decoration: none;
-      color: #5fd3d3;
+      color: #999999;
       margin-right: 5px;
-      width: auto;
-      font-size: 20px;
-      font-family: "Helvetica Neue", Arial, sans-serif; }
+      width: auto; }
       #page #content a:hover {
         text-decoration: underline; }
       #page #content a.signup {
-        color: #06c251;
+        color: #06c13e;
         font-size: 20px; }
+      #page #content a#demo {
+        color: #06c192; }
   #page #demo_video {
     width: 560px;
     height: 345px;
@@ -414,7 +423,7 @@ body {
     overflow: visible;
     position: absolute;
     top: 30px;
-    left: 120px;
+    left: 60px;
     display: none; }
     #page #demo_video #close {
       width: 20px;
@@ -614,10 +623,6 @@ td.ui-placeholder-highlight {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         float: none; }
-        .list ul li input[type="text"]::selection {
-          background: red; }
-        .list ul li input[type="text"]::-moz-selection {
-          background: red; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .today {
@@ -715,4 +720,10 @@ td.ui-placeholder-highlight {
 
   .list ul li input {
     padding: 3px 5px 4px 3px;
-    margin: 0 0 0 -4px; } }
+    margin: 0 0 0 -4px; }
+
+  #content input[type="submit"] {
+    padding: 4px 10px; }
+
+  input::-moz-focus-inner {
+    border: 0; } }

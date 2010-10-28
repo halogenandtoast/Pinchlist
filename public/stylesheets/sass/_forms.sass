@@ -28,9 +28,9 @@ input[type="text"], input[type="password"]
     float: left
     height: auto
     a
-      color: #ccc
+      color: #95DCDF
       font-size: 12px
-      font-weight: normal
+      font-weight: bold
 .input 
   margin: 12px 0 0 0
   background: #fff
@@ -40,25 +40,25 @@ input[type="text"], input[type="password"]
   span 
     position: absolute
     padding: 5px
-    margin: 1px 0 0 4px
+    margin: 1px 0 0 3px
     color: #ddd
-    font-size: 13px
-    font-weight: normal
+    font-size: 14px
+    font-weight: bold
   input[type="text"], input[type="password"]
     position: relative
     margin: 0
     background: transparent
     background-color: rgba(200, 200, 200, .07)
-    display: block 
-    margin: 0  
+    display: block  
     padding: 4px 6px 
     // border: 1px solid #ddd
     position: relative 
     z-index: 3
     height: 20px
     width: 220px
-    font-size: 16px
+    font-size: 14px
     color: #333
+    font-weight: bold
     // -webkit-box-shadow: none
     //  -moz-box-shadow: none
     &.fieldError 
@@ -142,15 +142,17 @@ input[type="text"], input[type="password"]
     line-height: 1.8
     margin: 12px 200px 10px 0
     padding: 2px 13px
-    text-transform: uppercase
-    height: 27px
+    // text-transform: uppercase
+    height: auto
     width: auto
     text-align: center
     vertical-align: middle
     white-space: nowrap
     float: left 
     background: #eee
-    font-size: 12px
+    background: -moz-linear-gradient(center top , #FFFFFF, #FFFFFF 55%, #E4E4E4) repeat scroll 0 0 transparent
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#E4E4E4))
+    font-size: 14px
     font-weight: bold
     color: #333
     font-family: "Helvetica Neue", Arial, sans-serif
@@ -160,15 +162,17 @@ input[type="text"], input[type="password"]
     // -moz-box-shadow: 0 0 2px #ccc
     // -webkit-box-shadow: 0 0 2px #ccc
     text-shadow: 0 1px 0 #fff
-    &:hover
+    outline: none 
+    &:hover, &:focus
       // -moz-box-shadow: 0 1px 1px #aaa
       // -webkit-box-shadow: 0 1px 1px #aaa
-      border-color: #999
+      border-color: #aaa
       text-shadow: none
     &:active
       -moz-box-shadow: none
       -webkit-box-shadow: none
-      background: #ddd
+      background: #eee
+      outline: none
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus 
   outline: 0
 fieldset 
@@ -186,6 +190,7 @@ legend
   width: 100%
   margin: 8px 0 5px 0
   height: 16px
+  color: #ddd
 .remember 
   width: 100%
 .forgot 
@@ -203,8 +208,8 @@ legend
 .checkbox label, .radio label 
   vertical-align: middle
   font-size: 11px
-  font-weight: normal
-  color: #ccc
+  font-weight: bold
+  color: #ddd
 .checkbox input, .radio input 
   vertical-align: middle
   padding: 0

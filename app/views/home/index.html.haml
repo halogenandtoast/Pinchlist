@@ -12,12 +12,14 @@
     %p
       %strong Listwerk is an elegant list-making machine. 
       %br
-      Use it for tasks, to-dos, things, actions, items, stuff, and anything else you can put in a list. Create, view, and manage all of your lists in a single window with speed, simplicity, and happy colors. Listwerk is ten dollars.
+      Use it for tasks, to-dos, things, actions, items, stuff, and anything else you can put in a list. Create, view, and manage all of your lists in a single window with speed, simplicity, and happy colors. Listwerk is $10.
     %p
       = link_to 'Sign up now', new_user_registration_path, :class => "signup" 
-      %a#demo{:href => "#"} Watch the demo    
-    #login
-      %p Already have an account? Sign in here.
+      %a#demo{:href => "#"} Watch the demo   
+    %p#sign_in 
+      Already have an account?
+      %a{:href => "#"} Sign in
+    #login      
       = form_for :user, :url => new_user_session_path do |f|
         %label.input{:for => "email"}
           %span Email Address
@@ -26,3 +28,4 @@
           %span Password
           = f.password_field :password
         = f.submit "Sign In"
+        = link_to "Forgot your password?", 'users/password/new'

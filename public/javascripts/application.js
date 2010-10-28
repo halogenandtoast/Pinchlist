@@ -185,13 +185,14 @@ $(document).ready(function(){
   $("#demo, #close").click(function () {
     $('#demo').text($('#demo').text() == 'Close the demo' ? 'Watch the demo' : 'Close the demo');
     $("#demo_video").toggle();
-    return false; 
   });
   
-  // $("demo").click(function(){
-  //    
-  // });
-	
+  //show sign in form
+  $("#sign_in a").click(function () {
+    
+    $("#login, #sign_in").toggle();
+    $('#user_email').focus();
+  });
   
   
   	
