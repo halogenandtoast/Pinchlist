@@ -133,8 +133,7 @@ input[type="text"], input[type="password"] {
   height: 15px;
   background-color: #f9f9f9;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  margin: 0 0 0 -4px;
-  font-weight: bold; }
+  margin: 0 0 0 -4px; }
   input[type="text"]:focus, input[type="password"]:focus {
     -moz-box-shadow: 0px 1px 1px #d0d053 inset;
     -webkit-box-shadow: 0px 1px 1px #d0d053 inset;
@@ -147,7 +146,7 @@ input[type="text"], input[type="password"] {
   #page #content.form h1 {
     margin-bottom: 0px; }
   #page #content.form h2 {
-    margin: -6px 0 30px 0;
+    margin: 20px 0 50px 0;
     font-size: 20px; }
   #page #content.form .links {
     width: 240px;
@@ -425,7 +424,11 @@ body {
     color: black;
     width: 120px;
     margin: 8px 0 0 8px;
-    color: #333333; }
+    color: #333333;
+    letter-spacing: -0.07em; }
+    #header h1 a {
+      color: #333333;
+      text-decoration: none; }
   #header .input {
     margin: 9px 0 0 0; }
     #header .input span {
