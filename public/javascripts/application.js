@@ -25,6 +25,27 @@ function is_upcoming(form) {
   return form.parent('li').attr('id').split('_')[0] == "upcoming";
 }
 
+function list_edit(list_title) {
+  var list = list_title.parents(".list");
+  list.find('.color_picker').hide();
+  var list_title_text = list_title.html();
+  var form = $('<form id="new_list_title" />');
+  form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
+  form.bind('submit', function(e) {
+      var list_id = $(this).parents('.list').attr('id').split('_')[1];
+    $.post(
+      '/lists/'+list_id,
+      {'_method':'PUT', 'list': {'title': $(this).children('#list_title').val()}},
+      function(data) {
+        $('#list_'+data.list.id+' .list_title form').replaceWith('<h3>'+data.list.title+'</h3>');
+        $('#list_'+data.list.id+' .color_picker').show();
+      },
+      "json"
+    );
+    return false;
+  });
+  list_title.replaceWith(form);
+}
 
 function task_edit(task, task_id, prefix) {
   var self = task;
@@ -111,6 +132,10 @@ $(document).ready(function(){
   // mark normal and upcoming tasks completed
   setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
   setup_single_and_double_click($(".list:not(.upcoming) li"), "");
+
+  $(".list_title h3").dblclick(function() {
+      list_edit($(this));
+  });
 
   // drag and drop tasks
   $(".list:not(.upcoming) ul").sortable({
