@@ -29,7 +29,9 @@ function update_list_position(list, position) {
   var list_id = list.attr('id').split('_')[1];
   $.post(
     '/lists/'+list_id,
-    {'_method':'PUT', 'list': {'position': position}}
+    {'_method':'PUT', 'list': {'position': position}},
+    function(data) {},
+    "json"
   );
 }
 
@@ -189,7 +191,7 @@ $(document).ready(function(){
       },
       update: function(e,ui) {
         var position = $('.list:not(.upcoming)').index(ui.item[0]) + 1;
-        update_list_position(ui.item[0], position);
+        update_list_position(ui.item, position);
       }
 
   });
