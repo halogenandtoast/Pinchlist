@@ -16,3 +16,15 @@ Feature: Edit a list
     Then I should see the list "My Really Awesome List"
     When I go to the dashboard page
     Then I should see the list "My Really Awesome List"
+
+  @javascript
+  Scenario: Reordering a list
+    Given I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title         | user                    | position |
+      | My List       | email: user@example.com | 1        |
+      | My Other List | email: user@example.com | 2        |
+    When I go to the dashboard page
+    And I drag the list "My List" over "My Other List"
+    When I go to the dashboard page
+    Then I should see the list "My Other List" before "My List"
