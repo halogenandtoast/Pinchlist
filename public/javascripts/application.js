@@ -25,6 +25,14 @@ function is_upcoming(form) {
   return form.parent('li').attr('id').split('_')[0] == "upcoming";
 }
 
+function update_list_position(list, position) {
+  var list_id = list.attr('id').split('_')[1];
+  $.post(
+    '/lists/'+list_id,
+    {'_method':'PUT', 'list': {'position': position}}
+  );
+}
+
 function list_edit(list_title) {
   var list = list_title.parents(".list");
   list.find('.color_picker').hide();
@@ -174,10 +182,16 @@ $(document).ready(function(){
       handle: '.list_title',
       cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
       opacity: .93,
+      tolerance: 'pointer',
       forceHelperSize: true,
       sort: function(e,ui) {
-         $('.ui-placeholder-highlight').css("width", $('.ui-sortable-helper').outerWidth());
-     }
+        $('.ui-placeholder-highlight').css("width", $('.ui-sortable-helper').outerWidth());
+      },
+      update: function(e,ui) {
+        var position = $('.list:not(.upcoming)').index(ui.item[0]) + 1;
+        update_list_position(ui.item[0], position);
+      }
+
   });
   // $("tr").data("sortable").floating = true;
   

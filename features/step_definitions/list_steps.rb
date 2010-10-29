@@ -48,3 +48,16 @@ When /^I submit the list title form for "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
   page.evaluate_script %{ $('#list_#{list.id} .list_title form').trigger('submit') }
 end
+
+When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2|
+  list_1 = List.find_by_title!(list_title_1)
+  list_2 = List.find_by_title!(list_title_2)
+  page.execute_script %{ update_list_position($('#list_#{list_2.id}'), $('.list:not(.upcoming)').index('#list_#{list_2.id}')) }
+  sleep 2
+end
+
+Then /^I should see the list "([^"]*)" before "([^"]*)"$/ do |list_title_1, list_title_2|
+  list_1 = List.find_by_title!(list_title_1)
+  list_2 = List.find_by_title!(list_title_2)
+  page.should have_css("#list_#{list_1.id} ~ #list_#{list_2.id}")
+end
