@@ -1,4 +1,10 @@
 Pinchlist::Application.routes.draw do
+  get "pages/about"
+
+  get "pages/legal"
+
+  get "pages/help"
+
   devise_for :users
   root :to => "home#index"
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard

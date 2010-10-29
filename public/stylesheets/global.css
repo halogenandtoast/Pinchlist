@@ -258,14 +258,14 @@ input[type="text"], input[type="password"] {
   vertical-align: middle;
   white-space: nowrap;
   float: left;
-  background: #eeeeee;
+  background: #f9f9f9;
   background: -moz-linear-gradient(center top, white, white 55%, #e4e4e4) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#e4e4e4));
   font-size: 14px;
   font-weight: bold;
   color: #333333;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   text-shadow: 0 1px 0 white;

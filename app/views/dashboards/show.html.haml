@@ -7,9 +7,9 @@
       = form.text_field :title
   %ul#util
     %li
-      %a{:href => ""} Help
+      %a{:href => "pages/help"} Help
     %li= link_to 'Sign Out', destroy_user_session_path
-    %li.username= link_to "#{@current_user.email}", edit_user_registration_path
+    %li.username= link_to current_user.email, edit_user_registration_path
 #container
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr

@@ -5,7 +5,7 @@
     %li
       %a{:href => ""} Help
     %li= link_to 'Sign Out', destroy_user_session_path
-    %li.username= link_to "#{@current_user.email}", edit_user_registration_path
+    %li.username= link_to current_user.email, edit_user_registration_path
 #page
   #content.form
     %h2 Edit Your Account
