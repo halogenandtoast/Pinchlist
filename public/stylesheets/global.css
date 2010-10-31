@@ -392,6 +392,12 @@ body {
       font-size: 22px;
       margin: 0 0 20px 0;
       color: #eeeeee; }
+    #page #content ul {
+      margin: 10px 0; }
+      #page #content ul li {
+        list-style: none;
+        font-size: 14px;
+        padding: 2px; }
     #page #content p {
       margin: 20px 0 20px;
       max-width: 460px;
@@ -424,7 +430,8 @@ body {
     position: absolute;
     top: 30px;
     left: 60px;
-    display: none; }
+    display: none;
+    background-color: black; }
     #page #demo_video #close {
       width: 20px;
       height: 20px;

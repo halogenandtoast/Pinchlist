@@ -9,47 +9,34 @@
       %li.username= link_to current_user.email, edit_user_registration_path
 #page
   #content
-    %dl
-      %dt 
-        Creating Lists
-        %dd Type your list title in to the input box on the top left and press ENTER.
-      %dt 
-        Creating Tasks
-        %dd This is the answer
-      %dt 
-        Completing Tasks
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
-      %dt 
-        Creating Todos
-        %dd This is the answer
+    
+    %h3 How to use Listwerk
+    %ul
+      %li Add lists by typing into the "New List" input and pressing the ENTER key.
+      %li Same goes for adding tasks (except you'll use the input within that list).
+      %li Drag and drop your lists and tasks into the desired order.
+      %li Click on a task name to complete the task. Tasks will stay on your list for 7 days after they are completed; then they'll be archived.
+      %li Double-click on task name to edit the task. Press ENTER when you're done editing.
+      %li Use the "@" prefix to give your tasks a due date. Try "@mm/dd", @monday, @wed, @tomorrow, and more...
+      %li Tasks that have due dates will also appear in the Upcoming list in chronological order. You can edit and complete them in this list as well.
+      %li The date to the right of the "Upcoming" title is today's date.
+      %li Customize your list colors by hovering over the list title and clicking on the color icon that appears to the right. Click a swatch or input a Hex value.
+      %li Delete a list by clicking the X icon to the right of the list title.
+      %li Delete a task by editing the task, deleting all of it's text, and pressing ENTER.
+      %li View the entire history of a list by clicking the "View all" link at the bottom of the list.
       
+    %h3 Possible future enhancements in no particular order
+    %ul
+      %li Shared lists
+      %li Date format preferences
+      %li Font size preferences
+      %li Recurring tasks
+      %li Alerts and reminders (email, SMS, etc.)
+      %li Improved mobile support and/or native iPhone/Android apps
+      %li Copy list to clipboard
+      %li Statistics
+      %li Developer API
+      %li Improved print formatting
+      %li Add lists and tasks via email
+      %li Email and calendar integration
+      %li Keyboard shortcuts
