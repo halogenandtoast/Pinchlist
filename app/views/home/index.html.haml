@@ -28,4 +28,6 @@
           %span Password
           = f.password_field :password
         = f.submit "Sign In"
-        = link_to "Forgot your password?", 'users/password/new'
+      %p
+        Forgot password?
+        = link_to "Reset it.", 'users/password/new'

@@ -138,6 +138,7 @@ input[type="text"], input[type="password"] {
     -moz-box-shadow: 0px 1px 1px #d0d053 inset;
     -webkit-box-shadow: 0px 1px 1px #d0d053 inset;
     background-color: #fdfead;
+    background-color: rgba(254, 254, 6, 0.2);
     outline: none;
     border-bottom-color: transparent; }
 
@@ -146,16 +147,13 @@ input[type="text"], input[type="password"] {
   #page #content.form h1 {
     margin-bottom: 0px; }
   #page #content.form h2 {
-    margin: 20px 0 50px 0;
+    margin: 0 0 50px 0;
     font-size: 20px; }
   #page #content.form .links {
-    width: 240px;
+    width: 280px;
     float: left;
-    height: auto; }
-    #page #content.form .links a {
-      color: #95dcdf;
-      font-size: 12px;
-      font-weight: bold; }
+    height: auto;
+    font-size: 14px; }
 
 .input {
   margin: 12px 0 0 0;
@@ -168,8 +166,7 @@ input[type="text"], input[type="password"] {
     padding: 5px;
     margin: 1px 0 0 3px;
     color: #dddddd;
-    font-size: 14px;
-    font-weight: bold; }
+    font-size: 14px; }
   .input input[type="text"], .input input[type="password"] {
     position: relative;
     margin: 0;
@@ -182,8 +179,7 @@ input[type="text"], input[type="password"] {
     height: 20px;
     width: 220px;
     font-size: 14px;
-    color: #333333;
-    font-weight: bold; }
+    color: #333333; }
     .input input[type="text"].fieldError, .input input[type="password"].fieldError {
       border-left: 1px solid #dc4d48; }
     .input input[type="text"]#card-cid, .input input[type="password"]#card-cid {
@@ -243,9 +239,12 @@ input[type="text"], input[type="password"] {
       width: 240px; }
       #content form #error_explanation ul li, #content fieldset #error_explanation ul li {
         display: list-item;
+        margin: 0;
         list-style: none;
         font-weight: bold;
-        font-size: 14px; }
+        font-size: 14px;
+        color: #dc4d48;
+        padding: 0; }
 #content input[type="submit"] {
   cursor: pointer;
   display: inline-block;
@@ -263,7 +262,7 @@ input[type="text"], input[type="password"] {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#e4e4e4));
   font-size: 14px;
   font-weight: bold;
-  color: #333333;
+  color: #666666;
   font-family: "Helvetica Neue", Arial, sans-serif;
   border: 1px solid #cccccc;
   -webkit-border-radius: 2px;
@@ -272,7 +271,8 @@ input[type="text"], input[type="password"] {
   outline: none; }
   #content input[type="submit"]:hover, #content input[type="submit"]:focus {
     border-color: #aaaaaa;
-    text-shadow: none; }
+    text-shadow: none;
+    color: #555555; }
   #content input[type="submit"]:active {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -347,7 +347,7 @@ a.cancel:hover {
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #191919;
-  background: white url(/images/g.png) 0 0 repeat;
+  background: white url(/images/b.png) 0 0 repeat;
   height: 100%; }
   body.show {
     background: white; }
@@ -369,41 +369,46 @@ body {
     #page #content #login {
       float: left;
       margin: 25px 0 0 0;
-      width: 260px;
-      display: none; }
+      width: 280px;
+      display: none;
+      height: auto; }
       #page #content #login p {
-        font-size: 12px;
-        margin: 2px 0;
+        margin: 20px 0;
+        display: inline-block;
+        width: 100%;
+        height: auto;
         color: #cccccc; }
-      #page #content #login a {
-        color: #95dcdf;
-        font-size: 12px;
-        font-weight: bold;
-        margin: 15px 0 0 0; }
     #page #content h1 {
-      font-size: 24px;
+      font-size: 28px;
       margin: 30px 0 100px 0;
       color: #333333;
       letter-spacing: -1px; }
       #page #content h1 a {
-        font-size: 24px;
+        font-size: 28px;
         color: #333333; }
     #page #content h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
-      color: #eeeeee; }
+      color: #009dff;
+      font-weight: normal; }
+    #page #content h3 {
+      font-size: 18px;
+      margin: 25px 0 15px; }
     #page #content ul {
       margin: 10px 0; }
       #page #content ul li {
         list-style: none;
-        font-size: 14px;
-        padding: 2px; }
+        font-size: 12px;
+        padding: 2px;
+        color: #cccccc;
+        margin: 2px 0; }
+        #page #content ul li strong {
+          color: #aaaaaa; }
     #page #content p {
       margin: 20px 0 20px;
       max-width: 460px;
       line-height: 1.25;
       font-size: 18px;
-      font-weight: bold;
       color: #cccccc; }
       #page #content p#sign_in {
         margin: 60px 0 0; }
@@ -417,10 +422,10 @@ body {
       #page #content a:hover {
         text-decoration: underline; }
       #page #content a.signup {
-        color: #06c13e;
+        color: #fd407b;
         font-size: 20px; }
       #page #content a#demo {
-        color: #06c192; }
+        color: #009dff; }
   #page #demo_video {
     width: 560px;
     height: 345px;
@@ -448,12 +453,13 @@ body {
 #header {
   width: 100%;
   background-color: #f5f5f5;
-  height: 42px;
+  height: 43px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
-  border-bottom: 1px solid #dddddd; }
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3); }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -504,7 +510,7 @@ body {
 
 #container {
   position: absolute;
-  top: 42px;
+  top: 45px;
   left: 0;
   padding: 6px 0 0 0;
   background-color: white;
@@ -627,6 +633,7 @@ td.ui-placeholder-highlight {
         border: none;
         line-height: 1.2;
         background-color: #fdfead;
+        background-color: rgba(254, 254, 6, 0.2);
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         float: none; }

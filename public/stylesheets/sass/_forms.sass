@@ -14,6 +14,7 @@ input[type="text"], input[type="password"]
     -moz-box-shadow: 0px 1px 1px #D0D053 inset
     -webkit-box-shadow: 0px 1px 1px #D0D053 inset  
     background-color: #FDFEAD
+    background-color: rgba(254, 254, 6, .2)
     outline: none
     border-bottom-color: transparent
 #page #content.form
@@ -21,16 +22,16 @@ input[type="text"], input[type="password"]
   h1
     margin-bottom: 0px
   h2
-    margin: 20px 0 50px 0
+    margin: 0 0 50px 0
     font-size: 20px
   .links
-    width: 240px
+    width: 280px
     float: left
     height: auto
-    a
-      color: #95DCDF
-      font-size: 12px
-      font-weight: bold
+    font-size: 14px
+    //a
+      color: #009DFF
+      font-size: 16px
 .input 
   margin: 12px 0 0 0
   background: #fff
@@ -43,7 +44,6 @@ input[type="text"], input[type="password"]
     margin: 1px 0 0 3px
     color: #ddd
     font-size: 14px
-    font-weight: bold
   input[type="text"], input[type="password"]
     position: relative
     margin: 0
@@ -58,7 +58,6 @@ input[type="text"], input[type="password"]
     width: 220px
     font-size: 14px
     color: #333
-    font-weight: bold
     // -webkit-box-shadow: none
     //  -moz-box-shadow: none
     &.fieldError 
@@ -133,9 +132,12 @@ input[type="text"], input[type="password"]
         width: 240px
         li
           display: list-item
+          margin: 0
           list-style: none
           font-weight: bold
           font-size: 14px
+          color: #dc4d48
+          padding: 0
   input[type="submit"]
     cursor: pointer
     display: inline-block
@@ -154,7 +156,7 @@ input[type="text"], input[type="password"]
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#E4E4E4))
     font-size: 14px
     font-weight: bold
-    color: #333
+    color: #666
     font-family: "Helvetica Neue", Arial, sans-serif
     border: 1px solid #ccc
     -webkit-border-radius: 2px
@@ -168,6 +170,7 @@ input[type="text"], input[type="password"]
       // -webkit-box-shadow: 0 1px 1px #aaa
       border-color: #aaa
       text-shadow: none
+      color: #555
     &:active
       -moz-box-shadow: none
       -webkit-box-shadow: none

@@ -9,15 +9,25 @@
       %li.username= link_to current_user.email, edit_user_registration_path
 #page
   #content
+    %h3 Why Listwerk?
+    %p
+      There are countless applications and frameworks out there for getting things done. We attribute this to the fact that different methods work for different people. Unfortunately, we've never found a method that functioned the way we function. So, we decided to build our own -- Listwerk. There are a few core principles of Listwerk that guide it's development.
+    %ul
+      %li It should be fast. 
+      %li It should't be to serious.
+      %li It should be simple to use.
+      %li It should be flexible.
+      %li It should be contextual, but should accomodate time-sensitive items as well.
     
     %h3 How to use Listwerk
     %ul
-      %li Add lists by typing into the "New List" input and pressing the ENTER key.
-      %li Same goes for adding tasks (except you'll use the input within that list).
-      %li Drag and drop your lists and tasks into the desired order.
-      %li Click on a task name to complete the task. Tasks will stay on your list for 7 days after they are completed; then they'll be archived.
-      %li Double-click on task name to edit the task. Press ENTER when you're done editing.
-      %li Use the "@" prefix to give your tasks a due date. Try "@mm/dd", @monday, @wed, @tomorrow, and more...
+      %li <strong>Create lists</strong> Type into the "New List" input and pressing the ENTER key.
+      %li <strong>Create todos</strong> Type your todo into the input below a list title, then press ENTER.
+      %li <strong>Sort lists and todos</strong> Drag and drop them into the desired order.
+      %li <strong>Complete a todo</strong> Just click on the todo. Todos will stay on your list for 7 days after they are completed; then they'll be archived.
+      %li <strong>Edit a todo</strong> Double-click on the todo; press ENTER when you're done editing.
+      %li <strong>Give a todo a due date</strong> type the date in the todo with the "@" prefix. Try "@mm/dd", @monday, @wed, @tomorrow, and more...
+      %li <strong>Give a todo a due date</strong> type the date in the todo with the "@" prefix. Try "@mm/dd", @monday, @wed, @tomorrow, and more...
       %li Tasks that have due dates will also appear in the Upcoming list in chronological order. You can edit and complete them in this list as well.
       %li The date to the right of the "Upcoming" title is today's date.
       %li Customize your list colors by hovering over the list title and clicking on the color icon that appears to the right. Click a swatch or input a Hex value.

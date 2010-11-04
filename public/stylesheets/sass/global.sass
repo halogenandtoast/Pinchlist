@@ -4,7 +4,7 @@
 body 
   font-family: "Helvetica Neue", Arial, sans-serif
   color: #191919
-  background: #fff url(/images/g.png) 0 0 repeat
+  background: #fff url(/images/b.png) 0 0 repeat
   height: 100%
   &.show
     background: #fff
@@ -25,41 +25,50 @@ body
     #login
       float: left
       margin: 25px 0 0 0
-      width: 260px
+      width: 280px
       display: none
+      height: auto
       p
-        font-size: 12px
-        margin: 2px 0
+        margin: 20px 0
+        display: inline-block
+        width: 100%
+        height: auto
         color: #ccc
-      a
-        color: #95DCDF
+      // a
+        color: #009DFF
         font-size: 12px
-        font-weight: bold
         margin: 15px 0 0 0
     h1
-      font-size: 24px
+      font-size: 28px
       margin: 30px 0 100px 0
       color: #333
       letter-spacing: -1px
       a
-        font-size: 24px
+        font-size: 28px
         color: #333
     h2
       font-size: 22px
       margin: 0 0 20px 0
-      color: #eee
+      color: #009DFF
+      font-weight: normal
+    h3
+      font-size: 18px
+      margin: 25px 0 15px
     ul
       margin: 10px 0
       li
         list-style: none
-        font-size: 14px
+        font-size: 12px
         padding: 2px
+        color: #ccc
+        margin: 2px 0
+        strong
+          color: #aaa
     p
       margin: 20px 0 20px
       max-width: 460px
       line-height: 1.25
       font-size: 18px
-      font-weight: bold
       color: #ccc
       &#sign_in
         margin: 60px 0 0
@@ -74,10 +83,10 @@ body
       &:hover
         text-decoration: underline
       &.signup
-        color: #06C13E
+        color: #FD407B
         font-size: 20px
       &#demo
-        color: #06C192        
+        color: #009DFF
   #demo_video
     width: 560px
     height: 345px
@@ -105,14 +114,13 @@ body
 #header 
   width: 100%
   background-color: #f5f5f5
-  height: 42px
+  height: 43px
   position: fixed
   top: 0
   left: 0
   z-index: 2
-  border-bottom: 1px solid #ddd
-  // -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .4)
-  // -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .4)
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .3)
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .3)
   &:hover
     cursor: default !important
   h1 
@@ -162,7 +170,7 @@ body
           color: #aaa
 #container 
   position: absolute
-  top: 42px
+  top: 45px
   left: 0
   padding: 6px 0 0 0
   background-color: #fff
@@ -287,6 +295,7 @@ td
         border: none
         line-height: 1.2
         background-color: #FDFEAD
+        background-color: rgba(254, 254, 6, .2)
         -webkit-box-shadow: none
         -moz-box-shadow: none
         float: none
