@@ -1,1 +1,20 @@
-this is the about page.
+- if current_user
+  #header
+    %h1
+      = link_to 'Listwerk', root_url
+    %ul#util
+      %li
+        %a{:href => ""} Help
+      %li= link_to 'Sign Out', destroy_user_session_path
+      %li.username= link_to current_user.email, edit_user_registration_path
+#page
+  #content
+    %h3 Why Listwerk?
+    %p
+      There are countless applications and frameworks out there for getting things done. We attribute this to the fact that different methods work for different people. Unfortunately, we've never found a method that functioned the way we function. So, we decided to build our own -- Listwerk. There are a few core principles of Listwerk that guide it's development.
+    %ul
+      %li It should be fast. 
+      %li It should't be to serious.
+      %li It should be simple to use.
+      %li It should be flexible.
+      %li It should be contextual, but should accomodate time-sensitive items as well.

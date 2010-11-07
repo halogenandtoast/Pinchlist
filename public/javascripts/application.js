@@ -183,7 +183,7 @@ $(document).ready(function(){
       items: '.list:not(.upcoming)',
       handle: '.list_title',
       cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
-      opacity: .93,
+      opacity: .95,
       tolerance: 'pointer',
       forceHelperSize: true,
       sort: function(e,ui) {

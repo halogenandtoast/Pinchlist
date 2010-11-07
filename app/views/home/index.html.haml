@@ -1,24 +1,26 @@
 #page
+  //  .product
+  //  %img{:src => "/images/product.png"}
   #demo_video
-    %a#close{:href => "#"} Close
-    %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0", :height => "345", :width => "560"}
+    //%a#close{:href => "#"} Close
+    %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0", :height => "300", :width => "480"}
       %param{:name => "movie", :value => "http://screenr.com/Content/assets/screenr_1116090935.swf"}/
       %param{:name => "flashvars", :value => "i=123600"}/
       %param{:name => "allowFullScreen", :value => "true"}/
-      %embed{:allowFullScreen => "true", :flashvars => "i=123600", :height => "345", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "560"}
+      %embed{:allowFullScreen => "true", :flashvars => "i=123600", :height => "300", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "480"}
   #content
     %h1
       = link_to 'Listwerk', root_url
     %p
       %strong Listwerk is an elegant list-making machine. 
       %br
-      Use it for tasks, to-dos, things, actions, items, stuff, and anything else you can put in a list. Create, view, and manage all of your lists in a single window with speed, simplicity, and happy colors. Listwerk is $10.
+      Manage all of your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, to-dos, things, stuff, and anything else you can put in a list. Listwerk is $10. 
     %p
       = link_to 'Sign up now', new_user_registration_path, :class => "signup" 
       %a#demo{:href => "#"} Watch the demo   
     %p#sign_in 
       Already have an account?
-      %a{:href => "#"} Sign in
+      %a Sign in
     #login      
       = form_for :user, :url => new_user_session_path do |f|
         %label.input{:for => "email"}

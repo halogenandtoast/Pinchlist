@@ -170,6 +170,7 @@ input[type="text"], input[type="password"] {
   .input input[type="text"], .input input[type="password"] {
     position: relative;
     margin: 0;
+    font-weight: bold;
     background: transparent;
     background-color: rgba(200, 200, 200, 0.07);
     display: block;
@@ -344,31 +345,54 @@ select {
 a.cancel:hover {
   color: #666666; }
 
+html {
+  height: 100%; }
+
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #191919;
-  background: white url(/images/b.png) 0 0 repeat;
   height: 100%; }
   body.show {
     background: white; }
+  body.home {
+    text-align: center;
+    background: #eeeeee url("/images/bg4.png") 0 0 repeat-x; }
+
+.legal #page #content p, .help #page #content p {
+  color: #333333;
+  font-size: 13px; }
+
+.index #page {
+  min-width: 1060px;
+  background: transparent url("/images/product.png") right 190px no-repeat scroll; }
+  .index #page #content p {
+    font-weight: bold;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-size: 19px; }
 
 #page {
   background-color: white;
   min-height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 700px;
-  width: 70%; }
+  height: auto;
+  margin: 0 auto;
+  text-align: left;
+  min-width: 300px;
+  width: 100%;
+  max-width: 1060px;
+  overflow: auto;
+  position: relative; }
   #page #content {
-    padding: 60px;
-    margin: 40px 100px 0 60px;
-    max-width: 450px;
+    padding: 40px;
+    float: left;
+    max-width: 380px;
     height: auto;
-    overflow: auto; }
+    overflow: auto;
+    min-width: 280px;
+    position: relative; }
     #page #content #login {
       float: left;
-      margin: 25px 0 0 0;
+      margin: 5px 0 0 0;
       width: 280px;
       display: none;
       height: auto; }
@@ -380,7 +404,7 @@ body {
         color: #cccccc; }
     #page #content h1 {
       font-size: 28px;
-      margin: 30px 0 100px 0;
+      margin: 40px 0 110px 0;
       color: #333333;
       letter-spacing: -1px; }
       #page #content h1 a {
@@ -394,24 +418,23 @@ body {
     #page #content h3 {
       font-size: 18px;
       margin: 25px 0 15px; }
+    #page #content h4 {
+      margin: 25px 0 5px; }
     #page #content ul {
       margin: 10px 0; }
       #page #content ul li {
         list-style: none;
-        font-size: 12px;
+        font-size: 13px;
         padding: 2px;
-        color: #cccccc;
         margin: 2px 0; }
-        #page #content ul li strong {
-          color: #aaaaaa; }
     #page #content p {
-      margin: 20px 0 20px;
-      max-width: 460px;
-      line-height: 1.25;
+      margin: 10px 0 20px;
+      max-width: 100%;
+      line-height: 1.3;
       font-size: 18px;
       color: #cccccc; }
       #page #content p#sign_in {
-        margin: 60px 0 0; }
+        margin: 40px 0 0; }
       #page #content p strong {
         color: #666666; }
     #page #content a {
@@ -427,14 +450,12 @@ body {
       #page #content a#demo {
         color: #009dff; }
   #page #demo_video {
-    width: 560px;
-    height: 345px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    width: 480px;
+    height: 300px;
     overflow: visible;
     position: absolute;
-    top: 30px;
-    left: 60px;
+    top: 208px;
+    left: 487px;
     display: none;
     background-color: black; }
     #page #demo_video #close {
@@ -453,13 +474,14 @@ body {
 #header {
   width: 100%;
   background-color: #f5f5f5;
+  background-color: rgba(240, 240, 240, 0.98);
   height: 43px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -552,8 +574,8 @@ td.ui-placeholder-highlight {
     background-color: white;
     margin: 0;
     border: 0;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     padding-left: 8px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px; }
@@ -611,8 +633,8 @@ td.ui-placeholder-highlight {
             cursor: pointer; }
       .list ul li.ui-sortable-helper {
         border-bottom: none;
-        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         background-color: white;
