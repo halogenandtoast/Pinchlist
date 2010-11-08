@@ -57,3 +57,17 @@ html
   -webkit-appearance: none
 input[type="text"], input[type="submit"], input[type="password"], button, textarea
   -webkit-appearance: none
+* html .clearfix
+  height: 1%
+  overflow: visible
+*+html .clearfix
+  min-height: 1%
+.clearfix
+  &:after
+    clear: both
+    content: "."
+    display: block
+    height: 0
+    visibility: hidden
+    font-size: 0
+

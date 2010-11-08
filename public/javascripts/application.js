@@ -198,20 +198,24 @@ $(document).ready(function(){
   // $("tr").data("sortable").floating = true;
   
   //toggle demo video
-  $("#demo, #close").click(function () {
-    $('#demo').text($('#demo').text() == 'Close the demo' ? 'Watch the demo' : 'Close the demo');
-    $("#demo_video").toggle();
-  });
+  //$("#demo").click(function () {
+  //  $('#demo').text($('#demo').text() == 'Pause the demo' ? 'Play the demo' : 'Pause the demo');
+  //  $("video")[0].player.play();
+  //}, function() {
+  //  $("video")[0].player.pause();
+  //});
   
   //show sign in form
   $("#sign_in a").click(function () {
     
     $("#login, #sign_in").toggle();
     $('#user_email').focus();
+    return false;
   });
   
-  
-  	
+  //load video.js
+  $("video").VideoJS()
+ 
 });
 
 

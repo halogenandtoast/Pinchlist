@@ -68,6 +68,21 @@ html {
 input[type="text"], input[type="submit"], input[type="password"], button, textarea {
   -webkit-appearance: none; }
 
+* html .clearfix {
+  height: 1%;
+  overflow: visible; }
+
+* + html .clearfix {
+  min-height: 1%; }
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0; }
+
 div.color_picker {
   position: absolute;
   top: 5px;
@@ -351,7 +366,8 @@ html {
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #191919;
-  height: 100%; }
+  height: 100%;
+  cursor: default !important; }
   body.show {
     background: white; }
   body.home {
@@ -363,8 +379,13 @@ body {
   font-size: 13px; }
 
 .index #page {
-  min-width: 1060px;
-  background: transparent url("/images/product.png") right 190px no-repeat scroll; }
+  background: transparent;
+  overflow: visible; }
+  .index #page #content {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0; }
   .index #page #content p {
     font-weight: bold;
     line-height: 1.1;
@@ -379,7 +400,7 @@ body {
   text-align: left;
   min-width: 300px;
   width: 100%;
-  max-width: 1060px;
+  max-width: 990px;
   overflow: auto;
   position: relative; }
   #page #content {
@@ -404,7 +425,7 @@ body {
         color: #cccccc; }
     #page #content h1 {
       font-size: 28px;
-      margin: 40px 0 110px 0;
+      margin: 40px 0 113px 0;
       color: #333333;
       letter-spacing: -1px; }
       #page #content h1 a {
@@ -445,10 +466,22 @@ body {
       #page #content a:hover {
         text-decoration: underline; }
       #page #content a.signup {
-        color: #fd407b;
+        color: #7bc242;
         font-size: 20px; }
       #page #content a#demo {
         color: #009dff; }
+  #page .product {
+    height: 400px;
+    width: 580px;
+    position: absolute;
+    background-color: transparent;
+    top: 189px;
+    left: 390px;
+    overflow: visible; }
+    #page .product img {
+      position: absolute;
+      top: 0;
+      left: 0; }
   #page #demo_video {
     width: 480px;
     height: 300px;
@@ -456,7 +489,6 @@ body {
     position: absolute;
     top: 208px;
     left: 487px;
-    display: none;
     background-color: black; }
     #page #demo_video #close {
       width: 20px;
@@ -670,9 +702,9 @@ td.ui-placeholder-highlight {
   .list.upcoming .list_title {
     background-color: #dc4d48;
     margin-bottom: 10px;
-    cursor: default; }
+    cursor: default !important; }
     .list.upcoming .list_title:hover {
-      cursor: default; }
+      cursor: default !important; }
     .list.upcoming .list_title h3 {
       cursor: default; }
       .list.upcoming .list_title h3:hover {

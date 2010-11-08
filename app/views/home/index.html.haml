@@ -1,13 +1,24 @@
-#page
-  //  .product
-  //  %img{:src => "/images/product.png"}
+#page.clearfix
+  .product
+    %img{:src => "/images/product.png"}
   #demo_video
     //%a#close{:href => "#"} Close
-    %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0", :height => "300", :width => "480"}
-      %param{:name => "movie", :value => "http://screenr.com/Content/assets/screenr_1116090935.swf"}/
-      %param{:name => "flashvars", :value => "i=123600"}/
-      %param{:name => "allowFullScreen", :value => "true"}/
-      %embed{:allowFullScreen => "true", :flashvars => "i=123600", :height => "300", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :src => "http://screenr.com/Content/assets/screenr_1116090935.swf", :width => "480"}
+    / Begin VideoJS
+    .video-js-box
+      / Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody
+      %video.video-js{:controls => "", :height => "300", :poster => "images/poster-frame.png", :preload => "", :width => "480"}
+        %source{:src => "http://dl.dropbox.com/u/12925/list-test-2.mov", :type => "video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\""}
+          %source{:src => "http://video-js.zencoder.com/oceans-clip.webm", :type => "video/webm; codecs=\"vp8, vorbis\""}
+            %source{:src => "http://video-js.zencoder.com/oceans-clip.ogv", :type => "video/ogg; codecs=\"theora, vorbis\""}
+              / Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class.
+              %object.vjs-flash-fallback{:data => "http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf", :height => "264", :type => "application/x-shockwave-flash", :width => "640"}
+                %param{:name => "movie", :value => "http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf"}/
+                %param{:name => "allowfullscreen", :value => "true"}/
+                %param{:name => "flashvars", :value => "config={\"playlist\":[\"http://video-js.zencoder.com/oceans-clip.png\", {\"url\": \"http://video-js.zencoder.com/oceans-clip.mp4\",\"autoPlay\":false,\"autoBuffering\":true}]}"}/
+                / Image Fallback. Typically the same as the poster image.
+                %img{:alt => "Poster Image", :height => "300", :src => "images/poster-frame.png", :title => "No video playback capabilities.", :width => "480"}/
+    / End VideoJS
+    
   #content
     %h1
       = link_to 'Listwerk', root_url
@@ -15,12 +26,11 @@
       %strong Listwerk is an elegant list-making machine. 
       %br
       Manage all of your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, to-dos, things, stuff, and anything else you can put in a list. Listwerk is $10. 
-    %p
-      = link_to 'Sign up now', new_user_registration_path, :class => "signup" 
-      %a#demo{:href => "#"} Watch the demo   
+      = link_to 'Sign up now.', new_user_registration_path, :class => "signup" 
+      /%a#demo{:href => "#"} Watch the demo   
     %p#sign_in 
       Already have an account?
-      %a Sign in
+      %a{:href => ""} Sign in
     #login      
       = form_for :user, :url => new_user_session_path do |f|
         %label.input{:for => "email"}
