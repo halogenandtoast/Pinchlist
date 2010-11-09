@@ -506,13 +506,13 @@ var VideoJS = JRClass.extend({
     // Make sure the controls are visible
     if (this.controls.style.display == 'none') { return; }
 
-    if (this.options.controlsBelow) {
-      this.controls.style.top = this.video.offsetHeight + "px";
-    } else {
-      this.controls.style.top = (this.video.offsetHeight - this.controls.offsetHeight) + "px";
-    }
+   // if (this.options.controlsBelow) {
+    //  this.controls.style.top = this.video.offsetHeight + "px";
+   // } else {
+    //  this.controls.style.top = (this.video.offsetHeight - this.controls.offsetHeight) + "px";
+   // }
 
-    this.sizeProgressBar();
+  //  this.sizeProgressBar();
   },
 
   // Hide the controller

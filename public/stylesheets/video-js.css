@@ -10,12 +10,13 @@ REQUIRED STYLES (be careful overriding)
 .video-js-box { text-align: left; position: relative; vertical-align: bottom; } /* Will be set to the width of the video element */
 
 /* Video Element */
-video.video-js { background-color: #000; position: relative; }
+video.video-js { background-color: #191919; position: relative; }
 
 /* Fullscreen styles for main elements */
-.video-js-box.vjs-fullscreen { position: fixed; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1000; }
-.video-js-box.vjs-fullscreen video.video-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1001; }
-.video-js-box.vjs-fullscreen ul.vjs-controls { z-index: 1002; }
+.video-js-box.vjs-fullscreen { position: fixed; left: 0; top: 0; right: 0; bottom: 0; height: 100%; width: 100%; background-color: #191919; overflow: hidden; z-index: 1000; }
+.video-js-box.vjs-fullscreen video.video-js { position: absolute; top: 50%; left: 50%; width: 854px; height: 480px; margin: -240px 0 0 -427px; z-index: 1001; }
+.video-js-box.vjs-fullscreen img.vjs-poster { position: absolute; top: 50%; left: 50%; width: 854px; height: 480px; margin: -240px 0 0 -427px;  }
+.video-js-box.vjs-fullscreen ul.vjs-controls { z-index: 1002; position: fixed; bottom: 0; left: 0; }
 
 /* Poster Style */
 .video-js-box img.vjs-poster { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
@@ -33,17 +34,18 @@ so you can upgrade to newer versions easier. */
    Using a Holy Grail type method to allow the progress bar holder to expand into all available space,
    but using abosolute positioning for individual controls. http://www.alistapart.com/articles/holygrail */
 .video-js-box ul.vjs-controls {
-  list-style: none; position: absolute; margin: 0; border: none; color: #aaa;
+  list-style: none; position: absolute; margin: 0; border: none; color: #fff;
   display: none; /* Start hidden */
   left: 0; right: 0; /* 100% width of video-js-box */
+  bottom: 0px;
   height: 35px; /* Including any margin you want above or below control items */
   padding-left: 25px; /* Width of play button + margin */
   padding-right: 30px; /* Width of all the controls to the right of the progress control + margins */
   padding-top: 0; padding-bottom: 0;
-  background-color: #000;
+  background-color: #111;
 }
 /* Controls styles when below the video */
-.video-js-box.vjs-controls-below ul.vjs-controls { background-color: #222; }
+.video-js-box.vjs-controls-below ul.vjs-controls { background-color: #191919; }
 
 .video-js-box ul.vjs-controls > li { /* Direct li children of control bar */
   position: absolute; list-style: none; float: left; padding: 0; text-align: center;
@@ -51,7 +53,7 @@ so you can upgrade to newer versions easier. */
   margin: 5px 0 0 0; /* Top margin to put space between video and controls when controls are below */
 
   /* CSS Background Gradients */
-  /* Default */ background-color: #0B151A;
+  /* Default */ background-color: #111;
   /* Webkit  */ background: #1F3744
   /* Firefox */ background: #1F3744
 
@@ -83,23 +85,25 @@ ul.vjs-controls > li.vjs-time-control {
 li.vjs-play-control { cursor: pointer !important; }
 li.vjs-play-control span { display: block; font-size: 0; line-height: 0; }
 li.vjs-play-control.vjs-play span {
+  opacity: .6;
   width: 0; height: 0; margin: 8px 0 0 8px;
   /* Drawing the play triangle with borders - http://www.infimum.dk/HTML/slantinfo.html */
-  border-left: 10px solid #aaa; /* Width & Color of play icon */
+  border-left: 10px solid #fff; /* Width & Color of play icon */
   /* Height of play icon is total top & bottom border widths. Color is transparent. */
   border-top: 5px solid rgba(0,0,0,0); border-bottom: 5px solid rgba(0,0,0,0);
 }
 li.vjs-play-control.vjs-play:hover span {
   border-left-color: #fff;
+  opacity: 1;
 }
 li.vjs-play-control.vjs-pause span {
+  opacity: .6;
   width: 3px; height: 10px; margin: 8px auto 0;
   /* Drawing the pause bars with borders */
-  border-top: 0px; border-left: 3px solid #aaa; border-bottom: 0px; border-right: 3px solid #aaa;
+  border-top: 0px; border-left: 3px solid #fff; border-bottom: 0px; border-right: 3px solid #fff;
 }
 li.vjs-play-control.vjs-pause:hover span {
-  border-left-color: #fff;
-  border-right-color: #fff;
+  opacity: 1;
 }
 
 /* Progress
@@ -113,7 +117,7 @@ ul.vjs-progress-holder li { /* Progress Bars */
   position: absolute; display: block; width: 0; height: 2px; margin: 5px 0 0 0 ; padding: 0; list-style: none;
 }
 li.vjs-play-progress {
-  /* Default */ background: #aaa;
+  /* Default */ background: #999;
 }
 li.vjs-load-progress {
   /* Default */ background-color: #444;
@@ -151,31 +155,32 @@ li.vjs-fullscreen-control ul {
   width: 20px; height: 20px;
 }
 /* Drawing the fullscreen icon using 4 li elements */
-li.vjs-fullscreen-control ul li { list-style: none; float: left; margin: 0; padding: 0; font-size: 0; line-height: 0; width: 0; text-align: left; vertical-align: top; }
+li.vjs-fullscreen-control ul li { list-style: none; float: left; margin: 0; padding: 0; font-size: 0; line-height: 0; width: 0; text-align: left; vertical-align: top; opacity: .5; }
+li.vjs-fullscreen-control ul:hover li {opacity: 1;}
 li.vjs-fullscreen-control ul li:nth-child(1) { /* Top-left triangle */
   margin-right: 3px; /* Space between top-left and top-right */
   margin-bottom: 3px; /* Space between top-left and bottom-left */
-  border-top: 6px solid #aaa; /* Height and color */
+  border-top: 6px solid #fff; /* Height and color */
   border-right: 6px solid rgba(0,0,0,0);  /* Width */
 }
-li.vjs-fullscreen-control ul li:nth-child(2) { border-top: 6px solid #aaa; border-left: 6px solid rgba(0,0,0,0); }
-li.vjs-fullscreen-control ul li:nth-child(3) { clear: both; margin: 0 3px 0 0; border-bottom: 6px solid #aaa; border-right: 6px solid rgba(0,0,0,0); }
-li.vjs-fullscreen-control ul li:nth-child(4) { border-bottom: 6px solid #aaa; border-left: 6px solid rgba(0,0,0,0); }
+li.vjs-fullscreen-control ul li:nth-child(2) { border-top: 6px solid #fff; border-left: 6px solid rgba(0,0,0,0); }
+li.vjs-fullscreen-control ul li:nth-child(3) { clear: both; margin: 0 3px 0 0; border-bottom: 6px solid #fff; border-right: 6px solid rgba(0,0,0,0); }
+li.vjs-fullscreen-control ul li:nth-child(4) { border-bottom: 6px solid #fff; border-left: 6px solid rgba(0,0,0,0); }
 /* Icon when video is in fullscreen mode */
-.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(1) { border: none; border-bottom: 6px solid #aaa; border-left: 6px solid rgba(0,0,0,0); }
-.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(2) { border: none; border-bottom: 6px solid #aaa; border-right: 6px solid rgba(0,0,0,0); }
-.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(3) { border: none; border-top: 6px solid #aaa; border-left: 6px solid rgba(0,0,0,0); }
-.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(4) { border: none; border-top: 6px solid #aaa; border-right: 6px solid rgba(0,0,0,0); }
+.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(1) { border: none; border-bottom: 6px solid #fff; border-left: 6px solid rgba(0,0,0,0); }
+.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(2) { border: none; border-bottom: 6px solid #fff; border-right: 6px solid rgba(0,0,0,0); }
+.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(3) { border: none; border-top: 6px solid #fff; border-left: 6px solid rgba(0,0,0,0); }
+.vjs-fullscreen li.vjs-fullscreen-control ul li:nth-child(4) { border: none; border-top: 6px solid #fff; border-right: 6px solid rgba(0,0,0,0); }
 
 /* Big Play Button (at start)
 ---------------------------------------------------------*/
 div.vjs-big-play-button {
   display: none; /* Start hidden */
-  position: absolute; top: 50%; left: 47%; width: 80px; height: 80px; margin: -40px 0 0 -40px; padding: 0 20px; z-index: 1003; text-align: center; vertical-align: center; cursor: pointer !important;
+  position: absolute; top: 50%; left: 50%; width: 80px; height: 80px; margin: -40px 0 0 -60px; padding: 0 20px; z-index: 1003; text-align: center; vertical-align: center; cursor: pointer !important;
   border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;
   
   /* CSS Background Gradients */
-  /* Default */ background-color: #0B151A;
+  /* Default */ background-color: #191919;
   background-color: rgba(0,0,0, .65);
 
 }
