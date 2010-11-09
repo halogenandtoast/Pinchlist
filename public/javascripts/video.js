@@ -874,7 +874,7 @@ var VideoJS = JRClass.extend({
   // Turn on fullscreen (window) mode
   // Real fullscreen isn't available in browsers quite yet.
   fullscreenOn: function(){
-    if (!this.nativeFullscreenOn()) {
+    //if (!this.nativeFullscreenOn()) {
       this.videoIsFullScreen = true;
 
       // Storing original doc overflow value to return to when fullscreen is off
@@ -894,7 +894,7 @@ var VideoJS = JRClass.extend({
 
       // Resize the box, controller, and poster
       this.positionBox();
-    }
+    //}
   },
 
   nativeFullscreenOn: function(){

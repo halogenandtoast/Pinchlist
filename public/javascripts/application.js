@@ -214,7 +214,9 @@ $(document).ready(function(){
   });
   
   //load video.js
-  $("video").VideoJS()
+  $("video").VideoJS({
+    controlsHiding: false,      
+  });
  
 });
 
