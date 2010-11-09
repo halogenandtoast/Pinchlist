@@ -430,7 +430,8 @@ body {
       letter-spacing: -1px; }
       #page #content h1 a {
         font-size: 28px;
-        color: #333333; }
+        color: #333333;
+        text-shadow: 0 1px 0 white; }
     #page #content h2 {
       font-size: 22px;
       margin: 0 0 20px 0;
