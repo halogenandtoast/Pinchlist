@@ -81,3 +81,18 @@ Feature: Edit a task
     When I go to the dashboard page
     Then I should see the upcoming task "Lasso a shark"
     And I should see the task "Lasso a shark"
+
+  @javascript
+  Scenario: Reordering a task
+    Given I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title         | user                    |
+      | My List       | email: user@example.com |
+    And the following tasks exist:
+      | title               | list           | position |
+      | Ride a shark        | title: My List | 1        |
+      | Resurrect a mammoth | title: My List | 2        |
+    When I go to the dashboard page
+    And I drag the task "Ride a shark" over "Resurrect a mammoth"
+    When I go to the dashboard page
+    Then I should see the task "Ride a shark" before "Resurrect a mammoth"

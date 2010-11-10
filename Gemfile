@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'haml'
 gem 'chronic'
+# gem 'acts_as_list'
 
 group :development, :test do
   gem 'rspec-rails'

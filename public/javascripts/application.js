@@ -35,6 +35,16 @@ function update_list_position(list, position) {
   );
 }
 
+function update_task_position(task, position) {
+  var task_id = task.attr('id').split('_')[1];
+  $.post(
+    '/tasks/'+task_id,
+    {'_method':'PUT', 'task': {'position': position}},
+    function(data) {},
+    "json"
+  );
+}
+
 function list_edit(list_title) {
   var list = list_title.parents(".list");
   list.find('.color_picker').hide();
@@ -127,9 +137,15 @@ function set_task_title_and_date(e) {
 function setup_single_and_double_click(element, prefix) {
   element.single_double_click(function() {
       var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
+      var task = $('#task_'+task_id);
       $("#upcoming_task_"+task_id).toggleClass('completed');
-      $("#task_"+task_id).toggleClass('completed');
-      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){});
+      if(task.siblings('.completed').length > 0) {
+        task.insertBefore(task.siblings('.completed:first'));
+      } else {
+        task.parent('ul').append(task)
+      }
+      task.toggleClass('completed');
+      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){}, "json");
     }, function() {
       var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
       task_edit(this, task_id, prefix);
@@ -159,6 +175,11 @@ $(document).ready(function(){
       cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
       distance: 6,
       opacity: .93,
+      items: "li:not(.completed)",
+      update: function(e, ui) {
+        var position = ui.item.parent().children('li').index(ui.item[0]) + 1;
+        update_task_position(ui.item, position);
+      }
     //   sort: function(e,ui) {
     //     ui.placeholder
     //     .width(ui.helper.width())
@@ -196,7 +217,7 @@ $(document).ready(function(){
 
   });
   // $("tr").data("sortable").floating = true;
-  
+
   //toggle demo video
   //$("#demo").click(function () {
   //  $('#demo').text($('#demo').text() == 'Pause the demo' ? 'Play the demo' : 'Pause the demo');
@@ -204,18 +225,18 @@ $(document).ready(function(){
   //}, function() {
   //  $("video")[0].player.pause();
   //});
-  
+
   //show sign in form
   $("#sign_in a").click(function () {
-    
+
     $("#login, #sign_in").toggle();
     $('#user_email').focus();
     return false;
   });
-  
+
   //load video.js
   $("video").VideoJS()
- 
+
 });
 
 

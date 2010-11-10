@@ -61,3 +61,16 @@ When /^I blur the title form for "([^"]*)"$/ do |title|
   page.execute_script %{ $('#task_#{task.id} form input').trigger('blur') }
   sleep 2
 end
+
+When /^I drag the task "([^"]*)" over "([^"]*)"$/ do |task_title_1, task_title_2|
+  task_1 = Task.find_by_title!(task_title_1)
+  task_2 = Task.find_by_title!(task_title_2)
+  page.execute_script %{ update_task_position($('#task_#{task_2.id}'), $('#task_#{task_2.id}').index() + 1) }
+  sleep 2
+end
+
+Then /^I should see the task "([^"]*)" before "([^"]*)"$/ do |task_title_1, task_title_2|
+  task_1 = Task.find_by_title!(task_title_1)
+  task_2 = Task.find_by_title!(task_title_2)
+  page.should have_css("#task_#{task_1.id} ~ #task_#{task_2.id}")
+end

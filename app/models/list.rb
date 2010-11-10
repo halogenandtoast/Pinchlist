@@ -1,7 +1,7 @@
 class List < ActiveRecord::Base
   belongs_to :user
   has_many :tasks, :dependent => :destroy
-  scope :by_task_status, order("lists.position ASC, tasks.completed ASC, tasks.created_at ASC")
+  scope :by_task_status, order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
   scope :current_tasks, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
   before_create :set_position
   before_update :update_positions

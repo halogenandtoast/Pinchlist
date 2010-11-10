@@ -11,4 +11,6 @@ Pinchlist::Application.routes.draw do
   resources :lists, :only => [:create, :update, :destroy] do
     resources :tasks, :only => [:create, :update], :shallow => true
   end
+
+  resources :tasks, :only => [:update]
 end
