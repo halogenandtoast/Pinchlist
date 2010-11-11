@@ -3,6 +3,24 @@ require 'spec_helper'
 describe Task do
   it { should belong_to :list }
   it { should validate_presence_of :title }
+
+  context 'the first task' do
+    it 'should start at order 1' do
+      task = Factory(:task)
+      task.position.should == 1
+    end
+  end
+
+  context 'additional tasks' do
+    it 'should start at the correct order' do
+      user = Factory(:user)
+      list = Factory(:list)
+      first, second, third = [*1..3].map{|i| Factory(:task, :list => list) }
+      first.position.should == 1
+      second.position.should == 2
+      third.position.should == 3
+    end
+  end
 end
 
 describe Task, 'whose title has a due date' do

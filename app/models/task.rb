@@ -5,6 +5,9 @@ class Task < ActiveRecord::Base
   belongs_to :list
   validates_presence_of :title
   before_update :set_completed_at
+  before_update :update_positions
+  before_create :set_position
+
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
   scope :current, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
@@ -33,6 +36,20 @@ class Task < ActiveRecord::Base
       self.completed_at = Date.today
     else
       self.completed_at = nil
+    end
+  end
+
+  def set_position
+    write_attribute(:position, self.list.tasks.count + 1)
+  end
+
+  def update_positions
+    if position_changed?
+      if position_was < self.position
+        Task.update_all("position = position - 1", "position > #{position_was} && position <= #{self.position}")
+      else
+        Task.update_all("position = position + 1", "position < #{position_was} && position >= #{self.position}")
+      end
     end
   end
 end
