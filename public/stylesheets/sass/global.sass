@@ -3,6 +3,7 @@
 @import forms.sass
 html
   height: 100%
+  cursor: default !important
 body 
   font-family: "Helvetica Neue", Arial, sans-serif
   color: #191919
@@ -111,7 +112,7 @@ body
       &:hover
         text-decoration: underline
       &.signup
-        color: #7BC242
+        color: #06C251
         font-size: 20px
       &#demo
         color: #009DFF
@@ -162,6 +163,7 @@ body
   z-index: 2
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4)
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4)
+  cursor: default !important
   &:hover
     cursor: default !important
   h1 
@@ -231,6 +233,7 @@ table
   margin: 0
   background-color: #fff
   table-layout: fixed
+  cursor: default !important
 td
   &.ui-placeholder-highlight
     min-width: 170px
@@ -346,7 +349,7 @@ td
     .today
       font-weight: bold
       font-size: 9px
-      margin: 4px 0 3px 0
+      margin: 4px 0 0 0
       float: right
       color: #EA9491
     .list_title 
@@ -411,18 +414,17 @@ td
   width: 100%
 #flash_alert, #flash_notice
   position: fixed
-  bottom: 0
+  top: 0
   left: 0
   padding: 2px
-  color: #fff
   width: 100%
   text-align: center
   z-index: 100000
   font-size: 12px
   font-weight: bold
 #flash_alert
-  background-color: #dc4d48
+  color: #dc4d48
 #flash_notice
-  background-color: #06C251
+  color: #06C251
 @import moz.sass
   

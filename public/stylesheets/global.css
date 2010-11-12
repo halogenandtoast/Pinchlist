@@ -140,12 +140,12 @@ div.color_swatch {
     border-color: white !important; }
 
 input[type="text"], input[type="password"] {
-  -moz-box-shadow: 0px 1px 1px #dddddd inset;
-  -webkit-box-shadow: 0px 1px 1px #dddddd inset;
+  -moz-box-shadow: 0px 1px 1px #cccccc inset;
+  -webkit-box-shadow: 0px 1px 1px #cccccc inset;
   border: none;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: none;
   padding: 3px 4px;
-  height: 15px;
+  height: 17px;
   background-color: #f9f9f9;
   font-family: "Helvetica Neue", Arial, sans-serif;
   margin: 0 0 0 -4px; }
@@ -361,7 +361,8 @@ a.cancel:hover {
   color: #666666; }
 
 html {
-  height: 100%; }
+  height: 100%;
+  cursor: default !important; }
 
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -467,7 +468,7 @@ body {
       #page #content a:hover {
         text-decoration: underline; }
       #page #content a.signup {
-        color: #7bc242;
+        color: #06c251;
         font-size: 20px; }
       #page #content a#demo {
         color: #009dff; }
@@ -514,7 +515,8 @@ body {
   left: 0;
   z-index: 2;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: default !important; }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -585,7 +587,8 @@ table {
   padding: 0;
   margin: 0;
   background-color: white;
-  table-layout: fixed; }
+  table-layout: fixed;
+  cursor: default !important; }
 
 td.ui-placeholder-highlight {
   min-width: 170px;
@@ -697,7 +700,7 @@ td.ui-placeholder-highlight {
   .list.upcoming .today {
     font-weight: bold;
     font-size: 9px;
-    margin: 4px 0 3px 0;
+    margin: 4px 0 0 0;
     float: right;
     color: #ea9491; }
   .list.upcoming .list_title {
@@ -765,10 +768,9 @@ td.ui-placeholder-highlight {
 
 #flash_alert, #flash_notice {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   padding: 2px;
-  color: white;
   width: 100%;
   text-align: center;
   z-index: 100000;
@@ -776,10 +778,10 @@ td.ui-placeholder-highlight {
   font-weight: bold; }
 
 #flash_alert {
-  background-color: #dc4d48; }
+  color: #dc4d48; }
 
 #flash_notice {
-  background-color: #06c251; }
+  color: #06c251; }
 
 @-moz-document url-prefix() {
   .list ul li .task_title {
