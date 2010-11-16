@@ -20,8 +20,7 @@
     / End VideoJS
     
   #content
-    %h1
-      %img{:src => "images/logo3.png"}
+    = render :partial => "shared/logo"
     %p
       At last, a todo-list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. llllst is $10 a year, but you can try it for free.
       = link_to 'Sign up now.', new_user_registration_path, :class => "signup" 

@@ -1,7 +1,6 @@
 #page
   #content
-    %h1
-      = link_to 'Listwerk', root_url
+    = render :partial => "shared/logo"
     %h2 Resend confirmation instructions
     = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
       = devise_error_messages!
@@ -9,4 +8,4 @@
         %span Email Address
         = f.text_field :email
       = f.submit "Resend confirmation instructions"
-    = render :partial => "devise/shared/links"
+= render :partial => "devise/shared/links"

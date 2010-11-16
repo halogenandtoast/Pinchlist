@@ -1,7 +1,6 @@
 #page
   #content.form
-    %h1
-      = link_to 'Listwerk', root_url
+    = render :partial => "shared/logo"
     %h2 Sign up
     .info
       %p Listwerk is free for up to 3 lists. Unlimited lists costs $10/year, and you can upgrade at any time. By signing up for the Taskwerk, you agree to the terms of service.
@@ -18,4 +17,4 @@
         %span Password confirmation
         = f.password_field :password_confirmation
       = f.submit "Sign up"
-    = render :partial => "devise/shared/links"
+= render :partial => "devise/shared/links"
