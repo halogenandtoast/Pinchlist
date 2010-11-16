@@ -18,14 +18,29 @@ input[type="text"], input[type="password"]
     outline: none
     border-bottom-color: transparent
 #page #content.form
-  width: 280px
+  max-width: 660px
+  margin: 0 auto 
+  float: none
+  -webkit-border-radius: 20px
+  .info
+    max-width: 350px
+    float: right
+    padding: 0 
+    -webkit-border-radius: 2px
+    p
+      font-size: 16px
+      color: blue 
+      letter-spacing: -.1em
+      font-weight: bold
   h1
-    margin-bottom: 0px
+    margin-left: 0 
   h2
-    margin: 0 0 50px 0
-    font-size: 20px
+    margin: 0 
+    font-size: 24px
+    color: #ddd
+    letter-spacing: -1px
   .links
-    width: 280px
+    width: 100% 
     float: left
     height: auto
     font-size: 14px
@@ -33,7 +48,7 @@ input[type="text"], input[type="password"]
       color: #009DFF
       font-size: 16px
 .input 
-  margin: 12px 0 0 0
+  margin: 6px 0 0 0
   background: #fff
   float: left
   position: relative
@@ -41,7 +56,7 @@ input[type="text"], input[type="password"]
   span 
     position: absolute
     padding: 5px
-    margin: 1px 0 0 3px
+    margin: 3px 0 0 3px
     color: #ddd
     font-size: 14px
   input[type="text"], input[type="password"]
@@ -55,7 +70,7 @@ input[type="text"], input[type="password"]
     // border: 1px solid #ddd
     position: relative 
     z-index: 3
-    height: 20px
+    height: 22px
     width: 220px
     font-size: 14px
     color: #333
@@ -144,7 +159,7 @@ input[type="text"], input[type="password"]
     display: inline-block
     line-height: 1.8
     margin: 12px 200px 10px 0
-    padding: 2px 13px
+    padding: 1px 13px
     // text-transform: uppercase
     height: auto
     width: auto
@@ -155,13 +170,13 @@ input[type="text"], input[type="password"]
     background: #f9f9f9
     background: -moz-linear-gradient(center top , #FFFFFF, #FFFFFF 55%, #E4E4E4) repeat scroll 0 0 transparent
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#E4E4E4))
-    font-size: 14px
+    font-size: 16px
     font-weight: bold
-    color: #666
+    color: #333
     font-family: "Helvetica Neue", Arial, sans-serif
-    border: 1px solid #ccc
-    -webkit-border-radius: 2px
-    -moz-border-radius: 2px
+    border: 1px solid #aaa
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
     // -moz-box-shadow: 0 0 2px #ccc
     // -webkit-box-shadow: 0 0 2px #ccc
     text-shadow: 0 1px 0 #fff
@@ -169,9 +184,9 @@ input[type="text"], input[type="password"]
     &:hover, &:focus
       // -moz-box-shadow: 0 1px 1px #aaa
       // -webkit-box-shadow: 0 1px 1px #aaa
-      border-color: #aaa
+      border-color: #777
       text-shadow: none
-      color: #555
+      color: #333
     &:active
       -moz-box-shadow: none
       -webkit-box-shadow: none
