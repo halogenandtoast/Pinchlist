@@ -167,15 +167,16 @@ body
   top: 0
   left: 0
   z-index: 2
-  border-bottom: 1px solid #ccc
   cursor: default !important
+  -webkit-box-shadow: 0 1px 3px #999
+  -moz-box-shadow: 0 1px 3px #999
   &:hover
     cursor: default !important
   h1 
     float: left
     font-size: 20px
     color: #000
-    width: 120px
+    width: 80px
     margin: 8px 0 0 8px
     color: #333
     letter-spacing: -.07em
@@ -262,8 +263,8 @@ td
     background-color: #fff
     margin: 0
     border: 0
-    -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, .4)
-    -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, .4)
+    -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, .4)
+    -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, .4)
     padding-left: 8px
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
@@ -309,20 +310,20 @@ td
         background: url(/images/check.png) 4px 6px no-repeat
         padding: 0 4px 0 16px
         .task_title
-          color: #ccc
+          color: #ddd
           font-style: italic
           font-size: 11px
           padding: 3px 0 5px
           &:hover
             color: #ddd
         .date 
-          color: #bbb
+          color: #ccc
           &:hover
             cursor: pointer
       &.ui-sortable-helper
         border-bottom: none
-        -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, .4)
-        -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, .4)
+        -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, .2)
+        -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, .2)
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
         background-color: #fff
@@ -334,7 +335,7 @@ td
           &:hover
             cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
       &.ui-placeholder-highlight
-        background-color: #E9F8FF
+        background-color: #eee
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
       input[type="text"]
@@ -354,7 +355,7 @@ td
     .today
       font-weight: bold
       font-size: 9px
-      margin: 4px 0 0 0
+      margin: 3px 0 0 0
       float: right
       color: #EA9491
     .list_title 
@@ -364,21 +365,24 @@ td
       &:hover
         cursor: default !important
       h3
-        cursor: default
+        cursor: default !important
         &:hover
-          cursor: default
+          cursor: default !important
   .list_title
     float: left
     text-align: left
     width: 100%
-    font-size: 14px
-    padding: 3px 10px 4px 8px
+    font-size: 13px
+    padding: 3px 8px 4px 8px
     margin: 0 0 6px -8px
     background-color: #4da8db
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
     position: relative
     overflow: hidden
+    border: 1px solid transparent
+    border: 1px solid rgba(0,0,0, .2)
+    background-clip: border-box
     &:hover
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
     &:active

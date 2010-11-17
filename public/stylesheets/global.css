@@ -152,6 +152,9 @@ input[type="text"], input[type="password"] {
     outline: none;
     border-color: #f4ee95; }
 
+.home .input {
+  margin-top: 6px; }
+
 .show input[type="text"], .show input[type="password"] {
   border: none;
   -webkit-box-shadow: 0 1px 0 #cccccc inset;
@@ -165,8 +168,8 @@ input[type="text"], input[type="password"] {
   margin: 150px auto 0;
   padding: 30px 10px 20px 30px;
   float: none;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
   background: white; }
   #page #content.form form {
     width: 240px; }
@@ -208,7 +211,7 @@ input[type="text"], input[type="password"] {
       border-bottom: 2px solid white; }
 
 .input {
-  margin: 6px 0 0 0;
+  margin: 12px 0 0 0;
   background: white;
   float: left;
   position: relative;
@@ -302,8 +305,8 @@ input[type="text"], input[type="password"] {
   cursor: pointer;
   display: inline-block;
   line-height: 1.8;
-  margin: 8px 200px 10px 0;
-  padding: 2px 18px;
+  margin: 14px 200px 10px 0;
+  padding: 1px 15px;
   height: auto;
   width: auto;
   text-align: center;
@@ -311,15 +314,14 @@ input[type="text"], input[type="password"] {
   white-space: nowrap;
   float: left;
   background: #01cc78;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
   font-family: "Helvetica Neue", Arial, sans-serif;
   border: 2px solid #0e9e5c;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  outline: none;
-  text-transform: uppercase; }
+  outline: none; }
   #content input[type="submit"]:hover, #content input[type="submit"]:focus {
     border-color: #0066ab;
     text-shadow: none;
@@ -371,9 +373,8 @@ legend {
 
 .checkbox label, .radio label {
   vertical-align: middle;
-  font-size: 11px;
-  font-weight: bold;
-  color: #dddddd; }
+  font-size: 12px;
+  color: #aaaaaa; }
 
 .checkbox input, .radio input {
   vertical-align: middle;
@@ -553,15 +554,16 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
-  border-bottom: 1px solid #cccccc;
-  cursor: default !important; }
+  cursor: default !important;
+  -webkit-box-shadow: 0 1px 3px #999999;
+  -moz-box-shadow: 0 1px 3px #999999; }
   #header:hover {
     cursor: default !important; }
   #header h1 {
     float: left;
     font-size: 20px;
     color: black;
-    width: 120px;
+    width: 80px;
     margin: 8px 0 0 8px;
     color: #333333;
     letter-spacing: -0.07em; }
@@ -648,8 +650,8 @@ td.ui-placeholder-highlight {
     background-color: white;
     margin: 0;
     border: 0;
-    -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
     padding-left: 8px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px; }
@@ -695,20 +697,20 @@ td.ui-placeholder-highlight {
         background: url(/images/check.png) 4px 6px no-repeat;
         padding: 0 4px 0 16px; }
         .list ul li.completed .task_title {
-          color: #cccccc;
+          color: #dddddd;
           font-style: italic;
           font-size: 11px;
           padding: 3px 0 5px; }
           .list ul li.completed .task_title:hover {
             color: #dddddd; }
         .list ul li.completed .date {
-          color: #bbbbbb; }
+          color: #cccccc; }
           .list ul li.completed .date:hover {
             cursor: pointer; }
       .list ul li.ui-sortable-helper {
         border-bottom: none;
-        -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
+        -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         background-color: white;
@@ -719,7 +721,7 @@ td.ui-placeholder-highlight {
         .list ul li.ui-sortable-helper .task_title:hover {
           cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
       .list ul li.ui-placeholder-highlight {
-        background-color: #e9f8ff;
+        background-color: #eeeeee;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px; }
       .list ul li input[type="text"] {
@@ -738,7 +740,7 @@ td.ui-placeholder-highlight {
   .list.upcoming .today {
     font-weight: bold;
     font-size: 9px;
-    margin: 4px 0 0 0;
+    margin: 3px 0 0 0;
     float: right;
     color: #ea9491; }
   .list.upcoming .list_title {
@@ -748,21 +750,24 @@ td.ui-placeholder-highlight {
     .list.upcoming .list_title:hover {
       cursor: default !important; }
     .list.upcoming .list_title h3 {
-      cursor: default; }
+      cursor: default !important; }
       .list.upcoming .list_title h3:hover {
-        cursor: default; }
+        cursor: default !important; }
   .list .list_title {
     float: left;
     text-align: left;
     width: 100%;
-    font-size: 14px;
-    padding: 3px 10px 4px 8px;
+    font-size: 13px;
+    padding: 3px 8px 4px 8px;
     margin: 0 0 6px -8px;
     background-color: #4da8db;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+    border: 1px solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-clip: border-box; }
     .list .list_title:hover {
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
     .list .list_title:active {
