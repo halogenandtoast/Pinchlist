@@ -11,13 +11,14 @@ body
   cursor: default !important
   &.show
     background: #fff
-  &.home, &.new, &.create
+  &.home, &.new, &.create, &.legal, &.help
     text-align: center
     background: #eee
 .legal #page #content p,.help #page #content p
   color: #333
-  font-size: 13px
+  font-size: 12px
 .home #page
+  max-width: 960px
   // min-width: 1060px
   overflow: visible
   #content
@@ -40,15 +41,17 @@ body
   text-align: left
   min-width: 300px
   width: 100%
-  max-width: 960px
+  max-width: 680px
   overflow: auto
   position: relative
   #content
     padding: 40px
     float: left
-    max-width: 380px
+    max-width: 680px
     height: auto
     overflow: auto
+    margin-top: 30px
+    -webkit-border-radius: 20px
     min-width: 280px
     position: relative
     #login
@@ -120,8 +123,6 @@ body
           border-bottom: 2px solid #01CC78
       &#demo
         color: #009DFF
-    p
-      font-size: 14px
   .product
     height: 400px
     width: 580px
@@ -373,15 +374,13 @@ td
     text-align: left
     width: 100%
     font-size: 13px
-    padding: 3px 8px 4px 8px
+    padding: 4px 9px 4px 9px
     margin: 0 0 6px -8px
     background-color: #4da8db
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
     position: relative
     overflow: hidden
-    border: 1px solid transparent
-    border: 1px solid rgba(0,0,0, .2)
     background-clip: border-box
     &:hover
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
