@@ -51,6 +51,16 @@ function list_edit(list_title) {
   var list_title_text = list_title.html();
   var form = $('<form id="new_list_title" />');
   form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
+  $(form).children('input').bind('keyup',{list_title:list_title_text}, function(e) {
+    if(e.keyCode == 27) {
+      $(this).unbind('keyup');
+      $(this).unbind('blur');
+      $(this).parent('form').replaceWith('<h3>'+e.data.list_title+'</h3>');
+    }
+  });
+  $(form).children('input').bind('blur',function() {
+    $(this).parent('form').submit();
+  });
   form.bind('submit', function(e) {
     var list_id = $(this).parents('.list').attr('id').split('_')[1];
     $.post(
@@ -65,6 +75,7 @@ function list_edit(list_title) {
     return false;
   });
   list_title.replaceWith(form);
+  form.children('input:first').focus();
 }
 
 function task_edit(task, task_id, prefix) {
