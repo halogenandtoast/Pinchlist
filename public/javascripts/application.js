@@ -29,7 +29,7 @@ function update_list_position(list, position) {
   var list_id = list.attr('id').split('_')[1];
   $.post(
     '/lists/'+list_id,
-    {'_method':'PUT', 'list': {'position': position}},
+    {'_method':'PUT', 'list': {'new_position': position}},
     function(data) {},
     "json"
   );
@@ -39,7 +39,7 @@ function update_task_position(task, position) {
   var task_id = task.attr('id').split('_')[1];
   $.post(
     '/tasks/'+task_id,
-    {'_method':'PUT', 'task': {'position': position}},
+    {'_method':'PUT', 'task': {'new_position': position}},
     function(data) {},
     "json"
   );

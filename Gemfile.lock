@@ -34,6 +34,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    acts_as_list (0.1.2)
     akephalos (0.2.4)
       capybara (~> 0.3.8)
       jruby-jars
@@ -162,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   akephalos
   bourne
   capybara
