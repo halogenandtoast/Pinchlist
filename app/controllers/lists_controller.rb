@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_filter :authenticate_user!
+  
 
   def create
     @list = current_user.lists.build(params[:list])
@@ -23,4 +24,9 @@ class ListsController < ApplicationController
     list.destroy
     redirect_to dashboard_path, :notice => 'List deleted.'
   end
+
+  def show
+    @list = List.find(params[:id])
+  end
+
 end
