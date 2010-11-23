@@ -85,7 +85,7 @@ input[type="text"], input[type="submit"], input[type="password"], button, textar
 
 div.color_picker {
   position: absolute;
-  top: 5px;
+  top: 6px;
   right: 24px;
   height: 16px;
   width: 16px;
@@ -140,7 +140,7 @@ div.color_swatch {
     border-color: white !important; }
 
 input[type="text"], input[type="password"] {
-  border: 2px solid #dddddd;
+  border: 1px solid #dddddd;
   padding: 3px 4px;
   height: 17px;
   background-color: #f9f9f9;
@@ -162,6 +162,28 @@ input[type="text"], input[type="password"] {
   .show input[type="text"]:focus, .show input[type="password"]:focus {
     -webkit-box-shadow: 0 1px 0 #ded45c inset;
     -moz-box-shadow: 0 1px 0 #ded45c inset; }
+.show .list li input[type="text"] {
+  padding: 4px 5px 4px 3px;
+  margin: 0 0 0 -4px;
+  height: auto;
+  border: none;
+  line-height: 1.2;
+  background-color: #fdfead;
+  background-color: rgba(254, 254, 6, 0.2);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  float: none; }
+.show .list .list_title input[type="text"] {
+  background-color: transparent;
+  color: #222222;
+  padding: 0 0 0 3px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none; }
 
 #page #content.form {
   max-width: 240px;
@@ -170,7 +192,7 @@ input[type="text"], input[type="password"] {
   float: none;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  background: white; }
+  background-color: white; }
   #page #content.form form {
     width: 240px; }
   #page #content.form a {
@@ -203,7 +225,7 @@ input[type="text"], input[type="password"] {
   font-size: 16px;
   text-align: right;
   font-weight: bold;
-  color: #dddddd; }
+  color: #cccccc; }
   .links a {
     color: white;
     text-decoration: none; }
@@ -219,7 +241,7 @@ input[type="text"], input[type="password"] {
   .input span {
     position: absolute;
     padding: 5px;
-    margin: 4px 0 0 3px;
+    margin: 3px 0 0 3px;
     color: #eeeeee;
     font-size: 14px; }
   .input input[type="text"], .input input[type="password"] {
@@ -313,23 +335,23 @@ input[type="text"], input[type="password"] {
   vertical-align: middle;
   white-space: nowrap;
   float: left;
-  background: #01cc78;
+  background: #f9f9f9;
+  background: -moz-linear-gradient(center top, white, white 55%, #e4e4e4) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#e4e4e4));
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: #333333;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  border: 2px solid #0e9e5c;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border: 1px solid #bbbbbb;
   outline: none; }
   #content input[type="submit"]:hover, #content input[type="submit"]:focus {
-    border-color: #0066ab;
-    text-shadow: none;
-    background-color: #0099ff; }
+    border-color: #999999;
+    text-shadow: none; }
   #content input[type="submit"]:active {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    outline: none; }
+    outline: none;
+    background: #dddddd; }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   outline: 0; }
@@ -408,7 +430,7 @@ body {
     background: white; }
   body.home, body.new, body.create, body.legal, body.help {
     text-align: center;
-    background: #eeeeee; }
+    background: #e9e9e9; }
 
 .legal #page #content p, .help #page #content p {
   color: #333333;
@@ -495,7 +517,7 @@ body {
       max-width: 100%;
       line-height: 1.3;
       font-size: 18px;
-      color: #dddddd; }
+      color: #cccccc; }
       #page #content p#sign_in {
         margin: 40px 0 0; }
       #page #content p strong {
@@ -725,17 +747,6 @@ td.ui-placeholder-highlight {
         background-color: #eeeeee;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px; }
-      .list ul li input[type="text"] {
-        padding: 4px 5px 4px 3px;
-        margin: 0 0 0 -4px;
-        height: auto;
-        border: none;
-        line-height: 1.2;
-        background-color: #fdfead;
-        background-color: rgba(254, 254, 6, 0.2);
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        float: none; }
   .list.upcoming ul {
     margin: -8px 0 0 0; }
   .list.upcoming .today {
@@ -758,9 +769,10 @@ td.ui-placeholder-highlight {
     float: left;
     text-align: left;
     width: 100%;
-    font-size: 13px;
+    font-size: 14px;
     padding: 4px 9px 4px 9px;
     margin: 0 0 6px -8px;
+    min-height: 18px;
     background-color: #4da8db;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -777,7 +789,7 @@ td.ui-placeholder-highlight {
       width: 16px;
       position: absolute;
       right: 4px;
-      top: 4px;
+      top: 5px;
       overflow: hidden;
       text-indent: -10000px;
       opacity: 0.4; }
@@ -825,17 +837,18 @@ td.ui-placeholder-highlight {
   color: #e1e1e1; }
 
 @-moz-document url-prefix() {
-  .list ul li .task_title {
+  .show .list ul li .task_title {
     padding: 4px 0 4px; }
-  .list ul li.completed .task_title {
+  .show .list ul li.completed .task_title {
     padding: 4px 0 4px; }
-
-  .list ul li input {
+  .show .list ul input[type="text"] {
+    padding: 3px 5px 4px 3px; }
+  .show .list ul li input {
     padding: 3px 5px 4px 3px;
     margin: 0 0 0 -4px; }
 
   #content input[type="submit"] {
-    padding: 4px 10px; }
+    padding: 5px 10px; }
 
   input::-moz-focus-inner {
     border: 0; } }
