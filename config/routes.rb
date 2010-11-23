@@ -10,7 +10,6 @@ Pinchlist::Application.routes.draw do
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard
   resources :lists, :only => [:show, :create, :update, :destroy] do
     resources :tasks, :only => [:create, :update], :shallow => true
-    resource :archive, :only => [:show]
   end
 
   resources :tasks, :only => [:update]
