@@ -52,7 +52,7 @@ function list_edit(list_title) {
   var form = $('<form id="new_list_title" />');
   form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
   form.bind('submit', function(e) {
-      var list_id = $(this).parents('.list').attr('id').split('_')[1];
+    var list_id = $(this).parents('.list').attr('id').split('_')[1];
     $.post(
       '/lists/'+list_id,
       {'_method':'PUT', 'list': {'title': $(this).children('#list_title').val()}},
@@ -159,7 +159,7 @@ $(document).ready(function(){
   setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
   setup_single_and_double_click($(".list:not(.upcoming) li"), "");
 
-  $(".list_title h3").dblclick(function() {
+  $(".list_title h3").live('dblclick', function() {
       list_edit($(this));
   });
 
