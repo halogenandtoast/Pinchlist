@@ -177,8 +177,9 @@ input[type="text"], input[type="password"] {
   background-color: transparent;
   color: #222222;
   padding: 0 0 0 3px;
+  margin: -1px 0 0 -4px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   border: none;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -190,8 +191,8 @@ input[type="text"], input[type="password"] {
   margin: 150px auto 0;
   padding: 30px 10px 20px 30px;
   float: none;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   background-color: white; }
   #page #content.form form {
     width: 240px; }
@@ -470,7 +471,7 @@ body {
     height: auto;
     overflow: auto;
     margin-top: 30px;
-    -webkit-border-radius: 20px;
+    -webkit-border-radius: 4px;
     min-width: 280px;
     position: relative; }
     #page #content #login {
@@ -588,8 +589,7 @@ body {
     color: black;
     width: 80px;
     margin: 8px 0 0 8px;
-    color: #333333;
-    letter-spacing: -0.07em; }
+    color: #333333; }
     #header h1 a {
       color: #333333;
       text-decoration: none; }
@@ -769,10 +769,10 @@ td.ui-placeholder-highlight {
     float: left;
     text-align: left;
     width: 100%;
-    font-size: 14px;
+    font-size: 13px;
     padding: 4px 9px 4px 9px;
     margin: 0 0 6px -8px;
-    min-height: 18px;
+    min-height: 17px;
     background-color: #4da8db;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -818,6 +818,11 @@ td.ui-placeholder-highlight {
   margin: 0;
   padding: 0;
   width: 100%; }
+
+.archive_link {
+  text-decoration: none;
+  font-size: 11px;
+  color: #dddddd; }
 
 #flash_alert, #flash_notice {
   position: fixed;

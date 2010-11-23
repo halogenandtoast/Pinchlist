@@ -38,3 +38,4 @@
                   - if task.due_date?
                     %span.date= task.due_date.strftime("%m/%d")
                   %span.task_title= task.title
+              = link_to 'show all →', "/lists/1/archive", :class => "archive_link"
