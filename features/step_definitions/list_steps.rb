@@ -8,6 +8,7 @@ end
 
 When /^I submit the new list form$/ do
   page.execute_script("$('#new_list').submit()")
+  sleep 1
 end
 
 Then /^I should see the completed task "([^"]*)" in "([^"]*)"$/ do |title, list_title|

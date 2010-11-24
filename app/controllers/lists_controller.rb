@@ -4,10 +4,14 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.build(params[:list])
-    if @list.save
-      redirect_to dashboard_path, :notice => 'List created.'
-    else
-      render 'dashboards/show'
+    respond_to do |format|
+      if @list.save
+        format.js { render }
+        format.html { redirect_to dashboard_path, :notice => 'List created.' }
+      else
+        format.js { render }
+        format.html { render 'dashboards/show' }
+      end
     end
   end
 
