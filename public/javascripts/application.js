@@ -167,18 +167,7 @@ function setup_single_and_double_click(element, prefix) {
     }, 225, {prefix:prefix});
 }
 
-$(document).ready(function(){
-  $('.picker').colorPicker();
-  //
-  // mark normal and upcoming tasks completed
-  setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
-  setup_single_and_double_click($(".list:not(.upcoming) li"), "");
-
-  $(".list_title h3").live('dblclick', function() {
-      list_edit($(this));
-  });
-
-  // drag and drop tasks
+function enable_task_sorting() {
   $(".list:not(.upcoming) ul").sortable({
       // containment: 'parent',
       axis: 'y',
@@ -203,6 +192,20 @@ $(document).ready(function(){
   })
   // this.onselectstart = function () { return false; };
   $(".list:not(.upcoming) ul span").disableSelection();
+}
+
+$(document).ready(function(){
+  $('.picker').colorPicker();
+  //
+  // mark normal and upcoming tasks completed
+  setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
+  setup_single_and_double_click($(".list:not(.upcoming) li"), "");
+
+  $(".list_title h3").live('dblclick', function() {
+      list_edit($(this));
+  });
+
+  // drag and drop tasks
 
   // drag and drop lists
     // var fixHelper = function(e, ui) {
@@ -213,6 +216,7 @@ $(document).ready(function(){
     // };
 
 
+  enable_task_sorting();
   $("tr").sortable({
       axis: "x",
       placeholder: 'ui-placeholder-highlight',
