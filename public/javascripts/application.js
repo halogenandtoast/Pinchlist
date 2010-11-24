@@ -47,7 +47,7 @@ function update_task_position(task, position) {
 
 function list_edit(list_title) {
   var list = list_title.parents(".list");
-  list.find('.color_picker').hide();
+  list.find('.color_picker').remove();
   var list_title_text = list_title.html();
   var form = $('<form id="new_list_title" />');
   form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
@@ -68,7 +68,10 @@ function list_edit(list_title) {
       {'_method':'PUT', 'list': {'title': $(this).children('#list_title').val()}},
       function(data) {
         $('#list_'+data.list.id+' .list_title form').replaceWith('<h3>'+data.list.title+'</h3>');
-        $('#list_'+data.list.id+' .color_picker').show();
+        // $('#list_'+data.list.id+' .color_picker').show();
+        new_picker = $("<div class='.picker'>pick color</div>");
+        $('#list_'+data.list.id+' .delete').before(new_picker);
+        new_picker.colorPicker();
       },
       "json"
     );
