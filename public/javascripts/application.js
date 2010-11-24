@@ -94,11 +94,9 @@ function task_edit(task, task_id, prefix) {
       setup_single_and_double_click($(e.data.element), e.data.prefix);
     }
   });
-  $(form).children('input').bind('blur',
-    {task_title:task_title,task_id:task_id,element:self,prefix:prefix}, function(e) {
-      set_task_title_and_date.call($(this).parent('form'), e)
-    }
-  );
+  $(form).children('input').bind('blur', function() {
+    $(this).parent('form').submit();
+  });
   form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, set_task_title_and_date);
   $(self).html(form);
   form.children('input').focus();
@@ -106,10 +104,16 @@ function task_edit(task, task_id, prefix) {
 
 function set_task_title_and_date(e) {
   var task_id = e.data.task_id;
+  if($(this).children('#task_title').val() == "") {
+    $('#task_'+task_id).remove();
+  }
   $.post(
     '/tasks/'+task_id,
     {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}},
     function(data) {
+      if(data.task.title == '') {
+        return;
+      }
       var form = $('#new_task_title');
       var upcoming = is_upcoming(form);
       var due_date = null;
@@ -228,7 +232,7 @@ $(document).ready(function(){
 
   });
   // $("tr").data("sortable").floating = true;
-  
+
   //toggle demo video
   //$("#demo").click(function () {
   //  $('#demo').text($('#demo').text() == 'Pause the demo' ? 'Play the demo' : 'Pause the demo');
@@ -236,33 +240,33 @@ $(document).ready(function(){
   //}, function() {
   //  $("video")[0].player.pause();
   //});
-  
+
   //show sign in form
   $("#sign_in a").click(function () {
-    
+
     $("#login, #sign_in").toggle();
     $('#user_email').focus();
     return false;
   });
-  
+
   //load video.js
   $("video").VideoJS({
-    controlsHiding: false,      
+    controlsHiding: false,
   });
-  
+
   // scroll left/right
   $(document).keydown(function(evt){
     if(!$(evt.target).is("input")){
-      if (evt.keyCode == 75) { 
-          evt.preventDefault(); 
-          $.scrollTo( '+=603px', '100', { axis:'x' } ); 
-      } else if (evt.keyCode == 74) { 
+      if (evt.keyCode == 75) {
+          evt.preventDefault();
+          $.scrollTo( '+=603px', '100', { axis:'x' } );
+      } else if (evt.keyCode == 74) {
          evt.preventDefault();
          $.scrollTo( '-=603px', '100', { axis:'x' } );
       }
     }
   })
-  
+
 });
 
 

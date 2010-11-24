@@ -2,9 +2,12 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    list = current_user.lists.find(params[:list_id])
-    list.tasks.create(params[:task])
-    redirect_to dashboard_path, :notice => "Task saved."
+    @list = current_user.lists.find(params[:list_id])
+    @task = @list.tasks.create(params[:task])
+    respond_to do |format|
+      format.html { redirect_to dashboard_path, :notice => "Task saved." }
+      format.js { render }
+    end
   end
 
   def update

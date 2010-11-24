@@ -1,0 +1,4 @@
+= content_tag_for(:li, task, :class => (task.completed ? 'completed' : nil)) do
+  - if task.due_date?
+    %span.date= task.due_date.strftime("%m/%d")
+  %span.task_title= task.title

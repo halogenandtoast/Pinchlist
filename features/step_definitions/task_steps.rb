@@ -8,7 +8,7 @@ end
 When /^I submit "([^"]*)"'s task form$/ do |title|
   list = List.find_by_title!(title)
   page.execute_script("$('#new_task_#{list.id}').trigger('submit')")
-  sleep 2
+  sleep 1
 end
 
 Then /^I should see the task "([^"]*)"$/ do |task_title|

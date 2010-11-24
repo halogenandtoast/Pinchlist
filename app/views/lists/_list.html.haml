@@ -3,13 +3,8 @@
     %h3= list.title
     .picker choose color
     = link_to 'delete list', list, :method => :delete, :confirm => "Are you sure you want to delete #{list.title}?", :class => 'delete', :tabindex => "-1"
-  = form_for [list, Task.new], :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
+  = form_for [list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
     = form.text_field :title, :id => "new_task_title_#{list.id}", :autocomplete => "off"
-  - unless list.tasks.empty?
-    %ul
-      - list.tasks.each do |task|
-        = content_tag_for(:li, task, :class => (task.completed ? 'completed' : nil)) do
-          - if task.due_date?
-            %span.date= task.due_date.strftime("%m/%d")
-          %span.task_title= task.title
-      = link_to 'show all →', list_url(list), :class => "archive_link"
+  %ul
+    = render list.tasks
+  = link_to 'show all →', list_url(list), :class => "archive_link"

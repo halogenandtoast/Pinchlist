@@ -2,7 +2,13 @@ require 'spec_helper'
 
 describe Task do
   it { should belong_to :list }
-  it { should validate_presence_of :title }
+  # it { should validate_presence_of :title }
+
+  it "requires title on create" do
+    task = Task.new
+    task.should_not be_valid
+    task.errors.on(:title).should == "can't be blank"
+  end
 
   context 'the first task' do
     it 'should start at order 1' do
@@ -20,6 +26,14 @@ describe Task do
       second.position.should == 2
       third.position.should == 3
     end
+  end
+end
+
+describe Task, 'with an empty title' do
+  subject { Factory(:task) }
+  it 'destroys itself' do
+    subject.title = ""
+    subject.should be_destroyed
   end
 end
 

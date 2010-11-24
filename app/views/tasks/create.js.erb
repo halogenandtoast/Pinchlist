@@ -1,0 +1,2 @@
+$('#list_<%= @list.id %> ul').append("<%= escape_javascript(render(@task)) %>");
+$('#new_task_title_<%= @list.id %>').val("");

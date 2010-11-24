@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
   MONTH_DAY_FORMAT = /(\d{1,2}\/\d{1,2})/
 
   belongs_to :list
-  validates_presence_of :title
+  validates_presence_of :title, :on => :create
   before_update :set_completed_at
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
@@ -11,8 +11,12 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :list
 
   def title=(title)
-    parse_date_format(title)
-    write_attribute(:title, remove_date_format(title))
+    if title.empty?
+      destroy
+    else
+      parse_date_format(title)
+      write_attribute(:title, remove_date_format(title))
+    end
   end
 
   def new_position=(position)
@@ -34,10 +38,12 @@ class Task < ActiveRecord::Base
   end
 
   def set_completed_at
-    if self.completed && self.completed_changed?
-      self.completed_at = Date.today
-    else
-      self.completed_at = nil
+    unless destroyed?
+      if self.completed && self.completed_changed?
+        self.completed_at = Date.today
+      else
+        self.completed_at = nil
+      end
     end
   end
 
