@@ -198,7 +198,19 @@ function enable_task_sorting() {
 }
 
 $(document).ready(function(){
-  $('.picker').colorPicker();
+  $('.picker').colorPicker({
+    onColorChange: function(color) {
+      var list = $(this).parents('.list').first();
+      var list_id = list.attr('id').split('_')[1];
+
+      $.post(
+        '/lists/'+list_id,
+        {'_method':'PUT', 'list': {'color': color.substring(1)}},
+        function(data) {},
+        "json"
+      );
+    }
+  });
   //
   // mark normal and upcoming tasks completed
   setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");

@@ -7,7 +7,11 @@
  */
 
 (function($){
-  $.fn.colorPicker = function(){    
+  $.fn.colorPicker = function(options){    
+    var defaults = {
+      onColorChange: function(){}
+    };
+    settings = $.extend({}, defaults, options);
     if(this.length > 0) buildSelector();
     return this.each(function(i) { 
       buildPicker(this)}); 
@@ -118,6 +122,7 @@
       $(selectorOwner).prev("input").val(selectedValue).change();
     
       //close the selector
+      settings.onColorChange.call(selectorOwner, selectedValue);
       hideSelector();    
     }
   };
@@ -146,7 +151,7 @@
         color = '#' + r + g + b;
       }
     }
-    else color = false;
+    else color = "";
     
     return color
   }
