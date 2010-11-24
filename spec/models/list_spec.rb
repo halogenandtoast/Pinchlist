@@ -20,4 +20,11 @@ describe List do
       third.position.should == 3
     end
   end
+
+  context 'when saved' do
+    it 'receives a color' do
+      list = Factory(:list)
+      list.color.should_not be_nil
+    end
+  end
 end
