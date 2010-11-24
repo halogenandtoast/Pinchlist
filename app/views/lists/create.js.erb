@@ -1,2 +1,3 @@
 $('table tr').append("<%= escape_javascript(render(@list)) %>");
 $('.picker').colorPicker();
+$('#new_task_title_<%= @list.id %>').focus();
