@@ -37,8 +37,16 @@ Then /^the upcoming title field for "([^"]*)" should contain "([^"]*)"$/ do |ori
 end
 
 Then /^I should see the upcoming task "([^"]*)" with a due date of "([^"]*)"$/ do |title, due_date|
-  page.should have_css("li span.date:contains('#{due_date}')")
-  page.should have_css("li span.task_title:contains('#{title}')")
+  within '#upcoming_tasks' do
+    page.should have_css("li span.date:contains('#{due_date}')")
+    page.should have_css("li span.task_title:contains('#{title}')")
+  end
+end
+
+Then /^I should not see the upcoming task "([^"]*)"$/ do |title|
+  within '#upcoming_tasks' do
+    page.should have_no_css("li span.task_title:contains('#{title}')")
+  end
 end
 
 Then /^I do not see the upcoming tasks list$/ do

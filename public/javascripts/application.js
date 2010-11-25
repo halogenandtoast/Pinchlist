@@ -21,6 +21,22 @@ jQuery.fn.single_double_click = function(single_click_callback, double_click_cal
   });
 }
 
+function show_upcoming_list() {
+  if($('td.upcoming').length == 0) {
+    var d = new Date();
+    var upcoming_list = $('<td class="list upcoming"></td>');
+    upcoming_list.append('<div class="list_title"><h3>Upcoming</h3><div class="today">'+(d.getMonth() + 1)+'/'+(d.getDate())+'</div></div>');
+    upcoming_list.append('<ul id="upcoming_tasks"></ul>');
+    $('table tr').prepend(upcoming_list);
+  }
+}
+
+function remove_upcoming_list() {
+  if($('#upcoming_tasks li').length == 0) {
+    $('td.upcoming').remove();
+  }
+}
+
 function is_upcoming(form) {
   return form.parent('li').attr('id').split('_')[0] == "upcoming";
 }
@@ -114,42 +130,66 @@ function task_edit(task, task_id, prefix) {
   form.children('input').focus();
 }
 
+function add_task_to_upcoming(task) {
+  show_upcoming_list();
+  if($('#upcoming_task_'+task.id).length == 0) {
+    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
+    '<span class="date">'+task.due_date+'</span>' + "\n" +
+    '<span class="task_title">'+task.title+'</span>' +
+    '</li>';
+    $('#upcoming_tasks').append(li_html);
+  }
+}
+
 function set_task_title_and_date(e) {
   var task_id = e.data.task_id;
   if($(this).children('#task_title').val() == "") {
     $('#task_'+task_id).remove();
+    if($('#upcoming_task_'+task_id).length > 0) {
+      $('#upcoming_task_'+task_id).remove();
+      remove_upcoming_list();
+    }
   }
   $.post(
     '/tasks/'+task_id,
     {'_method':'PUT', 'task': {'title': $(this).children('#task_title').val()}},
     function(data) {
-      if(data.task.title == '') {
+      var task = data.task;
+      if(task.title == '') {
         return;
       }
       var form = $('#new_task_title');
       var upcoming = is_upcoming(form);
-      var due_date = null;
       var li = $(form).parent('li');
-      if(data.task.due_date != null) {
-        split_date = data.task.due_date.split('-');
-        due_date= split_date[1]+'/'+split_date[2];
+      if(task.due_date != null) {
+        show_upcoming_list();
       }
       if(upcoming) {
         var task_id = li.attr('id').split('_')[2];
-        $('#task_'+task_id+' .task_title').html(data.task.title);
-        if(due_date != null) {
-          $('#task_'+task_id+' .date').html(due_date);
+        $('#task_'+task_id+' .task_title').html(task.title);
+        if(task.due_date != null) {
+          $('#task_'+task_id+' .date').html(task.due_date);
+        } else {
+          $('#task_'+task_id+' .date').remove();
+          $('#upcoming_task_'+task_id).remove();
+          remove_upcoming_list();
         }
       } else {
         var task_id = li.attr('id').split('_')[1];
-        $('#upcoming_task_'+task_id+' .task_title').html(data.task.title);
-        if(due_date != null) {
-          $('#upcoming_task_'+task_id+' .date').html(due_date);
+        if(task.due_date != null) {
+          add_task_to_upcoming(task);
+          $('#upcoming_task_'+task_id+' .task_title').html(task.title);
+          $('#upcoming_task_'+task_id+' .date').html(task.due_date);
+        } else {
+          if($('#upcoming_task_'+task_id).length > 0) {
+            $('#upcoming_task_'+task_id).remove();
+            remove_upcoming_list();
+          }
         }
       }
       span_html = '<span class="task_title">'+data.task.title+'</span>';
-      if(due_date != null) {
-        span_html = '<span class="date">'+due_date+'</span>'+"\n" + span_html;
+      if(task.due_date != null) {
+        span_html = '<span class="date">'+task.due_date+'</span>'+"\n" + span_html;
       }
 
       form.replaceWith(span_html);
