@@ -7,7 +7,7 @@ describe Task do
   it "requires title on create" do
     task = Task.new
     task.should_not be_valid
-    task.errors.on(:title).should == "can't be blank"
+    task.errors[:title].should == ["can't be blank"]
   end
 
   context 'the first task' do
