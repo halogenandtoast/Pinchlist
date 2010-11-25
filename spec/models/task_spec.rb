@@ -71,6 +71,16 @@ describe Task, 'whose title has a chronic date format' do
   after { Timecop.return }
 end
 
+describe Task, 'whose title is changed from having a due date to not having one' do
+  before { Timecop.freeze("10/16/10") }
+  subject { Factory(:task, :title => "@10/20 Do foo") }
+  it "should remove the due date" do
+    subject.title = "Do foo"
+    subject.due_date.should be_nil
+  end
+  after { Timecop.return }
+end
+
 describe Task, '#upcoming' do
   before do
     @upcoming_tasks = [*1..3].map { Factory(:task, :title => "@10/20 do foo") }

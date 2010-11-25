@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
   private
 
   def parse_date_format(str)
-    write_attribute(:due_date, date_from_format($1)) if str =~ DATE_PATTERN
+    self.due_date = str =~ DATE_PATTERN ? date_from_format($1) : nil
   end
 
   def date_from_format(str)
