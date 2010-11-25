@@ -8,6 +8,53 @@ Feature: View upcoming tasks
     When I am on the dashboard page
     Then I do not see the upcoming tasks list
 
+  @javascript
+  Scenario: Creating an upcoming task
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title | user                    |
+      | First | email: user@example.com |
+    When I am on the dashboard page
+    And I fill in "First"'s task title with "@10/20 Do stuff"
+    And I submit "First"'s task form
+    Then I should see the task "Do stuff"
+    And I should see the upcoming task "Do stuff"
+
+  @javascript
+  Scenario: Destroying an upcoming task
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title  | user                    |
+      | First  | email: user@example.com |
+    And the following tasks exist:
+      | title          | list          | due date   |
+      | Something      | title: First  | 2010-10-20 |
+    When I am on the dashboard page
+    And I double click the upcoming task "Something"
+    And I fill in the upcoming title for "Something" with "Something without a date"
+    And I submit the upcoming title form for "Something"
+    Then I should see the task "Something without a date"
+    And I do not see the upcoming tasks list
+
+  @javascript
+  Scenario: Editing a task to be upcoming
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following lists exist:
+      | title  | user                    |
+      | First  | email: user@example.com |
+    And the following tasks exist:
+      | title          | list          |
+      | Something      | title: First  |
+    When I am on the dashboard page
+    And I double click "First"'s task "Something"
+    And I fill in the title for "Something" with "@10/20 Something"
+    And I submit the title form for "Something"
+    Then I should see the task "Something"
+    And I should see the upcoming task "Something" with a due date of "10/20"
+
   Scenario: Upcoming tasks exist
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

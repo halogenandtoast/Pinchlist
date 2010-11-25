@@ -33,6 +33,7 @@ describe Task, 'with an empty title' do
   subject { Factory(:task) }
   it 'destroys itself' do
     subject.title = ""
+    subject.save
     subject.should be_destroyed
   end
 end
