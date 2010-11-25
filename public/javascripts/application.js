@@ -81,7 +81,16 @@ function list_edit(list_title) {
   form.children('input:first').focus();
 }
 
+var clearing = false;
 function task_edit(task, task_id, prefix) {
+  if($('#new_task_title').length != 0) {
+    if(!clearing) {
+      clearing = true
+      clear_task_title_form();
+    }
+    setTimeout(function(){task_edit(task, task_id, prefix)}, 50);
+    return;
+  }
   var self = task;
   var task_title = $(self).children("span.task_title").text();
   var task_due_date = $(self).children("span.date").text();
@@ -144,16 +153,24 @@ function set_task_title_and_date(e) {
       }
 
       form.replaceWith(span_html);
-      setup_single_and_double_click(li, upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.children('span.task_title'), upcoming ? "upcoming" : "");
       $(".list:not(.upcoming) ul span").disableSelection();
+      clearing = false;
     },
     "json"
   );
   return false;
 }
 
+function clear_task_title_form() {
+  if($('form#new_task_title')) {
+    $('form#new_task_title').submit();
+  }
+}
+
 function setup_single_and_double_click(element, prefix) {
   element.single_double_click(function() {
+      clear_task_title_form();
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
       $("#upcoming_task_"+task_id).toggleClass('completed');
