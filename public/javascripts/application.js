@@ -154,7 +154,7 @@ function set_task_title_and_date(e) {
 
       form.replaceWith(span_html);
       setup_single_and_double_click(li.children('span.task_title'), upcoming ? "upcoming" : "");
-      $(".list:not(.upcoming) ul span").disableSelection();
+      $(".list:not(.upcoming) ul li").disableSelection();
       clearing = false;
     },
     "json"
@@ -212,7 +212,7 @@ function enable_task_sorting() {
     // }
   })
   // this.onselectstart = function () { return false; };
-  $(".list:not(.upcoming) ul span").disableSelection();
+  $(".list:not(.upcoming) ul li").disableSelection();
 }
 
 $(document).ready(function(){
