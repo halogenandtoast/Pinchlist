@@ -7,4 +7,4 @@
     = form.text_field :title, :id => "new_task_title_#{list.id}", :autocomplete => "off"
   %ul
     = render list.tasks
-  = link_to 'show all →', list_path(list), :class => "archive_link"
+  = link_to 'show all →', list_path(list), :class => "archive_link", :tabindex => "-1"
