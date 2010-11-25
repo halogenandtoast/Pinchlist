@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>lllllist</title>
-  <%= stylesheet_link_tag :all %>
-  <%= render 'shared/javascripts' %>
-  <%= csrf_meta_tag %>
-</head>
-<body class="<%= controller_name -%> <%= action_name -%>">
-  <%= render 'shared/flashes' %>
-  <%= yield %>
-
-</body>
+  <head>
+    <title>lllllist</title>
+    <%= stylesheet_link_tag :all %>
+    <%= render 'shared/javascripts' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <%= render 'shared/flashes' %>
+    <%= yield %>
+  </body>
 </html>

@@ -154,19 +154,20 @@ function set_task_title_and_date(e) {
 
 function setup_single_and_double_click(element, prefix) {
   element.single_double_click(function() {
-      var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      var task = $('#task_'+task_id);
+      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
+      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
       $("#upcoming_task_"+task_id).toggleClass('completed');
+      $("#task_"+task_id).toggleClass("completed");
       if(task.siblings('.completed').length > 0) {
         task.insertBefore(task.siblings('.completed:first'));
       } else {
         task.parent('ul').append(task)
       }
-      task.toggleClass('completed');
-      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': $(this).hasClass('completed')}}, function(data){}, "json");
+      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
     }, function() {
-      var task_id = $(this).attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      task_edit(this, task_id, prefix);
+      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
+      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
+      task_edit(task, task_id, prefix);
     }, 225, {prefix:prefix});
 }
 
@@ -213,8 +214,8 @@ $(document).ready(function(){
   });
   //
   // mark normal and upcoming tasks completed
-  setup_single_and_double_click($("#upcoming_tasks li"), "upcoming");
-  setup_single_and_double_click($(".list:not(.upcoming) li"), "");
+  setup_single_and_double_click($("#upcoming_tasks li span.task_title"), "upcoming");
+  setup_single_and_double_click($(".list:not(.upcoming) li span.task_title"), "");
 
   $(".list_title h3").live('dblclick', function() {
       list_edit($(this));

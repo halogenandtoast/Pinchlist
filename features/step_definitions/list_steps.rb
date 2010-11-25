@@ -17,7 +17,7 @@ Then /^I should see the completed task "([^"]*)" in "([^"]*)"$/ do |title, list_
 end
 
 Then /^I should see the following "([^"]*)" tasks in order:$/ do |title, table|
-  css_matcher = table.raw.flatten.map { |title| "li:contains('#{title}')" }.join(' ~ ')
+  css_matcher = table.raw.flatten.map { |task_title| "li:contains('#{task_title}')" }.join(' ~ ')
   list = List.find_by_title!(title)
   within "#list_#{list.id}" do
     page.should have_css(css_matcher)

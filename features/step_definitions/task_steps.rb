@@ -33,7 +33,7 @@ end
 
 When /^I click on the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#list_#{task.list.id} li:contains('#{title}')").click
+  find("#list_#{task.list.id} li:contains('#{title}') span.task_title").click
 end
 
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 gem 'mysql2'
 gem 'devise'
 gem 'haml'
@@ -9,16 +9,16 @@ gem 'acts_as_list'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
   # gem 'hpricot'
   # gem 'ruby_parser'
 end
 
 group :test do
-  gem 'akephalos'
+  gem 'akephalos', :git => "git://github.com/thoughtbot/akephalos.git"
+  gem 'capybara', '~> 0.3.8'
   gem 'timecop'
-  gem 'capybara'
-  gem 'database_cleaner', '>= 0.6.0.rc.3'
+  gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'bourne'

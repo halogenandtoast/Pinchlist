@@ -10,7 +10,7 @@ Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
 end
 
 When /^I click on the upcoming task "([^"]*)"$/ do |title|
-  find("#upcoming_tasks li:contains('#{title}')").click
+  find("#upcoming_tasks li:contains('#{title}') span.task_title").click
 end
 
 When /^I double click the upcoming task "([^"]*)"$/ do |title|
