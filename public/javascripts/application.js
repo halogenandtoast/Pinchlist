@@ -138,6 +138,7 @@ function add_task_to_upcoming(task) {
     '<span class="task_title">'+task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
+    setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
 }
 
