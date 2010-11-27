@@ -334,6 +334,8 @@ $(document).ready(function(){
     controlsHiding: false,
   });
 
+  setTimeout(function() { $('#flash').fadeOut(4000); }, 2000);
+
   // scroll left/right
   $(document).keydown(function(evt){
     if(!$(evt.target).is("input")){
