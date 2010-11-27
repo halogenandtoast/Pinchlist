@@ -30,7 +30,8 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
+    @tasks = @list.tasks.by_status
   end
 
 end

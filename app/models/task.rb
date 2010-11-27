@@ -9,6 +9,7 @@ class Task < ActiveRecord::Base
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
   scope :current, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
+  scope :by_status, order("tasks.completed ASC, tasks.position ASC")
   acts_as_list :scope => :list
 
   def title=(title)

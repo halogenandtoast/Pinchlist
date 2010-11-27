@@ -27,4 +27,14 @@ describe List do
       list.color.should_not be_nil
     end
   end
+
+  describe 'updated' do
+    context 'with empty title' do
+      subject { Factory(:list) }
+      it 'should set the title to the id' do
+        subject.title = ""
+        subject.title.should == "List #{subject.id}"
+      end
+    end
+  end
 end
