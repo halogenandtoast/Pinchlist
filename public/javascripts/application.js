@@ -119,7 +119,8 @@ function task_edit(task, task_id, prefix) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
       $(this).parent('form').replaceWith('<span class="task_title">'+task_title+'</span>');
-      setup_single_and_double_click($(e.data.element), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).parents('li').first().children('.task_title'), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).parents('li').first().children('.date'), e.data.prefix);
     }
   });
   $(form).children('input').bind('blur', function() {
@@ -138,7 +139,7 @@ function add_task_to_upcoming(task) {
     '<span class="task_title">'+task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
-    setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title'), "upcoming");
+    setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
 }
 
@@ -195,6 +196,7 @@ function set_task_title_and_date(e) {
 
       form.replaceWith(span_html);
       setup_single_and_double_click(li.children('span.task_title'), upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.children('span.date'), upcoming ? "upcoming" : "");
       $(".list:not(.upcoming) ul li").disableSelection();
       clearing = false;
     },
@@ -272,8 +274,8 @@ $(document).ready(function(){
   });
   //
   // mark normal and upcoming tasks completed
-  setup_single_and_double_click($("#upcoming_tasks li span.task_title"), "upcoming");
-  setup_single_and_double_click($(".list:not(.upcoming) li span.task_title"), "");
+  setup_single_and_double_click($("#upcoming_tasks li span.task_title, #upcoming_tasks li span.date"), "upcoming");
+  setup_single_and_double_click($(".list:not(.upcoming) li span.task_title, .list:not(.upcoming) li span.date"), "");
 
   $(".list_title h3").live('dblclick', function() {
       list_edit($(this));
