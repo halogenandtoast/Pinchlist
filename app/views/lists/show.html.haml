@@ -10,7 +10,7 @@
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr
       %td[@list]
-        .list_title{:style => "background-color: ##{"%06x" % (rand * 0xffffff)};"}
+        .list_title{:style => "background-color: ##{@list.color};"}
           %h3= @list.title
           .picker choose color
           = link_to 'delete list', @list, :method => :delete, :confirm => "Are you sure you want to delete #{@list.title}?", :class => 'delete', :tabindex => "-1"
@@ -18,9 +18,4 @@
           = form.text_field :title, :id => "new_task_title_#{@list.id}", :autocomplete => "off"
         - unless @list.tasks.empty?
           %ul
-            - @list.tasks.each do |task|
-              = content_tag_for(:li, task, :class => (task.completed ? 'completed' : nil)) do
-                - if task.due_date?
-                  %span.date= task.due_date.strftime("%m/%d")
-                %span.task_title= task.title
-
+            = render @list.tasks
