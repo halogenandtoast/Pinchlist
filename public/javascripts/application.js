@@ -258,7 +258,7 @@ function enable_task_sorting() {
   $(".list:not(.upcoming) ul li").disableSelection();
 }
 
-$(document).ready(function(){
+function setup_color_pickers() {
   $('.picker').colorPicker({
     onColorChange: function(color) {
       var list = $(this).parents('.list').first();
@@ -272,6 +272,10 @@ $(document).ready(function(){
       );
     }
   });
+}
+
+$(document).ready(function(){
+  setup_color_pickers();
   //
   // mark normal and upcoming tasks completed
   setup_single_and_double_click($("#upcoming_tasks li span.task_title, #upcoming_tasks li span.date"), "upcoming");
