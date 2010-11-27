@@ -718,7 +718,8 @@ td.ui-placeholder-highlight {
           cursor: pointer; }
       .list ul li.completed {
         background: url(/images/check.png) 4px 6px no-repeat;
-        padding: 0 4px 0 16px; }
+        padding: 0 4px 0 16px;
+        cursor: default !important; }
         .list ul li.completed .task_title {
           color: #dddddd;
           font-style: italic;
