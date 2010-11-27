@@ -10,6 +10,10 @@ class List < ActiveRecord::Base
     self.insert_at(position)
   end
 
+  def title=(title)
+    write_attribute(:title, title.blank? ? "List #{self.id}" : title)
+  end
+
   private
 
   def set_color
