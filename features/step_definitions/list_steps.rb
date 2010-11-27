@@ -62,3 +62,10 @@ Then /^I should see the list "([^"]*)" before "([^"]*)"$/ do |list_title_1, list
   list_2 = List.find_by_title!(list_title_2)
   page.should have_css("#list_#{list_1.id} ~ #list_#{list_2.id}")
 end
+
+When /^I follow the archive link for "([^"]*)"$/ do |list_title|
+  list = List.find_by_title!(list_title)
+  within "#list_#{list.id}" do
+    locate(".archive_link").click
+  end
+end
