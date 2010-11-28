@@ -1,28 +1,9 @@
 #page.clearfix
-  .product
-    %img{:src => "/images/product.png"}
-  #demo_video
-    //%a#close{:href => "#"} Close
-    / Begin VideoJS
-    .video-js-box
-      / Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody
-      %video.video-js{:controls => "", :height => "300", :poster => "images/poster-frame.png", :preload => "", :width => "480"}
-        %source{:src => "http://dl.dropbox.com/u/12925/list-test-2.mov", :type => "video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\""}
-          %source{:src => "http://dl.dropbox.com/u/12925/list-test-2.webm", :type => "video/webm; codecs=\"vp8, vorbis\""}
-            %source{:src => "http://dl.dropbox.com/u/12925/list-test.ogv", :type => "video/ogg; codecs=\"theora, vorbis\""}
-              / Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class.
-              %object.vjs-flash-fallback{:data => "http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf", :height => "264", :type => "application/x-shockwave-flash", :width => "640"}
-                %param{:name => "movie", :value => "http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf"}/
-                %param{:name => "allowfullscreen", :value => "true"}/
-                %param{:name => "flashvars", :value => "config={\"playlist\":[\"http://video-js.zencoder.com/oceans-clip.png\", {\"url\": \"http://dl.dropbox.com/u/12925/list-test-2.mov4\",\"autoPlay\":false,\"autoBuffering\":true}]}"}/
-                / Image Fallback. Typically the same as the poster image.
-                %img{:alt => "Poster Image", :height => "300", :src => "images/poster-frame.png", :title => "No video playback capabilities.", :width => "480"}/
-    / End VideoJS
-    
   #content
     = render :partial => "shared/logo"
     %p
-      At last, a todo-list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. lllllist is $10 a year, but you can try it for free.
+      A todo list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. Listwerk is $10 a year, but you can try it for free.
+      %br
       = link_to 'Sign up now.', new_user_registration_path, :class => "signup" 
       /%a#demo{:href => "#"} Watch the demo   
     %p#sign_in 
@@ -40,3 +21,5 @@
       %p
         Forgot password?
         = link_to "Reset it.", 'users/password/new'
+  / = render :partial => "shared/video"
+    

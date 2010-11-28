@@ -177,7 +177,7 @@ input[type="text"], input[type="password"] {
   background-color: transparent;
   color: #222222;
   padding: 0 0 0 3px;
-  margin: -1px 0 0 -4px;
+  margin: 0 0 0 -4px;
   font-weight: bold;
   font-size: 13px;
   border: none;
@@ -204,18 +204,18 @@ input[type="text"], input[type="password"] {
     max-width: 250px;
     -webkit-border-radius: 2px; }
     #page #content.form .info p {
-      font-size: 11px;
+      font-size: 14px;
       margin: 12px 0;
       color: #666666; }
   #page #content.form h1 {
-    margin: 0 0 20px 0; }
+    margin: 0 0 40px 0; }
     #page #content.form h1 a:hover {
       border-color: #212121; }
   #page #content.form h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: normal;
-    color: #666666;
+    color: #cccccc;
     letter-spacing: -1px; }
 
 .links {
@@ -223,15 +223,15 @@ input[type="text"], input[type="password"] {
   top: 10px;
   right: 10px;
   height: auto;
-  font-size: 16px;
+  font-size: 14px;
   text-align: right;
   font-weight: bold;
   color: #cccccc; }
   .links a {
-    color: white;
+    color: #999999;
     text-decoration: none; }
     .links a:hover {
-      border-bottom: 2px solid white; }
+      text-decoration: underline; }
 
 .input {
   margin: 12px 0 0 0;
@@ -431,7 +431,7 @@ body {
     background: white; }
   body.home, body.new, body.create, body.legal, body.help {
     text-align: center;
-    background: #e9e9e9; }
+    background: white; }
 
 .legal #page #content p, .help #page #content p {
   color: #333333;
@@ -443,15 +443,15 @@ body {
   .home #page #content {
     float: none;
     position: absolute;
-    width: 960px;
-    max-width: 400px;
+    width: auto;
+    max-width: 900px;
     top: 0;
     left: 0;
     padding: 40px 0 20px 20px; }
   .home #page #content p {
     font-weight: bold;
-    line-height: 1.1;
-    font-size: 20px;
+    line-height: 1.2;
+    font-size: 28px;
     letter-spacing: -1px; }
 
 #page {
@@ -485,7 +485,6 @@ body {
         display: inline-block;
         width: 100%;
         height: auto;
-        color: #cccccc;
         font-size: 20px; }
     #page #content h1 {
       font-size: 30px;
@@ -518,22 +517,24 @@ body {
       max-width: 100%;
       line-height: 1.3;
       font-size: 18px;
-      color: #cccccc; }
+      color: #dddddd; }
       #page #content p#sign_in {
         margin: 40px 0 0; }
       #page #content p strong {
         color: #cccccc; }
     #page #content a {
       text-decoration: none;
-      color: white;
+      color: #999999;
       margin-right: 5px;
       width: auto; }
       #page #content a:hover {
-        border-bottom: 2px solid white; }
-      #page #content a.signup:hover {
-        color: #01cc78;
-        text-decoration: none;
-        border-bottom: 2px solid #01cc78; }
+        border-bottom: 2px solid #999999; }
+      #page #content a.signup {
+        color: #6666ff; }
+        #page #content a.signup:hover {
+          color: #6666ff;
+          text-decoration: none;
+          border-bottom: 2px solid #6666ff; }
       #page #content a#demo {
         color: #009dff; }
   #page .product {
@@ -587,8 +588,9 @@ body {
     float: left;
     font-size: 20px;
     color: black;
-    width: 80px;
+    width: 100px;
     margin: 8px 0 0 8px;
+    letter-spacing: -1px;
     color: #333333; }
     #header h1 a {
       color: #333333;
@@ -828,19 +830,21 @@ td.ui-placeholder-highlight {
 #flash_alert, #flash_notice {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
   padding: 2px;
-  width: 100%;
+  margin-left: -250px;
+  width: 500px;
   text-align: center;
   z-index: 100000;
   font-size: 12px;
-  font-weight: bold; }
+  font-weight: bold;
+  color: white; }
 
 #flash_alert {
-  color: #dc4d48; }
+  background-color: #dc4d48; }
 
 #flash_notice {
-  color: #e1e1e1; }
+  background-color: #dddddd; }
 
 @-moz-document url-prefix() {
   .show .list ul li .task_title {

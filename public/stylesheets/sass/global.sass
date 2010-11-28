@@ -13,7 +13,7 @@ body
     background: #fff
   &.home, &.new, &.create, &.legal, &.help
     text-align: center
-    background: #e9e9e9
+    background: #fff
 .legal #page #content p,.help #page #content p
   color: #333
   font-size: 12px
@@ -24,15 +24,15 @@ body
   #content
     float: none
     position: absolute
-    width: 960px 
-    max-width: 400px
+    width: auto 
+    max-width: 900px
     top: 0
     left: 0
     padding: 40px 0 20px 20px 
   #content p
     font-weight: bold
-    line-height: 1.1
-    font-size: 20px
+    line-height: 1.2
+    font-size: 28px
     letter-spacing: -1px
 #page
   min-height: 100%
@@ -65,7 +65,6 @@ body
         display: inline-block
         width: 100%
         height: auto
-        color: #ccc
         font-size: 20px
       // a
         color: #009DFF
@@ -103,7 +102,7 @@ body
       max-width: 100%
       line-height: 1.3
       font-size: 18px
-      color: #ccc
+      color: #ddd
       &#sign_in
         margin: 40px 0 0
         a
@@ -111,16 +110,17 @@ body
         color: #ccc
     a
       text-decoration: none
-      color: #fff
+      color: #999
       margin-right: 5px
       width: auto
       &:hover
-        border-bottom: 2px solid #fff
+        border-bottom: 2px solid #999
       &.signup
+        color: #6666FF
         &:hover
-          color: #01CC78
+          color: #6666FF
           text-decoration: none
-          border-bottom: 2px solid #01CC78
+          border-bottom: 2px solid #6666FF
       &#demo
         color: #009DFF
   .product
@@ -177,8 +177,9 @@ body
     float: left
     font-size: 20px
     color: #000
-    width: 80px
+    width: 100px
     margin: 8px 0 0 8px
+    letter-spacing: -1px
     color: #333
     a
       color: #333
@@ -417,16 +418,18 @@ td
 #flash_alert, #flash_notice
   position: fixed
   top: 0
-  left: 0
+  left: 50%
   padding: 2px
-  width: 100%
+  margin-left: -250px
+  width: 500px
   text-align: center
   z-index: 100000
   font-size: 12px
   font-weight: bold
+  color: #fff
 #flash_alert
-  color: #dc4d48
+  background-color: #dc4d48
 #flash_notice
-  color: #e1e1e1
+  background-color: #ddd
 @import moz.sass
   
