@@ -837,6 +837,8 @@ td.ui-placeholder-highlight {
   text-decoration: none;
   font-size: 11px;
   color: #dddddd; }
+  .archive_link:hover {
+    color: #aaaaaa; }
 
 #flash_alert, #flash_notice {
   position: fixed;
