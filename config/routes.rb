@@ -5,7 +5,7 @@ Pinchlist::Application.routes.draw do
 
   get "pages/help"
 
-  devise_for :users
+  devise_for :users, :controller => { :registrations => "registrations" }
   root :to => "home#index"
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard
   resources :lists, :only => [:show, :create, :update, :destroy] do
