@@ -13,4 +13,8 @@ Pinchlist::Application.routes.draw do
   end
 
   resources :tasks, :only => [:update]
+
+  namespace :admin do
+    resources :users
+  end
 end

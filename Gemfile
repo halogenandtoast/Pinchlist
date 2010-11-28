@@ -6,6 +6,7 @@ gem 'devise'
 gem 'haml'
 gem 'chronic'
 gem 'acts_as_list'
+gem 'devise_invitable'
 
 group :development, :test do
   gem 'rspec-rails'

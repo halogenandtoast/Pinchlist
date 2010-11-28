@@ -1,0 +1,6 @@
+- form_for([:admin, @user]) do |form|
+  %div
+    = form.label :email
+    = form.text_field :email
+  %div
+    = form.submit "Invite"
