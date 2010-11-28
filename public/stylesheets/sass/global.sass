@@ -32,7 +32,7 @@ body
   #content p
     font-weight: bold
     line-height: 1.2
-    font-size: 28px
+    font-size: 24px
     letter-spacing: -1px
 #page
   min-height: 100%
@@ -79,6 +79,8 @@ body
         font-size: 28px
         color: #333
         text-shadow: 0 1px 0 #fff
+        &:hover
+          border-color: #333
     h2
       font-size: 28px
       margin: 0 0 20px 0
@@ -116,11 +118,11 @@ body
       &:hover
         border-bottom: 2px solid #999
       &.signup
-        color: #6666FF
+        color: #79C3DB
         &:hover
-          color: #6666FF
+          color: #79C3DB
           text-decoration: none
-          border-bottom: 2px solid #6666FF
+          border-bottom: 2px solid #79C3DB
       &#demo
         color: #009DFF
   .product
@@ -349,9 +351,9 @@ td
       font-size: 9px
       margin: 3px 0 0 0
       float: right
-      color: #EA9491
+      color: #ea3a47
     .list_title 
-      background-color: #dc4d48
+      background-color: #ea3a47
       margin-bottom: 10px
       cursor: default !important
       &:hover
@@ -418,18 +420,19 @@ td
 #flash_alert, #flash_notice
   position: fixed
   top: 0
-  left: 50%
-  padding: 2px
-  margin-left: -250px
-  width: 500px
+  left: 0
+  padding: 4px 0
+  width: 100%
   text-align: center
   z-index: 100000
-  font-size: 12px
+  font-size: 13px
   font-weight: bold
   color: #fff
 #flash_alert
-  background-color: #dc4d48
+  background-color: #ea3a47
 #flash_notice
-  background-color: #ddd
+  background-color: #FBE24B
+  opacity: 0
+  color: #333
 @import moz.sass
   
