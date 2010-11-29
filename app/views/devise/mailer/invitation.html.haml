@@ -1,15 +1,22 @@
 %p
-  Dude!
+  Yo!
 %p
   Ben and Matt here.
 %p 
-  So, we've been working on this web application, and if you're interested, we'd love for you to try it out and give us your thoughts. It's called Listwerk, and it's basically a personal task manager, but we think it's pretty nifty. You can accept the invitation and start using the app by clicking the link below.
+  So, we've been working on this web application. If you're interested, we'd love for you to try it out and give us your thoughts.
+%br
+  It's called Listwerk, and it's a task manager. That sounds boring, but it's pretty nifty...no, really, it is.
+%br
+  You can accept the invitation and start using the app by clicking the link below.
 %p= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
 %p
+  We're calling this an alpha release, which is techspeak for, "Please don't be mad if you find some broken shit." Of course, if you do find weird stuff, we'd appreciate it if you let us know. 
   If you have questions, comments, complaints, or ideas, you can email us at:
 %br
   ben@listwerk.com
+%br
   matt@listwerk.com or
+%br
   support@listwerk.com
 %p
   Or, you can just contact us however you normally do.
