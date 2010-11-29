@@ -87,6 +87,9 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     haml (3.0.24)
+    hoptoad_notifier (2.3.12)
+      activesupport
+      builder
     hpricot (0.8.3)
     i18n (0.4.2)
     jruby-jars (1.5.5)
@@ -170,6 +173,7 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails
   haml
+  hoptoad_notifier
   hpricot
   launchy
   mysql2

@@ -7,6 +7,7 @@ gem 'haml'
 gem 'chronic'
 gem 'acts_as_list'
 gem 'devise_invitable'
+gem 'hoptoad_notifier'
 
 group :development do
   gem 'hpricot'
