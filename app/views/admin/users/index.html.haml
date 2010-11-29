@@ -1,5 +1,5 @@
 %h2 Users
 = link_to 'Invite user', new_admin_user_path
-%ul
+%ol
   - @users.each do |user|
     %li= user.email
