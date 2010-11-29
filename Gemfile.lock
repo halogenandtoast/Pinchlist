@@ -87,6 +87,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     haml (3.0.24)
+    hpricot (0.8.3)
     i18n (0.4.2)
     jruby-jars (1.5.5)
     json (1.4.6)
@@ -134,12 +135,15 @@ GEM
     rspec-mocks (2.1.0)
     rspec-rails (2.1.0)
       rspec (~> 2.1.0)
+    ruby_parser (2.0.5)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.4)
     selenium-webdriver (0.1.0)
       childprocess (= 0.1.4)
       ffi (~> 0.6.3)
       json_pure
       rubyzip
+    sexp_processor (3.0.5)
     spork (0.8.4)
     term-ansicolor (1.0.5)
     thor (0.14.6)
@@ -166,10 +170,12 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails
   haml
+  hpricot
   launchy
   mysql2
   rails (= 3.0.3)
   rspec-rails
+  ruby_parser
   shoulda!
   spork
   timecop

@@ -8,6 +8,11 @@ gem 'chronic'
 gem 'acts_as_list'
 gem 'devise_invitable'
 
+group :development do
+  gem 'hpricot'
+  gem 'ruby_parser'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   # gem 'ruby-debug19', :require => 'ruby-debug'
