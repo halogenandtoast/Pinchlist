@@ -1,8 +1,18 @@
 %p
-  Hello #{@resource.email}!
+  Dude!
 %p
-  Someone has invited you to #{root_url}, you can accept it through the link below.
+  Ben and Matt here.
+%p 
+  So, we've been working on this web application, and if you're interested, we'd love for you to try it out and give us your thoughts. It's called Listwerk, and it's basically a personal task manager, but we think it's pretty nifty. You can accept the invitation and start using the app by clicking the link below.
 %p= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+%p
+  If you have questions, comments, complaints, or ideas, you can email us at:
+%br
+  ben@listwerk.com
+  matt@listwerk.com or
+  support@listwerk.com
+%p
+  Or, you can just contact us however you normally do.
 %p
   If you don't want to accept the invitation, please ignore this email.
   %br/
