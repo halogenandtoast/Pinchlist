@@ -733,7 +733,7 @@ td.ui-placeholder-highlight {
         padding: 0 4px 0 16px;
         cursor: default !important; }
         .list ul li.completed .task_title {
-          color: #dddddd;
+          color: #d9d9d9;
           font-style: italic;
           font-size: 11px;
           padding: 3px 0 5px; }
@@ -835,9 +835,9 @@ td.ui-placeholder-highlight {
 .archive_link {
   text-decoration: none;
   font-size: 11px;
-  color: #dddddd; }
+  color: #bbbbbb; }
   .archive_link:hover {
-    color: #aaaaaa; }
+    color: #999999; }
 
 #flash_alert, #flash_notice {
   position: fixed;
