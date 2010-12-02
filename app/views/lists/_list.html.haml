@@ -4,7 +4,7 @@
     .picker choose color
     = link_to 'delete list', list, :method => :delete, :confirm => "Are you sure you want to delete #{list.title}?", :class => 'delete', :tabindex => "-1"
   = form_for [list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{list.id}" } do |form|
-    = form.text_field :title, :id => "new_task_title_#{list.id}", :autocomplete => "off"
+    = form.text_field :title, :id => "new_task_title_#{list.id}", :autocomplete => "off", :maxlength => "255"
   %ul
     = render list.tasks
   = link_to 'view all', list_path(list), :class => "archive_link", :tabindex => "-1"
