@@ -21,6 +21,7 @@
           %ul#upcoming_tasks
             - @upcoming_tasks.each do |task|
               = content_tag_for(:li, task, :upcoming, :class => (task.completed ? 'completed' : nil)) do
-                %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d")}= task.due_date.strftime("%m/%d")
-                %span.task_title= task.title
+                %span.task_title
+                  %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d")}= task.due_date.strftime("%m/%d")
+                  = task.title
       = render @lists

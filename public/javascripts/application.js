@@ -108,8 +108,8 @@ function task_edit(task, task_id, prefix) {
     return;
   }
   var self = task;
-  var task_title = $(self).children("span.task_title").text();
-  var task_due_date = $(self).children("span.date").text();
+  var task_due_date = $(self).find("span.date").detach().text().replace(/^\s+|\s+$/g, '');
+  var task_title = $(self).find("span.task_title").text().replace(/^\s+|\s+$/g, '');
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
@@ -119,14 +119,15 @@ function task_edit(task, task_id, prefix) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
 
-      span_html = '<span class="task_title">'+task_title+'</span>';
+      span_html = '<span class="task_title">';
       if(task_due_date != null) {
-        span_html = '<span class="date">'+task_due_date+'</span>'+"\n" + span_html;
+        span_html += '<span class="date">'+task_due_date+'</span>'+"\n";
       }
+      span_html += task_title+'</span>';
       $(this).parent('form').replaceWith(span_html);
 
-      setup_single_and_double_click($(e.data.element).children('span.task_title'), e.data.prefix);
-      setup_single_and_double_click($(e.data.element).children('span.date'), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).find('span.task_title'), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).find('span.date'), e.data.prefix);
       $(e.data.element).disableSelection();
     }
   });
@@ -143,8 +144,9 @@ function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
     var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
+    '<span class="task_title">' +
     '<span class="date" data-full-date="'+task.full_date+'">'+task.due_date+'</span>' + "\n" +
-    '<span class="task_title">'+task.title+'</span>' +
+    +task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
@@ -162,8 +164,8 @@ function sort_list(list) {
           return -1;
         }
       }
-      var compA = $(a).children('span.date').attr('data-full-date')
-      var compB = $(b).children('span.date').attr('data-full-date')
+      var compA = $(a).find('span.date').attr('data-full-date')
+      var compB = $(b).find('span.date').attr('data-full-date')
       return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
   });
   $.each(lis, function(idx, item) { $('#upcoming_tasks').append(item); });
@@ -206,8 +208,8 @@ function set_task_title_and_date(e) {
         var task_id = li.attr('id').split('_')[1];
         if(task.due_date != null) {
           add_task_to_upcoming(task);
-          $('#upcoming_task_'+task_id+' .task_title').html(task.title);
-          $('#upcoming_task_'+task_id+' .date').html(task.due_date);
+          upcoming_html = '<span class="date">'+task.due_date+'</span>'+"\n"+task.title;
+          $('#upcoming_task_'+task_id+' .task_title').html(upcoming_html);
         } else {
           if($('#upcoming_task_'+task_id).length > 0) {
             $('#upcoming_task_'+task_id).remove();
@@ -215,14 +217,15 @@ function set_task_title_and_date(e) {
           }
         }
       }
-      span_html = '<span class="task_title">'+data.task.title+'</span>';
+      span_html = '<span class="task_title">'
       if(task.due_date != null) {
-        span_html = '<span class="date">'+task.due_date+'</span>'+"\n" + span_html;
+        span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
       }
+      span_html += data.task.title+'</span>';
 
       form.replaceWith(span_html);
-      setup_single_and_double_click(li.children('span.task_title'), upcoming ? "upcoming" : "");
-      setup_single_and_double_click(li.children('span.date'), upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.find('span.task_title'), upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.find('span.date'), upcoming ? "upcoming" : "");
       $(".list:not(.upcoming) ul li").disableSelection();
       clearing = false;
     },
