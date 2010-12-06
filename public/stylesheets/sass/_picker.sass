@@ -42,9 +42,13 @@ div#color_custom
     width: 94px
     font-size: 11px
     font-weight: bold
-    -webkit-box-shadow: none
-    border: 1px solid #ccc
-    -moz-box-shadow: none
+    border: none
+    -webkit-box-shadow: 0 1px 0 #ccc inset
+    -moz-box-shadow: 0 1px 0 #ccc inset
+    &:focus
+      background-color: #FDFEAD
+      -webkit-box-shadow: 0 1px 0 #DED45C inset
+      -moz-box-shadow: 0 1px 0 #DED45C inset
 div.color_swatch 
   height: 15px
   width: 15px
