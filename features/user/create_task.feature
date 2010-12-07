@@ -38,3 +38,15 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then I should see the task "Learn to ride a shark" with a due date of "10/20"
 
+  @javascript
+  Scenario: Adding a task with more than 255 characters
+    Given I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    When I am on the dashboard page
+    And I fill in "My List"'s task title with 400 "!"
+    And I submit "My List"'s task form
+    Then I should see the task with 400 "!"
+    When I am on the dashboard page
+    Then I should see the task with 400 "!"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101128000030) do
+ActiveRecord::Schema.define(:version => 20101207044345) do
 
   create_table "lists", :force => true do |t|
     t.string   "title"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20101128000030) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
