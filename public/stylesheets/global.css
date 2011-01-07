@@ -947,4 +947,6 @@ td.ui-placeholder-highlight {
     width: 100%; }
     table .list {
       display: block;
-      float: left; } }
+      float: left; }
+      table .list ul li.completed {
+        display: none; } }
