@@ -1,3 +1,4 @@
+require 'timelord'
 class Task < ActiveRecord::Base
   DATE_PATTERN = /@([^\s]+)/
   MONTH_DAY_FORMAT = /(\d{1,2}\/\d{1,2})/
@@ -30,7 +31,8 @@ class Task < ActiveRecord::Base
   private
 
   def parse_date_format(str)
-    self.due_date = str =~ DATE_PATTERN ? date_from_format($1) : nil
+    self.due_date = Timelord.parse(str, :american)
+  rescue
   end
 
   def date_from_format(str)
