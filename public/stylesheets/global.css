@@ -172,21 +172,20 @@ input[type="text"], input[type="password"] {
   height: auto;
   border: none;
   line-height: 1.2;
-  background-color: #fdfead;
-  background-color: rgba(254, 254, 6, 0.2);
+  background-color: #fefbbd;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   float: none; }
 .show .list .list_title input[type="text"] {
-  background-color: transparent;
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: auto;
   color: #222222;
   padding: 0 0 0 3px;
   margin: 0 0 0 -4px;
   font-weight: bold;
   font-size: 13px;
   border: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none; }
 
@@ -447,10 +446,10 @@ body {
     float: none;
     position: absolute;
     width: auto;
-    max-width: 900px;
+    max-width: 700px;
     top: 0;
     left: 0;
-    padding: 40px 0 20px 20px; }
+    padding: 40px 20px 20px 20px; }
   .home #page #content p {
     font-weight: bold;
     line-height: 1.2;
@@ -535,11 +534,11 @@ body {
       #page #content a:hover {
         border-bottom: 2px solid #999999; }
       #page #content a.signup {
-        color: #79c3db; }
+        color: #4cc87c; }
         #page #content a.signup:hover {
-          color: #79c3db;
+          color: #3aa0eb;
           text-decoration: none;
-          border-bottom: 2px solid #79c3db; }
+          border-bottom: 2px solid #3aa0eb; }
       #page #content a#demo {
         color: #009dff; }
   #page .product {
@@ -586,16 +585,15 @@ body {
 
 #header {
   width: 100%;
+  min-width: 500px;
   background-color: #f5f5f5;
-  background-color: rgba(238, 238, 238, 0.95);
+  background-color: rgba(240, 240, 240, 0.95);
   height: 43px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
-  cursor: default !important;
-  -webkit-box-shadow: 0 1px 2px #999999;
-  -moz-box-shadow: 0 1px 2px #999999; }
+  cursor: default !important; }
   #header:hover {
     cursor: default !important; }
   #header h1 {
@@ -624,11 +622,14 @@ body {
         opacity: 1;
         outline: none; }
   #header ul {
-    float: right;
+    position: absolute;
     width: 200px;
     margin: 15px 10px 0 0;
+    top: 0;
+    right: 0;
     height: auto;
-    padding: 0; }
+    padding: 0;
+    white-space: nowrap; }
     #header ul li {
       display: inline-block;
       float: right;
@@ -705,7 +706,7 @@ td.ui-placeholder-highlight {
     float: left;
     padding: 0;
     margin: 0 0 10px 0;
-    width: 101.5%; }
+    width: 101.7%; }
     .list ul li {
       list-style: none;
       text-indent: none;
@@ -716,16 +717,18 @@ td.ui-placeholder-highlight {
       border-bottom: 1px solid #eeeeee; }
       .list ul li:hover {
         cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important;
-        background-color: white; }
+        background-color: #e8f3f9;
+        border-top: 1px solid #c8e1f1;
+        border-color: #c8e1f1;
+        margin-top: -1px; }
+      .list ul li:active {
+        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
       .list ul li .task_title {
         color: #111111;
         display: inline-block;
         padding: 4px 0 4px; }
         .list ul li .task_title:hover {
-          cursor: pointer;
-          color: #777777; }
-      .list ul li:last-child {
-        border: none; }
+          cursor: pointer; }
       .list ul li .date {
         font-size: 9px;
         color: #dc4d48;
@@ -736,8 +739,11 @@ td.ui-placeholder-highlight {
         background: url(/images/check.png) 4px 6px no-repeat;
         padding: 0 4px 0 16px;
         cursor: default !important; }
+        .list ul li.completed:hover {
+          border-color: #dddddd;
+          background-color: #f6f6f6; }
         .list ul li.completed .task_title {
-          color: #d9d9d9;
+          color: #cccccc;
           font-style: italic;
           font-size: 11px;
           padding: 3px 0 5px; }
@@ -754,6 +760,7 @@ td.ui-placeholder-highlight {
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         background-color: white;
+        background-color: #e8f3f9;
         margin-left: 3px;
         color: #111111; }
         .list ul li.ui-sortable-helper:active {
@@ -761,7 +768,7 @@ td.ui-placeholder-highlight {
         .list ul li.ui-sortable-helper .task_title:hover {
           cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
       .list ul li.ui-placeholder-highlight {
-        background-color: #eeeeee;
+        background-color: #f6f6f6;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px; }
   .list.upcoming ul {
@@ -852,7 +859,7 @@ td.ui-placeholder-highlight {
   text-align: center;
   z-index: 100000;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: normal;
   color: white; }
 
 #flash_alert {
@@ -931,3 +938,13 @@ td.ui-placeholder-highlight {
 
   input::-moz-focus-inner {
     border: 0; } }
+
+@media screen and (min-device-width: 220px) and (max-device-width: 500px) {
+  #container {
+    width: 100%; }
+
+  table {
+    width: 100%; }
+    table .list {
+      display: block;
+      float: left; } }

@@ -23,10 +23,10 @@ body
     float: none
     position: absolute
     width: auto 
-    max-width: 900px
+    max-width: 700px
     top: 0
     left: 0
-    padding: 40px 0 20px 20px 
+    padding: 40px 20px 20px 20px 
   #content p
     font-weight: bold
     line-height: 1.2
@@ -116,11 +116,11 @@ body
       &:hover
         border-bottom: 2px solid #999
       &.signup
-        color: #79C3DB
+        color: #4CC87C
         &:hover
-          color: #79C3DB
+          color: #3AA0EB
           text-decoration: none
-          border-bottom: 2px solid #79C3DB
+          border-bottom: 2px solid #3AA0EB
       &#demo
         color: #009DFF
   .product
@@ -171,6 +171,7 @@ body
       color: #666
 #header 
   width: 100%
+  min-width: 500px
   background-color: #f5f5f5
   background-color: rgba(240, 240, 240, .95)
   height: 43px
@@ -179,8 +180,6 @@ body
   left: 0
   z-index: 2
   cursor: default !important
-  -webkit-box-shadow: 0 1px 3px #999
-  -moz-box-shadow: 0 1px 3px #999
   &:hover
     cursor: default !important
   h1 
@@ -209,11 +208,14 @@ body
         opacity: 1
         outline: none
   ul 
-    float: right
+    position: absolute
     width: 200px
     margin: 15px 10px 0 0
+    top: 0
+    right: 0
     height: auto
     padding: 0
+    white-space: nowrap
     li 
       display: inline-block
       float: right
@@ -290,7 +292,7 @@ td
     float: left
     padding: 0
     margin: 0 0 10px 0
-    width: 101.5%
+    width: 101.7%
     li 
       list-style: none
       text-indent: none
@@ -301,16 +303,18 @@ td
       border-bottom: 1px solid #eee
       &:hover
         cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
-        background-color: #fff
+        background-color: #E8F3F9
+        border-top: 1px solid #C8E1F1
+        border-color: #C8E1F1
+        margin-top: -1px
+      &:active
+        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
       .task_title
         color: #111
         display: inline-block
         padding: 4px 0 4px
         &:hover
           cursor: pointer
-          color: #777
-      &:last-child
-        border: none
       .date 
         font-size: 9px
         color: #dc4d48
@@ -321,8 +325,11 @@ td
         background: url(/images/check.png) 4px 6px no-repeat
         padding: 0 4px 0 16px
         cursor: default !important
+        &:hover
+          border-color: #ddd
+          background-color: #f6f6f6
         .task_title
-          color: #d9d9d9
+          color: #ccc
           font-style: italic
           font-size: 11px
           padding: 3px 0 5px
@@ -339,6 +346,7 @@ td
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
         background-color: #fff
+        background-color: #E8F3F9
         margin-left: 3px
         color: #111
         &:active
@@ -347,7 +355,7 @@ td
           &:hover
             cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
       &.ui-placeholder-highlight
-        background-color: #eee
+        background-color: #f6f6f6
         -webkit-border-radius: 2px
         -moz-border-radius: 2px
       
@@ -436,7 +444,7 @@ td
   text-align: center
   z-index: 100000
   font-size: 13px
-  font-weight: bold
+  font-weight: normal
   color: #fff
 #flash_alert
   background-color: #ea3a47
@@ -496,7 +504,5 @@ td
       font-size: 24px
       &:active
         background: #000 
-
-
 @import moz.sass
-  
+@import mobile.sass  
