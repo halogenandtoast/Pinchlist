@@ -759,8 +759,8 @@ td.ui-placeholder-highlight {
         -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
-        background-color: white;
         background-color: #e8f3f9;
+        border: 1px solid #c8e1f1;
         margin-left: 3px;
         color: #111111; }
         .list ul li.ui-sortable-helper:active {
@@ -943,10 +943,27 @@ td.ui-placeholder-highlight {
   #container {
     width: 100%; }
 
+  .show input[type="text"], .show input[type="password"] {
+    font-size: 15px;
+    height: 22px;
+    -webkit-border-radius: none; }
+
   table {
     width: 100%; }
     table .list {
       display: block;
       float: left; }
-      table .list ul li.completed {
-        display: none; } }
+      table .list .list_title {
+        font-size: 15px;
+        font-weight: bold; }
+      table .list ul li {
+        font-size: 15px; }
+        table .list ul li .task_title {
+          padding: 6px 0 8px; }
+        table .list ul li.completed {
+          display: none; }
+        table .list ul li:hover {
+          background-color: white;
+          border-color: #eeeeee; }
+        table .list ul li .date {
+          font-size: 13px; } }
