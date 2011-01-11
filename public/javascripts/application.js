@@ -135,12 +135,23 @@ function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
     var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
-    '<span class="date">'+task.due_date+'</span>' + "\n" +
+    '<span class="date" data-full-date="'+task.full_date+'">'+task.due_date+'</span>' + "\n" +
     '<span class="task_title">'+task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
+  sort_upcoming_list();
+}
+
+function sort_upcoming_list() {
+  var lis = $('#upcoming_tasks').children('li').get();
+  lis.sort(function(a,b) {
+      var compA = $(a).children('span.date').attr('data-full-date')
+      var compB = $(b).children('span.date').attr('data-full-date')
+      return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+  });
+  $.each(lis, function(idx, item) { $('#upcoming_tasks').append(item); });
 }
 
 function set_task_title_and_date(e) {

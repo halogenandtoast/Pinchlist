@@ -85,3 +85,9 @@ end
 Then /^I should see the task with (\d+) "([^"]*)"$/ do |count, value|
   page.should have_css(".list:not(.upcoming) li:contains('#{value * count.to_i}')")
 end
+
+Then /^I should see the upcoming task "([^"]*)" before "([^"]*)"$/ do |task_title_1, task_title_2|
+  task_1 = Task.find_by_title!(task_title_1)
+  task_2 = Task.find_by_title!(task_title_2)
+  page.should have_css("#upcoming_task_#{task_1.id} ~ #upcoming_task_#{task_2.id}")
+end

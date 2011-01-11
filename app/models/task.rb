@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   end
 
   def as_json(options)
-    {:task => {:id => id, :title => title}.merge(due_date ? {:due_date => due_date.strftime("%m/%d")} : {})}
+    {:task => {:id => id, :title => title}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
   end
 
   private
