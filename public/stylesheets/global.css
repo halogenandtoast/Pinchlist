@@ -728,7 +728,8 @@ td.ui-placeholder-highlight {
         display: inline-block;
         padding: 4px 0 4px; }
         .list ul li .task_title:hover {
-          cursor: pointer; }
+          cursor: pointer;
+          text-decoration: underline; }
       .list ul li .date {
         font-size: 9px;
         color: #dc4d48;
