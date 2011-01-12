@@ -121,6 +121,7 @@ function task_edit(task, task_id, prefix) {
       $(this).parent('form').replaceWith('<span class="task_title">'+task_title+'</span>');
       setup_single_and_double_click($(e.data.element).parents('li').first().children('.task_title'), e.data.prefix);
       setup_single_and_double_click($(e.data.element).parents('li').first().children('.date'), e.data.prefix);
+      $(element).enableSelection();
     }
   });
   $(form).children('input').bind('blur', function() {
@@ -129,6 +130,7 @@ function task_edit(task, task_id, prefix) {
   form.bind('submit',{task_id:task_id,element:self,prefix:prefix}, set_task_title_and_date);
   $(self).html(form);
   form.children('input').focus();
+  $(self).enableSelection();
 }
 
 function add_task_to_upcoming(task) {
