@@ -118,10 +118,16 @@ function task_edit(task, task_id, prefix) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
-      $(this).parent('form').replaceWith('<span class="task_title">'+task_title+'</span>');
-      setup_single_and_double_click($(e.data.element).parents('li').first().children('.task_title'), e.data.prefix);
-      setup_single_and_double_click($(e.data.element).parents('li').first().children('.date'), e.data.prefix);
-      $(element).enableSelection();
+
+      span_html = '<span class="task_title">'+task_title+'</span>';
+      if(task_due_date != null) {
+        span_html = '<span class="date">'+task_due_date+'</span>'+"\n" + span_html;
+      }
+      $(this).parent('form').replaceWith(span_html);
+
+      setup_single_and_double_click($(e.data.element).children('span.task_title'), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).children('span.date'), e.data.prefix);
+      $(e.data.element).disableSelection();
     }
   });
   $(form).children('input').bind('blur', function() {
