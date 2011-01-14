@@ -243,6 +243,8 @@ function setup_single_and_double_click(element, prefix) {
         task.parent('ul').append(task)
       }
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
+      $(".list:not(.upcoming) ul").sortable('destroy');
+      enable_task_sorting();
     }, function() {
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
