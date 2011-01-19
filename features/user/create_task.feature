@@ -50,3 +50,17 @@ Feature: In order to track what needs to be done
     Then I should see the task with 400 "!"
     When I am on the dashboard page
     Then I should see the task with 400 "!"
+
+  @javascript
+  Scenario: New tasks appear before completed tasks
+    Given I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    And the following tasks exist:
+      | list           | title     | completed |
+      | title: My List | Completed | true      |
+    When I am on the dashboard page
+    And I fill in "My List"'s task title with "Doom"
+    And I submit "My List"'s task form
+    Then I should see the task "Doom" before "Completed"
