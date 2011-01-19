@@ -155,6 +155,13 @@ function add_task_to_upcoming(task) {
 function sort_list(list) {
   var lis = $(list).children('li').get();
   lis.sort(function(a,b) {
+      if(!$(a).hasClass('completed') || !$(b).hasClass('completed')) {
+        if ($(a).hasClass('completed')) {
+          return 1;
+        } else if ($(b).hasClass('completed')) {
+          return -1;
+        }
+      }
       var compA = $(a).children('span.date').attr('data-full-date')
       var compB = $(b).children('span.date').attr('data-full-date')
       return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
