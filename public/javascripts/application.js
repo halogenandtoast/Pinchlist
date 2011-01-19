@@ -149,11 +149,11 @@ function add_task_to_upcoming(task) {
     $('#upcoming_tasks').append(li_html);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
-  sort_upcoming_list();
+  sort_list('#upcoming_tasks');
 }
 
-function sort_upcoming_list() {
-  var lis = $('#upcoming_tasks').children('li').get();
+function sort_list(list) {
+  var lis = $(list).children('li').get();
   lis.sort(function(a,b) {
       var compA = $(a).children('span.date').attr('data-full-date')
       var compB = $(b).children('span.date').attr('data-full-date')
