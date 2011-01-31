@@ -66,7 +66,7 @@ function list_edit(list_title) {
   list.find('.color_picker').remove();
   var list_title_text = list_title.html();
   var form = $('<form id="new_list_title" />');
-  form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
+  form.append("<input type='text' name='list[title]' id='list_title' value=\""+list_title_text.replace('"', '&quot;')+"\" />");
   $(form).children('input').bind('keyup',{list_title:list_title_text}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
@@ -113,7 +113,7 @@ function task_edit(task, task_id, prefix) {
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
-  form.append("<input type='text' name='task[title]' id='task_title' value='"+title_field+"' />");
+  form.append("<input type='text' name='task[title]' id='task_title' value=\""+title_field.replace('"', "&quot;")+"\" />");
   $(form).children('input').bind('keyup',{task_title:task_title,task_due_date:task_due_date,element:self,prefix:prefix}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
