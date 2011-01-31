@@ -690,8 +690,6 @@ td.ui-placeholder-highlight {
     background-color: white;
     margin: 0;
     border: 0;
-    -webkit-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4);
     padding-left: 8px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px; }
