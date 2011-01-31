@@ -66,7 +66,7 @@ function list_edit(list_title) {
   list.find('.color_picker').remove();
   var list_title_text = list_title.html();
   var form = $('<form id="new_list_title" />');
-  form.append("<input type='text' name='list[title]' id='list_title' value='"+list_title_text+"' />");
+  form.append("<input type='text' name='list[title]' id='list_title' value=\""+list_title_text.replace('"', '&quot;')+"\" />");
   $(form).children('input').bind('keyup',{list_title:list_title_text}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
@@ -108,20 +108,27 @@ function task_edit(task, task_id, prefix) {
     return;
   }
   var self = task;
-  var task_title = $(self).children("span.task_title").text();
-  var task_due_date = $(self).children("span.date").text();
+  var task_due_date = $(self).find("span.date").detach().text().replace(/^\s+|\s+$/g, '');
+  var task_title = $(self).find("span.task_title").text().replace(/^\s+|\s+$/g, '');
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
-  form.append("<input type='text' name='task[title]' id='task_title' value='"+title_field+"' />");
+  form.append("<input type='text' name='task[title]' id='task_title' value=\""+title_field.replace('"', "&quot;")+"\" />");
   $(form).children('input').bind('keyup',{task_title:task_title,task_due_date:task_due_date,element:self,prefix:prefix}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
-      $(this).parent('form').replaceWith('<span class="task_title">'+task_title+'</span>');
-      setup_single_and_double_click($(e.data.element).parents('li').first().children('.task_title'), e.data.prefix);
-      setup_single_and_double_click($(e.data.element).parents('li').first().children('.date'), e.data.prefix);
-      $(element).enableSelection();
+
+      span_html = '<span class="task_title">';
+      if(task_due_date != null) {
+        span_html += '<span class="date">'+task_due_date+'</span>'+"\n";
+      }
+      span_html += task_title+'</span>';
+      $(this).parent('form').replaceWith(span_html);
+
+      setup_single_and_double_click($(e.data.element).find('span.task_title'), e.data.prefix);
+      setup_single_and_double_click($(e.data.element).find('span.date'), e.data.prefix);
+      $(e.data.element).disableSelection();
     }
   });
   $(form).children('input').bind('blur', function() {
@@ -137,20 +144,28 @@ function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
     var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
+    '<span class="task_title">' +
     '<span class="date" data-full-date="'+task.full_date+'">'+task.due_date+'</span>' + "\n" +
-    '<span class="task_title">'+task.title+'</span>' +
+    +task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
-  sort_upcoming_list();
+  sort_list('#upcoming_tasks');
 }
 
-function sort_upcoming_list() {
-  var lis = $('#upcoming_tasks').children('li').get();
+function sort_list(list) {
+  var lis = $(list).children('li').get();
   lis.sort(function(a,b) {
-      var compA = $(a).children('span.date').attr('data-full-date')
-      var compB = $(b).children('span.date').attr('data-full-date')
+      if(!$(a).hasClass('completed') || !$(b).hasClass('completed')) {
+        if ($(a).hasClass('completed')) {
+          return 1;
+        } else if ($(b).hasClass('completed')) {
+          return -1;
+        }
+      }
+      var compA = $(a).find('span.date').attr('data-full-date')
+      var compB = $(b).find('span.date').attr('data-full-date')
       return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
   });
   $.each(lis, function(idx, item) { $('#upcoming_tasks').append(item); });
@@ -193,8 +208,8 @@ function set_task_title_and_date(e) {
         var task_id = li.attr('id').split('_')[1];
         if(task.due_date != null) {
           add_task_to_upcoming(task);
-          $('#upcoming_task_'+task_id+' .task_title').html(task.title);
-          $('#upcoming_task_'+task_id+' .date').html(task.due_date);
+          upcoming_html = '<span class="date">'+task.due_date+'</span>'+"\n"+task.title;
+          $('#upcoming_task_'+task_id+' .task_title').html(upcoming_html);
         } else {
           if($('#upcoming_task_'+task_id).length > 0) {
             $('#upcoming_task_'+task_id).remove();
@@ -202,14 +217,15 @@ function set_task_title_and_date(e) {
           }
         }
       }
-      span_html = '<span class="task_title">'+data.task.title+'</span>';
+      span_html = '<span class="task_title">'
       if(task.due_date != null) {
-        span_html = '<span class="date">'+task.due_date+'</span>'+"\n" + span_html;
+        span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
       }
+      span_html += data.task.title+'</span>';
 
       form.replaceWith(span_html);
-      setup_single_and_double_click(li.children('span.task_title'), upcoming ? "upcoming" : "");
-      setup_single_and_double_click(li.children('span.date'), upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.find('span.task_title'), upcoming ? "upcoming" : "");
+      setup_single_and_double_click(li.find('span.date'), upcoming ? "upcoming" : "");
       $(".list:not(.upcoming) ul li").disableSelection();
       clearing = false;
     },
@@ -237,6 +253,8 @@ function setup_single_and_double_click(element, prefix) {
         task.parent('ul').append(task)
       }
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
+      $(".list:not(.upcoming) ul").sortable('destroy');
+      enable_task_sorting();
     }, function() {
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
