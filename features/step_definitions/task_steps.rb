@@ -24,7 +24,7 @@ Then /^I should see the task "([^"]*)" followed by the task "([^"]*)"$/ do |task
 end
 
 Then /^I should see the task "([^"]*)" with a due date of "([^"]*)"$/ do |task, due_date|
-  page.should have_css("li:contains('#{task}') > span.date:contains('#{due_date}')")
+  page.should have_css("li:contains('#{task}') span.date:contains('#{due_date}')")
 end
 
 Then /^I should not see the task "([^"]*)"$/ do |task|

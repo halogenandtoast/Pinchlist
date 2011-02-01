@@ -146,7 +146,7 @@ function add_task_to_upcoming(task) {
     var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
     '<span class="task_title">' +
     '<span class="date" data-full-date="'+task.full_date+'">'+task.due_date+'</span>' + "\n" +
-    +task.title+'</span>' +
+    ""+task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
