@@ -1,6 +1,6 @@
 #header
   %h1
-    = link_to 'Listwerk', root_url
+    = link_to image_tag('logo-small.png'), root_url
   = form_for @list, :remote => true do |form|
     %label.input{:for => "title"}
       %span New List
