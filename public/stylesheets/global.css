@@ -422,6 +422,26 @@ select {
 a.cancel:hover {
   color: #666666; }
 
+@media print {
+  #util, input, .completed, .today, .archive_link, .input {
+    display: none; }
+
+  .list {
+    margin: 20px;
+    padding: 0; }
+    .list .list_title {
+      border-bottom: 1px solid #999999;
+      padding: 0;
+      color: #111111;
+      font-size: 13px; }
+
+  ul li {
+    list-style-type: circle;
+    padding: 0; }
+    ul li .task_title {
+      font-size: 12px;
+      padding: 0; } }
+
 html {
   height: 100%;
   cursor: default !important; }
@@ -706,7 +726,6 @@ td.ui-placeholder-highlight {
     margin: 0 0 10px 0;
     width: 101.7%; }
     .list ul li {
-      list-style: none;
       text-indent: none;
       font-size: 11px;
       padding: 0 4px;

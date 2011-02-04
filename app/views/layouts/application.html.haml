@@ -6,7 +6,7 @@
     %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
     %meta{:content => "width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;", :name => "viewport"}
     %title Listwerk
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag :all, :media => "screen, print"
     = render 'shared/javascripts'
     = csrf_meta_tag
   %body{:class => "#{controller_name} #{action_name}"}
