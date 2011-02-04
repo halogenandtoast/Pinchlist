@@ -726,6 +726,7 @@ td.ui-placeholder-highlight {
     margin: 0 0 10px 0;
     width: 101.7%; }
     .list ul li {
+      list-style: none;
       text-indent: none;
       font-size: 11px;
       padding: 0 4px;
