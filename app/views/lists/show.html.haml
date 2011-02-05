@@ -12,7 +12,7 @@
       %td[@list]
         .list_title{:style => "background-color: ##{@list.color};"}
           %h3= @list.title
-          .picker choose color
+          .picker
           = link_to 'delete list', @list, :method => :delete, :confirm => "Are you sure you want to delete #{@list.title}?", :class => 'delete', :tabindex => "-1"
         = form_for [@list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{@list.id}" } do |form|
           = form.text_field :title, :id => "new_task_title_#{@list.id}", :autocomplete => "off"
