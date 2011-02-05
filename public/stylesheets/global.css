@@ -999,8 +999,8 @@ td.ui-placeholder-highlight {
         font-size: 15px;
         height: 22px;
         -webkit-border-radius: 0px;
-        max-width: 97%;
-        margin-left: 2px; }
+        max-width: 95%;
+        margin-left: 4px; }
       table .list .list_title {
         font-size: 16px;
         font-weight: bold;
@@ -1055,7 +1055,8 @@ td.ui-placeholder-highlight {
       margin: 0 0 0 6px;
       width: 97%; }
       #header .input span {
-        font-size: 14px; }
+        font-size: 14px;
+        color: #aaaaaa; }
       #header .input input[type="text"] {
         font-size: 15px;
         height: 25px;
