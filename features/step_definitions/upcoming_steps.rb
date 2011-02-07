@@ -53,3 +53,9 @@ Then /^I do not see the upcoming tasks list$/ do
   page.should_not have_css("#upcoming_tasks")
 end
 
+Then /^I see the upcoming task "([^"]*)" has a due date color of "([^"]*)"$/ do |title, color|
+  task = Task.find_by_title!(title)
+  within "#upcoming_task_#{task.id}" do
+    page.should have_css("span.date[style*='color: ##{color}']")
+  end
+end

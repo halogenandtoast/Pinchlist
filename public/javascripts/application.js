@@ -145,7 +145,7 @@ function add_task_to_upcoming(task) {
   if($('#upcoming_task_'+task.id).length == 0) {
     var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
     '<span class="task_title">' +
-    '<span class="date" data-full-date="'+task.full_date+'">'+task.due_date+'</span>' + "\n" +
+    '<span class="date" data-full-date="'+task.full_date+'" style="color: #'+task.list_color+'">'+task.due_date+'</span>' + "\n" +
     ""+task.title+'</span>' +
     '</li>';
     $('#upcoming_tasks').append(li_html);
@@ -208,7 +208,7 @@ function set_task_title_and_date(e) {
         var task_id = li.attr('id').split('_')[1];
         if(task.due_date != null) {
           add_task_to_upcoming(task);
-          upcoming_html = '<span class="date">'+task.due_date+'</span>'+"\n"+task.title;
+          upcoming_html = '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n"+task.title;
           $('#upcoming_task_'+task_id+' .task_title').html(upcoming_html);
         } else {
           if($('#upcoming_task_'+task_id).length > 0) {
@@ -219,7 +219,11 @@ function set_task_title_and_date(e) {
       }
       span_html = '<span class="task_title">'
       if(task.due_date != null) {
-        span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
+        if(upcoming) {
+          span_html += '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n";
+        } else {
+          span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
+        }
       }
       span_html += data.task.title+'</span>';
 

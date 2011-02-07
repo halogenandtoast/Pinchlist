@@ -91,3 +91,14 @@ Feature: View upcoming tasks
         | Something else |
         | Something      |
 
+  Scenario: Upcoming tasks have colors
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title    | user                    | color  |
+      | Colorful | email: user@example.com | FF00FF |
+    And the following task exists:
+      | title  | list            | due date   |
+      | A task | title: Colorful | 2010-10-20 |
+    When I am on the dashboard page
+    Then I see the upcoming task "A task" has a due date color of "FF00FF"

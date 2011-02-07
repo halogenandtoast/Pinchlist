@@ -31,12 +31,13 @@ Feature: In order to track what needs to be done
     Given today is "October 16, 2010"
     Given I am signed in as "user@example.com/password"
     And the following list exists:
-      | title   | user                    |
-      | My List | email: user@example.com |
+      | title   | user                    | color  |
+      | My List | email: user@example.com | 009000 |
     When I am on the dashboard page
     And I fill in "My List"'s task title with "@10/20 Learn to ride a shark"
     And I submit "My List"'s task form
     Then I should see the task "Learn to ride a shark" with a due date of "10/20"
+    And I see the upcoming task "Learn to ride a shark" has a due date color of "009000"
 
   @javascript
   Scenario: Adding a task with more than 255 characters

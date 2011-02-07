@@ -17,6 +17,6 @@ class List < ActiveRecord::Base
   private
 
   def set_color
-    self.color = "%06x" % (rand * 0xffffff)
+    self.color ||= "%06x" % (rand * 0xffffff)
   end
 end

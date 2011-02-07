@@ -101,3 +101,9 @@ describe Task, 'completed' do
   end
   after { Timecop.return }
 end
+
+describe Task, '#list_color' do
+  let!(:list) { Factory(:list) }
+  subject { Factory(:task, :list => list) }
+  its(:list_color) { should == list.color }
+end

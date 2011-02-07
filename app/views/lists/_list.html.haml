@@ -1,5 +1,5 @@
 %td[list]
-  .list_title{:style => "background-color: ##{list.color};"}
+  .list_title{:"data-background-color" => list.color, :style => "background-color: ##{list.color};"}
     %h3= list.title
     .picker
     = link_to 'delete list', list, :method => :delete, :confirm => "Are you sure you want to delete #{list.title}?", :class => 'delete', :tabindex => "-1"
