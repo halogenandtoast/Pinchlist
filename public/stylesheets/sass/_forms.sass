@@ -6,24 +6,21 @@ input[type="text"], input[type="password"]
   font-family: "Helvetica Neue", Arial, sans-serif
   // -webkit-border-radius: 2px
   // -moz-border-radius: 2px
+  border: 1px solid #eee
+  border-top-color: #bbb
   margin: 0 0 0 -4px
   &:focus 
     background-color: #FDFEAD
     background-color: rgba(254, 254, 6, .2)
     outline: none
     border-color: #F4EE95
-.home
-  .input
-    margin-top: 6px
-
+    border-top-color: #DED45C
 .show
   input[type="text"], input[type="password"]
-    border: none
-    -webkit-box-shadow: 0 1px 0 #ccc inset
-    -moz-box-shadow: 0 1px 0 #ccc inset
+    border: 0
+    border-top: 1px solid #bbb
     &:focus
-      -webkit-box-shadow: 0 1px 0 #DED45C inset
-      -moz-box-shadow: 0 1px 0 #DED45C inset
+      border-top-color: #DED45C
   .list
     li
       input[type="text"]
@@ -77,19 +74,29 @@ input[type="text"], input[type="password"]
         border-color: #212121
   h2
     margin: 0
-    font-size: 24px
+    font-size: 18px
     font-weight: normal
     color: #ccc
-    letter-spacing: -1px
 .links
   position: absolute
   top: 10px
   right: 10px
   height: auto
-  font-size: 14px
+  font-size: 13px
   text-align: right
-  font-weight: bold
+  width: 270px
   color: #ccc
+  #login
+    float: left
+    margin: 5px 0 0 0
+    width: 280px
+    display: none
+    height: auto
+    p
+      margin: 15px 0
+      display: inline-block
+      height: auto
+      float: left
   a
     color: #999
     text-decoration: none
@@ -100,12 +107,12 @@ input[type="text"], input[type="password"]
   background: #fff
   float: left
   position: relative
-  cursor: default	
+  cursor: default
   span 
     position: absolute
     padding: 5px
     margin: 3px 0 0 3px
-    color: #eee
+    color: #ddd
     font-size: 14px
   input[type="text"], input[type="password"]
     position: relative
@@ -215,23 +222,22 @@ input[type="submit"]
   vertical-align: middle
   white-space: nowrap
   float: left 
-  background: #f9f9f9
-  background: -moz-linear-gradient(center top , #FFFFFF, #FFFFFF 55%, #E4E4E4) repeat scroll 0 0 transparent
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), color-stop(0.55, white), to(#E4E4E4))
+  background: #e9e9e9
   font-size: 16px
   font-weight: bold
   color: #333
   font-family: "Helvetica Neue", Arial, sans-serif
-  -moz-border-radius: 2px
-  -webkit-border-radius: 2px
-  border: 1px solid #bbb
+  border: 1px solid #fff
+  border-bottom-color: #aaa
   outline: none 
   &:hover, &:focus
-    border-color: #999
+    background-color: #eee
     text-shadow: none
   &:active
     outline: none
-    background: #ddd
+    background: #eee
+    border-bottom-color: #ddd
+    border-top-color: #aaa
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus 
   outline: 0
 fieldset 

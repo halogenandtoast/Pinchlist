@@ -2,24 +2,25 @@
   #content
     = render :partial => "shared/logo"
     %p
-      A todo list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. Listwerk is $10 a year, but you can try it for free.
+      A todo list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. Listwerk is $20 a year, but you can try it for free.
       %br
-      = link_to 'Sign up now.', new_user_registration_path, :class => "signup" 
+      = link_to 'Sign up', new_user_registration_path, :class => "signup" 
       /%a#demo{:href => "#"} Watch the demo   
-    %p#sign_in 
-      Already have an account?
-      %a{:href => ""} Sign in
-    #login      
-      = form_for :user, :url => new_user_session_path do |f|
-        %label.input{:for => "email"}
-          %span Email Address
-          = f.text_field :email
-        %label.input{:for => "password"} 
-          %span Password
-          = f.password_field :password
-        = f.submit "Sign In"
-      %p
-        Forgot password?
-        = link_to "Reset it.", 'users/password/new'
   / = render :partial => "shared/video"
+.links
+  %p#sign_in 
+    Already have an account?
+    %a{:href => ""} Sign in
+  #login      
+    = form_for :user, :url => new_user_session_path do |f|
+      %label.input{:for => "email"}
+        %span Email Address
+        = f.text_field :email
+      %label.input{:for => "password"} 
+        %span Password
+        = f.password_field :password
+      = f.submit "Sign In"
+    %p
+      Forgot password?
+      = link_to "Reset it.", 'users/password/new'
     
