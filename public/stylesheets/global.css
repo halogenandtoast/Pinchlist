@@ -228,9 +228,12 @@ input[type="text"], input[type="password"] {
   .links #login {
     float: left;
     margin: 5px 0 0 0;
-    width: 280px;
+    width: 235px;
     display: none;
-    height: auto; }
+    height: auto;
+    background-color: white; }
+    .links #login input[type="text"], .links #login input[type="password"] {
+      width: 240px; }
     .links #login p {
       margin: 15px 0;
       display: inline-block;
@@ -567,39 +570,43 @@ body {
           text-decoration: none;
           border-bottom: 1px solid #4cc87c; }
       #page #content a#demo {
-        color: #009dff; }
-  #page .product {
-    height: 400px;
-    width: 580px;
-    position: absolute;
-    background-color: transparent;
-    top: 189px;
-    left: 390px;
-    overflow: visible; }
-    #page .product img {
-      position: absolute;
-      top: 0;
-      left: 0; }
-  #page #demo_video {
-    width: 480px;
-    height: 300px;
-    overflow: visible;
-    position: absolute;
-    top: 208px;
-    left: 487px;
-    background-color: black; }
-    #page #demo_video #close {
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      top: 0;
-      left: -20px;
-      overflow: hidden;
-      text-indent: -10000px;
-      background: white url(/images/close.png) 0 0 no-repeat;
-      opacity: 0.7; }
-      #page #demo_video #close:hover {
-        opacity: 1; }
+        float: left;
+        display: block;
+        color: #999999;
+        width: 808px;
+        height: 338px;
+        background: #222222 url(/images/play-large.png) 0 0 no-repeat;
+        margin: 20px 0 0;
+        text-indent: -10000px;
+        padding: 0; }
+        #page #content a#demo:hover {
+          background: #222222 url(/images/play-large.png) 0 -330px no-repeat; }
+    #page #content #demo_video {
+      width: 808px;
+      height: 338px;
+      overflow: visible;
+      display: none;
+      margin: 40px 0 0;
+      border: 1px solid #f9f9f9;
+      position: relative; }
+      #page #content #demo_video .controls .play, #page #content #demo_video .controls .stop {
+        background-color: #222222;
+        opacity: 0.6;
+        text-indent: -10000px;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        width: 48px;
+        height: 30px;
+        padding: 0; }
+        #page #content #demo_video .controls .play:hover, #page #content #demo_video .controls .stop:hover {
+          opacity: 1;
+          border: 0; }
+      #page #content #demo_video .controls .play {
+        display: none;
+        background: #222222 url(/images/play.png) 0 0 no-repeat; }
+      #page #content #demo_video .controls .stop {
+        background: #222222 url(/images/stop.png) 0 0 no-repeat; }
   #page dl dt {
     font-size: 12px;
     font-weight: bold;

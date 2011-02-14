@@ -353,13 +353,20 @@ $(document).ready(function(){
   // $("tr").data("sortable").floating = true;
 
   //toggle demo video
-  //$("#demo").click(function () {
-  //  $('#demo').text($('#demo').text() == 'Pause the demo' ? 'Play the demo' : 'Pause the demo');
-  //  $("video")[0].player.play();
-  //}, function() {
-  //  $("video")[0].player.pause();
-  //});
+  $("#demo").click(function () {
+    $("#demo_video").show();
+    $("#demo").hide();
+    // $('#demo').text($('#demo').text() == 'Pause' ? 'Play' : 'Pause');
+  });
 
+  $(".stop").click(function () {
+    $(this).hide();
+    $(".play").show();
+  });
+  $(".play").click(function () {
+    $(this).hide();
+    $(".stop").show();
+  });
   //show sign in form
   $("#sign_in a").click(function () {
 

@@ -108,43 +108,44 @@ body
           text-decoration: none
           border-bottom: 1px solid #4CC87C
       &#demo
-        color: #009DFF
-  .product
-    height: 400px
-    width: 580px
-    position: absolute
-    background-color: transparent
-    top: 189px
-    left: 390px
-    overflow: visible
-    img
-      position: absolute
-      top: 0
-      left: 0
-  #demo_video
-    width: 480px
-    height: 300px
-    //-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .4)
-    //-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4)
-    overflow: visible
-    position: absolute
-    top: 208px
-    left: 487px
-    // display: none
-    background-color: #000
-    #close
-      width: 20px
-      height: 20px
-      position: absolute
-      top: 0
-      left: -20px
-      overflow: hidden
-      text-indent: -10000px
-      background: #fff url(/images/close.png) 0 0 no-repeat
-      opacity: .7
-      &:hover
-        opacity: 1
-      
+        float: left
+        display: block
+        color: #999
+        width: 808px
+        height: 338px
+        background: #222 url(/images/play-large.png) 0 0 no-repeat
+        margin: 20px 0 0
+        text-indent: -10000px
+        padding: 0
+        &:hover
+          background: #222 url(/images/play-large.png) 0 -330px no-repeat
+    #demo_video
+      width: 808px
+      height: 338px
+      overflow: visible
+      display: none
+      margin: 40px 0 0
+      border: 1px solid #f9f9f9
+      position: relative
+      .controls
+        .play, .stop
+          background-color: #222
+          opacity: .6
+          text-indent: -10000px
+          position: absolute
+          bottom: 5px
+          left: 5px
+          width: 48px
+          height: 30px
+          padding: 0
+          &:hover
+            opacity: 1
+            border: 0
+        .play
+          display: none
+          background: #222 url(/images/play.png) 0 0 no-repeat
+        .stop
+          background: #222 url(/images/stop.png) 0 0 no-repeat
   dl
     dt
       font-size: 12px

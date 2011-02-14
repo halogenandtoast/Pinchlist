@@ -2,11 +2,11 @@
   #content
     = render :partial => "shared/logo"
     %p
-      A todo list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. Listwerk is $20 a year, but you can try it for free.
+      A todo list that requires less energy than your todos. Manage all your lists in a single window with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, things, and anything else you tend to forget. 3 lists for free. Unlimited lists for $5/month.
       %br
       = link_to 'Sign up', new_user_registration_path, :class => "signup" 
-      /%a#demo{:href => "#"} Watch the demo   
-  / = render :partial => "shared/video"
+    %a#demo{:href => "#demo_video"} Watch the demo   
+    = render :partial => "shared/quicktime"
 .links
   %p#sign_in 
     Already have an account?

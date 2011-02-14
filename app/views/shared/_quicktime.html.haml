@@ -1,0 +1,20 @@
+#demo_video
+  :javascript
+    QT_WriteOBJECT(
+      'http://dl.dropbox.com/u/12925/projects-pub/pinchlist/listwerk.mov', 
+      '808', 
+      '298', 
+      '', 
+      'CONTROLLER', 'False',
+      'BGCOLOR', '#ffffff', 
+      'SHOWLOGO', 'False',
+      'EnableJavaScript', 'True', 
+      'emb#NAME' , 'video' , 
+      'obj#id' , 'video', 
+      'TARGET', 'Myself',
+      'CACHE', 'True'
+    );
+
+  .controls
+    %a.play{:href => "javascript:document.video.Play();"} Play
+    %a.stop{:href => "javascript:document.video.Stop();"} Stop
