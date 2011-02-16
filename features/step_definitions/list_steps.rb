@@ -69,3 +69,15 @@ When /^I follow the archive link for "([^"]*)"$/ do |list_title|
     locate(".archive_link").click
   end
 end
+
+Then /^the list "([^"]*)" should have the color "([^"]*)"$/ do |list_title, color|
+  list = List.find_by_title!(list_title)
+  within "#list_#{list.id}" do
+    page.should have_css(".list_title[style*='background-color: ##{color}']")
+  end
+end
+
+When /^I change the color of "([^"]*)" to "([^"]*)"$/ do |list_title, color|
+  list = List.find_by_title!(list_title)
+  page.execute_script("toggleSelector.call($('#list_#{list.id} .picker')); changeColor('#{color}')")
+end

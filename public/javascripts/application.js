@@ -198,7 +198,7 @@ function set_task_title_and_date(e) {
         var task_id = li.attr('id').split('_')[2];
         $('#task_'+task_id+' .task_title').html(task.title);
         if(task.due_date != null) {
-          $('#task_'+task_id+' .date').html(task.due_date);
+          $('#task_'+task_id+' .task_title').prepend("<span class='date'>"+task.due_date+"</span>\n");
         } else {
           $('#task_'+task_id+' .date').remove();
           $('#upcoming_task_'+task_id).remove();
@@ -298,6 +298,7 @@ function setup_color_pickers() {
     onColorChange: function(color) {
       var list = $(this).parents('.list').first();
       var list_id = list.attr('id').split('_')[1];
+      $('li[data-list="'+list_id+'"] .date').css('color', color);
 
       $.post(
         '/lists/'+list_id,

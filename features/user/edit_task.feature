@@ -42,8 +42,10 @@ Feature: Edit a task
     And I submit the upcoming title form for "Ride a shark"
     Then I should see the upcoming task "Lasso a shark" with a due date of "10/30"
     And I see the upcoming task "Lasso a shark" has a due date color of "009000"
+    And I should see the task "Lasso a shark" with a due date of "10/30"
     When I go to the dashboard page
     Then I should see the upcoming task "Lasso a shark" with a due date of "10/30"
+    And I should see the task "Lasso a shark" with a due date of "10/30"
 
   @javascript
   Scenario: Renaming a task in it's list
