@@ -223,17 +223,28 @@ input[type="text"], input[type="password"] {
   height: auto;
   font-size: 13px;
   text-align: right;
-  width: 270px;
+  width: 230px;
   color: #cccccc; }
   .links #login {
     float: left;
     margin: 5px 0 0 0;
-    width: 235px;
+    width: 215px;
     display: none;
     height: auto;
-    background-color: white; }
+    background-color: #f9f9f9; }
     .links #login input[type="text"], .links #login input[type="password"] {
-      width: 240px; }
+      width: 200px;
+      height: 18px;
+      background-color: white;
+      background-color: rgba(255, 255, 255, 0.07); }
+      .links #login input[type="text"]:focus, .links #login input[type="password"]:focus {
+        background-color: #fdfead;
+        background-color: rgba(254, 254, 6, 0.2); }
+    .links #login input[type="submit"] {
+      height: 30px;
+      font-size: 15px; }
+    .links #login span {
+      margin-top: 2px; }
     .links #login p {
       margin: 15px 0;
       display: inline-block;
@@ -474,6 +485,8 @@ body {
   height: 100%;
   cursor: default !important;
   background: white; }
+  body.home {
+    background-color: #f9f9f9; }
 
 .legal #page #content p, .help #page #content p {
   color: #333333;
@@ -550,7 +563,8 @@ body {
       max-width: 100%;
       line-height: 1.3;
       font-size: 18px;
-      color: #cccccc; }
+      color: #cccccc;
+      -webkit-font-smoothing: antialiased; }
       #page #content p#sign_in {
         margin: 40px 0 0; }
       #page #content p strong {
@@ -580,33 +594,39 @@ body {
         text-indent: -10000px;
         padding: 0; }
         #page #content a#demo:hover {
-          background: #222222 url(/images/play-large.png) 0 -330px no-repeat; }
+          background: #222222 url(/images/play-large.png) 0 -330px no-repeat;
+          border: none; }
     #page #content #demo_video {
       width: 808px;
       height: 338px;
       overflow: visible;
       display: none;
       margin: 40px 0 0;
-      border: 1px solid #f9f9f9;
-      position: relative; }
-      #page #content #demo_video .controls .play, #page #content #demo_video .controls .stop {
-        background-color: #222222;
-        opacity: 0.6;
-        text-indent: -10000px;
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-        width: 48px;
-        height: 30px;
-        padding: 0; }
-        #page #content #demo_video .controls .play:hover, #page #content #demo_video .controls .stop:hover {
-          opacity: 1;
-          border: 0; }
-      #page #content #demo_video .controls .play {
-        display: none;
-        background: #222222 url(/images/play.png) 0 0 no-repeat; }
-      #page #content #demo_video .controls .stop {
-        background: #222222 url(/images/stop.png) 0 0 no-repeat; }
+      border: 1px solid #eeeeee;
+      position: relative;
+      background-color: white; }
+      #page #content #demo_video:hover .controls {
+        display: block; }
+      #page #content #demo_video .controls {
+        display: none; }
+        #page #content #demo_video .controls .play, #page #content #demo_video .controls .stop {
+          background-color: #222222;
+          opacity: 0.6;
+          text-indent: -10000px;
+          position: absolute;
+          bottom: 5px;
+          left: 5px;
+          width: 48px;
+          height: 30px;
+          padding: 0; }
+          #page #content #demo_video .controls .play:hover, #page #content #demo_video .controls .stop:hover {
+            opacity: 1;
+            border: 0; }
+        #page #content #demo_video .controls .play {
+          display: none;
+          background: #222222 url(/images/play.png) 0 0 no-repeat; }
+        #page #content #demo_video .controls .stop {
+          background: #222222 url(/images/stop.png) 0 0 no-repeat; }
   #page dl dt {
     font-size: 12px;
     font-weight: bold;
@@ -681,7 +701,7 @@ body {
 
 #container {
   position: absolute;
-  top: 45px;
+  top: 41px;
   left: 0;
   padding: 6px 0 0 0;
   background-color: white;
