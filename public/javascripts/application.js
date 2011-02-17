@@ -148,7 +148,9 @@ function add_task_to_upcoming(task) {
     '<span class="date" data-full-date="'+task.full_date+'" style="color: #'+task.list_color+'">'+task.due_date+'</span>' + "\n" +
     ""+task.title+'</span>' +
     '</li>';
-    $('#upcoming_tasks').append(li_html);
+    var li_elem = $(li_html)
+    $('#upcoming_tasks').append(li_elem);
+    li_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
   sort_list('#upcoming_tasks');
@@ -397,5 +399,3 @@ $(document).ready(function(){
   })
 
 });
-
-
