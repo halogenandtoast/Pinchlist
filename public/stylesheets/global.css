@@ -172,7 +172,7 @@ input[type="text"], input[type="password"] {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   float: none; }
-.show .list .list_title input[type="text"] {
+.show .list .list_title #new_list_title {
   background-color: white;
   background-color: rgba(255, 255, 255, 0.4);
   width: auto;
@@ -852,12 +852,25 @@ td.ui-placeholder-highlight {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     position: relative;
-    overflow: hidden;
     background-clip: border-box; }
     .list .list_title:hover {
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
     .list .list_title:active {
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
+    .list .list_title .share {
+      position: absolute;
+      height: auto;
+      width: 200px;
+      right: 40px;
+      top: 2px;
+      z-index: 9000; }
+      .list .list_title .share .share_modal {
+        display: none;
+        background-color: #dddddd;
+        padding: 10px 20px;
+        overflow: hidden;
+        -webkit-border-radius: 2px;
+        -webkit-box-shadow: 0 -1px 1px #555555; }
     .list .list_title .delete {
       background: transparent url(/images/delete.png) 0 0 no-repeat;
       height: 16px;
