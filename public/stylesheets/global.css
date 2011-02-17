@@ -172,7 +172,7 @@ input[type="text"], input[type="password"] {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   float: none; }
-.show .list .list_title #new_list_title {
+.show .list .list_title #new_list_title input[type="text"] {
   background-color: white;
   background-color: rgba(255, 255, 255, 0.4);
   width: auto;
@@ -856,22 +856,82 @@ td.ui-placeholder-highlight {
     background-clip: border-box; }
     .list .list_title:hover {
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
+      .list .list_title:hover .share_link {
+        display: block; }
     .list .list_title:active {
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
-    .list .list_title .share {
+    .list .list_title .share_link {
+      height: 14px;
+      width: 14px;
       position: absolute;
+      top: 8px;
+      right: 50px;
+      text-indent: -10000px;
+      background: url(/images/share.png) 0 0 no-repeat;
+      opacity: 0.5;
+      display: none; }
+      .list .list_title .share_link:hover {
+        opacity: 1; }
+    .list .list_title .share {
+      float: left;
       height: auto;
-      width: 200px;
-      right: 40px;
-      top: 2px;
-      z-index: 9000; }
-      .list .list_title .share .share_modal {
-        display: none;
-        background-color: #dddddd;
-        padding: 10px 20px;
-        overflow: hidden;
-        -webkit-border-radius: 2px;
-        -webkit-box-shadow: 0 -1px 1px #555555; }
+      width: 100%;
+      display: none; }
+      .list .list_title .share:hover {
+        cursor: default !important; }
+      .list .list_title .share form {
+        width: 100%;
+        float: left;
+        margin: -2px 0 0 0; }
+        .list .list_title .share form .input {
+          background-color: white;
+          width: 100%; }
+          .list .list_title .share form .input input[type="text"] {
+            width: 100%;
+            max-width: 280px;
+            float: left;
+            padding: 3px 0;
+            text-indent: 4px;
+            height: 18px;
+            border-top-color: rgba(0, 0, 0, 0.5);
+            font-size: 11px; }
+          .list .list_title .share form .input span {
+            font-size: 11px;
+            color: #cccccc;
+            margin: 2px 0 0 0; }
+      .list .list_title .share ul {
+        float: left;
+        width: 100%;
+        border: none;
+        padding: 8px 0 0 0;
+        margin: 0 0 3px 0; }
+        .list .list_title .share ul:hover {
+          border: none; }
+        .list .list_title .share ul li {
+          color: #eeeeee;
+          color: rgba(255, 255, 255, 0.6);
+          padding: 1px 0 1px 2px;
+          border: none;
+          margin: 0 0 0 1px;
+          cursor: default !important; }
+          .list .list_title .share ul li:hover {
+            background-color: transparent;
+            border: none;
+            margin-top: 0;
+            color: white;
+            color: rgba(255, 255, 255, 0.9); }
+          .list .list_title .share ul li .remove {
+            display: block;
+            float: right;
+            height: 16px;
+            width: 16px;
+            overflow: hidden;
+            text-indent: -10000px;
+            background: transparent url(/images/remove.png) 0 0 no-repeat;
+            opacity: 0.4;
+            margin-top: -1px; }
+            .list .list_title .share ul li .remove:hover {
+              opacity: 0.7; }
     .list .list_title .delete {
       background: transparent url(/images/delete.png) 0 0 no-repeat;
       height: 16px;
