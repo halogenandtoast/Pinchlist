@@ -66,7 +66,7 @@ function list_edit(list_title) {
   list.find('.color_picker').remove();
   var list_title_text = list_title.html();
   var form = $('<form id="new_list_title" />');
-  form.append("<input type='text' name='list[title]' id='list_title' value=\""+list_title_text.replace('"', '&quot;')+"\" />");
+  form.append("<input type='text' name='list[title]' id='list_title' value=\""+list_title_text.replace(/"/g, '&quot;')+"\" />");
   $(form).children('input').bind('keyup',{list_title:list_title_text}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
@@ -113,7 +113,7 @@ function task_edit(task, task_id, prefix) {
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
-  form.append("<input type='text' name='task[title]' id='task_title' value=\""+title_field.replace('"', "&quot;")+"\" />");
+  form.append("<input type='text' name='task[title]' id='task_title' value=\""+title_field.replace(/"/g, "&quot;")+"\" />");
   $(form).children('input').bind('keyup',{task_title:task_title,task_due_date:task_due_date,element:self,prefix:prefix}, function(e) {
     if(e.keyCode == 27) {
       $(this).unbind('keyup');
@@ -143,12 +143,14 @@ function task_edit(task, task_id, prefix) {
 function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
-    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
+    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'" data-list="'+task.list_id+'">' +
     '<span class="task_title">' +
     '<span class="date" data-full-date="'+task.full_date+'" style="color: #'+task.list_color+'">'+task.due_date+'</span>' + "\n" +
     ""+task.title+'</span>' +
     '</li>';
-    $('#upcoming_tasks').append(li_html);
+    var li_elem = $(li_html)
+    $('#upcoming_tasks').append(li_elem);
+    li_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
   sort_list('#upcoming_tasks');
@@ -249,13 +251,17 @@ function setup_single_and_double_click(element, prefix) {
       clear_task_title_form();
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      $("#upcoming_task_"+task_id).toggleClass('completed');
-      $("#task_"+task_id).toggleClass("completed");
+      var upcoming_task_elem = $("#upcoming_task_"+task_id);
+      var task_elem = $("#task_"+task_id);
+      upcoming_task_elem.toggleClass('completed');
+      task_elem.toggleClass("completed");
       if(task.siblings('.completed').length > 0) {
         task.insertBefore(task.siblings('.completed:first'));
       } else {
         task.parent('ul').append(task)
       }
+      task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
+      upcoming_task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
       $(".list:not(.upcoming) ul").sortable('destroy');
       enable_task_sorting();
@@ -402,5 +408,3 @@ $(document).ready(function(){
   })
 
 });
-
-

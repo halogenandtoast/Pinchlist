@@ -801,7 +801,7 @@ td.ui-placeholder-highlight {
           font-size: 11px;
           padding: 4px 0 5px; }
         .list ul li.completed .date {
-          color: #cccccc; }
+          color: #cccccc !important; }
           .list ul li.completed .date:hover {
             cursor: pointer; }
       .list ul li.ui-sortable-helper {
