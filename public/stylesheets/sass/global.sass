@@ -386,22 +386,82 @@ td
     background-clip: border-box
     &:hover
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
+      .share_link
+        display: block
     &:active
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
-    .share
+    .share_link
+      height: 14px
+      width: 14px
       position: absolute
+      top: 8px
+      right: 50px
+      text-indent: -10000px
+      background: url(/images/share.png) 0 0 no-repeat
+      opacity: .5
+      display: none
+      &:hover
+        opacity: 1
+    .share
+      float: left
       height: auto
-      width: 200px
-      right: 40px
-      top: 2px
-      z-index: 9000
-      .share_modal
-        display: none
-        background-color: #ddd
-        padding: 10px 20px
-        overflow: hidden
-        -webkit-border-radius: 2px
-        -webkit-box-shadow: 0 -1px 1px #555
+      width: 100%
+      display: none
+      &:hover
+        cursor: default !important
+      form
+        width: 100%
+        float: left
+        margin: -2px 0 0 0
+        .input
+          background-color: #fff
+          width: 100%
+          input[type="text"]
+            width: 100%
+            max-width: 280px
+            float: left
+            padding: 3px 0
+            text-indent: 4px
+            height: 18px
+            border-top-color: rgba(0,0,0, .5)
+            font-size: 11px
+          span
+            font-size: 11px
+            color: #ccc
+            margin: 2px 0 0 0
+      ul
+        float: left
+        width: 100%
+        border: none
+        padding: 8px 0 0 0
+        margin: 0 0 3px 0
+        &:hover
+          border: none
+        li
+          color: #eee
+          color: rgba(255, 255, 255, .6)
+          padding: 1px 0 1px 2px
+          border: none
+          margin: 0 0 0 1px
+          cursor: default !important
+          &:hover
+            background-color: transparent
+            border: none
+            margin-top: 0
+            color: #fff
+            color: rgba(255, 255, 255, .9)
+          .remove
+            display: block
+            float: right
+            height: 16px
+            width: 16px
+            overflow: hidden
+            text-indent: -10000px
+            background: transparent url(/images/remove.png) 0 0 no-repeat
+            opacity: .4
+            margin-top: -1px
+            &:hover
+              opacity: .7
     .delete
       background: transparent url(/images/delete.png) 0 0 no-repeat
       height: 16px

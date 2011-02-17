@@ -382,10 +382,13 @@ $(document).ready(function(){
     return false;
   });
 
+  //show sharing modal
 
   $(".share_link").click(function () {
-    $(".share_modal").show();
+    $(this).next(".share").toggle();
   });
+
+  
 
   //load video.js
   $("video").VideoJS({

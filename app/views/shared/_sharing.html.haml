@@ -1,9 +1,21 @@
 .share
-  = link_to 'share', '#', :class => "share_link"
-  .share_modal
-    %form
+  %form
+    .input
+      %span Enter email address of collaborator
       %input{:type => "text"}
-      %ul
-        %li
-          John Jingleheimer
-          %a.remove remove
+  %ul
+    %li
+      John.Jingleheimer@gmail.com
+      %a.remove{:href => "#"} remove
+    %li
+      halogenandtoast@gmail.com
+      %a.remove{:href => "#"} remove
+    %li
+      thisisaverylongemail.@hotmail.com
+      %a.remove{:href => "#"} remove
+    %li
+      short@yahoo.com
+      %a.remove{:href => "#"} remove
+    %li
+      bobama@unitedstatesofamerica.com
+      %a.remove{:href => "#"} remove
