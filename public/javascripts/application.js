@@ -395,6 +395,11 @@ $(document).ready(function(){
     return false;
   });
 
+
+  $(".share_link").click(function () {
+    $(".share_modal").show();
+  });
+
   //load video.js
   $("video").VideoJS({
     controlsHiding: false,
