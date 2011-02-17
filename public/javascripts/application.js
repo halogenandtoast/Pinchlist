@@ -143,7 +143,7 @@ function task_edit(task, task_id, prefix) {
 function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
-    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'">' +
+    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'" data-list="'+task.list_id+'">' +
     '<span class="task_title">' +
     '<span class="date" data-full-date="'+task.full_date+'" style="color: #'+task.list_color+'">'+task.due_date+'</span>' + "\n" +
     ""+task.title+'</span>' +
