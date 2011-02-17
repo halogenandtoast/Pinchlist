@@ -251,13 +251,17 @@ function setup_single_and_double_click(element, prefix) {
       clear_task_title_form();
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      $("#upcoming_task_"+task_id).toggleClass('completed');
-      $("#task_"+task_id).toggleClass("completed");
+      var upcoming_task_elem = $("#upcoming_task_"+task_id);
+      var task_elem = $("#task_"+task_id);
+      upcoming_task_elem.toggleClass('completed');
+      task_elem.toggleClass("completed");
       if(task.siblings('.completed').length > 0) {
         task.insertBefore(task.siblings('.completed:first'));
       } else {
         task.parent('ul').append(task)
       }
+      task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
+      upcoming_task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
       $(".list:not(.upcoming) ul").sortable('destroy');
       enable_task_sorting();
