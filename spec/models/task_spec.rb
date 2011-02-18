@@ -56,6 +56,12 @@ describe Task, 'whose title has a due date' do
     its(:due_date) { should == "10/20/#{Time.now.year}".to_date }
     its(:title) { should == 'Build foo' }
   end
+
+  context 'but starts with a !' do
+    subject { Factory(:task, :title => "!Build @10/20 foo") }
+    its(:due_date) { should == nil }
+    its(:title) { should == '!Build @10/20 foo' }
+  end
 end
 
 describe Task, 'whose title has an invalid date' do
@@ -106,4 +112,10 @@ describe Task, '#list_color' do
   let!(:list) { Factory(:list) }
   subject { Factory(:task, :list => list) }
   its(:list_color) { should == list.color }
+end
+
+describe Task, '#display_title' do
+  context "title that starts with !"
+  subject { Factory(:task, :title => "!foo 25th") }
+  its(:display_title) { should == "foo 25th" }
 end

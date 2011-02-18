@@ -40,17 +40,33 @@ Feature: In order to track what needs to be done
     And I see the upcoming task "Learn to ride a shark" has a due date color of "009000"
 
   @javascript
+  Scenario: Adding a task that escapes the due date
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    When I am on the dashboard page
+    And I fill in "My List"'s task title with "!@10/20 Learn to ride a shark"
+    And I submit "My List"'s task form
+    Then I should see the task "@10/20 Learn to ride a shark"
+    Then I should not see the task "!@10/20 Learn to ride a shark"
+    When I am on the dashboard page
+    Then I should see the task "@10/20 Learn to ride a shark"
+    Then I should not see the task "!@10/20 Learn to ride a shark"
+
+  @javascript
   Scenario: Adding a task with more than 255 characters
     Given I am signed in as "user@example.com/password"
     And the following list exists:
       | title   | user                    |
       | My List | email: user@example.com |
     When I am on the dashboard page
-    And I fill in "My List"'s task title with 400 "!"
+    And I fill in "My List"'s task title with 400 "a"
     And I submit "My List"'s task form
-    Then I should see the task with 400 "!"
+    Then I should see the task with 400 "a"
     When I am on the dashboard page
-    Then I should see the task with 400 "!"
+    Then I should see the task with 400 "a"
 
   @javascript
   Scenario: New tasks appear before completed tasks

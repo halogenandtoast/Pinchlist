@@ -15,9 +15,13 @@ class Task < ActiveRecord::Base
 
   def title=(title)
     unless title.empty?
-      parse_date_format(title)
+      parse_date_format(title) unless title =~ /^!/
     end
     write_attribute(:title, remove_date_format(title))
+  end
+
+  def display_title
+    title.gsub(/^!/, '')
   end
 
   def new_position=(position)
@@ -29,7 +33,7 @@ class Task < ActiveRecord::Base
   end
 
   def as_json(options)
-    {:task => {:id => id, :title => title, :list_id => list_id, :list_color => list_color}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
+    {:task => {:id => id, :display_title => display_title, :title => title, :list_id => list_id, :list_color => list_color}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
   end
 
   private

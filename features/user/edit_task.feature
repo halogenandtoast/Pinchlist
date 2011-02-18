@@ -119,3 +119,18 @@ Feature: Edit a task
     And I submit "My List"'s task form
     Then I should see the upcoming task "Learn to ride a shark" before "Foo"
     And I should see the upcoming task "Foo" before "Learn to ride a jellyfish"
+
+  @javascript
+  Scenario: Editing a task that escapes the due date
+    Given today is "October 16, 2010"
+    And I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    And the following task exists:
+      | list           | title     |
+      | title: My List | !Foo 25th |
+    When I am on the dashboard page
+    And I double click "My List"'s task "!Foo 25th"
+    Then the title being edited should be "!Foo 25th"
+

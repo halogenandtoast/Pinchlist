@@ -92,3 +92,6 @@ Then /^I should see the upcoming task "([^"]*)" before "([^"]*)"$/ do |task_titl
   task_2 = Task.find_by_title!(task_title_2)
   page.should have_css("#upcoming_task_#{task_1.id} ~ #upcoming_task_#{task_2.id}")
 end
+
+Then /^the title being edited should be "([^"]*)"$/ do |title|
+end

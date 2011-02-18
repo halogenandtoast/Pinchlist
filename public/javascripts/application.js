@@ -97,6 +97,10 @@ function list_edit(list_title) {
   form.children('input:first').focus();
 }
 
+function title_for_display(title) {
+  return title.gsub(/^!/, '')
+}
+
 var clearing = false;
 function task_edit(task, task_id, prefix) {
   if($('#new_task_title').length != 0) {
@@ -109,7 +113,7 @@ function task_edit(task, task_id, prefix) {
   }
   var self = task;
   var task_due_date = $(self).find("span.date").detach().text().replace(/^\s+|\s+$/g, '');
-  var task_title = $(self).find("span.task_title").text().replace(/^\s+|\s+$/g, '');
+  var task_title = $(self).data("edit-title").replace(/^\s+|\s+$/g, '');
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
@@ -123,7 +127,7 @@ function task_edit(task, task_id, prefix) {
       if(task_due_date != null) {
         span_html += '<span class="date">'+task_due_date+'</span>'+"\n";
       }
-      span_html += task_title+'</span>';
+      span_html += title_for_display(task_title)+'</span>';
       $(this).parent('form').replaceWith(span_html);
 
       setup_single_and_double_click($(e.data.element).find('span.task_title'), e.data.prefix);
@@ -193,12 +197,13 @@ function set_task_title_and_date(e) {
       var form = $('#new_task_title');
       var upcoming = is_upcoming(form);
       var li = $(form).parent('li');
+      li.data('edit-title', task.title);
       if(task.due_date != null) {
         show_upcoming_list();
       }
       if(upcoming) {
         var task_id = li.attr('id').split('_')[2];
-        $('#task_'+task_id+' .task_title').html(task.title);
+        $('#task_'+task_id+' .task_title').html(task.display_title);
         if(task.due_date != null) {
           $('#task_'+task_id+' .task_title').prepend("<span class='date'>"+task.due_date+"</span>\n");
         } else {
@@ -210,7 +215,7 @@ function set_task_title_and_date(e) {
         var task_id = li.attr('id').split('_')[1];
         if(task.due_date != null) {
           add_task_to_upcoming(task);
-          upcoming_html = '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n"+task.title;
+          upcoming_html = '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n"+task.display_title;
           $('#upcoming_task_'+task_id+' .task_title').html(upcoming_html);
         } else {
           if($('#upcoming_task_'+task_id).length > 0) {
@@ -227,7 +232,7 @@ function set_task_title_and_date(e) {
           span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
         }
       }
-      span_html += data.task.title+'</span>';
+      span_html += data.task.display_title+'</span>';
 
       form.replaceWith(span_html);
       setup_single_and_double_click(li.find('span.task_title'), upcoming ? "upcoming" : "");
