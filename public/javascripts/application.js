@@ -260,10 +260,17 @@ function setup_single_and_double_click(element, prefix) {
       var task_elem = $("#task_"+task_id);
       upcoming_task_elem.toggleClass('completed');
       task_elem.toggleClass("completed");
-      if(task.siblings('.completed').length > 0) {
-        task.insertBefore(task.siblings('.completed:first'));
+      if(task_elem.siblings('.completed').length > 0) {
+        task_elem.insertBefore(task_elem.siblings('.completed:first'));
       } else {
-        task.parent('ul').append(task)
+        task_elem.parent('ul').append(task_elem)
+      }
+      if(upcoming_task_elem) {
+        if(upcoming_task_elem.siblings('.completed').length > 0) {
+          upcoming_task_elem.insertBefore(upcoming_task_elem.siblings('.completed:first'));
+        } else {
+          upcoming_task_elem.parent('ul').append(upcoming_task_elem)
+        }
       }
       task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
       upcoming_task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
