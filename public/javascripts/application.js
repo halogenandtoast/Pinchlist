@@ -271,6 +271,7 @@ function setup_single_and_double_click(element, prefix) {
         } else {
           upcoming_task_elem.parent('ul').append(upcoming_task_elem)
         }
+        sort_list('#upcoming_tasks');
       }
       task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
       upcoming_task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
