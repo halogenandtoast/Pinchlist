@@ -154,7 +154,7 @@ function add_task_to_upcoming(task) {
     '</li>';
     var li_elem = $(li_html)
     $('#upcoming_tasks').append(li_elem);
-    li_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
+    li_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
     setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
   sort_list('#upcoming_tasks');
@@ -273,8 +273,8 @@ function setup_single_and_double_click(element, prefix) {
         }
         sort_list('#upcoming_tasks');
       }
-      task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
-      upcoming_task_elem.effect('highlight', {color: "#D6F5D6"}, 3000);
+      task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
+      upcoming_task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
       $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
       $(".list:not(.upcoming) ul").sortable('destroy');
       enable_task_sorting();

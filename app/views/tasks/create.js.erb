@@ -4,7 +4,7 @@ if($('#list_<%=@list.id%> ul li.completed').length > 0) {
 } else {
   $('#list_<%= @list.id %> ul').append(task_el);
 }
-task_el.effect('highlight', {color: "#D6F5D6"}, 3000);
+task_el.effect('highlight', {color: "#ACF4C8"}, 1000);
 $('#new_task_title_<%= @list.id %>').val("");
 setup_single_and_double_click($('#task_<%= @task.id %> span.task_title'), "");
 setup_single_and_double_click($('#task_<%= @task.id %> span.date'), "");
