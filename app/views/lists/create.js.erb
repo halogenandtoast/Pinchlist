@@ -1,4 +1,4 @@
-$('table tr').append("<%= escape_javascript(render(@list)) %>");
+$('table tr').append("<%= escape_javascript(render(current_user.proxy_for(@list))) %>");
 $('.picker').colorPicker();
 $('#new_task_title_<%= @list.id %>').focus();
 $('#list_title').val("");

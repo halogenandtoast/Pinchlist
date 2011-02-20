@@ -2,17 +2,22 @@ Factory.sequence :email do |n|
   "user#{n}@example.com"
 end
 
-Factory.define :user do |user|
-  user.email                 { Factory.next :email }
-  user.password              { "password" }
-  user.password_confirmation { "password" }
+Factory.define :user do |factory|
+  factory.email                 { Factory.next :email }
+  factory.password              { "password" }
+  factory.password_confirmation { "password" }
 end
 
-Factory.define :list do |list|
-  list.association :user
+Factory.define :list do |factory|
+  factory.association :user
 end
 
-Factory.define :task do |task|
-  task.title { "Task Title" }
-  task.association :list
+Factory.define :list_proxy do |factory|
+  factory.association :list
+  factory.association :user
+end
+
+Factory.define :task do |factory|
+  factory.title { "Task Title" }
+  factory.association :list
 end

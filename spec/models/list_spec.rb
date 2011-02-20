@@ -3,28 +3,13 @@ require 'spec_helper'
 describe List do
   it { should belong_to :user }
   it { should have_many(:tasks).dependent(:destroy) }
-
-  context 'the first list' do
-    it 'should start at order 1' do
-      list = Factory(:list)
-      list.position.should == 1
-    end
-  end
-
-  context 'additional lists' do
-    it 'should start at the correct order' do
-      user = Factory(:user)
-      first, second, third = [*1..3].map{|i| Factory(:list, :user => user) }
-      first.position.should == 1
-      second.position.should == 2
-      third.position.should == 3
-    end
-  end
+  it { should have_many(:proxies) }
 
   context 'when saved' do
-    it 'receives a color' do
-      list = Factory(:list)
-      list.color.should_not be_nil
+    it 'creates a list proxy for the user' do
+      user = Factory(:user)
+      list = Factory(:list, :user => user)
+      list.proxies.first.user.should == user
     end
   end
 
@@ -35,6 +20,30 @@ describe List do
         subject.title = ""
         subject.title.should == "List #{subject.id}"
       end
+    end
+  end
+end
+
+describe List, '#check_for_proxies' do
+  subject { Factory(:list) }
+  context 'with more proxies' do
+    before do
+      subject.stubs(:proxies).returns([1])
+      subject.stubs(:destroy)
+    end
+    it "does not destroy the list" do
+      subject.check_for_proxies
+      subject.should have_received(:destroy).never
+    end
+  end
+  context 'without more proxies' do
+    before do
+      subject.stubs(:proxies).returns([])
+      subject.stubs(:destroy)
+    end
+    it "destroys the list" do
+      subject.check_for_proxies
+      subject.should have_received(:destroy)
     end
   end
 end

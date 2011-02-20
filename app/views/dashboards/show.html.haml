@@ -25,4 +25,4 @@
                   %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color}"}
                     = task.due_date.strftime("%m/%d")
                   = task.display_title
-      = render @lists
+      = render @list_proxies

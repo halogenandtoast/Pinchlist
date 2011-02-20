@@ -1,0 +1,12 @@
+%td[list_proxy.list]
+  .list_title{:"data-background-color" => list_proxy.color, :style => "background-color: ##{list_proxy.color};"}
+    %h3= list_proxy.title
+    = link_to 'share', '#', :class => "share_link"
+    = render 'shared/sharing'
+    .picker
+    = link_to 'delete list', list_proxy_path(:list_id => list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{list_proxy.title}?", :class => 'delete', :tabindex => "-1"
+  = form_for [list_proxy.list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{list_proxy.list_id}" } do |form|
+    = form.text_field :title, :id => "new_task_title_#{list_proxy.list_id}", :autocomplete => "off", :maxlength => "500"
+  %ul
+    = render list_proxy.tasks
+  = link_to 'view all', list_proxy_path(list_proxy), :class => "archive_link", :tabindex => "-1"

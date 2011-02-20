@@ -1,22 +1,24 @@
 class List < ActiveRecord::Base
   belongs_to :user
   has_many :tasks, :dependent => :destroy
-  before_create :set_color
+  has_many :proxies, :class_name => "ListProxy"
+
+  after_create :create_proxy
+
   scope :by_task_status, order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
   scope :current_tasks, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
-  acts_as_list :scope => :user
-
-  def new_position=(position)
-    self.insert_at(position)
-  end
 
   def title=(title)
     write_attribute(:title, title.blank? ? "List #{self.id}" : title)
   end
 
+  def check_for_proxies
+    destroy if proxies.empty?
+  end
+
   private
 
-  def set_color
-    self.color ||= "%06x" % (rand * 0xffffff)
+  def create_proxy
+    proxies.create(:user => user)
   end
 end

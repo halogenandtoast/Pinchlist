@@ -21,9 +21,9 @@ Feature: Edit a list
   Scenario: Reordering a list
     Given I am signed in as "user@example.com/password"
     And the following lists exist:
-      | title         | user                    | position |
-      | My List       | email: user@example.com | 1        |
-      | My Other List | email: user@example.com | 2        |
+      | title         | user                    |
+      | My List       | email: user@example.com |
+      | My Other List | email: user@example.com |
     When I go to the dashboard page
     And I drag the list "My List" over "My Other List"
     When I go to the dashboard page
