@@ -108,10 +108,14 @@ describe Task, 'completed' do
   after { Timecop.return }
 end
 
-describe Task, '#list_color' do
+describe Task, '#list_color_for' do
   let!(:list) { Factory(:list) }
+  let!(:list_proxy) { list.proxies.first }
+  let!(:user) { list.user }
   subject { Factory(:task, :list => list) }
-  its(:list_color) { should == list.color }
+  it "should retrieve the color for the user" do
+    subject.list_color_for(user).should == list_proxy.color
+  end
 end
 
 describe Task, '#display_title' do

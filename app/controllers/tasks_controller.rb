@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     task = current_user.tasks.find(params[:id])
     task.update_attributes(params[:task])
     respond_to do |format|
-      format.js { render :json => task }
+      format.js { render :json => task.to_json(:user => current_user) }
     end
   end
 end

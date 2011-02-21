@@ -28,12 +28,13 @@ class Task < ActiveRecord::Base
     self.insert_at(position)
   end
 
-  def list_color
-    list.color
+  def list_color_for(user)
+    user.proxy_for(list).color
   end
 
   def as_json(options)
-    {:task => {:id => id, :display_title => display_title, :title => title, :list_id => list_id, :list_color => list_color}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
+    user = options.delete(:user)
+    {:task => {:id => id, :display_title => display_title, :title => title, :list_id => list_id, :list_color => list_color_for(user)}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
   end
 
   private

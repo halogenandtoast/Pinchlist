@@ -48,3 +48,22 @@ describe ListProxy, "#title" do
   subject { Factory(:list_proxy, :list => list) }
   its(:title) { should == list.title }
 end
+
+describe ListProxy, ".by_position" do
+  let!(:user) { Factory(:user) }
+
+  let!(:second) { Factory(:list, :user => user).proxies.first }
+  let!(:third) { Factory(:list, :user => user).proxies.first }
+  let!(:first) { Factory(:list, :user => user).proxies.first }
+
+  before do
+    first.update_attributes(:new_position => 1)
+    second.update_attributes(:new_position => 2)
+  end
+
+  it "returns them in the correct position" do
+    [first,second,third].map(&:reload)
+    ListProxy.by_position.should == [first, second, third]
+  end
+end
+

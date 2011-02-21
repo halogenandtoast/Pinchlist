@@ -6,6 +6,10 @@ class ListProxy < ActiveRecord::Base
   after_destroy :notify_list
   acts_as_list :scope => :user
 
+  def self.by_position
+    order("position ASC")
+  end
+
   def new_position=(position)
     self.insert_at(position)
   end

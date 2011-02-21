@@ -8,7 +8,6 @@ class ListProxiesController < ApplicationController
   end
 
   def destroy
-    debugger
     @list_proxy = current_user.proxy_for(params[:list_id])
     @list_proxy.destroy
     redirect_to dashboard_path, :notice => 'List deleted.'
