@@ -15,7 +15,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = current_user.lists.find(params[:id], :readonly => false)
+    @list = current_user.lists.find(params[:id])
     @list.update_attributes(params[:list])
     respond_to do |format|
       format.js { render :json => @list }
