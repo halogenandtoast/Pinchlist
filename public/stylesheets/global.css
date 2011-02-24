@@ -677,7 +677,8 @@ body {
         outline: none; }
   #header ul {
     position: absolute;
-    width: 200px;
+    min-width: 200px;
+    max-width: 300px;
     margin: 15px 10px 0 0;
     top: 0;
     right: 0;
