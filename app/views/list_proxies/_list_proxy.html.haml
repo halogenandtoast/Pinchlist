@@ -8,5 +8,5 @@
   = form_for [list_proxy.list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{list_proxy.list_id}" } do |form|
     = form.text_field :title, :id => "new_task_title_#{list_proxy.list_id}", :autocomplete => "off", :maxlength => "500"
   %ul
-    = render list_proxy.tasks
-  = link_to 'view all', list_proxy_path(list_proxy), :class => "archive_link", :tabindex => "-1"
+    = render list_proxy.tasks.filtered(filter).by_position
+  = link_to 'view all', list_archive_path(:list_id => list_proxy.list_id), :class => "archive_link", :tabindex => "-1"

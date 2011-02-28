@@ -10,9 +10,10 @@ Pinchlist::Application.routes.draw do
   devise_for :users, :controller => { :registrations => "registrations" }
   root :to => "dashboards#show"
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard
-  resources :lists, :only => [:show, :create, :update, :destroy] do
+  resources :lists, :only => [:create, :update, :destroy] do
     resources :tasks, :only => [:create, :update], :shallow => true
     resource :proxy, :controller => :list_proxies, :only => [:update, :destroy]
+    resource :archive, :controller => :list_proxies, :only => [:show]
   end
 
   resources :tasks, :only => [:update]

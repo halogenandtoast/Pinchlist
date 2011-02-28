@@ -3,8 +3,8 @@ class DashboardsController < ApplicationController
 
   def show
     @list = List.new
-    @list_proxies = current_user.list_proxies.by_position.includes(:list)
-    # @lists = current_user.lists.includes(:tasks).current_tasks.by_task_status
+    # TODO: Clean up
+    @list_proxies = current_user.list_proxies.by_position
     @upcoming_tasks = current_user.tasks.upcoming.current.includes(:list)
   end
 end

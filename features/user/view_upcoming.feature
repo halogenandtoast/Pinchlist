@@ -29,8 +29,8 @@ Feature: View upcoming tasks
       | title  | user                    |
       | First  | email: user@example.com |
     And the following tasks exist:
-      | title          | list          | due date   |
-      | Something      | title: First  | 2010-10-20 |
+      | title            | list         |
+      | @10/20 Something | title: First |
     When I am on the dashboard page
     And I double click the upcoming task "Something"
     And I fill in the upcoming title for "Something" with "Something without a date"
@@ -63,10 +63,10 @@ Feature: View upcoming tasks
       | First  | email: user@example.com |
       | Second | email: user@example.com |
     And the following tasks exist:
-      | title          | list          | due date   |
-      | Something      | title: First  | 2010-10-20 |
-      | Something else | title: Second | 2010-10-21 |
-      | One more thing | title: First  | 2010-10-19 |
+      | title          | list          |
+      | @10/20 Something      | title: First  |
+      | @10/21 Something else | title: Second |
+      | @10/19 One more thing | title: First  |
       When I am on the dashboard page
       Then I should see the following upcoming tasks in order:
         | One more thing |
@@ -81,10 +81,10 @@ Feature: View upcoming tasks
       | First  | email: user@example.com |
       | Second | email: user@example.com |
     And the following tasks exist:
-      | title          | list          | due date   | completed |
-      | Something      | title: First  | 2010-10-20 | true      |
-      | Something else | title: Second | 2010-10-21 | false     |
-      | One more thing | title: First  | 2010-10-19 | false     |
+      | title          | list          | completed |
+      | @10/20 Something      | title: First  | true      |
+      | @10/21 Something else | title: Second | false     |
+      | @10/19 One more thing | title: First  | false     |
       When I am on the dashboard page
       Then I should see the following upcoming tasks in order:
         | One more thing |
@@ -94,11 +94,11 @@ Feature: View upcoming tasks
   Scenario: Upcoming tasks have colors
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following list exists:
-      | title    | user                    | color  |
-      | Colorful | email: user@example.com | FF00FF |
+    And the following list proxy exists:
+      | list            | user                    | color  |
+      | title: Colorful | email: user@example.com | FF00FF |
     And the following task exists:
-      | title  | list            | due date   |
-      | A task | title: Colorful | 2010-10-20 |
+      | title         | list            |
+      | @10/20 A task | title: Colorful |
     When I am on the dashboard page
     Then I see the upcoming task "A task" has a due date color of "FF00FF"

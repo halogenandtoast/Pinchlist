@@ -11,8 +11,8 @@ Feature: Marking a task complete
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title        | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I click on the upcoming task "Ride a shark"
     Then I should see the completed upcoming task "Ride a shark"
@@ -29,8 +29,8 @@ Feature: Marking a task complete
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title        | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I click on the task "Ride a shark"
     Then I should see the completed upcoming task "Ride a shark"

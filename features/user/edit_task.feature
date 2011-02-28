@@ -13,8 +13,8 @@ Feature: Edit a task
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title               | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I double click the upcoming task "Ride a shark"
     And I fill in the upcoming title for "Ride a shark" with "@10/20 Lasso a shark"
@@ -29,12 +29,12 @@ Feature: Edit a task
   Scenario: Renaming a task in the upcoming list and changing it's due date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following list exists:
-      | title   | user                    | color  |
-      | My List | email: user@example.com | 009000 |
+    And the following list proxy exists:
+      | list           | user                    | color  |
+      | title: My List | email: user@example.com | 009000 |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title        | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I double click the upcoming task "Ride a shark"
     Then the upcoming title field for "Ride a shark" should contain "@10/20 Ride a shark"
@@ -55,8 +55,8 @@ Feature: Edit a task
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title        | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I double click "My List"'s task "Ride a shark"
     And I fill in the title for "Ride a shark" with "@10/20 Lasso a shark"
@@ -75,8 +75,8 @@ Feature: Edit a task
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           | due date   |
-      | Ride a shark | title: My List | 2010-10-20 |
+      | title        | list           |
+      | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I double click "My List"'s task "Ride a shark"
     And I fill in the title for "Ride a shark" with "@10/20 Lasso a shark"
@@ -106,12 +106,12 @@ Feature: Edit a task
   Scenario: Upcoming tasks should sort by date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following lists exist:
-      | title         | user                    | position |
-      | My List       | email: user@example.com | 1        |
+    And the following list proxy exists:
+      | list           | user                    | position |
+      | title: My List | email: user@example.com | 1        |
     And the following tasks exist:
-      | list           | title | due date         |
-      | title: My List | Foo   | October 20, 2010 |
+      | list           | title      |
+      | title: My List | @10/20 Foo |
     When I go to the dashboard page
     And I fill in "My List"'s task title with "@10/19 Learn to ride a shark"
     And I submit "My List"'s task form

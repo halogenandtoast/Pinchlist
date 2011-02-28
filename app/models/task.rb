@@ -5,13 +5,29 @@ class Task < ActiveRecord::Base
 
   belongs_to :list
   validates_presence_of :title, :on => :create
-  before_update :set_completed_at
+  before_update :set_completed_attributes
+  after_update :reposition
   after_save :destroy_on_empty_title
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
-  scope :current, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
+  scope :completed, where(:completed => true)
   scope :by_status, order("tasks.completed ASC, tasks.position ASC")
   acts_as_list :scope => :list
+
+  def self.by_position
+    order("tasks.position ASC")
+  end
+
+  def self.filtered(filter)
+    case filter
+    when :current
+      current
+    end
+  end
+
+  def self.current
+    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
+  end
 
   def title=(title)
     unless title.empty?
@@ -58,12 +74,25 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def set_completed_at
+  def set_completed_attributes
     unless destroyed?
       if self.completed && self.completed_changed?
         self.completed_at = Date.today
-      else
+      elsif self.completed_changed?
         self.completed_at = nil
+      end
+    end
+  end
+
+  def reposition
+    unless destroyed?
+      if self.completed && self.completed_changed?
+        reload
+        if min = list.tasks.completed.where("id <> ?", self.id).minimum(:position)
+          insert_at(min-1)
+        else
+          move_to_bottom
+        end
       end
     end
   end

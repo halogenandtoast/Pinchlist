@@ -50,9 +50,9 @@ Feature: Edit a list
   Scenario: Changing the color of a list with a new task
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following lists exist:
-      | title   | user                    | color  |
-      | My List | email: user@example.com | 009000 |
+    And the following list proxy exists:
+      | list           | user                    | color  |
+      | title: My List | email: user@example.com | 009000 |
     When I go to the dashboard page
     And I fill in "My List"'s task title with "@10/20 My Task"
     And I submit "My List"'s task form

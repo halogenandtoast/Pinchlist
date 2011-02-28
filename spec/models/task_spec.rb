@@ -105,6 +105,23 @@ describe Task, 'completed' do
     subject.update_attributes({:completed => true})
     subject.completed_at.should == "2010-10-16".to_date
   end
+  context "position" do
+    let!(:user) { subject.list.user }
+    before { 2.times { Factory(:task, :list => subject.list) } }
+    context "with other completed tasks" do
+      before { 2.times { Factory(:task, :list => subject.list, :completed => true) } }
+      it 'is in the correct position' do
+        subject.update_attributes(:completed => true)
+        subject.position.should == 3
+      end
+    end
+    context "without other completed tasks" do
+      it 'is in the correct position' do
+        subject.update_attributes(:completed => true)
+        subject.position.should == 3
+      end
+    end
+  end
   after { Timecop.return }
 end
 
@@ -122,4 +139,21 @@ describe Task, '#display_title' do
   context "title that starts with !"
   subject { Factory(:task, :title => "!foo 25th") }
   its(:display_title) { should == "foo 25th" }
+end
+
+describe Task, '.filtered' do
+  before { Task.stubs(:current) }
+  context "when none" do
+    it "does not call additional filters" do
+      Task.filtered(:none)
+      Task.should have_received(:current).never
+    end
+  end
+
+  context "when current" do
+    it "calls the current filter" do
+      Task.filtered(:current)
+      Task.should have_received(:current)
+    end
+  end
 end

@@ -10,12 +10,12 @@ Feature: Viewing list archive
       | title   | user                    |
       | My List | email: user@example.com |
     And the following tasks exist:
-      | title             | list           | due date   | completed |
-      | Something         | title: My List | 2010-10-20 | true      |
-      | Something else    | title: My List | 2010-10-21 | false     |
-      | Finished          | title: My List | 2010-10-08 | true      |
-      | One more thing    | title: My List | 2010-10-19 | false     |
-      | And another thing | title: My List |            | false     |
+      | title                 | list           | completed |
+      | @10/20 Something      | title: My List | true      |
+      | @10/21 Something else | title: My List | false     |
+      | @10/08 Finished       | title: My List | true      |
+      | @10/19 One more thing | title: My List | false     |
+      | And another thing     | title: My List | false     |
       When I am on the dashboard page
       And I follow the archive link for "My List"
       Then I should see the following "My List" tasks in order:

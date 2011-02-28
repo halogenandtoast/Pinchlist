@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe User do
-  it { should have_many(:tasks).through(:lists) }
   it { should have_many(:list_proxies) }
   it { should have_many(:lists).through(:list_proxies) }
 end
@@ -26,3 +25,14 @@ describe User, '#proxy_for' do
   end
 end
 
+describe User, "#tasks" do
+  subject { Factory(:user) }
+  let!(:list) { Factory(:list, :user => subject) }
+  let!(:tasks) { 3.times.map { Factory(:task, :list => list) } }
+  before do
+    3.times { Factory(:task) }
+  end
+  it "returns the correct tasks" do
+    subject.tasks.to_a =~ tasks
+  end
+end

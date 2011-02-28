@@ -320,8 +320,8 @@ function setup_color_pickers() {
       $('li[data-list="'+list_id+'"] .date').css('color', color);
 
       $.post(
-        '/lists/'+list_id,
-        {'_method':'PUT', 'list': {'color': color.substring(1)}},
+        '/lists/'+list_id+'/proxy',
+        {'_method':'PUT', 'list_proxy': {'color': color.substring(1)}},
         function(data) {},
         "json"
       );
