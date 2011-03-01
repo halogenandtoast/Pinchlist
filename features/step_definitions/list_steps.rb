@@ -47,7 +47,7 @@ end
 
 When /^I submit the list title form for "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
-  page.evaluate_script %{ $('#list_#{list.id} .list_title form').trigger('submit') }
+  page.evaluate_script %{ $('#list_#{list.id} .list_title form#new_list_title').trigger('submit') }
 end
 
 When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2|
