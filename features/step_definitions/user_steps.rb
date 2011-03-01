@@ -12,7 +12,7 @@ Given /^I sign in as "(.*)\/(.*)"$/ do |email, password|
 end
 
 When /^I sign out$/ do
-  When %{I follow "Sign Out"}
+  visit("/users/sign_out")
 end
 
 Given /^I am signed in as "(.*)\/(.*)"$/ do |email, password|
