@@ -2,6 +2,7 @@ class List < ActiveRecord::Base
   belongs_to :user
   has_many :tasks, :dependent => :destroy
   has_many :proxies, :class_name => "ListProxy"
+  has_many :shared_users, :class_name => "User", :source => :user, :through => :proxies
 
   after_create :create_proxy
 

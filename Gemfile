@@ -37,4 +37,5 @@ group :test do
   gem 'launchy'    # So you can do Then show me the page
   gem 'factory_girl_rails'
   gem 'shoulda', :git => 'git://github.com/thoughtbot/shoulda.git'
+  gem 'email_spec'
 end

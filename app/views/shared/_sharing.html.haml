@@ -1,21 +1,11 @@
 .share
-  %form
+  = form_tag(list_shares_path(list), :method => :post, :remote => true, :id => "share_form") do
     .input
       %span Enter an email address
-      %input{:type => "text"}
-  %ul
-    %li
-      John.Jingleheimer@gmail.com
-      %a.remove{:href => "#"} remove
-    %li
-      halogenandtoast@gmail.com
-      %a.remove{:href => "#"} remove
-    %li
-      thisisaverylongemail.@hotm...
-      %a.remove{:href => "#"} remove
-    %li
-      short@yahoo.com
-      %a.remove{:href => "#"} remove
-    %li
-      bobama@unitedstatesofamer...
-      %a.remove{:href => "#"} remove
+      %input{:type => "text", :name => "share_email"}
+  - unless list.shared_users.empty?
+    %ul
+      - @list.shared_users.each do |user|
+        %li
+          = user.email
+          %a.remove{:href => "#"} remove

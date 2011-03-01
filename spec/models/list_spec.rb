@@ -4,6 +4,7 @@ describe List do
   it { should belong_to :user }
   it { should have_many(:tasks).dependent(:destroy) }
   it { should have_many(:proxies) }
+  it { should have_many(:shared_users).through(:proxies) }
 
   context 'when saved' do
     it 'creates a list proxy for the user' do

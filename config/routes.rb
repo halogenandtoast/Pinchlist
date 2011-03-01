@@ -1,10 +1,7 @@
 Pinchlist::Application.routes.draw do
   get "pages/about"
-
   get "pages/legal"
-
   get "pages/help"
-  
   get "home/index"
 
   devise_for :users, :controller => { :registrations => "registrations" }
@@ -14,6 +11,7 @@ Pinchlist::Application.routes.draw do
     resources :tasks, :only => [:create, :update], :shallow => true
     resource :proxy, :controller => :list_proxies, :only => [:update, :destroy]
     resource :archive, :controller => :list_proxies, :only => [:show]
+    resources :shares, :only => [:create]
   end
 
   resources :tasks, :only => [:update]

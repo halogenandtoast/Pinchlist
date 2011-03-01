@@ -11,6 +11,10 @@ Given /^I sign in as "(.*)\/(.*)"$/ do |email, password|
   }
 end
 
+When /^I sign out$/ do
+  When %{I follow "Sign Out"}
+end
+
 Given /^I am signed in as "(.*)\/(.*)"$/ do |email, password|
   steps %{
     Given I have signed up with "#{email}/#{password}"
