@@ -401,8 +401,6 @@ $(document).ready(function(){
     $(this).next(".share").toggle();
   });
 
-  
-
   //load video.js
   $("video").VideoJS({
     controlsHiding: false,

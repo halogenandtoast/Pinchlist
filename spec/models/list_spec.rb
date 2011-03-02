@@ -4,7 +4,7 @@ describe List do
   it { should belong_to :user }
   it { should have_many(:tasks).dependent(:destroy) }
   it { should have_many(:proxies) }
-  it { should have_many(:shared_users).through(:proxies) }
+  it { should have_many(:users).through(:proxies) }
 
   context 'when saved' do
     it 'creates a list proxy for the user' do
@@ -46,5 +46,17 @@ describe List, '#check_for_proxies' do
       subject.check_for_proxies
       subject.should have_received(:destroy)
     end
+  end
+end
+
+describe List, '#shared_users' do
+  let(:user) { Factory(:user) }
+  let(:expected_users)  { 3.times.map { Factory(:user) } }
+  subject { Factory(:list, :user => user) }
+  before do
+    expected_users.each { |user| Factory(:list_proxy, :list => subject, :user => user) }
+  end
+  it "contains the correct users" do
+    subject.shared_users.to_a.should =~ expected_users
   end
 end
