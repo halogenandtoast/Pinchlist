@@ -22,3 +22,6 @@ Then /^I should see that the list is shared with "([^"]*)"$/ do |email|
     page.should have_content(email)
   end
 end
+Then /^the share email field is blank$/ do
+  locate('input[name="share_email"]').value.should == ''
+end

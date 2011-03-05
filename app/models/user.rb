@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
   def tasks
     Task.where(:list_id => lists.map(&:id))
   end
+
+  def invite_without_email!
+    if new_record? || invited?  generate_invitation_token if self.invitation_token.nil?
+      self.invitation_sent_at = Time.now.utc
+      save(:validate => false)
+    end
+  end
+
+  def self.invite_without_email!
+  end
 end
