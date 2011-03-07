@@ -373,22 +373,22 @@ $(document).ready(function(){
   // $("tr").data("sortable").floating = true;
 
   //toggle demo video
-  $("#demo").click(function () {
+  $("#demo").click(function() {
     $("#demo_video").show();
     $("#demo").hide();
     // $('#demo').text($('#demo').text() == 'Pause' ? 'Play' : 'Pause');
   });
 
-  $(".stop").click(function () {
+  $(".stop").click(function() {
     $(this).hide();
     $(".play").show();
   });
-  $(".play").click(function () {
+  $(".play").click(function() {
     $(this).hide();
     $(".stop").show();
   });
   //show sign in form
-  $("#sign_in a").click(function () {
+  $("#sign_in a").click(function() {
 
     $("#login, #sign_in").toggle();
     $('#user_email').focus();
@@ -397,7 +397,7 @@ $(document).ready(function(){
 
   //show sharing modal
 
-  $(".share_link").click(function () {
+  $(".share_link").live('click', function() {
     $(this).next(".share").toggle();
   });
 
