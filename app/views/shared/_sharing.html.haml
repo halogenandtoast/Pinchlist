@@ -1,11 +1,10 @@
 .share
-  = form_tag(list_shares_path(list), :method => :post, :remote => true, :id => "share_form") do
+  = form_for(:share, :url => list_shares_path(list), :method => :post, :remote => true, :html => { :class => "share_form"}) do |form|
     .input
       %span Enter an email address
-      %input{:type => "text", :name => "share_email"}
-  - unless list.shared_users.empty?
-    %ul.shared_users
-      - list.shared_users.each do |user|
-        %li
-          = user.email
-          %a.remove{:href => "#"} remove
+      = form.text_field :email
+  %ul.shared_users
+    - list.shared_users.each do |user|
+      %li
+        = user.email
+        %a.remove{:href => "#"} remove

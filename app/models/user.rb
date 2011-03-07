@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   end
 
   def invite_without_email!
-    if new_record? || invited?  generate_invitation_token if self.invitation_token.nil?
+    if new_record? || invited?  
+      generate_invitation_token if self.invitation_token.nil?
       self.invitation_sent_at = Time.now.utc
       save(:validate => false)
     end

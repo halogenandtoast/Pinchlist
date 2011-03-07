@@ -3,12 +3,12 @@ When /^I click the share icon$/ do
 end
 
 When /^I submit the share form$/ do
-  page.execute_script("$('#share_form').trigger('submit')")
-  sleep 2
+  page.execute_script("$('.share_form').trigger('submit')")
+  sleep 5
 end
 
 When /^I fill in share email with "([^"]*)"$/ do |email|
-  fill_in("share_email", :with => email)
+  fill_in("share[email]", :with => email)
 end
 
 Then /^the list "([^"]*)" should be shared with "([^"]*)"$/ do |title, email|
@@ -23,5 +23,5 @@ Then /^I should see that the list is shared with "([^"]*)"$/ do |email|
   end
 end
 Then /^the share email field is blank$/ do
-  locate('input[name="share_email"]').value.should == ''
+  locate('input[name="share[email]"]').value.should == ''
 end
