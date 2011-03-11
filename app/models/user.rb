@@ -18,14 +18,13 @@ class User < ActiveRecord::Base
     Task.where(:list_id => lists.map(&:id))
   end
 
-  def invite_without_email!
-    if new_record? || invited?  
-      generate_invitation_token if self.invitation_token.nil?
-      self.invitation_sent_at = Time.now.utc
-      save(:validate => false)
+  def self.share_by_email(email)
+    user = find_or_create_by_email(params[:email])
+    if user.new_record?
+      user.invite_with_share!(share)
+    else
+      MemberMailer.share_list_email(:user => user, :list => list).deliver
     end
   end
 
-  def self.invite_without_email!
-  end
 end

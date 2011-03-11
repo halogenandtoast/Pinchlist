@@ -1,17 +1,17 @@
 class Share
-  attr_reader :user
-  def initialize(params)
-    @list = List.find(params[:list_id])
-    @email = params[:email]
+  attr_reader :user, :list
+  def initialize(user, list)
+    @user = user
+    @list = list
   end
 
-  def save
-    @user = User.find_by_email!(@email)
-    if @user = User.find_by_email!(@email)
-      MemberMailer.share_list_email(:user => @user, :list => @list).deliver
-    # else @user = User.invite_without_email!(:email => @email)
-    #   MemberMailer.share_list_and_invite_email(:user => @user, :list => @list).deliver
+  def self.create(params)
+    transaction do
+      list = List.find(params[:list_id])
+      user = User.share_by_email(params[:email])
+      Share.new(user, list).tap do |share|
+        list.proxies.create(:user => user)
+      end
     end
-    @list.proxies.create(:user => @user)
   end
 end
