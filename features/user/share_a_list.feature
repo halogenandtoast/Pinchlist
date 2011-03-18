@@ -14,6 +14,7 @@ Feature: Sharing a list
     And I fill in share email with "receiver@example.com"
     And I submit the share form
     Then I should see that the list is shared with "receiver@example.com"
+    And show me the page
     And the share email field is blank
     When I am on the dashboard page
     And I click the share icon
