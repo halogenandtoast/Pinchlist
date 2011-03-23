@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 gem 'pg'
 gem 'devise'
 gem 'haml'
@@ -26,8 +26,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'akephalos', :git => "git://github.com/thoughtbot/akephalos.git"
-  gem 'capybara', '~> 0.3.8'
+  gem 'akephalos'
+  gem 'capybara', '~> 0.4.0'
   gem 'timecop'
   gem 'database_cleaner'
   gem 'cucumber-rails'

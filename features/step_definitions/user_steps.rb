@@ -5,8 +5,8 @@ end
 Given /^I sign in as "(.*)\/(.*)"$/ do |email, password|
   steps %{
     Given I go to the new user session page
-    And I fill in "Email" with "#{email}"
-    And I fill in "Password" with "#{password}"
+    And I fill in email with "#{email}"
+    And I fill in password with "#{password}"
     And I press "Sign in"
   }
 end

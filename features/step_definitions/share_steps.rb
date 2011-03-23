@@ -1,5 +1,5 @@
 When /^I click the share icon$/ do
-  locate("a.share_link").click
+  find("a.share_link").click
 end
 
 When /^I submit the share form$/ do
@@ -24,7 +24,7 @@ Then /^I should see that the list is shared with "([^"]*)"$/ do |email|
 end
 
 Then /^the share email field is blank$/ do
-  locate('input[name="share[email]"]').value.should == ''
+  find('input[name="share[email]"]').value.should == ''
 end
 
 When /^"([^"]*)" should see the invitation link in the email body$/ do |email|
