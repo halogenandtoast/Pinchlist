@@ -15,6 +15,12 @@ end
 Factory.define :list_proxy do |factory|
   factory.association :list
   factory.association :user
+  factory.after_create { |proxy| proxy.list.user = proxy.user; proxy.list.save }
+end
+
+Factory.define :additional_list_proxy, :class => "ListProxy" do |factory|
+  factory.association :list
+  factory.association :user
 end
 
 Factory.define :task do |factory|

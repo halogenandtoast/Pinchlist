@@ -54,7 +54,7 @@ describe List, '#shared_users' do
   let(:expected_users)  { 3.times.map { Factory(:user) } }
   subject { Factory(:list, :user => user) }
   before do
-    expected_users.each { |user| Factory(:list_proxy, :list => subject, :user => user) }
+    expected_users.each { |user| Factory(:additional_list_proxy, :list => subject, :user => user) }
   end
   it "contains the correct users" do
     subject.shared_users.to_a.should =~ expected_users
