@@ -1,4 +1,3 @@
-
 // Author:  Jacek Becela
 // Source:  http://gist.github.com/399624
 // License: MIT

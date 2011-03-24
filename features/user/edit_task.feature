@@ -131,6 +131,6 @@ Feature: Edit a task
       | list           | title     |
       | title: My List | !Foo 25th |
     When I am on the dashboard page
+    And show me the page
     And I double click "My List"'s task "!Foo 25th"
     Then the title being edited should be "!Foo 25th"
-
