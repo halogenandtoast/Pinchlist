@@ -66,7 +66,7 @@ end
 When /^I follow the archive link for "([^"]*)"$/ do |list_title|
   list = List.find_by_title!(list_title)
   within "#list_#{list.id}" do
-    locate(".archive_link").click
+    find(".archive_link").click
   end
 end
 

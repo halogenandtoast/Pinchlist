@@ -40,8 +40,7 @@ end
 
 When /^I double click "([^"]*)"'s task "([^"]*)"$/ do |list_title, title|
   task = Task.find_by_title!(title)
-  list = task.list
-  page.evaluate_script %{ task_edit($("#list_#{list.id} li:contains('#{title}')"), '#{task.id}') }
+  page.evaluate_script %{ task_edit($("#task_#{task.id}"), '#{task.id}') }
 end
 
 When /^I fill in the title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|
