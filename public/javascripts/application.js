@@ -285,7 +285,7 @@ function setup_single_and_double_click(element, prefix) {
 }
 
 function enable_task_sorting() {
-  $(".list:not(.upcoming) ul").sortable({
+  $(".list:not(.upcoming) ul.tasks").sortable({
       // containment: 'parent',
       axis: 'y',
       placeholder: 'ui-placeholder-highlight',
