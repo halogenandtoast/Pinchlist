@@ -1,8 +1,8 @@
 var task_el = $("<%= escape_javascript(render(@task)) %>");
-if($('#list_<%=@list.id%> ul li.completed').length > 0) {
-  $('#list_<%= @list.id %> ul li.completed:first').before(task_el);
+if($('#list_<%=@list.id%> ul.tasks li.completed').length > 0) {
+  $('#list_<%= @list.id %> ul.tasks li.completed:first').before(task_el);
 } else {
-  $('#list_<%= @list.id %> ul').append(task_el);
+  $('#list_<%= @list.id %> ul.tasks').append(task_el);
 }
 task_el.effect('highlight', {color: "#ACF4C8"}, 1000);
 $('#new_task_title_<%= @list.id %>').val("");

@@ -18,7 +18,7 @@
           .list_title
             %h3 Upcoming
             .today #{Time.now.strftime("%m/%d")}
-          %ul#upcoming_tasks
+          %ul.tasks#upcoming_tasks
             - @upcoming_tasks.each do |task|
               = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
                 %span.task_title
