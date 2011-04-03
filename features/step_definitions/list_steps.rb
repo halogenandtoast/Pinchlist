@@ -81,3 +81,10 @@ When /^I change the color of "([^"]*)" to "([^"]*)"$/ do |list_title, color|
   list = List.find_by_title!(list_title)
   page.execute_script("toggleSelector.call($('#list_#{list.id} .picker')); changeColor('#{color}')")
 end
+
+Then /^"([^"]*)" should have no tasks$/ do |list_title|
+  list = List.find_by_title!(list_title)
+  within "#list_#{list.id}" do
+    page.should have_no_css(".task")
+  end
+end
