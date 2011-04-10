@@ -1,11 +1,11 @@
 source :rubygems
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.6'
 gem 'pg'
 gem 'devise'
 gem 'haml'
 gem 'chronic'
-gem 'timelord', '0.0.4'
+gem 'timelord'
 gem 'acts_as_list'
 gem 'devise_invitable'
 gem 'hoptoad_notifier'
