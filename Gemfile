@@ -5,7 +5,7 @@ gem 'pg'
 gem 'devise'
 gem 'haml'
 gem 'chronic'
-gem 'timelord'
+gem 'timelord', :git => "git://github.com/halogenandtoast/timelord.git"
 gem 'acts_as_list'
 gem 'devise_invitable'
 gem 'hoptoad_notifier'
