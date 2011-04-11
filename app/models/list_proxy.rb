@@ -20,6 +20,10 @@ class ListProxy < ActiveRecord::Base
     list.title
   end
 
+  def owned_by?(user)
+    self.list.user == user
+  end
+
   private
 
   def set_color

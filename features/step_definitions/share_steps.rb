@@ -2,6 +2,11 @@ When /^I click the share icon$/ do
   find("a.share_link").click
 end
 
+When /^I should not see the sharing icon for "([^"]+)"$/ do |title|
+  list = List.find_by_title(title)
+  page.should have_no_css("#list_#{list.id} a.share_link")
+end
+
 When /^I submit the share form$/ do
   page.execute_script("$('.share_form').trigger('submit')")
   sleep 5

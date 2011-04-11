@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   it { should have_many(:list_proxies) }
   it { should have_many(:lists).through(:list_proxies) }
+  it { should have_many(:owned_lists) }
 end
 
 describe User, '#proxy_for' do

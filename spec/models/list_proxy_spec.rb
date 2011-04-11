@@ -67,3 +67,18 @@ describe ListProxy, ".by_position" do
   end
 end
 
+describe ListProxy, ".owned_by?" do
+  subject { Factory(:list_proxy) }
+  let!(:user) { subject.user }
+  let!(:other_user) { Factory(:user) }
+  let!(:other_list_proxy) { Factory(:additional_list_proxy, :user => other_user, :list => subject.list) }
+
+  it "returns true for the owner" do
+    subject.owned_by?(user).should be_true
+    other_list_proxy.owned_by?(user).should be_true
+  end
+  it "returns false for the owner" do
+    subject.owned_by?(other_user).should be_false
+    other_list_proxy.owned_by?(other_user).should be_false
+  end
+end

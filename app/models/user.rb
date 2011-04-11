@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   has_many :list_proxies
   has_many :lists, :through => :list_proxies, :readonly => false
+  has_many :owned_lists, :class_name => "List"
 
   def proxy_for(list_or_id)
     list_id = list_or_id.is_a?(List) ? list_or_id.id : list_or_id

@@ -24,6 +24,7 @@ Feature: Sharing a list
     And the list "Shared" should be shared with "receiver@example.com"
     When I sign out
     And I sign in as "receiver@example.com/password"
+    Then I should see the list "Shared"
 
   @javascript
   Scenario: Sharing a list with a non-member
@@ -45,3 +46,21 @@ Feature: Sharing a list
     And they should see "user@example.com has shared Shared with you." in the email body
     And "receiver@example.com" should see the invitation link in the email body
     And the list "Shared" should be shared with "receiver@example.com"
+
+  @javascript
+  Scenario: Sharing users should not see sharing details
+    Given the following user exists:
+      | email                | password | password confirmation |
+      | receiver@example.com | password | password              |
+    And I am signed in as "user@example.com/password"
+    And the following list proxy exists:
+      | list          | user                    |
+      | title: Shared | email: user@example.com |
+    When I am on the dashboard page
+    And I click the share icon
+    And I fill in share email with "receiver@example.com"
+    And I submit the share form
+    And I sign out
+    When I sign in as "receiver@example.com/password"
+    Then I should see the list "Shared"
+    But I should not see the sharing icon for "Shared"
