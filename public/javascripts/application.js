@@ -396,9 +396,23 @@ $(document).ready(function(){
 
   //show sharing modal
 
-  $(".share_link").live('click', function() {
-    $(this).next(".share").toggle();
-  });
+
+  
+   $(".share_link").click(function() {
+      $(this).next(".share").show();
+      return false;
+    });
+
+    $(document).click(function() {
+        $(".share").hide();
+    });
+
+    $(".share").click(function(e) {
+        e.stopPropagation();
+    });
+  
+
+  
 
   //load video.js
   $("video").VideoJS({
