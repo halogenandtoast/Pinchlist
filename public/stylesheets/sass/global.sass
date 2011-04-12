@@ -387,22 +387,17 @@ td
     background-clip: border-box
     &:hover
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
-      .share_link
+      .share_link, .color_picker, .delete
         display: block
+        opacity: 1
     &:active
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
     .share_link
-      height: 14px
-      width: 14px
       position: absolute
-      top: 8px
-      right: 50px
+      right: 22px
       text-indent: -10000px
       background: url(/images/share.png) 0 0 no-repeat
-      opacity: .5
       display: none
-      &:hover
-        opacity: 1
     .share
       float: left
       height: auto
@@ -463,18 +458,22 @@ td
             margin-top: -1px
             &:hover
               opacity: .7
+    .delete, .share_link, .color_picker
+      height: 18px
+      width: 18px
+      top: 4px
+      opacity: .8
+      &:hover
+        -webkit-border-radius: 2px
+        background-color: rgba(255, 255, 255, .3) 
+    .color_picker
+      width: 19px
     .delete
       background: transparent url(/images/delete.png) 0 0 no-repeat
-      height: 16px
-      width: 16px
       position: absolute
       right: 4px
-      top: 5px
       overflow: hidden
       text-indent: -10000px
-      opacity: .4
-      &:hover
-        opacity: .8
     h3 
       color: #fff
       display: inline

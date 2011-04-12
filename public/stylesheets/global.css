@@ -83,22 +83,13 @@ input[type="text"], input[type="submit"], input[type="password"], button, textar
 
 div.color_picker {
   position: absolute;
-  top: 6px;
-  right: 24px;
-  height: 16px;
-  width: 16px;
+  right: 40px;
   padding: 0 !important;
   background: url(/images/picker4.png) no-repeat top right;
   cursor: pointer;
   line-height: 16px;
   text-indent: -10000px;
-  display: none;
-  opacity: 0.7; }
-  div.color_picker:hover {
-    opacity: 1; }
-
-.list .list_title:hover div.color_picker {
-  display: block; }
+  display: none; }
 
 div#color_selector {
   z-index: 100;
@@ -856,22 +847,17 @@ td.ui-placeholder-highlight {
     background-clip: border-box; }
     .list .list_title:hover {
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
-      .list .list_title:hover .share_link {
-        display: block; }
+      .list .list_title:hover .share_link, .list .list_title:hover .color_picker, .list .list_title:hover .delete {
+        display: block;
+        opacity: 1; }
     .list .list_title:active {
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
     .list .list_title .share_link {
-      height: 14px;
-      width: 14px;
       position: absolute;
-      top: 8px;
-      right: 50px;
+      right: 22px;
       text-indent: -10000px;
       background: url(/images/share.png) 0 0 no-repeat;
-      opacity: 0.5;
       display: none; }
-      .list .list_title .share_link:hover {
-        opacity: 1; }
     .list .list_title .share {
       float: left;
       height: auto;
@@ -932,18 +918,22 @@ td.ui-placeholder-highlight {
             margin-top: -1px; }
             .list .list_title .share ul li .remove:hover {
               opacity: 0.7; }
+    .list .list_title .delete, .list .list_title .share_link, .list .list_title .color_picker {
+      height: 18px;
+      width: 18px;
+      top: 4px;
+      opacity: 0.8; }
+      .list .list_title .delete:hover, .list .list_title .share_link:hover, .list .list_title .color_picker:hover {
+        -webkit-border-radius: 2px;
+        background-color: rgba(255, 255, 255, 0.3); }
+    .list .list_title .color_picker {
+      width: 19px; }
     .list .list_title .delete {
       background: transparent url(/images/delete.png) 0 0 no-repeat;
-      height: 16px;
-      width: 16px;
       position: absolute;
       right: 4px;
-      top: 5px;
       overflow: hidden;
-      text-indent: -10000px;
-      opacity: 0.4; }
-      .list .list_title .delete:hover {
-        opacity: 0.8; }
+      text-indent: -10000px; }
     .list .list_title h3 {
       color: white;
       display: inline;
