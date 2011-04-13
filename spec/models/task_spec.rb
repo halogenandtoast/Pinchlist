@@ -157,3 +157,16 @@ describe Task, '.filtered' do
     end
   end
 end
+
+describe Task, ".create" do
+  let!(:list) { Factory(:list) }
+  subject { Factory.build(:task, :list => list.reload) }
+  before do
+    Factory(:task, :list => list.reload)
+    Factory(:completed_task, :list => list.reload)
+  end
+  it "inserts before completed tasks" do
+    subject.save
+    subject.position.should == 2
+  end
+end

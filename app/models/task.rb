@@ -7,6 +7,7 @@ class Task < ActiveRecord::Base
   validates_presence_of :title, :on => :create
   before_update :set_completed_attributes
   after_update :reposition
+  after_create :position_before_completed
   after_save :destroy_on_empty_title
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
@@ -94,6 +95,12 @@ class Task < ActiveRecord::Base
           move_to_bottom
         end
       end
+    end
+  end
+
+  def position_before_completed
+    if min = list.tasks.completed.where("id <> ?", self.id).minimum(:position)
+      insert_at(min)
     end
   end
 

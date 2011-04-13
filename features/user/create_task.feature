@@ -1,8 +1,8 @@
+@javascript
 Feature: In order to track what needs to be done
   As a user
   I want to add tasks to my lists
 
-  @javascript
   Scenario: Adding a task
     Given I am signed in as "user@example.com/password"
     And the following list exists:
@@ -13,7 +13,6 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then I should see "Learn to ride a shark"
 
-  @javascript
   Scenario: Trying to add a blank task
     Given I am signed in as "user@example.com/password"
     And the following list exists:
@@ -24,7 +23,6 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then "My List" should have no tasks
 
-  @javascript
   Scenario: Tasks are displayed in order
     Given I am signed in as "user@example.com/password"
     And the following list exists:
@@ -37,7 +35,6 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then I should see the task "Learn to ride a shark" followed by the task "Wrestle a moose"
 
-  @javascript
   Scenario: Adding a task with a due date
     Given today is "October 16, 2010"
     Given I am signed in as "user@example.com/password"
@@ -50,7 +47,6 @@ Feature: In order to track what needs to be done
     Then I should see the task "Learn to ride a shark" with a due date of "10/20"
     And I see the upcoming task "Learn to ride a shark" has a due date color of "009000"
 
-  @javascript
   Scenario: Adding a task that escapes the due date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -66,7 +62,6 @@ Feature: In order to track what needs to be done
     Then I should see the task "@10/20 Learn to ride a shark"
     Then I should not see the task "!@10/20 Learn to ride a shark"
 
-  @javascript
   Scenario: Adding a task with more than 255 characters
     Given I am signed in as "user@example.com/password"
     And the following list proxy exists:
@@ -79,7 +74,6 @@ Feature: In order to track what needs to be done
     When I am on the dashboard page
     Then I should see the task with 400 "a"
 
-  @javascript
   Scenario: New tasks appear before completed tasks
     Given I am signed in as "user@example.com/password"
     And the following list exists:
@@ -93,7 +87,6 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then I should see the task "Doom" before "Completed"
 
-  @javascript
   Scenario: New tasks appear before completed tasks in the upcoming task list
     Given today is "January 18, 2010"
     And I am signed in as "user@example.com/password"
@@ -106,4 +99,7 @@ Feature: In order to track what needs to be done
     When I am on the dashboard page
     And I fill in "My List"'s task title with "@02/22 Doom"
     And I submit "My List"'s task form
+    Then I should see the upcoming task "Doom" before "Completed"
+    When I am on the dashboard page
+    And show me the page
     Then I should see the upcoming task "Doom" before "Completed"

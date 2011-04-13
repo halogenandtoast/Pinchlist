@@ -27,3 +27,7 @@ Factory.define :task do |factory|
   factory.title { "Task Title" }
   factory.association :list
 end
+
+Factory.define :completed_task, :parent => :task do |factory|
+  factory.completed true
+end
