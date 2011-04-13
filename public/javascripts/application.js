@@ -400,6 +400,7 @@ $(document).ready(function(){
   
    $(".share_link").click(function() {
       $(this).next(".share").show();
+      $(".share input").focus();
       return false;
     });
 
