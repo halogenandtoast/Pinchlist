@@ -398,17 +398,17 @@ $(document).ready(function(){
 
 
   
-   $(".share_link").click(function() {
+   $(".share_link").live('click', function() {
       $(this).next(".share").show();
       $(".share input").focus();
       return false;
     });
 
-    $(document).click(function() {
+    $(document).live('click', function() {
         $(".share").hide();
     });
 
-    $(".share").click(function(e) {
+    $(".share").live('click', function(e) {
         e.stopPropagation();
     });
   
