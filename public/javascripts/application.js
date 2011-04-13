@@ -328,6 +328,17 @@ function setup_color_pickers() {
   });
 }
 
+function setup_sharing() {
+  $(".share_link").click(function(e) {
+      $(this).next(".share").show();
+      $(".share input").focus();
+      e.stopPropagation();
+    });
+  $(".share").click(function(e) {
+      e.stopPropagation();
+    });
+}
+
 $(document).ready(function(){
   setup_color_pickers();
   //
@@ -396,24 +407,10 @@ $(document).ready(function(){
 
   //show sharing modal
 
-
-  
-   $(".share_link").live('click', function() {
-      $(this).next(".share").show();
-      $(".share input").focus();
-      return false;
-    });
-
-    $(document).live('click', function() {
-        $(".share").hide();
-    });
-
-    $(".share").live('click', function(e) {
-        e.stopPropagation();
-    });
-  
-
-  
+  setup_sharing();
+  $(document).click(function() {
+    $(".share").hide();
+  });
 
   //load video.js
   $("video").VideoJS({
