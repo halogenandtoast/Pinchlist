@@ -1,5 +1,5 @@
 .share
-  = form_for(:share, :url => list_shares_path(list), :method => :post, :remote => true, :html => { :class => "share_form"}) do |form|
+  = form_for(:share, :url => list_share_path(list), :method => :post, :remote => true, :html => { :class => "share_form"}) do |form|
     .input
       %span Enter an email address
       = form.text_field :email

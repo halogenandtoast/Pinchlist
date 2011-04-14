@@ -11,7 +11,7 @@ Pinchlist::Application.routes.draw do
     resources :tasks, :only => [:create, :update], :shallow => true
     resource :proxy, :controller => :list_proxies, :only => [:update, :destroy]
     resource :archive, :controller => :list_proxies, :only => [:show]
-    resources :shares, :only => [:create]
+    resource :share, :only => [:create, :destroy]
   end
 
   resources :tasks, :only => [:update]
