@@ -851,11 +851,22 @@ td.ui-placeholder-highlight {
     overflow: visible; }
     .list .list_title:hover {
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important; }
+      .list .list_title:hover .icons {
+        opacity: 1; }
       .list .list_title:hover .share_link, .list .list_title:hover .color_picker, .list .list_title:hover .delete {
         display: block;
         opacity: 1; }
     .list .list_title:active {
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important; }
+    .list .list_title .icons {
+      position: absolute;
+      top: 0;
+      right: 2px;
+      width: 65px;
+      height: 25px;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      opacity: 0; }
     .list .list_title .share_link {
       position: absolute;
       right: 22px;

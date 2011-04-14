@@ -391,11 +391,22 @@ td
     overflow: visible
     &:hover
       cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
+      .icons
+        opacity: 1
       .share_link, .color_picker, .delete
         display: block
         opacity: 1
     &:active
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+    .icons
+      position: absolute
+      top: 0
+      right: 2px
+      width: 65px
+      height: 25px
+      -webkit-border-radius: 2px
+      -moz-border-radius: 2px
+      opacity: 0
     .share_link
       position: absolute
       right: 22px

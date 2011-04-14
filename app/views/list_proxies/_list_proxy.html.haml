@@ -1,6 +1,7 @@
 %td[list_proxy.list]
   .list_title{:"data-background-color" => list_proxy.color, :style => "background-color: ##{list_proxy.color};"}
     %h3= list_proxy.title
+    .icons{:"data-background-color" => list_proxy.color, :style => "background-color: ##{list_proxy.color};"}
     - if list_proxy.owned_by?(current_user)
       = link_to 'share', '#', :class => "share_link"
       = render 'shared/sharing', :list => list_proxy.list
