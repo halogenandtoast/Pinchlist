@@ -100,7 +100,7 @@
 
     selector.css({
       top: $(selectorOwner).offset().top - 2,
-      left: $(selectorOwner).offset().left - $('#color_selector').width() + 2
+      left: $(selectorOwner).offset().left - $('#color_selector').width() + 5
     });
     hexColor = $(selectorOwner).prev("input").val();
     $("input#color_value").val(hexColor);

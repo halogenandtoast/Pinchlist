@@ -1,1 +1,2 @@
-<%= @inviter.email %> has shared <%= @list.title %> with you. Click here(<%= accept_invitation_url(@invitee, :invitation_token => @invitee.invitation_token) %>) to create your Listwerk account and view the list.
+<p><%= @inviter.email %> has shared the list "<%= @list.title %>" with you. Click the link below  to create your Listwerk account and view the list.<p/>
+<p><%= accept_invitation_url(@invitee, :invitation_token => @invitee.invitation_token) %></p>
