@@ -28,6 +28,12 @@ Then /^I should see that the list is shared with "([^"]*)"$/ do |email|
   end
 end
 
+Then /^I should not see that the list is shared with "([^"]*)"$/ do |email|
+  within '.shared_users' do
+    page.should have_no_content(email)
+  end
+end
+
 Then /^the share email field is blank$/ do
   find('input[name="share[email]"]').value.should == ''
 end
@@ -39,5 +45,6 @@ When /^"([^"]*)" should see the invitation link in the email body$/ do |email|
 end
 
 When /^I remove "([^"]*)" from the list$/ do |arg1|
-  find(".shared_users a.remove").click
+  page.execute_script("$('.shared_users a.remove').trigger('click')")
+  sleep 1
 end

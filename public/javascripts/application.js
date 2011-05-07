@@ -334,11 +334,10 @@ function setup_sharing() {
   $(".share_link").click(function(e) {
       $(this).next(".share").show();
       $(".share input").focus();
-      e.stopPropagation();
     });
-  $(".share").click(function(e) {
-      e.stopPropagation();
-    });
+  $(".share").focusout(function(e) {
+    $(this).hide();
+  });
 }
 
 $(document).ready(function(){
@@ -410,9 +409,6 @@ $(document).ready(function(){
   //show sharing modal
 
   setup_sharing();
-  $(document).click(function() {
-    $(".share").hide();
-  });
 
   //load video.js
   $("video").VideoJS({

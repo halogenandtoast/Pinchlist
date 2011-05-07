@@ -4,14 +4,14 @@ Feature: Viewing tasks
   I want to view them on my dashboard
 
   Scenario: Expired tasks should not display
-    Given today is "October 16, 2010"
+    Given today is "October 8, 2010"
     And I am signed in as "user@example.com/password"
     And the following lists exist:
       | title   | user                    |
       | My List | email: user@example.com |
     And the following tasks exist:
-      | title    | list           | completed at | completed |
-      | Finished | title: My List | 2010-10-08   | true      |
-    When I am on the dashboard page
+      | title    | list           | completed |
+      | Finished | title: My List | true      |
+    When today is "October 16, 2010"
+    And I am on the dashboard page
     Then I should not see the task "Finished"
-

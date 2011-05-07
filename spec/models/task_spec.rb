@@ -99,7 +99,7 @@ describe Task, '#upcoming' do
 end
 
 describe Task, 'completed' do
-  subject { Factory(:task) }
+  subject { Factory(:task, :title => "THE SUBJECT") }
   before { Timecop.freeze(Date.parse("October 16, 2010")) }
   it 'sets its completed at date' do
     subject.update_attributes({:completed => true})
