@@ -15,6 +15,17 @@ class Task < ActiveRecord::Base
   scope :by_status, order("tasks.completed ASC, tasks.position ASC")
   acts_as_list :scope => :list
 
+  def update_attributes_with_position(params)
+    task_params = params.dup
+    new_list_id = task_params.delete(:list_id)
+    if new_list_id
+      remove_from_list
+      self.list_id = new_list_id
+      move_to_bottom
+    end
+    update_attributes(task_params)
+  end
+
   def self.by_position
     order("tasks.position ASC")
   end
