@@ -18,6 +18,7 @@ Feature: Viewing list archive
       | And another thing     | title: My List | false     |
       When I am on the dashboard page
       And I follow the archive link for "My List"
+      And show me the page
       Then I should see the following "My List" tasks in order:
         | Something else    |
         | One more thing    |

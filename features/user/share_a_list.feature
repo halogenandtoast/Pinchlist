@@ -20,7 +20,10 @@ Feature: Sharing a list
     Then I should see that the list is shared with "receiver@example.com"
     Then "receiver@example.com" should receive an email
     When "receiver@example.com" opens the email
-    And they should see "shared the list Shared with you" in the email body
+    And they should receive an email with the following body:
+    """
+    shared the list "Shared" with you
+    """
     And the list "Shared" should be shared with "receiver@example.com"
     When I sign out
     And I sign in as "receiver@example.com/password"
@@ -43,7 +46,10 @@ Feature: Sharing a list
     Then I should see that the list is shared with "receiver@example.com"
     Then "receiver@example.com" should receive an email
     When "receiver@example.com" opens the email
-    And they should see "user@example.com has shared Shared with you." in the email body
+    And they should receive an email with the following body:
+    """
+    user@example.com has shared the list "Shared" with you.
+    """
     And "receiver@example.com" should see the invitation link in the email body
     And the list "Shared" should be shared with "receiver@example.com"
 
