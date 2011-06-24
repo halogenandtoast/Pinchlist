@@ -101,5 +101,4 @@ Feature: In order to track what needs to be done
     And I submit "My List"'s task form
     Then I should see the upcoming task "Doom" before "Completed"
     When I am on the dashboard page
-    And show me the page
     Then I should see the upcoming task "Doom" before "Completed"

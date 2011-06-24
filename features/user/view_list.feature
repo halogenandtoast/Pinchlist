@@ -10,18 +10,19 @@ Feature: Viewing list archive
       | title   | user                    |
       | My List | email: user@example.com |
     And the following tasks exist:
-      | title                 | list           | completed |
-      | @10/20 Something      | title: My List | true      |
-      | @10/21 Something else | title: My List | false     |
-      | @10/08 Finished       | title: My List | true      |
-      | @10/19 One more thing | title: My List | false     |
-      | And another thing     | title: My List | false     |
-      When I am on the dashboard page
-      And I follow the archive link for "My List"
-      And show me the page
-      Then I should see the following "My List" tasks in order:
-        | Something else    |
-        | One more thing    |
-        | And another thing |
-        | Something         |
-        | Finished          |
+      | title                 | list           |
+      | @10/20 Something      | title: My List |
+      | @10/21 Something else | title: My List |
+      | @10/08 Finished       | title: My List |
+      | @10/19 One more thing | title: My List |
+      | And another thing     | title: My List |
+    And I complete "Something" on "2010-10-20"
+    And I complete "Finished" on "2010-10-08"
+    When I am on the dashboard page
+    And I follow the archive link for "My List"
+    Then I should see the following "My List" tasks in order:
+      | Something else    |
+      | One more thing    |
+      | And another thing |
+      | Something         |
+      | Finished          |
