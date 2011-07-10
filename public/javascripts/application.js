@@ -98,7 +98,7 @@ function list_edit(list_title) {
 }
 
 function title_for_display(title) {
-  return title.gsub(/^!/, '')
+  return title.replace(/^!/, '');
 }
 
 var clearing = false;
