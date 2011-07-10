@@ -52,9 +52,10 @@ function update_list_position(list, position) {
 
 function update_task_position(task, position) {
   var task_id = task.attr('id').split('_')[1];
+  var options = {'new_position': position, 'list_id': task.parent('ul').attr('data-id')};
   $.post(
     '/tasks/'+task_id,
-    {'_method':'PUT', 'task': {'new_position': position}},
+    {'_method':'PUT', 'task': options},
     function(data) {},
     "json"
   );
@@ -287,7 +288,8 @@ function setup_single_and_double_click(element, prefix) {
 function enable_task_sorting() {
   $(".list:not(.upcoming) ul.tasks").sortable({
       // containment: 'parent',
-      axis: 'y',
+      // axis: 'y',
+      connectWith: ".tasks",
       placeholder: 'ui-placeholder-highlight',
       helper: 'clone',
       forceHelperSize: true,
@@ -297,7 +299,7 @@ function enable_task_sorting() {
       distance: 6,
       opacity: .93,
       items: "li:not(.completed)",
-      update: function(e, ui) {
+      receive: function(e, ui) {
         var position = ui.item.parent().children('li').index(ui.item[0]) + 1;
         update_task_position(ui.item, position);
       }

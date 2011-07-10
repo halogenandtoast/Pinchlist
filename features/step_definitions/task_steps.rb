@@ -94,3 +94,11 @@ end
 
 Then /^the title being edited should be "([^"]*)"$/ do |title|
 end
+
+Given /^I complete "([^"]*)" on "([^"]*)"$/ do |title, date_str|
+  date = Date.parse(date_str)
+  task = Task.find_by_title!(title)
+  Timecop.freeze(date) do
+    task.update_attributes(:completed => true)
+  end
+end

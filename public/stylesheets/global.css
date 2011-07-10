@@ -749,8 +749,8 @@ td.ui-placeholder-highlight {
     border-right: 4px solid white; }
   .list ul {
     float: left;
-    padding: 0;
-    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    margin: 0;
     width: 101.7%;
     overflow: visible; }
     .list ul li {

@@ -15,6 +15,6 @@ class ListProxiesController < ApplicationController
 
   def show
     @list_proxy = current_user.proxy_for(params[:list_id])
-    @tasks = @list_proxy.tasks.by_status
+    @tasks = @list_proxy.tasks.by_position
   end
 end
