@@ -16,8 +16,8 @@ Feature: Viewing list archive
       | @10/08 Finished       | title: My List |
       | @10/19 One more thing | title: My List |
       | And another thing     | title: My List |
-    And I complete "Something" on "2010-10-20"
     And I complete "Finished" on "2010-10-08"
+    And I complete "Something" on "2010-10-20"
     When I am on the dashboard page
     And I follow the archive link for "My List"
     Then I should see the following "My List" tasks in order:

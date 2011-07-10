@@ -12,7 +12,6 @@ class Task < ActiveRecord::Base
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
   scope :completed, where(:completed => true)
-  scope :by_status, order("tasks.completed ASC, tasks.position ASC")
   acts_as_list :scope => :list
 
   def update_attributes_with_position(params)
