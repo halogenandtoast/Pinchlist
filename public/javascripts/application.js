@@ -299,15 +299,12 @@ function enable_task_sorting() {
       distance: 6,
       opacity: .93,
       items: "li:not(.completed)",
-      receive: function(e, ui) {
-        var position = ui.item.parent().children('li').index(ui.item[0]) + 1;
-        update_task_position(ui.item, position);
+      update: function(e, ui) {
+        if(this === ui.item.parent()[0]) {
+          var position = ui.item.parent().children('li').index(ui.item[0]) + 1;
+          update_task_position(ui.item, position);
+        }
       }
-    //   sort: function(e,ui) {
-    //     ui.placeholder
-    //     .width(ui.helper.width())
-    //     .height(ui.helper.height()); // maintain size of placeholder when ui.item is repositioned
-    // }
   })
   // this.onselectstart = function () { return false; };
   $(".list:not(.upcoming) ul li").disableSelection();
