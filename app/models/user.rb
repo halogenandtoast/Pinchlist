@@ -19,21 +19,11 @@ class User < ActiveRecord::Base
     Task.where(:list_id => lists.map(&:id))
   end
 
-  def invite_with_share!(list)
+  def invitation_to_share(list)
     generate_invitation_token
     self.invitation_sent_at = Time.now
     save(:validate => false)
-    InvitationWithShareMailer.invitation_for(self, list).deliver
-  end
-
-  def self.share_by_email(email, list)
-    user = find_or_create_by_email(email)
-    if user.new_record?
-      user.invite_with_share!(list)
-    else
-      MemberMailer.share_list_email(:user => user, :list => list).deliver
-    end
-    user
+    InvitationWithShareMailer.invitation_for(self, list)
   end
 
 end

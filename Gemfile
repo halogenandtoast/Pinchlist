@@ -1,9 +1,10 @@
 source :rubygems
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.9'
 gem 'pg'
 gem 'devise'
 gem 'haml'
+gem 'sass'
 gem 'chronic'
 gem 'timelord', :git => "git://github.com/halogenandtoast/timelord.git"
 gem 'acts_as_list'
@@ -27,7 +28,7 @@ end
 
 group :test do
   gem 'akephalos'
-  gem 'capybara', '~> 0.4.0'
+  gem 'capybara'
   gem 'timecop'
   gem 'database_cleaner'
   gem 'cucumber-rails'

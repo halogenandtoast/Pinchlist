@@ -2,8 +2,11 @@ class SharesController < ApplicationController
   def create
     @list = current_user.owned_lists.find(params[:list_id])
     share = Share.new(params[:share].merge(:list_id => params[:list_id]))
-    share.save
-    @user = share.user
+    if share.save
+      @user = share.user
+    else
+      render :nothing => true
+    end
   end
 
   def destroy
