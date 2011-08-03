@@ -1,6 +1,9 @@
 // Author:  Jacek Becela
 // Source:  http://gist.github.com/399624
 // License: MIT
+
+var prevent_submissions = false;
+
 jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout, event_data) {
   return this.each(function(){
     var clicks = 0, self = this;
@@ -379,6 +382,14 @@ $(document).ready(function(){
 
   });
   // $("tr").data("sortable").floating = true;
+  //
+
+  $("form[data-remote]").submit(function() {
+    if(prevent_submissions) {
+      return false;
+    }
+    prevent_submissions = true;
+  });
 
   //toggle demo video
   $("#demo").click(function() {
