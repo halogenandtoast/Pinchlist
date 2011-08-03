@@ -34,6 +34,14 @@ Then /^I should not see that the list is shared with "([^"]*)"$/ do |email|
   end
 end
 
+Then /^I should see that the list is shared$/ do
+  first(".share_link").visible?.should be_true
+end
+
+Then /^I should see that the list is not shared$/ do
+  first(".share_link").visible?.should be_false
+end
+
 Then /^the share email field is blank$/ do
   find('input[name="share[email]"]').value.should == ''
 end

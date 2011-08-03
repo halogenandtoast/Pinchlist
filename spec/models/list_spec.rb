@@ -60,3 +60,19 @@ describe List, '#shared_users' do
     subject.shared_users.to_a.should =~ expected_users
   end
 end
+
+describe List, '#shared?' do
+  subject { Factory(:list) }
+  context "when not shared" do
+    it "is not shared" do
+      subject.shared?.should be_false
+    end
+  end
+
+  context "when shared" do
+    before { Factory(:additional_list_proxy, :list => subject) }
+    it "is shared" do
+      subject.shared?.should be_true
+    end
+  end
+end

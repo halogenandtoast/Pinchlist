@@ -17,6 +17,10 @@ class List < ActiveRecord::Base
     destroy if proxies.empty?
   end
 
+  def shared?
+    proxies.count > 1
+  end
+
   def shared_users
     users.where(["users.id != ?", user_id])
   end

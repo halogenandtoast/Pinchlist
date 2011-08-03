@@ -465,7 +465,6 @@ a.cancel:hover {
           padding: 0; }
     .list .list.upcoming ul {
       margin-top: 4px !important; } }
-
 html {
   height: 100%;
   cursor: default !important; }
@@ -720,6 +719,10 @@ table {
 td.ui-placeholder-highlight {
   min-width: 170px;
   max-width: 300px; }
+
+td.shared_list .share_link {
+  display: block !important;
+  opacity: 1 !important; }
 
 .list {
   padding: 0 10px 12px 10px;

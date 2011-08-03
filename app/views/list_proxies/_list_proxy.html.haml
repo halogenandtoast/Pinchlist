@@ -1,4 +1,4 @@
-%td[list_proxy.list]
+%td[list_proxy.list]{:class => list_proxy.shared? ? "shared_list" : nil}
   .list_title{:"data-background-color" => list_proxy.color, :style => "background-color: ##{list_proxy.color};"}
     %h3= list_proxy.title
     .icons{:"data-background-color" => list_proxy.color, :style => "background-color: ##{list_proxy.color};"}

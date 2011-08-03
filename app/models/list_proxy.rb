@@ -8,6 +8,8 @@ class ListProxy < ActiveRecord::Base
   scope :current_tasks, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
   scope :by_task_status, order("list_proxies.position ASC, tasks.completed ASC, tasks.position ASC")
 
+  delegate :shared?, :to => :list
+
   def self.by_position
     order("position ASC")
   end

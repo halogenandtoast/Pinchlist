@@ -43,6 +43,16 @@ describe ListProxy do
   end
 end
 
+describe ListProxy, "#shared?" do
+  let!(:list) { Factory(:list) }
+  subject { Factory(:list_proxy, :list => list) }
+  before { list.stubs(:shared?) }
+  it "delegates to list" do
+    subject.shared?
+    list.should have_received(:shared?)
+  end
+end
+
 describe ListProxy, "#title" do
   let!(:list) { Factory(:list, :title => "Foo bar") }
   subject { Factory(:list_proxy, :list => list) }
