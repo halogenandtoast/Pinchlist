@@ -1,8 +1,9 @@
-prevent_submissions = false;
 $('table tr').append("<%= escape_javascript(render(current_user.proxy_for(@list), :filter => :current)) %>");
 $('.picker').colorPicker();
 $('#new_task_title_<%= @list.id %>').focus();
 $('#list_title').val("");
+$('#new_task_<%= @list.id %>').bind('submit', preventFurtherSubmissions);
+$('#list_<%= @list.id %> form.share_form').bind('submit', preventFurtherSubmissions);
 enable_task_sorting();
 setup_color_pickers();
 setup_sharing();

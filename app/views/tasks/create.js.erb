@@ -1,4 +1,3 @@
-prevent_submissions = false;
 var task_el = $("<%= escape_javascript(render(@task)) %>");
 if($('#list_<%=@list.id%> ul.tasks li.completed').length > 0) {
   $('#list_<%= @list.id %> ul.tasks li.completed:first').before(task_el);

@@ -2,8 +2,6 @@
 // Source:  http://gist.github.com/399624
 // License: MIT
 
-var prevent_submissions = false;
-
 jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout, event_data) {
   return this.each(function(){
     var clicks = 0, self = this;
@@ -341,6 +339,16 @@ function setup_sharing() {
   });
 }
 
+function preventFurtherSubmissions(e) {
+  if($(this).data('disabled') == 'true') {
+    $(e.target).trigger('ujs:everythingStopped');
+    e.stopImmediatePropagation();
+    return false;
+  } else {
+    $(this).data('disabled', 'true');
+  }
+}
+
 $(document).ready(function(){
   setup_color_pickers();
   //
@@ -385,11 +393,9 @@ $(document).ready(function(){
   // $("tr").data("sortable").floating = true;
   //
 
-  $("form[data-remote]").submit(function() {
-    if(prevent_submissions) {
-      return false;
-    }
-    prevent_submissions = true;
+  $("form[data-remote]").bind("submit", preventFurtherSubmissions);
+  $("form[data-remote]").live("ajax:success", function() {
+    $(this).removeData('disabled');
   });
 
   //toggle demo video
