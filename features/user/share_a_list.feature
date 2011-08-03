@@ -70,7 +70,10 @@ Feature: Sharing a list
     And I sign out
     When I sign in as "receiver@example.com/password"
     Then I should see the list "Shared"
-    But I should not see the sharing icon for "Shared"
+    And I should see that the list is shared
+    And I should see that the list is shared with "user@example.com"
+    But I should not see the form for sharing
+    And I should not see a link to remove sharing
 
   Scenario: Sharing with an invalid email address
     Given the following user exists:

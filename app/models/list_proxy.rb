@@ -10,6 +10,10 @@ class ListProxy < ActiveRecord::Base
 
   delegate :shared?, :to => :list
 
+  def shared_users
+    list.users.where(["users.id != ?", user_id])
+  end
+
   def self.by_position
     order("position ASC")
   end

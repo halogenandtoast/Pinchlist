@@ -53,6 +53,15 @@ describe ListProxy, "#shared?" do
   end
 end
 
+describe ListProxy, "#shared_users" do
+  let(:list) { Factory(:list) }
+  subject { Factory(:additional_list_proxy, :list => list, :user => list.user) }
+  let!(:other_proxy) { Factory(:additional_list_proxy, :list => subject.list) }
+  it "returns a list of users from the list" do
+    subject.shared_users.should == [other_proxy.user]
+  end
+end
+
 describe ListProxy, "#title" do
   let!(:list) { Factory(:list, :title => "Foo bar") }
   subject { Factory(:list_proxy, :list => list) }

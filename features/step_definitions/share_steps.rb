@@ -2,6 +2,14 @@ When /^I click the share icon$/ do
   find("a.share_link").click
 end
 
+Then /^I should not see a link to remove sharing$/ do
+  page.should have_no_css(".shared_users a.remove")
+end
+
+Then /^I should not see the form for sharing$/ do
+  page.should have_no_css(".share_form")
+end
+
 When /^I should not see the sharing icon for "([^"]+)"$/ do |title|
   list = List.find_by_title(title)
   page.should have_no_css("#list_#{list.id} a.share_link")
