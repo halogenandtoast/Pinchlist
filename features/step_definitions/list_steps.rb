@@ -74,6 +74,7 @@ Then /^the list "([^"]*)" should have the color "([^"]*)"$/ do |list_title, colo
   list = List.find_by_title!(list_title)
   within "#list_#{list.id}" do
     page.should have_css(".list_title[style*='background-color: ##{color}']")
+    page.should have_css(".icons[style*='background-color: ##{color}']")
   end
 end
 
