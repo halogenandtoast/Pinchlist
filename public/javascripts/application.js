@@ -319,6 +319,7 @@ function setup_color_pickers() {
       var list = $(this).parents('.list').first();
       var list_id = list.attr('id').split('_')[1];
       $('li[data-list="'+list_id+'"] .date').css('color', color);
+      $('#list_'+list_id+' .icons').css('background-color', color);
 
       $.post(
         '/lists/'+list_id+'/proxy',
