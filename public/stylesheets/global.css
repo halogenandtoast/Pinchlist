@@ -721,8 +721,7 @@ td.ui-placeholder-highlight {
   max-width: 300px; }
 
 td.shared_list .share_link {
-  display: block !important;
-  opacity: 1 !important; }
+  display: block !important; }
 
 .list {
   padding: 0 10px 12px 10px;
@@ -933,24 +932,24 @@ td.shared_list .share_link {
           .list .list_title .share ul li:hover {
             background-color: transparent;
             border-top: none;
-            margin-top: 0;
-            text-indent: 14px; }
+            margin-top: 0; }
             .list .list_title .share ul li:hover .remove {
               display: block; }
           .list .list_title .share ul li .remove {
             display: none;
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 14px;
-            width: 14px;
+            top: 1px;
+            right: 0;
+            height: 16px;
+            width: 16px;
             margin-left: 2px;
             overflow: hidden;
             text-indent: -10000px;
-            background: #eeeeee url(/images/remove.png) 0 2px no-repeat;
-            opacity: 0.6; }
+            background: #eeeeee url(/images/remove.png) 3px 1px no-repeat;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px; }
             .list .list_title .share ul li .remove:hover {
-              opacity: 1; }
+              background-color: pink; }
     .list .list_title .delete, .list .list_title .share_link, .list .list_title .color_picker {
       height: 18px;
       width: 18px;

@@ -259,7 +259,6 @@ td
 td.shared_list
   .share_link
     display: block !important
-    opacity: 1 !important
 .list   
   padding: 0 10px 12px 10px
   margin: 2px
@@ -476,23 +475,23 @@ td.shared_list
             background-color: transparent
             border-top: none
             margin-top: 0
-            text-indent: 14px
             .remove
               display: block
           .remove
             display: none
             position: absolute
-            top: 0
-            left: 0
-            height: 14px
-            width: 14px
+            top: 1px
+            right: 0
+            height: 16px
+            width: 16px
             margin-left: 2px
             overflow: hidden
             text-indent: -10000px
-            background: #eee url(/images/remove.png)  0 2px no-repeat
-            opacity: .6
+            background: #eee url(/images/remove.png)  3px 1px no-repeat
+            -webkit-border-radius: 2px
+            -moz-border-radius: 2px
             &:hover
-              opacity: 1
+              background-color: pink
     .delete, .share_link, .color_picker
       height: 18px
       width: 18px
