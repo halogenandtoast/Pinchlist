@@ -9,16 +9,19 @@ div.color_picker
   display: none
 div#color_selector 
   z-index: 100
-  width: 85px
+  width: 70px
   position: absolute
   top: 0
   right: 0
   background-color: #eee
-  padding: 8px 8px 4px
+  padding: 6px 6px 4px
   -webkit-border-radius: 2px
   -moz-border-radius: 2px
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0, .4)
-  -moz-box-shadow: 0 0 3px rgba(0,0,0, .4)
+  -webkit-box-shadow: 0 0px 4px rgba(0,0,0, .5)
+  -moz-box-shadow: 0 0px 4px rgba(0,0,0, .5)
+  &:hover
+    .icons
+      opacity: 1
 div#color_custom 
   width: 100% 
   float:left 
@@ -28,22 +31,22 @@ div#color_custom
   //   margin: 5px 2px 
   //   width: 25%
   input 
-    margin: 8px 0 4px 
+    margin: 6px 0 2px 
     padding: 2px 3px 
     font-size: 95% 
-    width: 78px
+    width: 63px
     font-size: 11px
     font-weight: bold
     border: none
-    -webkit-box-shadow: 0 1px 0 #ccc inset
-    -moz-box-shadow: 0 1px 0 #ccc inset
+    -webkit-box-shadow: 0 1px 0 #aaa inset
+    -moz-box-shadow: 0 1px 0 #aaa inset
     &:focus
       background-color: #FDFEAD
       -webkit-box-shadow: 0 1px 0 #DED45C inset
       -moz-box-shadow: 0 1px 0 #DED45C inset
 div.color_swatch 
-  height: 15px
-  width: 15px
+  height: 12px
+  width: 12px
   margin: 0px
   float: left
   cursor: pointer
@@ -51,3 +54,27 @@ div.color_swatch
   border: 1px solid transparent
   &:hover
     border-color: #fff !important
+
+#color_selector:before,
+#color_selector:after,
+.share:before,
+.share:after
+  content: ""
+  position: absolute
+  z-index: 1000
+  top: -7px
+  left: 58px
+  margin-left: -8px
+  border-top: 0
+  border-left: 8px solid transparent
+  border-right: 8px solid transparent
+  border-bottom: 8px solid #eee
+
+#color_selector:before,
+.share:before
+  border-bottom-color: #ddd
+  top: -8px
+
+.share:before,
+.share:after
+  left: 157px

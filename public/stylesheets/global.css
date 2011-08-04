@@ -93,37 +93,39 @@ div.color_picker {
 
 div#color_selector {
   z-index: 100;
-  width: 85px;
+  width: 70px;
   position: absolute;
   top: 0;
   right: 0;
   background-color: #eeeeee;
-  padding: 8px 8px 4px;
+  padding: 6px 6px 4px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4); }
+  -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.5); }
+  div#color_selector:hover .icons {
+    opacity: 1; }
 
 div#color_custom {
   width: 100%; }
   div#color_custom input {
-    margin: 8px 0 4px;
+    margin: 6px 0 2px;
     padding: 2px 3px;
     font-size: 95%;
-    width: 78px;
+    width: 63px;
     font-size: 11px;
     font-weight: bold;
     border: none;
-    -webkit-box-shadow: 0 1px 0 #cccccc inset;
-    -moz-box-shadow: 0 1px 0 #cccccc inset; }
+    -webkit-box-shadow: 0 1px 0 #aaaaaa inset;
+    -moz-box-shadow: 0 1px 0 #aaaaaa inset; }
     div#color_custom input:focus {
       background-color: #fdfead;
       -webkit-box-shadow: 0 1px 0 #ded45c inset;
       -moz-box-shadow: 0 1px 0 #ded45c inset; }
 
 div.color_swatch {
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
   margin: 0px;
   float: left;
   cursor: pointer;
@@ -131,6 +133,30 @@ div.color_swatch {
   border: 1px solid transparent; }
   div.color_swatch:hover {
     border-color: white !important; }
+
+#color_selector:before,
+#color_selector:after,
+.share:before,
+.share:after {
+  content: "";
+  position: absolute;
+  z-index: 1000;
+  top: -7px;
+  left: 58px;
+  margin-left: -8px;
+  border-top: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #eeeeee; }
+
+#color_selector:before,
+.share:before {
+  border-bottom-color: #dddddd;
+  top: -8px; }
+
+.share:before,
+.share:after {
+  left: 157px; }
 
 input[type="text"], input[type="password"] {
   border: 1px solid #dddddd;
@@ -879,27 +905,28 @@ td.shared_list .share_link {
       display: none;
       position: absolute;
       height: auto;
-      top: 2px;
-      right: 20px;
+      top: 28px;
+      right: 10px;
       width: 178px;
+      padding: 0px 0px 2px;
       background-color: #eeeeee;
-      padding: 0px 8px 4px;
+      -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+      -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
       -webkit-border-radius: 2px;
       -moz-border-radius: 2px;
-      -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-      -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
       z-index: 10000; }
       .list .list_title .share:hover {
         cursor: default !important; }
       .list .list_title .share form {
-        width: 178px;
+        width: 160px;
         float: left;
-        margin: -4px 0 0 0; }
+        margin: -4px 0 2px 8px; }
         .list .list_title .share form .input {
           background-color: white;
           float: left; }
           .list .list_title .share form .input input[type="text"] {
-            width: 174px;
+            width: 158px;
             float: left;
             padding: 3px 0 3px 4px;
             height: 18px;
@@ -915,13 +942,18 @@ td.shared_list .share_link {
         width: 100%;
         border: none;
         padding: 8px 0 0 0;
-        margin: 0 0 5px 0; }
+        margin: 0;
+        background-color: #eeeeee;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px; }
         .list .list_title .share ul:hover {
           border: none; }
         .list .list_title .share ul li {
-          color: #aaaaaa;
-          padding: 3px 0 2px 2px;
-          border-bottom: 1px solid #e1e1e1;
+          color: #999999;
+          background-color: #eeeeee;
+          padding: 4px 0 2px 6px;
+          border-top: 1px solid #dddddd;
+          border-bottom: none;
           margin: 0;
           cursor: default !important;
           font-size: 10px;
@@ -930,24 +962,24 @@ td.shared_list .share_link {
           position: relative;
           overflow: hidden; }
           .list .list_title .share ul li:hover {
-            background-color: transparent;
-            border-top: none;
+            background-color: #e9e9e9;
+            border-bottom: none;
             margin-top: 0; }
             .list .list_title .share ul li:hover .remove {
               display: block; }
           .list .list_title .share ul li .remove {
             display: none;
             position: absolute;
-            top: 1px;
-            right: 0;
+            top: 2px;
+            right: 2px;
             height: 16px;
             width: 16px;
             margin-left: 2px;
             overflow: hidden;
             text-indent: -10000px;
-            background: #eeeeee url(/images/remove.png) 3px 1px no-repeat;
-            -webkit-border-radius: 2px;
-            -moz-border-radius: 2px; }
+            background: #e9e9e9 url(/images/remove.png) 3px 3px no-repeat;
+            -webkit-border-radius: 1px;
+            -moz-border-radius: 1px; }
             .list .list_title .share ul li .remove:hover {
               background-color: pink; }
     .list .list_title .delete, .list .list_title .share_link, .list .list_title .color_picker {

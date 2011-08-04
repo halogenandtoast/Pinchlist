@@ -49,7 +49,6 @@
      $.each($.fn.colorPicker.defaultColors, function(i){
       swatch = $("<div class='color_swatch'>&nbsp;</div>")
       swatch.css("background-color", "#" + this);
-      swatch.css("border-color", "#" + this);
       swatch.bind("click", function(e){ changeColor($(this).css("background-color")) });
       swatch.bind("mouseover", function(e){
         // $(this).css("border-color", "#598FEF");
@@ -99,8 +98,8 @@
     //alert($(selectorOwner).offset().top);
 
     selector.css({
-      top: $(selectorOwner).offset().top - 2,
-      left: $(selectorOwner).offset().left - $('#color_selector').width() + 5
+      top: $(selectorOwner).offset().top + 24,
+      left: $(selectorOwner).offset().left - $('#color_selector').width() + 22
     });
     hexColor = $(selectorOwner).prev("input").val();
     $("input#color_value").val(hexColor);
@@ -162,7 +161,7 @@
     $.fn.colorPicker.defaultColors = $.fn.colorPicker.defaultColors.concat(colorArray);
   };
 
-  $.fn.colorPicker.defaultColors =
+ $.fn.colorPicker.defaultColors =
 	[ '4D3404', '6E5123', '8E6316', 'A67D37', 'C5A368', 'BE0000', 'E10000', 'FF0000', 'FF5A5B', 'FF8F8D', 'BE0067', 'E10071', 'FF0080', 'FF4A9E', 'FF85BC', '8B0069', 'A8007F', 'C10098', 'CF4DAA', 'DB77BE', '2F006A', '4C0082', '601C9A', '7D4FAD', 'A282C7', '003982', '004C9E', '0061BF', '007CD5', '609FDB', '005C60', '00747A', '008C92', '00B8C1', '87D5DC', '006F4F', '008A5E', '00AE77', '00C687', '85DEB5', '008632', '00A133', '00BB2C', '6ECA5C', 'B3DF99', 'F3BD00', 'FFD100', 'FFEA00', 'FFF44D', 'FFF99E', 'CA4C00', 'ED5000', 'FF7E25', 'FFA770', 'FFC591', '222222', '555555', '888888', 'aaaaaa', 'cccccc'];
 
 })(jQuery);
