@@ -9,13 +9,14 @@ Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
   page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
 end
 
-When /^I click on the upcoming task "([^"]*)"$/ do |title|
+When /^I click the upcoming task "([^"]*)"$/ do |title|
   find("#upcoming_tasks li:contains('#{title}') span.task_title").click
 end
 
 When /^I double click the upcoming task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{ task_edit($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}', "upcoming") }
+  page.evaluate_script %{ toggle_completed($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}', "upcoming") }
+  # page.evaluate_script %{ task_edit($("#upcoming_tasks li:contains('#{title}')"), '#{task.id}', "upcoming") }
 end
 
 When /^I fill in the upcoming title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|

@@ -114,7 +114,7 @@ function task_edit(task, task_id, prefix) {
   }
   var self = task;
   var task_due_date = $(self).find("span.date").detach().text().replace(/^\s+|\s+$/g, '');
-  var task_title = $(self).data("edit-title").replace(/^\s+|\s+$/g, '');
+  var task_title = String($(self).data("edit-title")).replace(/^\s+|\s+$/g, '');
   var title_field = (task_due_date != "") ? "@" + task_due_date + " " + task_title : task_title;
   var form = $('<form id="new_task_title" />');
   $(self).unbind('click');
@@ -252,37 +252,41 @@ function clear_task_title_form() {
   }
 }
 
+function toggle_completed(task, task_id, prefix) {
+  var upcoming_task_elem = $("#upcoming_task_"+task_id);
+  var task_elem = $("#task_"+task_id);
+  upcoming_task_elem.toggleClass('completed');
+  task_elem.toggleClass("completed");
+  if(task_elem.siblings('.completed').length > 0) {
+    task_elem.insertBefore(task_elem.siblings('.completed:first'));
+  } else {
+    task_elem.parent('ul').append(task_elem)
+  }
+  if(upcoming_task_elem) {
+    if(upcoming_task_elem.siblings('.completed').length > 0) {
+      upcoming_task_elem.insertBefore(upcoming_task_elem.siblings('.completed:first'));
+    } else {
+      upcoming_task_elem.parent('ul').append(upcoming_task_elem)
+    }
+    sort_list('#upcoming_tasks');
+  }
+  task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
+  upcoming_task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
+  $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
+  $(".list:not(.upcoming) ul").sortable('destroy');
+  enable_task_sorting();
+}
+
 function setup_single_and_double_click(element, prefix) {
   element.single_double_click(function() {
-      clear_task_title_form();
-      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
-      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      var upcoming_task_elem = $("#upcoming_task_"+task_id);
-      var task_elem = $("#task_"+task_id);
-      upcoming_task_elem.toggleClass('completed');
-      task_elem.toggleClass("completed");
-      if(task_elem.siblings('.completed').length > 0) {
-        task_elem.insertBefore(task_elem.siblings('.completed:first'));
-      } else {
-        task_elem.parent('ul').append(task_elem)
-      }
-      if(upcoming_task_elem) {
-        if(upcoming_task_elem.siblings('.completed').length > 0) {
-          upcoming_task_elem.insertBefore(upcoming_task_elem.siblings('.completed:first'));
-        } else {
-          upcoming_task_elem.parent('ul').append(upcoming_task_elem)
-        }
-        sort_list('#upcoming_tasks');
-      }
-      task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
-      upcoming_task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
-      $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
-      $(".list:not(.upcoming) ul").sortable('destroy');
-      enable_task_sorting();
-    }, function() {
       var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
       var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
       task_edit(task, task_id, prefix);
+    }, function() {
+      clear_task_title_form();
+      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
+      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
+      toggle_completed(task, task_id, prefix);
     }, 225, {prefix:prefix});
 }
 

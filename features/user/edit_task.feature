@@ -16,7 +16,7 @@ Feature: Edit a task
       | title               | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click the upcoming task "Ride a shark"
+    And I click the upcoming task "Ride a shark"
     And I fill in the upcoming title for "Ride a shark" with "@10/20 Lasso a shark"
     And I submit the upcoming title form for "Ride a shark"
     Then I should see the upcoming task "Lasso a shark"
@@ -36,7 +36,7 @@ Feature: Edit a task
       | title        | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click the upcoming task "Ride a shark"
+    And I click the upcoming task "Ride a shark"
     Then the upcoming title field for "Ride a shark" should contain "@10/20 Ride a shark"
     And I fill in the upcoming title for "Ride a shark" with "@10/30 Lasso a shark"
     And I submit the upcoming title form for "Ride a shark"
@@ -58,7 +58,7 @@ Feature: Edit a task
       | title        | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click "My List"'s task "Ride a shark"
+    And I click the task "Ride a shark"
     And I fill in the title for "Ride a shark" with "@10/20 Lasso a shark"
     And I submit the title form for "Ride a shark"
     Then I should see the upcoming task "Lasso a shark"
@@ -78,7 +78,7 @@ Feature: Edit a task
       | title        | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click "My List"'s task "Ride a shark"
+    And I click the task "Ride a shark"
     And I fill in the title for "Ride a shark" with "@10/20 Lasso a shark"
     And I blur the title form for "Ride a shark"
     Then I should see the upcoming task "Lasso a shark"
@@ -131,5 +131,5 @@ Feature: Edit a task
       | list           | title     |
       | title: My List | !Foo 25th |
     When I am on the dashboard page
-    And I double click "My List"'s task "!Foo 25th"
+    And I click the task "!Foo 25th"
     Then the title being edited should be "!Foo 25th"

@@ -32,15 +32,15 @@ Then /^I should not see the task "([^"]*)"$/ do |task|
   page.should_not have_css("li:contains('#{task}')")
 end
 
-When /^I click on the task "([^"]*)"$/ do |title|
+When /^I click the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#list_#{task.list.id} li:contains('#{title}') span.task_title").click
+  find("#list_#{task.list.id} li:contains('#{task.display_title}') span.task_title").click
 end
 
 
-When /^I double click "([^"]*)"'s task "([^"]*)"$/ do |list_title, title|
+When /^I double click the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{ task_edit($("#task_#{task.id}"), '#{task.id}') }
+  page.evaluate_script %{ toggle_completed($("#task_#{task.id}"), '#{task.id}') }
 end
 
 When /^I fill in the title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|

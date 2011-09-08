@@ -32,7 +32,7 @@ Feature: View upcoming tasks
       | title            | list         |
       | @10/20 Something | title: First |
     When I am on the dashboard page
-    And I double click the upcoming task "Something"
+    And I click the upcoming task "Something"
     And I fill in the upcoming title for "Something" with "Something without a date"
     And I submit the upcoming title form for "Something"
     Then I should see the task "Something without a date"
@@ -49,7 +49,7 @@ Feature: View upcoming tasks
       | title          | list          |
       | Something      | title: First  |
     When I am on the dashboard page
-    And I double click "First"'s task "Something"
+    And I click the task "Something"
     And I fill in the title for "Something" with "@10/20 Something"
     And I submit the title form for "Something"
     Then I should see the task "Something"
