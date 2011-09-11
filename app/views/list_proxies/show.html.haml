@@ -9,14 +9,4 @@
 #container
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr
-      %td[@list_proxy.list]
-        .list_title{:style => "background-color: ##{@list_proxy.color};"}
-          %h3= @list_proxy.title
-          .picker
-          = link_to 'delete list', list_proxy_path(:list_id => @list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{@list_proxy.title}?", :class => 'delete', :tabindex => "-1"
-        = form_for [@list_proxy.list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{@list_proxy.list_id}" } do |form|
-          = form.text_field :title, :id => "new_task_title_#{@list_proxy.list_id}", :autocomplete => "off"
-        - unless @tasks.empty?
-          %ul
-            = render @tasks
-
+      =render @list_proxy, :filter => nil

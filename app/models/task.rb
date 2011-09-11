@@ -35,6 +35,8 @@ class Task < ActiveRecord::Base
     case filter
     when :current
       current
+    else
+      scoped
     end
   end
 

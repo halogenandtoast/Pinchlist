@@ -11,7 +11,18 @@ Feature: In order to track what needs to be done
     When I am on the dashboard page
     And I fill in "My List"'s task title with "Learn to ride a shark"
     And I submit "My List"'s task form
-    Then I should see "Learn to ride a shark"
+    Then I should see the task "Learn to ride a shark"
+
+  Scenario: Adding a task from "View all"
+    Given I am signed in as "user@example.com/password"
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
+    When I am on the dashboard page
+    And I follow "view all"
+    And I fill in "My List"'s task title with "Learn to ride a shark"
+    And I submit "My List"'s task form
+    Then I should see the task "Learn to ride a shark"
 
   Scenario: Trying to add a blank task
     Given I am signed in as "user@example.com/password"
