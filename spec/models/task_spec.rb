@@ -178,3 +178,14 @@ describe Task, "#update" do
     subject.due_date.should be_nil
   end
 end
+
+describe Task, "#title=" do
+  subject { Factory(:task) }
+  let(:titles) { ["Do stuff on Monday", "Do stuff next friday", "Do stuff Feb 24", "Do stuff 2/24", "Do stuff 2/24/03", "Do stuff 02/24/2003"] }
+  it "removes the date string" do
+    titles.each do |title|
+      subject.title = title
+      subject.title.should eql("Do stuff"), %{"#{title}" should have changed to "Do stuff"}
+    end
+  end
+end

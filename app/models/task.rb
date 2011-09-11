@@ -2,6 +2,9 @@ require 'timelord'
 class Task < ActiveRecord::Base
   DATE_PATTERN = /@([^\s]+)/
   MONTH_DAY_FORMAT = /(\d{1,2}\/\d{1,2})/
+  DAYNAMES = Date::DAYNAMES+Date::ABBR_DAYNAMES
+  MONTHNAMES = (Date::MONTHNAMES+Date::ABBR_MONTHNAMES).compact
+  REMOVE_DATE_MATCHER = / ((on|next) )?(((#{DAYNAMES.join("|")}))|((#{MONTHNAMES.join("|")})( \d{1,2})?)|(\d{1,2}\/\d{1,2}(\/\d{2}\d{2}?)?))/i
 
   belongs_to :list
   validates_presence_of :title, :on => :create
@@ -39,7 +42,8 @@ class Task < ActiveRecord::Base
     where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
   end
 
-  def title=(title)
+  def title=(new_title)
+    title = new_title.dup
     unless title.empty?
       if title =~ /^!/
         write_attribute(:due_date, nil)
@@ -47,7 +51,7 @@ class Task < ActiveRecord::Base
         parse_date_format(title) unless title =~ /^!/
       end
     end
-    write_attribute(:title, remove_date_format(title))
+    write_attribute(:title, remove_date_data(title))
   end
 
   def display_title
@@ -83,8 +87,13 @@ class Task < ActiveRecord::Base
     Chronic.parse(str.gsub(MONTH_DAY_FORMAT) { |date| "#{date}/#{Time.now.year}" }).try(:to_date)
   end
 
-  def remove_date_format(str)
-    self.due_date ? str.try(:gsub, %r{(\s+#{DATE_PATTERN}|#{DATE_PATTERN}\s+)}, '') : str
+  def remove_date_data(str)
+    str.dup.tap do |s|
+      if self.due_date
+        s.try(:gsub!, %r{(\s+#{DATE_PATTERN}|#{DATE_PATTERN}\s+)}, '')
+        s.try(:gsub!, REMOVE_DATE_MATCHER, '')
+      end
+    end
   end
 
   def destroy_on_empty_title
