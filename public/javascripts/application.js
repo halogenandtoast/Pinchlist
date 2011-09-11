@@ -355,25 +355,12 @@ function preventFurtherSubmissions(e) {
 
 $(document).ready(function(){
   setup_color_pickers();
-  //
-  // mark normal and upcoming tasks completed
   setup_single_and_double_click($("#upcoming_tasks li span.task_title, #upcoming_tasks li span.date"), "upcoming");
   setup_single_and_double_click($(".list:not(.upcoming) li span.task_title, .list:not(.upcoming) li span.date"), "");
 
-  $(".list_title h3").live('dblclick', function() {
+  $(".list_title h3").live('click', function() {
       list_edit($(this));
   });
-
-  // drag and drop tasks
-
-  // drag and drop lists
-    // var fixHelper = function(e, ui) {
-    //  ui.children().each(function() {
-    //    $(this).width($(this).width());
-    //  });
-    //  return ui;
-    // };
-
 
   enable_task_sorting();
   $("tr").sortable({
@@ -394,8 +381,6 @@ $(document).ready(function(){
       }
 
   });
-  // $("tr").data("sortable").floating = true;
-  //
 
   $("form[data-remote]").bind("submit", preventFurtherSubmissions);
   $("form[data-remote]").live("ajax:success", function() {
@@ -406,7 +391,6 @@ $(document).ready(function(){
   $("#demo").click(function() {
     $("#demo_video").show();
     $("#demo").hide();
-    // $('#demo').text($('#demo').text() == 'Pause' ? 'Play' : 'Pause');
   });
 
   $(".stop").click(function() {

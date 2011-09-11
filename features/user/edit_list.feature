@@ -10,7 +10,7 @@ Feature: Edit a list
       | title   | user                    |
       | My List | email: user@example.com |
     When I go to the dashboard page
-    And I double click the list title "My List"
+    And I click the list title "My List"
     And I fill in the list title for "My List" with "My Really Awesome List"
     And I submit the list title form for "My List"
     Then I should see the list "My Really Awesome List"

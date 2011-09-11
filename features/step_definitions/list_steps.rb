@@ -33,7 +33,7 @@ Then /^I should not see the list "([^"]*)"$/ do |title|
   page.should_not have_css(".list:contains('#{title}')")
 end
 
-When /^I double click the list title "([^"]*)"$/ do |title|
+When /^I click the list title "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
   page.evaluate_script %{ list_edit($('#list_#{list.id} .list_title h3')) }
 end
