@@ -2,7 +2,7 @@ require 'timelord'
 class Task < ActiveRecord::Base
   DATE_PATTERN = /@([^\s]+)/
   MONTH_DAY_FORMAT = /(\d{1,2}\/\d{1,2})/
-  DAYNAMES = Date::DAYNAMES+Date::ABBR_DAYNAMES
+  DAYNAMES = Date::DAYNAMES+Date::ABBR_DAYNAMES+['tues','thurs','thur','tod','today','tom','tomorrow']
   MONTHNAMES = (Date::MONTHNAMES+Date::ABBR_MONTHNAMES).compact
   REMOVE_DATE_MATCHER = / ((on|next) )?(((#{DAYNAMES.join("|")}))|((#{MONTHNAMES.join("|")})( \d{1,2})?)|(\d{1,2}\/\d{1,2}(\/\d{2}\d{2}?)?))/i
 
