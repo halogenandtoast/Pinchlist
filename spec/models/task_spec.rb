@@ -170,3 +170,11 @@ describe Task, ".create" do
     subject.position.should == 2
   end
 end
+
+describe Task, "#update" do
+  subject { Factory(:task, :title => "Do stuff on 10/10") }
+  it "removes the date when ! is added" do
+    subject.update_attributes(:title => "!Do stuff on 10/10")
+    subject.due_date.should be_nil
+  end
+end

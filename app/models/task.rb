@@ -41,7 +41,11 @@ class Task < ActiveRecord::Base
 
   def title=(title)
     unless title.empty?
-      parse_date_format(title) unless title =~ /^!/
+      if title =~ /^!/
+        write_attribute(:due_date, nil)
+      else
+        parse_date_format(title) unless title =~ /^!/
+      end
     end
     write_attribute(:title, remove_date_format(title))
   end
