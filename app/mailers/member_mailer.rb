@@ -8,4 +8,11 @@ class MemberMailer < ActionMailer::Base
          :from => @sender.email,
          :subject => "A new list has been shared with you")
   end
+
+  def update_clicks_email(user)
+    mail(:to => user.email,
+         :from => "support@listwerk.com",
+         :subject => "Listwerk updates")
+  end
+
 end
