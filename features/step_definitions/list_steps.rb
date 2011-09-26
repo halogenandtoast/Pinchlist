@@ -47,7 +47,7 @@ end
 
 When /^I submit the list title form for "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
-  page.evaluate_script %{ $('#list_#{list.id} .list_title form#new_list_title').trigger('submit') }
+  find("#new_list_title").trigger("submit")
 end
 
 When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2|
@@ -80,7 +80,8 @@ end
 
 When /^I change the color of "([^"]*)" to "([^"]*)"$/ do |list_title, color|
   list = List.find_by_title!(list_title)
-  page.execute_script("toggleSelector.call($('#list_#{list.id} .picker')); changeColor('#{color}')")
+  page.execute_script("toggleSelector.call($('#list_#{list.id} .picker'));")
+  page.execute_script("$.changeColor('#{color}')")
 end
 
 Then /^"([^"]*)" should have no tasks$/ do |list_title|

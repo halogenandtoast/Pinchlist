@@ -1,6 +1,12 @@
 source :rubygems
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.0'
+gem 'jquery-rails'
+group :assets do
+  gem 'sass-rails', '~> 3.1.0'
+  gem 'coffee-rails', '~> 3.1.0'
+  gem 'uglifier'
+end
 gem 'pg'
 gem 'devise'
 gem 'haml'
@@ -27,16 +33,15 @@ group :development, :test do
 end
 
 group :test do
-  gem 'akephalos'
   gem 'capybara'
+  gem 'capybara-webkit', :git => "https://github.com/thoughtbot/capybara-webkit.git"
   gem 'timecop'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'bourne'
-  gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'factory_girl_rails'
-  gem 'shoulda'
+  gem 'shoulda', "3.0.0.beta2"
   gem 'email_spec'
 end

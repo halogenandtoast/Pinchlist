@@ -31,7 +31,7 @@ describe ListProxy do
 
   context 'when destroyed' do
     subject { Factory(:list_proxy) }
-    let!(:list) { subject.list.target }
+    let!(:list) { subject.list }
     before do
       list.stubs(:check_for_proxies)
     end
