@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    @list = current_user.lists.build(params[:list])
+    @list = List.new(params[:list].merge(:user => current_user))
     respond_to do |format|
       if @list.save
         format.js { render }

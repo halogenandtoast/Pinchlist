@@ -116,12 +116,12 @@ body
         color: #999
         width: 808px
         height: 338px
-        background: #222 url(/images/play-large.png) 0 0 no-repeat
+        background: #222 image-url("play-large.png") 0 0 no-repeat
         margin: 20px 0 0
         text-indent: -10000px
         padding: 0
         &:hover
-          background: #222 url(/images/play-large.png) 0 -330px no-repeat
+          background: #222 image-url("play-large.png") 0 -330px no-repeat
           border: none
     #demo_video
       width: 808px
@@ -152,9 +152,9 @@ body
             border: 0
         .play
           display: none
-          background: #222 url(/images/play.png) 0 0 no-repeat
+          background: #222 image-url("play.png") 0 0 no-repeat
         .stop
-          background: #222 url(/images/stop.png) 0 0 no-repeat
+          background: #222 image-url("stop.png") 0 0 no-repeat
   dl
     dt
       font-size: 12px
@@ -324,7 +324,7 @@ td.shared_list
         &:hover
           cursor: pointer
       &.completed
-        background: url(/images/check.png) 4px 6px no-repeat
+        background: image-url("check.png") 4px 6px no-repeat
         padding: 0 4px 0 16px
         cursor: default !important
         &:hover
@@ -415,7 +415,7 @@ td.shared_list
       position: absolute
       right: 22px
       text-indent: -10000px
-      background: url(/images/share.png) 0 0 no-repeat
+      background: image-url("share.png") 0 0 no-repeat
       display: none
     .share
       display: none
@@ -497,7 +497,7 @@ td.shared_list
             margin-left: 2px
             overflow: hidden
             text-indent: -10000px
-            background: #e9e9e9 url(/images/remove.png)  3px 3px no-repeat
+            background: #e9e9e9 image-url("remove.png")  3px 3px no-repeat
             -webkit-border-radius: 1px
             -moz-border-radius: 1px
             &:hover
@@ -514,7 +514,7 @@ td.shared_list
     .color_picker
       width: 21px
     .delete
-      background: transparent url(/images/delete.png) 0 0 no-repeat
+      background: transparent image-url("delete.png") 0 0 no-repeat
       position: absolute
       right: 4px
       overflow: hidden
