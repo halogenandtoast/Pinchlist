@@ -34,7 +34,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-webkit', :git => "https://github.com/thoughtbot/capybara-webkit.git"
+  gem 'capybara-webkit'
   gem 'timecop'
   gem 'database_cleaner'
   gem 'cucumber-rails'
