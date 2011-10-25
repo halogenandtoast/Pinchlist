@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412041437) do
+ActiveRecord::Schema.define(:version => 20110804033510) do
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20110412041437) do
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
     t.boolean  "admin",                              :default => false
+    t.string   "subscription_token"
+    t.string   "customer_token"
+    t.string   "payment_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

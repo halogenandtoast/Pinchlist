@@ -31,7 +31,6 @@ Feature: Sharing a list
     And I sign in as "receiver@example.com/password"
     Then I should see the list "Shared"
 
-  @javascript
   Scenario: Sharing a list with a non-member
     Given I am signed in as "user@example.com/password"
     And the following list proxy exists:
