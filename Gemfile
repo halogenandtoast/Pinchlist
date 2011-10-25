@@ -37,8 +37,8 @@ group :test do
   gem 'capybara-webkit'
   gem 'timecop'
   gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
+  gem 'cucumber-rails', '1.1.1'
+  gem 'cucumber', '1.0.6'
   gem 'bourne'
   gem 'launchy'    # So you can do Then show me the page
   gem 'factory_girl_rails'
