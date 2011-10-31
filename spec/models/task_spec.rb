@@ -39,6 +39,10 @@ describe Task, 'with an empty title' do
 end
 
 describe Task, 'whose title has a due date' do
+  before do
+    Timecop.freeze(2011, 10, 1)
+  end
+
   context 'in the front' do
     subject { Factory(:task, :title => "@10/20 Build foo") }
     its(:due_date) { should == "#{Time.now.year}/10/20".to_date }
@@ -61,6 +65,10 @@ describe Task, 'whose title has a due date' do
     subject { Factory(:task, :title => "!Build @10/20 foo") }
     its(:due_date) { should == nil }
     its(:title) { should == '!Build @10/20 foo' }
+  end
+
+  after do
+    Timecop.return
   end
 end
 
@@ -185,7 +193,7 @@ describe Task, "#title=" do
   it "removes the date string" do
     titles.each do |title|
       subject.title = title
-      subject.title.should eql("Do stuff"), %{"#{title}" should have changed to "Do stuff"}
+      subject.title.should eql("Do stuff"), %{"#{title}" should have changed to "Do stuff" got "#{subject.title}" instead}
     end
   end
 end

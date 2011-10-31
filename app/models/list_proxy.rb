@@ -5,8 +5,14 @@ class ListProxy < ActiveRecord::Base
   before_create :set_color
   after_destroy :notify_list
   acts_as_list :scope => :user
-  scope :current_tasks, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
-  scope :by_task_status, order("list_proxies.position ASC, tasks.completed ASC, tasks.position ASC")
+
+  def self.current_tasks
+   where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
+  end
+
+  def self.by_task_status
+   order("list_proxies.position ASC, tasks.completed ASC, tasks.position ASC")
+  end
 
   delegate :shared?, :to => :list
 

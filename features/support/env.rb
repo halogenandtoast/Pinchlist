@@ -38,6 +38,9 @@ begin
   DatabaseCleaner.strategy = :truncation
   Before('@javascript') do
     ActiveRecord::Base.shared_connection = nil
+    ActiveRecord::Base.descendants.each do |model|
+      model.shared_connection = nil
+    end
   end
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
