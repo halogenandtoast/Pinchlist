@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def current_subscription
-    subscriptions.where("starts_at <= :today AND ends_at >= :today", Date.today).first
+    subscriptions.current.first
   end
 
   def subscribed?

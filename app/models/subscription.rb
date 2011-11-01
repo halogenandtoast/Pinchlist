@@ -40,4 +40,8 @@ class Subscription
   def stripe_customer_token
     @user.stripe_customer_token
   end
+
+  def self.current
+    where("starts_at <= :today AND ends_at >= :today", :today => Date.today)
+  end
 end
