@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = current_user.subscriptions.new(params[:subscription])
     if @subscription.save_with_payment
-      redirect_to @subscription, :notice => "Thank you for subscribing!"
+      redirect_to dashboard_path, :notice => "Thank you for subscribing!"
     else
       render :new
     end

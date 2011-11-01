@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111031150628) do
+ActiveRecord::Schema.define(:version => 20111101044956) do
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20111031150628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_customer_token"
+    t.date     "starts_at"
+    t.date     "ends_at"
   end
 
   add_index "subscriptions", ["plan_id"], :name => "index_subscriptions_on_plan_id"
