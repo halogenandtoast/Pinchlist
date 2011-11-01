@@ -40,5 +40,4 @@ class Subscription
   def stripe_customer_token
     @user.stripe_customer_token
   end
-
 end

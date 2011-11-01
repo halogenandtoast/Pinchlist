@@ -18,5 +18,4 @@ class SubscriptionsController < ApplicationController
     current_user.cancel_subscription!
     redirect_to dashboard_path, :notice => "Your subscription has been cancelled. You will not be rebilled."
   end
-
 end
