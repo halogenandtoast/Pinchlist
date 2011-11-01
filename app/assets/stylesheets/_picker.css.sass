@@ -1,0 +1,80 @@
+div.color_picker 
+  position: absolute
+  right: 40px
+  padding: 0 !important
+  background: url(picker4.png) no-repeat top right
+  cursor: pointer
+  line-height: 16px
+  text-indent: -10000px
+  display: none
+div#color_selector 
+  z-index: 100
+  width: 70px
+  position: absolute
+  top: 0
+  right: 0
+  background-color: #eee
+  padding: 8px 8px 6px
+  -webkit-border-radius: 2px
+  -moz-border-radius: 2px
+  -webkit-box-shadow: 0 0px 4px rgba(0,0,0, .5)
+  -moz-box-shadow: 0 0px 4px rgba(0,0,0, .5)
+  &:hover
+    .icons
+      opacity: 1
+div#color_custom 
+  width: 100% 
+  float:left 
+  // label 
+  //   font-size: 10px 
+  //   color: #2F2F2F 
+  //   margin: 5px 2px 
+  //   width: 25%
+  input 
+    margin: 8px 0 4px 
+    padding: 2px 3px 
+    font-size: 95% 
+    width: 63px
+    font-size: 11px
+    font-weight: bold
+    border: none
+    -webkit-box-shadow: 0 1px 0 #aaa inset
+    -moz-box-shadow: 0 1px 0 #aaa inset
+    &:focus
+      background-color: #FDFEAD
+      -webkit-box-shadow: 0 1px 0 #DED45C inset
+      -moz-box-shadow: 0 1px 0 #DED45C inset
+div.color_swatch 
+  height: 12px
+  width: 12px
+  margin: 0px
+  float: left
+  cursor: pointer
+  line-height: 12px
+  border: 1px solid transparent
+  &:hover
+    border-color: #fff !important
+
+#color_selector:before,
+#color_selector:after,
+.share:before,
+.share:after
+  content: ""
+  position: absolute
+  z-index: 1000
+  top: -7px
+  left: 59px
+  margin-left: -8px
+  border-top: 0
+  border-left: 8px solid transparent
+  border-right: 8px solid transparent
+  border-bottom: 8px solid #eee
+
+#color_selector:before,
+.share:before
+  border-bottom-color: #ddd
+  top: -8px
+
+.share:before,
+.share:after
+  left: 157px

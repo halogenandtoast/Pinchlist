@@ -1,0 +1,31 @@
+@media print
+  html
+  #util, input, .completed, .today, .archive_link, .input, .delete
+    display: none !important
+  #header
+    background-color: #fff !important
+  td
+    max-width: auto
+  .list
+    margin-right: 2em !important
+    padding-right: 15px !important
+    width: auto !important
+    .list_title
+      margin-bottom: 8px !important
+      h3
+        color: #111
+        font-size: 13px
+    ul
+      width: 100% !important
+      margin-top: -4px !important
+      li
+        list-style: square outside url(/images/checkbox.svg) !important
+        padding: 0 !important
+        margin: 0 0 0 10px !important
+        border: none !important
+        vertical-align: top !important
+        .task_title
+          font-size: 12px
+          padding: 0
+    .list.upcoming ul
+      margin-top: 4px !important
