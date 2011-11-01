@@ -45,7 +45,6 @@ module Pinchlist
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.generators.stylesheet_engine = :sass
-    config.sass.preferred_syntax = :sass
     config.generators do |generate|
       generate.template_engine :haml
       generate.test_framework :rspec
