@@ -1,4 +1,5 @@
 Pinchlist::Application.routes.draw do
+
   get "pages/about"
   get "pages/legal"
   get "pages/help"
@@ -15,6 +16,7 @@ Pinchlist::Application.routes.draw do
   end
 
   resources :tasks, :only => [:update]
+  resources :subscriptions, :only => [:new, :create]
 
   namespace :admin do
     resources :users

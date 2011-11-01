@@ -5,6 +5,8 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
+gem 'stripe'
+
 group :assets do
   gem 'sass-rails', '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.0'

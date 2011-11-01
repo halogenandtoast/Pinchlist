@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110804033510) do
+ActiveRecord::Schema.define(:version => 20111031150628) do
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(:version => 20110804033510) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripe_customer_token"
+  end
+
+  add_index "subscriptions", ["plan_id"], :name => "index_subscriptions_on_plan_id"
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "tasks", :force => true do |t|
     t.text     "title"
@@ -57,9 +75,6 @@ ActiveRecord::Schema.define(:version => 20110804033510) do
     t.string   "invitation_token",     :limit => 20
     t.datetime "invitation_sent_at"
     t.boolean  "admin",                              :default => false
-    t.string   "subscription_token"
-    t.string   "customer_token"
-    t.string   "payment_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
