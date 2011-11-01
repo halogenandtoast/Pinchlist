@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 tmp
 .un~
+.DS_Store
