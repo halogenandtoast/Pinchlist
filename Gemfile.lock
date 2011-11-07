@@ -247,6 +247,7 @@ DEPENDENCIES
   launchy
   newrelic_rpm
   pg
+  rack-ssl
   rails (= 3.1.1)
   rspec-rails
   ruby-debug
