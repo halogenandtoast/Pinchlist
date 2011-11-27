@@ -298,9 +298,9 @@ td.shared_list
       list-style: none
       text-indent: none
       font-size: 11px
-      padding: 0 4px
+      padding: 0
       margin: 0 0 0 -4px
-      line-height: 1.2
+      line-height: 1
       border-bottom: 1px solid #eee
       &:hover
         cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
@@ -308,15 +308,35 @@ td.shared_list
         border-top: 1px solid #C8E1F1
         border-color: #C8E1F1
         margin-top: -1px
+        .task_title
+          .checkbox
+            background-position: 0 -23px
       &:active
         cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
       .task_title
         color: #111
         display: inline-block
-        padding: 4px 0 4px
+        margin: 0
+        padding: 5px 0 7px 23px
+        position: relative
         &:hover
+          cursor: text
+        .checkbox
+          width: 23px
+          height: 23px
+          border: none
+          text-indent: -10000px
+          background: url(checkbox-off.png) 0 0 no-repeat
+          padding: 0
+          margin: 0
+          position: absolute
+          top: 0
+          left: 0
           cursor: pointer
-          text-decoration: underline
+          &:hover
+            background-position: 0 -46px
+          &:active
+            background-position: 0 -69px
       .date 
         font-size: 9px
         color: #dc4d48
@@ -324,17 +344,16 @@ td.shared_list
         &:hover
           cursor: pointer
       &.completed
-        background: url(check.png) 4px 6px no-repeat
-        padding: 0 4px 0 16px
-        cursor: default !important
         &:hover
           border-color: #ddd
           background-color: #f6f6f6
+          cursor: default !important 
         .task_title
           color: #ccc
           font-style: italic
           font-size: 11px
-          padding: 4px 0 5px
+          .checkbox
+            background-position: 0 -92px
         .date 
           color: #ccc !important
           &:hover
