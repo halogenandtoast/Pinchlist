@@ -48,13 +48,32 @@ input[type="text"], input[type="password"]
           -webkit-box-shadow: none
           -moz-box-shadow: none
 #page #content.form
-  max-width: 240px
+  max-width: 225px
   margin: 150px auto 0
   padding: 30px 10px 20px 30px
   float: none
   -webkit-border-radius: 4px
   -moz-border-radius: 4px
   background-color: #fff
+  &.prefs
+    margin: 40px 0 0 20px
+    .back
+      font-size: 12px
+      color: #999
+    h2
+      margin: 20px 0 0
+      color: #333
+      font-size: 16px
+    p
+      font-size: 11px
+      color: #999
+      line-height: 1.5
+      margin: 10px 0 5px 
+      width: 225px
+    form
+      margin: 0 0 40px 0
+      &#billing
+        background-color: #ccc
   form
     width: 240px
   a
@@ -78,6 +97,10 @@ input[type="text"], input[type="password"]
     font-size: 18px
     font-weight: normal
     color: #ccc
+  .cancel a
+    color: red
+  .cancel a:hover
+    border-color: red
 .links
   position: absolute
   top: 10px
@@ -127,7 +150,7 @@ input[type="text"], input[type="password"]
     position: absolute
     padding: 5px
     margin: 3px 0 0 3px
-    color: #ddd
+    color: #ccc
     font-size: 14px
   input[type="text"], input[type="password"]
     position: relative
@@ -141,7 +164,7 @@ input[type="text"], input[type="password"]
     position: relative 
     z-index: 3
     height: 22px
-    width: 240px
+    width: 225px
     font-size: 14px
     color: #333
     // -webkit-box-shadow: none
@@ -150,11 +173,12 @@ input[type="text"], input[type="password"]
       border-color: #dc4d48 
       // -webkit-box-shadow: none
       // -moz-box-shadow: none
-    &#card-cid 
-      width: 90px
+    &#card_cid 
+      width: 80px
       margin-right: 10px   
-    &#card-exp 
+    &#card_exp 
       width: 120px  
+      margin: 0
     &:focus 
       background: transparent
       background: rgba(254, 254, 6, .2)
@@ -173,7 +197,7 @@ input[type="text"], input[type="password"]
   form, fieldset
     margin: 0
     padding: 0
-    width: 240px
+    width: 225px
     height: auto
     float: left
     h3 
@@ -297,13 +321,6 @@ select
   float: left
   width: 160px
   margin: 0 60px 10px 0
-.cancel 
-  margin: 1.3em 0 0 15px
-  font-size: 1.1em
-  color: #ccc
-  float: left
-a.cancel:hover 
-  color: #666
 
 
     

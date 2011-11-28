@@ -4,15 +4,15 @@
       = link_to image_tag('logo-small.png'), root_url
     %ul#util
       %li
-        %a{:href => ""} Help
+        %a{:href => "/pages/help"} Help
       %li= link_to 'Sign Out', destroy_user_session_path
       %li.username= link_to current_user.email, edit_user_registration_path
-#page
+#page.interior
   #content
     / %h3 Questions or Comments?
     / %p If the help topics below don't answer your question, please email us at support@listerk.com and we'll get back to you as soon as possible.
 
-    %h3 How to use Listwerk
+    %h3 Using Listwerk
     %dl
       %dt Create lists
       %dd Type a list name into the "New List" input and press the ENTER key.

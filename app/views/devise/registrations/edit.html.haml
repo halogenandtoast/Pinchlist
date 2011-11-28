@@ -1,13 +1,14 @@
 #header
   %h1
-    = link_to 'Listwerk', root_url
+    = link_to image_tag('logo-small.png'), root_url
   %ul#util
     %li
-      %a{:href => ""} Help
+      %a{:href => "pages/help"} Help
     %li= link_to 'Sign Out', destroy_user_session_path
     %li.username= link_to current_user.email, edit_user_registration_path
-#page
-  #content.form
+#page.interior
+  #content.form.prefs
+    = link_to "Back", :back, :class => "back"
     %h2 Edit Your Account
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
@@ -26,7 +27,21 @@
         %span Current password
         = f.password_field :current_password
       = f.submit "Update"
+
+    %h2 Upgrade to the full version
+    %p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      %label.input{:for => "cc_number"}
+        %span Card Number
+        = f.text_field :password
+      %label.input{:for => "cc_cid"} 
+        %span CID
+        = f.text_field :password, :id => "card_cid"
+      %label.input{:for => "cc_exp"} 
+        %span MM/YYYY
+        = f.text_field :password, :id => "card_exp"
+      = f.submit "Submit"
     / %h3 Cancel my account
-    %p
+    %p.cancel
       Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
-    = link_to "Back", :back
