@@ -23,17 +23,26 @@ input[type="text"], input[type="password"]
       border-top-color: #DED45C
   .list
     li
+      form
+        position: absolute
+        top: -1px
+        right: 0
+        left: 0 
+        bottom: -1px
+        background-color: #FDFEAD
+        border-top: 1px solid #DED45C
       input[type="text"]
-        padding: 5px 0px 5px 0 
+        width: 100%
+        padding: 5px 0px 5px 0
+        margin: 0 0 0
         text-indent: 22px
-        margin: 0
         height: auto
         border: none
         line-height: 1.2
-        background-color: #FEFBBD
         -webkit-box-shadow: none
         -moz-box-shadow: none
         float: none
+        background-color: transparent
     .list_title 
       #new_list_title
         input[type="text"]
