@@ -8,7 +8,7 @@ class ListsController < ApplicationController
         format.js { render }
         format.html { redirect_to dashboard_path, :notice => 'List created.' }
       else
-        format.js { render }
+        format.js { render "errors" }
         format.html { render 'dashboards/show' }
       end
     end

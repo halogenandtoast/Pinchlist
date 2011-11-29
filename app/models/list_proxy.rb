@@ -1,5 +1,5 @@
 class ListProxy < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :list
   has_many :tasks, :through => :list
   before_create :set_color

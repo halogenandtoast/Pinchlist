@@ -1,8 +1,10 @@
 class List < ActiveRecord::Base
+  SUBSCRIBED_LIMIT = 3
   belongs_to :user
   has_many :tasks, :dependent => :destroy
   has_many :proxies, :class_name => "ListProxy"
   has_many :users, :class_name => "User", :source => :user, :through => :proxies
+  validate :within_subscription
 
   after_create :create_proxy
 
@@ -29,5 +31,11 @@ class List < ActiveRecord::Base
 
   def create_proxy
     self.proxies.create(:user => user)
+  end
+
+  def within_subscription
+    if !user.subscribed? && user.list_proxies_count >= SUBSCRIBED_LIMIT
+      errors.add(:base, "Please upgrade to have additional lists.")
+    end
   end
 end
