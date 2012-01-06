@@ -18,7 +18,7 @@ class List < ActiveRecord::Base
   end
 
   def shared?
-    proxies.count > 1
+    self.proxies.count > 1
   end
 
   def shared_users
@@ -28,6 +28,6 @@ class List < ActiveRecord::Base
   private
 
   def create_proxy
-    proxies.create(:user => user)
+    self.proxies.create(:user => user)
   end
 end

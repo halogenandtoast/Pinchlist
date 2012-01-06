@@ -72,9 +72,11 @@ end
 
 Then /^the list "([^"]*)" should have the color "([^"]*)"$/ do |list_title, color|
   list = List.find_by_title!(list_title)
+  rgb = hex_str_to_rgb(color)
+  rgb_matcher = "rgb(#{rgb.join(", ")})"
   within "#list_#{list.id}" do
-    page.should have_css(".list_title[style*='background-color: ##{color}']")
-    page.should have_css(".icons[style*='background-color: ##{color}']")
+    page.should have_css(".list_title[style*='background-color: ##{color}'],.list_title[style*='background-color: #{rgb_matcher}']")
+    page.should have_css(".icons[style*='background-color: ##{color}'],.icons[style*='background-color: #{rgb_matcher}']")
   end
 end
 

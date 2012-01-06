@@ -84,7 +84,6 @@ function list_edit(list_title) {
       '/lists/'+list_id,
       {'_method':'PUT', 'list': {'title': $(this).children('#list_title').val()}},
       function(data) {
-        console.log(data)
         $('#list_'+data.id+' .list_title form').replaceWith('<h3>'+data.title+'</h3>');
         // $('#list_'+data.list.id+' .color_picker').show();
         new_picker = $("<div class='.picker'>pick color</div>");

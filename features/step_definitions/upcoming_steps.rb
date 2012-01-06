@@ -56,7 +56,9 @@ end
 
 Then /^I see the upcoming task "([^"]*)" has a due date color of "([^"]*)"$/ do |title, color|
   task = Task.find_by_title!(title)
+  rgb = hex_str_to_rgb(color)
+  rgb_matcher = "rgb(#{rgb.join(", ")})"
   within "#upcoming_task_#{task.id}" do
-    page.should have_css("span.date[style*='color: ##{color}']")
+    page.should have_css("span.date[style*='color: ##{color}'],span.date[style*='color: #{rgb_matcher}']")
   end
 end

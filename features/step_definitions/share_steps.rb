@@ -57,7 +57,7 @@ end
 When /^"([^"]*)" should see the invitation link in the email body$/ do |email|
   user = User.find_by_email(email)
   url = accept_user_invitation_url(:invitation_token => user.invitation_token, :host => "example.com")
-  Then %{they should see "#{url}" in the email body}
+  step %{they should see "#{url}" in the email body}
 end
 
 When /^I remove "([^"]*)" from the list$/ do |arg1|
