@@ -92,3 +92,16 @@ Then /^"([^"]*)" should have no tasks$/ do |list_title|
     page.should have_no_css(".task")
   end
 end
+
+When /^I have (\d+) lists?$/ do |count|
+  user = User.first
+  count.to_i.times { Factory(:list, :user => user) }
+end
+
+Then /^I can not create another list$/ do
+  visit dashboard
+  count = all(".list").count
+  fill_in list_title, :with => "Another list"
+  submit_form
+  all(".list").count.should == count
+end
