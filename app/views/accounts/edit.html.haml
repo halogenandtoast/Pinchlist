@@ -1,0 +1,60 @@
+#header
+  %h1
+    = link_to image_tag('logo-small.png'), root_url
+  %ul#util
+    %li
+      %a{:href => "pages/help"} Help
+    %li= link_to 'Sign Out', destroy_user_session_path
+    %li.username= link_to current_user.email, edit_user_registration_path
+#page.interior
+  #content.form.prefs
+    = link_to "Back", :back, :class => "back"
+    %h2 Edit Your Account
+    = form_for(current_user) do |form|
+      %label.input{:for => "email"}
+        %span Email Address
+        = form.text_field :email
+      / %i (leave blank if you don't want to change it)
+      %label.input{:for => "password"}
+        %span New Password
+        = form.password_field :password
+      %label.input{:for => "password_confirmation"}
+        %span New Password confirmation
+        = form.password_field :password_confirmation
+      / %i (we need your current password to confirm your changes)
+      %label.input{:for => "current_password"}
+        %span Current password
+        = form.password_field :current_password
+      = form.submit "Update"
+
+    - unless current_user.active?
+      - if current_user.cancelled?
+        %p Your account will expire on #{current_user.expiration_date}
+        %p
+          = link_to "Click here to reenable your account", subscription_path, :method => :put
+      - else
+        %h2 Upgrade to the full version
+        %p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
+        = form_for(@subscription, :url => subscription_path) do |form|
+          = form.hidden_field :plan_id
+          = form.hidden_field :stripe_card_token
+          - if @subscription.stripe_card_token.present?
+            Credit card has been provided.
+          - else
+            %label.input{:for => "card_number"}
+              %span Card Number
+              = text_field_tag :card_number, nil, :name => nil
+            %label.input{:for => "card_code"}
+              %span CID
+              = text_field_tag :card_code, nil, :name => nil, :id => "card_cid"
+            %label.input{:for => "cc_exp"}
+              %span MM/YYYY
+              = text_field_tag :expiration, nil, :name => nil, :id => "card_exp"
+
+          #stripe_error
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          = form.submit "Submit"
+    - else
+      / %h3 Cancel my account
+      %p.cancel
+        Unhappy? #{link_to "Cancel my account", subscription_path, :confirm => "Are you sure?", :method => :delete}.

@@ -6,6 +6,8 @@ Pinchlist::Application.routes.draw do
   get "home/index"
 
   devise_for :users, :controller => { :registrations => "registrations" }
+  resource :account, only: [:edit]
+  resources :users, only: [:update]
   root :to => "dashboards#show"
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard
   resources :lists, :only => [:create, :update, :destroy] do
@@ -16,7 +18,7 @@ Pinchlist::Application.routes.draw do
   end
 
   resources :tasks, :only => [:update]
-  resources :subscriptions, :only => [:new, :create]
+  resource :subscription, :except => [:edit]
 
   namespace :admin do
     resources :users

@@ -16,32 +16,41 @@
         %span Email Address
         = f.text_field :email
       / %i (leave blank if you don't want to change it)
-      %label.input{:for => "password"} 
+      %label.input{:for => "password"}
         %span New Password
         = f.password_field :password
-      %label.input{:for => "password_confirmation"} 
+      %label.input{:for => "password_confirmation"}
         %span New Password confirmation
         = f.password_field :password_confirmation
       / %i (we need your current password to confirm your changes)
-      %label.input{:for => "current_password"} 
+      %label.input{:for => "current_password"}
         %span Current password
         = f.password_field :current_password
       = f.submit "Update"
 
-    %h2 Upgrade to the full version
-    %p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-      = devise_error_messages!
-      %label.input{:for => "cc_number"}
-        %span Card Number
-        = f.text_field :password
-      %label.input{:for => "cc_cid"} 
-        %span CID
-        = f.text_field :password, :id => "card_cid"
-      %label.input{:for => "cc_exp"} 
-        %span MM/YYYY
-        = f.text_field :password, :id => "card_exp"
-      = f.submit "Submit"
-    / %h3 Cancel my account
-    %p.cancel
-      Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
+    - unless current_user.current_subscription
+      %h2 Upgrade to the full version
+      %p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
+      = form_for(@subscription, :url => subscription_path) do |form|
+        = form.hidden_field :plan_id
+        = form.hidden_field :stripe_card_token
+        - if @subscription.stripe_card_token.present?
+          Credit card has been provided.
+        - else
+          %label.input{:for => "card_number"}
+            %span Card Number
+            = f.text_field :card_number
+          %label.input{:for => "card_code"}
+            %span CID
+            = f.text_field :card_code, :id => "card_cid"
+          %label.input{:for => "cc_exp"}
+            %span MM/YYYY
+            = f.text_field :expiration, :id => "card_exp"
+
+        #stripe_error
+          <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        = f.submit "Submit"
+    - else
+      / %h3 Cancel my account
+      %p.cancel
+        Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.

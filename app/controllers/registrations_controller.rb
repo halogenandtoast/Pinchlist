@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  def create
-    # do nothing!
+  def edit
   end
 end

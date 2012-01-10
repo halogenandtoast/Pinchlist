@@ -13,11 +13,12 @@ subscription =
         true
 
   processCard: ->
+    [expMonth,expYear] = $("#card_exp").val().split("/")
     card =
       number: $('#card_number').val()
-      cvc: $('#card_code').val()
-      expMonth: $('#card_month').val()
-      expYear: $('#card_year').val()
+      cvc: $('#card_cid').val()
+      expMonth: expMonth
+      expYear: expYear
     Stripe.createToken(card, subscription.handleStripeResponse)
 
   handleStripeResponse: (status, response) ->
