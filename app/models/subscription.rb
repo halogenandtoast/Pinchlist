@@ -42,6 +42,6 @@ class Subscription
   end
 
   def self.current
-    where("starts_at <= :today AND ends_at >= :today", :today => Date.today)
+    where("starts_at <= :now AND ends_at >= :now", :now => Time.now)
   end
 end
