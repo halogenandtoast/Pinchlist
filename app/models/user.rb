@@ -20,6 +20,30 @@ class User < ActiveRecord::Base
     subscriptions.current.first
   end
 
+  def active?
+    current_subscription && current_subscription.active?
+  end
+
+  def cancelled?
+    current_subscription && current_subscription.cancelled?
+  end
+
+  def cancel_subscription!
+    current_subscription.cancel!
+  end
+
+  def resubscribe!
+    current_subscription.resubscribe!
+  end
+
+  def next_bill_date
+    current_subscription.ends_at
+  end
+
+  def expiration_date
+    current_subscription.ends_at
+  end
+
   def subscribed?
     current_subscription
   end

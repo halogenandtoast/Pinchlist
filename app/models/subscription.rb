@@ -41,7 +41,32 @@ class Subscription
     @user.stripe_customer_token
   end
 
+  def cancel!
+    customer.cancel_subscription(:at_period_end => true)
+    update_attributes(:status => 'cancelled')
+  end
+
+  def resubscribe!
+    customer.update_subscription(:plan => plan_id)
+    update_attributes(:status => 'active')
+  end
+
   def self.current
     where("starts_at <= :now AND ends_at >= :now", :now => Time.now)
   end
+
+  def cancelled?
+    status == 'cancelled'
+  end
+
+  def active?
+    status == 'active'
+  end
+
+  private
+
+  def customer
+    @customer ||= Stripe::Customer.retrieve(stripe_customer_token)
+  end
+
 end
