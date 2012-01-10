@@ -1,6 +1,6 @@
 #page
   #content.form
-    = render :partial => "shared/logo"
+    = render "logo"
     %h2 Sign in
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %label.input{:for => "email"}

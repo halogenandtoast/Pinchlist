@@ -10,6 +10,6 @@
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
     = csrf_meta_tag
   %body{:class => "#{controller_name} #{action_name}"}
-    = render 'shared/flashes'
+    = render 'flashes'
     = yield
-    = render 'shared/javascripts'
+    = render 'javascripts'

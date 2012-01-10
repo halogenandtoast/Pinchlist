@@ -1,27 +1,25 @@
 #page.clearfix
   #content
-    %h1
-      = link_to image_tag('logo-large.png'), root_url
-    %h2 
-      Fast, easy, sharable lists.
-      = link_to 'Sign up', new_user_registration_path, :class => "signup" 
+    = render "logo"
     %p
-      Listwerk is a todo list app that demands less energy than your todos. Use it for tasks, todos, stuff, and anything else you tend to forget. 3 lists are free. Unlimited lists are $12/year.
-    = render :partial => "shared/quicktime"
+      A todo list app that requires less energy than your todos. Manage your lists in a single view with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, and anything else you tend to forget. 3 lists are free. Unlimited lists are $5/month.
+      %br
+      = link_to 'Sign up', new_user_registration_path, :class => "signup"
+    %a#demo{:href => "#demo_video"} Watch the demo
+    = render "quicktime"
 .links
-  %p#sign_in 
+  %p#sign_in
     Already have an account?
     %a{:href => ""} Sign in
-  #login      
+  #login
     = form_for :user, :url => new_user_session_path do |f|
       %label.input{:for => "email"}
         %span Email Address
         = f.text_field :email
-      %label.input{:for => "password"} 
+      %label.input{:for => "password"}
         %span Password
         = f.password_field :password
       = f.submit "Sign In"
     %p
       Forgot password?
       = link_to "Reset it.", 'users/password/new'
-    
