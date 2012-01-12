@@ -27,36 +27,4 @@
         = form.password_field :current_password
       = form.submit "Update"
 
-    - if current_user.permanent?
-      %p You have a permanently free account!
-    - elsif !current_user.active?
-      - if current_user.cancelled?
-        %p Your account will expire on #{current_user.expiration_date}
-        %p
-          = link_to "Click here to reenable your account", subscription_path, :method => :put
-      - else
-        %h2 Upgrade to the full version
-        %p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
-        = form_for(@subscription, :url => subscription_path) do |form|
-          = form.hidden_field :plan_id
-          = form.hidden_field :stripe_card_token
-          - if @subscription.stripe_card_token.present?
-            Credit card has been provided.
-          - else
-            %label.input{:for => "card_number"}
-              %span Card Number
-              = text_field_tag :card_number, nil, :name => nil
-            %label.input{:for => "card_code"}
-              %span CID
-              = text_field_tag :card_code, nil, :name => nil, :id => "card_cid"
-            %label.input{:for => "cc_exp"}
-              %span MM/YYYY
-              = text_field_tag :expiration, nil, :name => nil, :id => "card_exp"
-
-          #stripe_error
-            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-          = form.submit "Submit"
-    - else
-      / %h3 Cancel my account
-      %p.cancel
-        Unhappy? #{link_to "Cancel my account", subscription_path, :confirm => "Are you sure?", :method => :delete}.
+    = render current_user.status

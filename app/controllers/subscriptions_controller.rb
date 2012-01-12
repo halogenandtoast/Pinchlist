@@ -4,11 +4,10 @@ class SubscriptionsController < ApplicationController
     @subscription = Plan.basic.subscriptions.new
   end
   def create
-    @subscription = current_user.subscriptions.new(params[:subscription])
-    if @subscription.save_with_payment
+    if current_user.subscribe!(params[:subscription])
       redirect_to dashboard_path, :notice => "Thank you for subscribing!"
     else
-      render :new
+      redirect_to edit_account_path, :notice => "There was an error."
     end
   end
   def update
