@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120110032756) do
+ActiveRecord::Schema.define(:version => 20120112021634) do
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20120110032756) do
     t.datetime "invitation_sent_at"
     t.boolean  "admin",                              :default => false
     t.integer  "list_proxies_count",                 :default => 0
+    t.boolean  "permanent",                          :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

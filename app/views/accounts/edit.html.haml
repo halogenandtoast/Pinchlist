@@ -27,7 +27,9 @@
         = form.password_field :current_password
       = form.submit "Update"
 
-    - unless current_user.active?
+    - if current_user.permanent?
+      %p You have a permanently free account!
+    - elsif !current_user.active?
       - if current_user.cancelled?
         %p Your account will expire on #{current_user.expiration_date}
         %p
