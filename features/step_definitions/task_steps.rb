@@ -34,13 +34,13 @@ end
 
 When /^I click the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#list_#{task.list.id} li:contains('#{task.display_title}') span.task_title").click
+  find("#list_#{task.list.id} li:contains('#{task.display_title}') span.text").click
 end
 
 
-When /^I double click the task "([^"]*)"$/ do |title|
+When /^I check the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.evaluate_script %{ toggle_completed($("#task_#{task.id}"), '#{task.id}') }
+  find("#task_#{task.id} .checkbox").click
 end
 
 When /^I fill in the title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|

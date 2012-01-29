@@ -14,7 +14,7 @@ Feature: Marking a task complete
       | title        | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click the upcoming task "Ride a shark"
+    And I check the upcoming task "Ride a shark"
     Then I should see the completed upcoming task "Ride a shark"
     And I should see the completed task "Ride a shark" in "My List"
     Then I go to the dashboard page
@@ -32,7 +32,7 @@ Feature: Marking a task complete
       | title        | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
-    And I double click the task "Ride a shark"
+    And I check the task "Ride a shark"
     Then I should see the completed upcoming task "Ride a shark"
     And I should see the completed task "Ride a shark" in "My List"
     When I go to the dashboard page

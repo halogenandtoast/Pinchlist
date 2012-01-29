@@ -1,26 +1,3 @@
-// Author:  Jacek Becela
-// Source:  http://gist.github.com/399624
-// License: MIT
-
-jQuery.fn.single_double_click = function(single_click_callback, double_click_callback, timeout, event_data) {
-  return this.each(function(){
-    var clicks = 0, self = this;
-    jQuery(this).bind('click', event_data, function(event){
-      clicks++;
-      if (clicks == 1) {
-        setTimeout(function(){
-          if(clicks == 1) {
-            single_click_callback.call(self, event);
-          } else {
-            double_click_callback.call(self, event);
-          }
-          clicks = 0;
-        }, timeout || 225);
-      }
-    });
-  });
-}
-
 function show_upcoming_list() {
   if($('td.upcoming').length == 0) {
     var d = new Date();
@@ -124,11 +101,11 @@ function task_edit(task, task_id, prefix) {
       $(this).unbind('keyup');
       $(this).unbind('blur');
 
-      span_html = '<span class="task_title">';
+      span_html = '<span class="task_title"><div class="checkbox">check</div>';
       if(task_due_date != null) {
         span_html += '<span class="date">'+task_due_date+'</span>'+"\n";
       }
-      span_html += title_for_display(task_title)+'</span>';
+      span_html += '<span class="text">'+title_for_display(task_title)+'</span></span>';
       $(this).parent('form').replaceWith(span_html);
 
       setup_single_and_double_click($(e.data.element).find('span.task_title'), e.data.prefix);
@@ -148,15 +125,14 @@ function task_edit(task, task_id, prefix) {
 function add_task_to_upcoming(task) {
   show_upcoming_list();
   if($('#upcoming_task_'+task.id).length == 0) {
-    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'" data-list="'+task.list_id+'">' +
-    '<span class="task_title">' +
+    var li_html = '<li class="upcoming_task" id="upcoming_task_'+task.id+'" data-edit-title="'+task.title+'" data-list="'+task.list_id+'">' +
+    '<span class="task_title"><div class="checkbox">check</div>' +
     '<span class="date" data-full-date="'+task.full_date+'" style="color: #'+task.list_color+'">'+task.due_date+'</span>' + "\n" +
-    ""+task.title+'</span>' +
+    "<span class='text'>"+task.title+'</span></span>' +
     '</li>';
     var li_elem = $(li_html)
     $('#upcoming_tasks').append(li_elem);
     li_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
-    setup_single_and_double_click($('#upcoming_task_'+task.id+' span.task_title, #upcoming_task_'+task.id+' span.task_title'), "upcoming");
   }
   sort_list('#upcoming_tasks');
 }
@@ -204,7 +180,7 @@ function set_task_title_and_date(e) {
       }
       if(upcoming) {
         var task_id = li.attr('id').split('_')[2];
-        $('#task_'+task_id+' .task_title').html(task.display_title);
+        $('#task_'+task_id+' .task_title').html("<span class='text'>"+task.display_title+"</span>");
         if(task.due_date != null) {
           $('#task_'+task_id+' .task_title').prepend("<span class='date'>"+task.due_date+"</span>\n");
         } else {
@@ -212,12 +188,15 @@ function set_task_title_and_date(e) {
           $('#upcoming_task_'+task_id).remove();
           remove_upcoming_list();
         }
+        $('#task_'+task_id+' .task_title').prepend("<div class='checkbox'>check</div>");
+        $('#task_'+task_id).data('edit-title', task.title);
       } else {
         var task_id = li.attr('id').split('_')[1];
         if(task.due_date != null) {
           add_task_to_upcoming(task);
-          upcoming_html = '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n"+task.display_title;
+          upcoming_html = '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span><div class="checkbox">check</div>'+"\n<span class='text'>"+task.display_title+"</span>";
           $('#upcoming_task_'+task_id+' .task_title').html(upcoming_html);
+          $('#upcoming_task_'+task_id).data('edit-title', task.title);
         } else {
           if($('#upcoming_task_'+task_id).length > 0) {
             $('#upcoming_task_'+task_id).remove();
@@ -225,7 +204,7 @@ function set_task_title_and_date(e) {
           }
         }
       }
-      span_html = '<span class="task_title">'
+      span_html = '<span class="task_title"><div class="checkbox">check</div>'
       if(task.due_date != null) {
         if(upcoming) {
           span_html += '<span class="date" style="color: #'+task.list_color+'">'+task.due_date+'</span>'+"\n";
@@ -233,11 +212,15 @@ function set_task_title_and_date(e) {
           span_html += '<span class="date">'+task.due_date+'</span>'+"\n";
         }
       }
-      span_html += data.task.display_title+'</span>';
+      span_html += '<span class="text">'+data.task.display_title+'</span></span>';
 
       form.replaceWith(span_html);
-      setup_single_and_double_click(li.find('span.task_title'), upcoming ? "upcoming" : "");
-      setup_single_and_double_click(li.find('span.date'), upcoming ? "upcoming" : "");
+      if(upcoming || task.due_date != null) {
+        setup_single_and_double_click($("#upcoming_task_"+task.id+ " .task_title"), "upcoming");
+        setup_single_and_double_click($("#upcoming_task_"+task.id+ " .date"), "upcoming");
+      }
+      setup_single_and_double_click($("#task_"+task.id+" .task_title"), "");
+      setup_single_and_double_click($("#task_"+task.id+" .date"), "");
       $(".list:not(.upcoming) ul li").disableSelection();
       clearing = false;
     },
@@ -278,16 +261,18 @@ function toggle_completed(task, task_id, prefix) {
 }
 
 function setup_single_and_double_click(element, prefix) {
-  element.single_double_click(function() {
-      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
-      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      task_edit(task, task_id, prefix);
-    }, function() {
-      clear_task_title_form();
-      var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
-      var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
-      toggle_completed(task, task_id, prefix);
-    }, 225, {prefix:prefix});
+  element.find(".text").click(function() {
+    var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
+    var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
+    task_edit(task, task_id, prefix);
+  });
+
+  element.find(".checkbox").click(function() {
+    clear_task_title_form();
+    var task = prefix == "" ? $(this).parents('.task').first() : $(this).parents('.upcoming_task').first();
+    var task_id = task.attr('id').split('_')[(prefix == "" ? 1 : 2)];
+    toggle_completed(task, task_id, prefix);
+  });
 }
 
 function enable_task_sorting() {

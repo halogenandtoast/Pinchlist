@@ -22,7 +22,8 @@
             - @upcoming_tasks.each do |task|
               = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
                 %span.task_title
+                  %div.checkbox checked
                   %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
                     = task.due_date.strftime("%m/%d")
-                  = task.display_title
+                  %span.text= task.display_title
       = render @list_proxies, :filter => :current

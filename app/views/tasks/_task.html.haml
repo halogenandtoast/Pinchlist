@@ -3,4 +3,5 @@
     %div.checkbox check
     - if task.due_date?
       %span.date= task.due_date.strftime("%m/%d")
-    = task.display_title
+    %span.text
+      = task.display_title
