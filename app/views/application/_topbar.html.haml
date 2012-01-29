@@ -1,0 +1,5 @@
+%ul#util
+  %li
+    %a{:href => "/pages/help", :tabindex => "-1"} Help
+  %li= link_to 'Sign Out', destroy_user_session_path, :tabindex => "-1"
+  %li.username= link_to current_user.email, edit_account_path, :tabindex => "-1"

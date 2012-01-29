@@ -99,9 +99,17 @@ When /^I have (\d+) lists?$/ do |count|
 end
 
 Then /^I can not create another list$/ do
-  visit dashboard
+  visit dashboard_path
   count = all(".list").count
-  fill_in list_title, :with => "Another list"
-  submit_form
+  fill_in :list_title, :with => "Another list"
+  page.execute_script("$('#new_list').submit()")
   all(".list").count.should == count
+end
+
+Then /^I can create another list$/ do
+  visit dashboard_path
+  # count = all(".list").count
+  # fill_in :list_title, :with => "Another list"
+  # page.execute_script("$('#new_list').submit()")
+  # all(".list").count.should == count + 1
 end

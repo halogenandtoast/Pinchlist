@@ -2,11 +2,7 @@
   #header
     %h1
       = link_to image_tag('logo-small.png'), root_url
-    %ul#util
-      %li
-        %a{:href => "/pages/help"} Help
-      %li= link_to 'Sign Out', destroy_user_session_path
-      %li.username= link_to current_user.email, edit_user_registration_path
+    = render "topbar"
 #page.interior
   #content
     / %h3 Questions or Comments?

@@ -1,3 +1,4 @@
+@javascript
 Feature: User upgrades account
 
   Scenario: Can add more than 3 lists
