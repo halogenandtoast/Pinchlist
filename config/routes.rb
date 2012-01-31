@@ -1,11 +1,9 @@
 Pinchlist::Application.routes.draw do
+  get "about" => "pages#about"
+  get "legal" => "pages#legal"
+  get "help" => "pages#help"
 
-  get "pages/about"
-  get "pages/legal"
-  get "pages/help"
-  get "home/index"
-
-  devise_for :users, :controller => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations" }
   resource :account, only: [:edit]
   resources :users, only: [:update]
   root :to => "home#index"

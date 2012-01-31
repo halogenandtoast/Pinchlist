@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :set_timezone
+
+  def set_timezone
+    if signed_in?
+      Time.zone = current_user.timezone
+    end
+  end
 end
 
 # form errors

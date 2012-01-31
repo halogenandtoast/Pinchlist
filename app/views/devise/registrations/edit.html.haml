@@ -22,10 +22,9 @@
       %label.input{:for => "password_confirmation"}
         %span New Password confirmation
         = f.password_field :password_confirmation
-      / %i (we need your current password to confirm your changes)
-      %label.input{:for => "current_password"}
-        %span Current password
-        = f.password_field :current_password
+      %label.select{:for => "timezone"}
+        %span Time zone
+        = f.select :timezone, ActiveSupport::TimeZone::MAPPING
       = f.submit "Update"
 
     - unless current_user.current_subscription

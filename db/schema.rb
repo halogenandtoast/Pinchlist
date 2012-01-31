@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112033624) do
+ActiveRecord::Schema.define(:version => 20120131044111) do
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20120112033624) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "",         :null => false
+    t.string   "email",                               :default => "",                 :null => false
     t.string   "encrypted_password",                  :default => ""
     t.string   "password_salt",                       :default => ""
     t.string   "reset_password_token"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120112033624) do
     t.date     "starts_at"
     t.date     "ends_at"
     t.text     "status",                              :default => "inactive"
+    t.string   "timezone",                            :default => "America/New_York"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
