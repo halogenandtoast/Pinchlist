@@ -4,9 +4,9 @@
   = render "topbar"
 #page.interior
   #content.form.prefs
-    = link_to "Back", :back, :class => "back"
+    = link_to "Back", dashboard_path, :class => "back"
     %h2 Edit Your Account
-    = form_for(current_user) do |form|
+    = form_for(current_user, :url => account_path) do |form|
       %label.input{:for => "email"}
         %span Email Address
         = form.text_field :email
@@ -17,10 +17,9 @@
       %label.input{:for => "password_confirmation"}
         %span New Password confirmation
         = form.password_field :password_confirmation
-      / %i (we need your current password to confirm your changes)
-      %label.input{:for => "current_password"}
-        %span Current password
-        = form.password_field :current_password
+      %label.select{:for => "timezone"}
+        %span Time zone
+        = form.select :timezone, ActiveSupport::TimeZone::MAPPING
       = form.submit "Update"
 
     = render current_user.status

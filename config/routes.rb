@@ -4,7 +4,7 @@ Pinchlist::Application.routes.draw do
   get "help" => "pages#help"
 
   devise_for :users, :controllers => { :registrations => "registrations" }
-  resource :account, only: [:edit]
+  resource :account, only: [:edit, :update]
   resources :users, only: [:update]
   root :to => "home#index"
 
