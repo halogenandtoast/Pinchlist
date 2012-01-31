@@ -3,4 +3,18 @@
     = render "logo"
     %h2 Sign up
     .info
-      %p Listwerk is currently in closed beta. Registrations for open beta will be available soon.
+      %p lllllist is free for up to 3 lists. Unlimited lists costs $10/year, and you can upgrade at any time. By signing up for the lllllist, you agree to the terms of service.
+      %p For the best experience, we recommend using lllllist with a modern browser, including the latest versions of Chrome, Safari, and Firefox.
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      %label.input{:for => "email"}
+        %span Email Address
+        = f.text_field :email
+      %label.input{:for => "password"} 
+        %span Password
+        = f.password_field :password
+      %label.input{:for => "password_confirmation"} 
+        %span Password confirmation
+        = f.password_field :password_confirmation
+      = f.submit "Sign up"
+= render :partial => "devise/shared/links"
