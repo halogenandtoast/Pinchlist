@@ -2,8 +2,14 @@
   .show  
     .list
       ul 
+        li 
+          .task_title
+            padding: 4px 0 5px 23px
+          &.completed
+            .task_title
+              padding: 4px 0 5px 23px
         input[type="text"]
-          padding: 3px 5px 4px 3px
+          padding: 4px 5px 4px 0px
     .list ul li input
       padding: 3px 5px 4px 3px
       margin: 0 0 0 -4px
