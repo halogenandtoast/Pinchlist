@@ -403,7 +403,7 @@ $(document).ready(function(){
     controlsHiding: false,
   });
 
-  setTimeout(function() { $('#flash').fadeOut(800); }, 3000);
+  setTimeout(function() { $('#flash').fadeOut(800); }, 6000);
 
   // scroll left/right
   $(document).keydown(function(evt){
