@@ -4,7 +4,7 @@ class List < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :proxies, :class_name => "ListProxy"
   has_many :users, :class_name => "User", :source => :user, :through => :proxies
-  validate :within_subscription
+  validate :within_subscription, :on => :create
 
   after_create :create_proxy
 

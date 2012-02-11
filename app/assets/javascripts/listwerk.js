@@ -221,7 +221,7 @@ function set_task_title_and_date(e) {
       }
       setup_single_and_double_click($("#task_"+task.id+" .task_title"), "");
       setup_single_and_double_click($("#task_"+task.id+" .date"), "");
-      $(".list:not(.upcoming) ul li").disableSelection();
+      $(".list:not(.upcoming,.locked) ul li").disableSelection();
       clearing = false;
     },
     "json"
@@ -256,7 +256,7 @@ function toggle_completed(task, task_id, prefix) {
   task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
   upcoming_task_elem.effect('highlight', {color: "#ACF4C8"}, 1000);
   $.post('/tasks/'+task_id, {'_method':'PUT', 'task': {'completed': task.hasClass('completed')}}, function(data){}, "json");
-  $(".list:not(.upcoming) ul").sortable('destroy');
+  $(".list:not(.upcoming,.locked) ul").sortable('destroy');
   enable_task_sorting();
 }
 
@@ -276,7 +276,7 @@ function setup_single_and_double_click(element, prefix) {
 }
 
 function enable_task_sorting() {
-  $(".list:not(.upcoming) ul.tasks").sortable({
+  $(".list:not(.upcoming,.locked) ul.tasks").sortable({
       // containment: 'parent',
       // axis: 'y',
       connectWith: ".tasks",
@@ -297,7 +297,7 @@ function enable_task_sorting() {
       }
   })
   // this.onselectstart = function () { return false; };
-  $(".list:not(.upcoming) ul li").disableSelection();
+  $(".list:not(.upcoming,.locked) ul li").disableSelection();
 }
 
 function setup_color_pickers() {
@@ -341,9 +341,9 @@ function preventFurtherSubmissions(e) {
 $(document).ready(function(){
   setup_color_pickers();
   setup_single_and_double_click($("#upcoming_tasks li span.task_title, #upcoming_tasks li span.date"), "upcoming");
-  setup_single_and_double_click($(".list:not(.upcoming) li span.task_title, .list:not(.upcoming) li span.date"), "");
+  setup_single_and_double_click($(".list:not(.upcoming,.locked) li span.task_title, .list:not(.upcoming,.locked) li span.date"), "");
 
-  $(".list_title h3").live('click', function() {
+  $(".list:not(.upcoming,.locked) .list_title h3").live('click', function() {
       list_edit($(this));
   });
 
@@ -351,7 +351,7 @@ $(document).ready(function(){
   $("tr").sortable({
       axis: "x",
       placeholder: 'ui-placeholder-highlight',
-      items: '.list:not(.upcoming)',
+      items: '.list:not(.upcoming,.locked)',
       handle: '.list_title',
       cursor: 'url(https://mail.google.com/mail/images/2/closedhand.cur), move !important',
       opacity: .95,
@@ -361,7 +361,7 @@ $(document).ready(function(){
         $('.ui-placeholder-highlight').css("width", $('.ui-sortable-helper').outerWidth());
       },
       update: function(e,ui) {
-        var position = $('.list:not(.upcoming)').index(ui.item[0]) + 1;
+        var position = $('.list:not(.upcoming,.locked)').index(ui.item[0]) + 1;
         update_list_position(ui.item, position);
       }
 

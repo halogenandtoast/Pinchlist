@@ -1,0 +1,12 @@
+%td[locked_list_proxy.list]{:class => "locked" + (locked_list_proxy.shared? ? " shared_list" : nil)}
+  .list_title{:"data-background-color" => locked_list_proxy.color, :style => "background-color: ##{locked_list_proxy.color};"}
+    %h3= locked_list_proxy.title
+    .icons{:"data-background-color" => locked_list_proxy.color, :style => "background-color: ##{locked_list_proxy.color};"}
+    .picker
+    = link_to 'delete list', list_proxy_path(:list_id => locked_list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{locked_list_proxy.title}?", :class => 'delete', :tabindex => "-1"
+  - if locked_list_proxy.shared?
+    %div
+      #{locked_list_proxy.owner.email} is trying to share a list with you, but you already have #{List::SUBSCRIBED_LIMIT} lists
+    %div
+      = button_to "Upgrade", edit_account_path, :method => :get
+      = button_to "Delete List", list_proxy_path(:list_id => locked_list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{locked_list_proxy.title}?"

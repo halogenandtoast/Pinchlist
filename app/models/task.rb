@@ -81,6 +81,7 @@ class Task < ActiveRecord::Base
   private
 
   def parse_date_format(str)
+    Timelord.set_date(Time.zone.now.to_date)
     self.due_date = Timelord.parse(str, :american)
   rescue
   end

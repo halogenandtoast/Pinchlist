@@ -5,6 +5,8 @@ class ListProxy < ActiveRecord::Base
   before_create :set_color
   after_destroy :notify_list
   acts_as_list :scope => :user
+  validates_associated :list
+
 
   def self.current_tasks
    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
@@ -33,7 +35,11 @@ class ListProxy < ActiveRecord::Base
   end
 
   def owned_by?(user)
-    self.list.user == user
+    owner == user
+  end
+
+  def owner
+    self.list.user
   end
 
   private

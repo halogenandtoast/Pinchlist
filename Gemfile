@@ -17,7 +17,7 @@ gem 'devise'
 gem 'haml'
 gem 'sass'
 gem 'chronic'
-gem 'timelord', :git => "git://github.com/halogenandtoast/timelord.git"
+gem 'timelord', '0.0.6'
 gem 'acts_as_list'
 gem 'devise_invitable'
 gem 'hoptoad_notifier'

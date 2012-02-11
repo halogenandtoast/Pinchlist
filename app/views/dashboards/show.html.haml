@@ -23,4 +23,5 @@
                   %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
                     = task.due_date.strftime("%m/%d")
                   %span.text= task.display_title
-      = render @list_proxies, :filter => :current
+      = render @list_proxies, :filter => :current, :locked => false
+      = render @locked_proxies, :filter => :current, :locked => true
