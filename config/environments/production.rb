@@ -1,6 +1,8 @@
 Pinchlist::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  config.middleware.use Rack::SSL, host: "www.listwerk.com"
+  if ENV['STAGING'] != "true"
+    config.middleware.use Rack::SSL, host: "www.listwerk.com"
+  end
 
   # Code is not reloaded between requests
   config.cache_classes = true
