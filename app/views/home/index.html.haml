@@ -1,12 +1,15 @@
 #page.clearfix
   #content
-    = render :partial => "shared/logo"
+    %h1
+      = link_to image_tag('logo-large.png'), root_url
+    %h2 
+      Make lists with speed, power, and happy colors.
     %p
-      A todo list app that requires less energy than your todos. Manage your lists in a single view with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, and anything else you tend to forget. 3 lists are free. Unlimited lists are $5/month.
+      Listwerk is a todo list app that demands less energy than your todos. Use it for tasks, todos, stuff, and anything else you tend to forget. 3 lists are free. Unlimited lists are $12/year.
       %br
       = link_to 'Sign up', new_user_registration_path, :class => "signup" 
-    %a#demo{:href => "#demo_video"} Watch the demo   
-    = render :partial => "shared/quicktime"
+    / %a#demo{:href => "#demo_video"} Watch the demo   
+    / = render :partial => "shared/quicktime"
 .links
   %p#sign_in 
     Already have an account?
