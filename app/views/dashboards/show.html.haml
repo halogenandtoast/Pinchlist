@@ -25,3 +25,6 @@
                   %span.text= task.display_title
       = render @list_proxies, :filter => :current, :locked => false
       = render @locked_proxies, :filter => :current, :locked => true
+- unless current_user.subscribed?
+  %div.subscribe 
+    = link_to "Upgrade to the full version for unlimited lists", edit_account_path
