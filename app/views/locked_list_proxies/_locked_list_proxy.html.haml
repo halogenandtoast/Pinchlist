@@ -1,4 +1,4 @@
-%td[locked_list_proxy.list]{:class => "locked" + (locked_list_proxy.shared? ? " shared_list" : nil)}
+%td[locked_list_proxy.list]{:class => "locked" + (locked_list_proxy.shared? ? " shared_list" : "app/views/locked_list_proxies/_locked_list_proxy.html.haml")}
   .list_title{:"data-background-color" => locked_list_proxy.color, :style => "background-color: ##{locked_list_proxy.color};"}
     %h3= locked_list_proxy.title
     .icons{:"data-background-color" => locked_list_proxy.color, :style => "background-color: ##{locked_list_proxy.color};"}
