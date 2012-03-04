@@ -23,7 +23,7 @@
         = f.password_field :password_confirmation
       %label.select{:for => "timezone"}
         %span Time zone
-        = f.select :timezone, ActiveSupport::TimeZone::MAPPING
+      = f.select :timezone, ActiveSupport::TimeZone::MAPPING
       = f.submit "Update"
     / %h3 Cancel my account
     %p
