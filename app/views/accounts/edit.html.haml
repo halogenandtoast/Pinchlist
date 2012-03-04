@@ -19,7 +19,7 @@
         = form.password_field :password_confirmation
       %label.select{:for => "timezone"}
         %span Time zone
-        = form.select :timezone, ActiveSupport::TimeZone::MAPPING
+        = form.select :timezone, time_zone_options_for_select(current_user.timezone)
       = form.submit "Update"
 
     = render current_user.status
