@@ -18,6 +18,7 @@ Pinchlist::Application.routes.draw do
 
   resources :tasks, :only => [:update]
   resource :subscription, :except => [:edit]
+  resource :resubscription, :only => [:create]
 
   namespace :admin do
     resources :users
