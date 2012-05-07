@@ -1,14 +1,30 @@
 class User < ActiveRecord::Base
-  include Listwerk::Subscription
-
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :stripe_card_token
   attr_accessible :email, :password, :password_confirmation, :remember_me, :timezone
+  attr_accessible :stripe_customer_token, :starts_at, :ends_at, :status
+  attr_accessible :stripe_card_token
 
   has_many :list_proxies
   has_many :lists, :through => :list_proxies, :readonly => false
   has_many :owned_lists, :class_name => "List"
+
+  delegate :inactive?, :active?, :cancelled?, :permanent?, :expired?, to: :subscription
+  delegate :resubscribe!, to: :subscription
+
+  def subscribe!(stripe_card_token)
+    subscription.create(stripe_card_token)
+  end
+
+  def cancel_subscription!
+    subscription.cancel!
+  end
+
+  def update_subscription!(stripe_card_token)
+    subscription.update!(stripe_card_token)
+  end
 
   def proxy_for(list_or_id)
     list_id = list_or_id.is_a?(List) ? list_or_id.id : list_or_id
@@ -24,5 +40,13 @@ class User < ActiveRecord::Base
     self.invitation_sent_at = Time.now
     save(:validate => false)
     InvitationWithShareMailer.invitation_for(self, list)
+  end
+
+  def subscription
+    @subscription ||= Subscription.new(self)
+  end
+
+  def subscribed?
+    subscription.current?
   end
 end

@@ -5,6 +5,10 @@
 #page.interior
   #content.form.prefs
     = link_to "Back", dashboard_path, :class => "back"
+    - if current_user.errors.any?
+      %p There was an error
+      - current_user.errors.full_messages.each do |error|
+        .error= error
     %h2 Edit Your Account
     = form_for(current_user, :url => account_path) do |form|
       %label.input{:for => "email"}
@@ -22,4 +26,4 @@
         = form.select :timezone, time_zone_options_for_select(current_user.timezone)
       = form.submit "Update"
 
-    = render current_user.status
+    = render "accounts/#{current_user.status}"
