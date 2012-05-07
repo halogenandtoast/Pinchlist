@@ -1,10 +1,10 @@
 class ListProxy < ActiveRecord::Base
-  belongs_to :user, :counter_cache => true
+  belongs_to :user, counter_cache: true
   belongs_to :list
-  has_many :tasks, :through => :list
+  has_many :tasks, through: :list
   before_create :set_color
   after_destroy :notify_list
-  acts_as_list :scope => :user
+  acts_as_list scope: :user
   validates_associated :list
 
 
@@ -16,7 +16,7 @@ class ListProxy < ActiveRecord::Base
    order("list_proxies.position ASC, tasks.completed ASC, tasks.position ASC")
   end
 
-  delegate :shared?, :to => :list
+  delegate :shared?, to: :list
 
   def shared_users
     list.users.where(["users.id != ?", user_id])

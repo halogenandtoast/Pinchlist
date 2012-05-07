@@ -32,13 +32,13 @@ class User < ActiveRecord::Base
   end
 
   def tasks
-    Task.where(:list_id => lists.map(&:id))
+    Task.where(list_id: lists.map(&:id))
   end
 
   def invitation_to_share(list)
     generate_invitation_token
     self.invitation_sent_at = Time.now
-    save(:validate => false)
+    save(validate: false)
     InvitationWithShareMailer.invitation_for(self, list)
   end
 

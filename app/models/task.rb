@@ -7,14 +7,14 @@ class Task < ActiveRecord::Base
   REMOVE_DATE_MATCHER = /\b ((on|next) )?(((#{DAYNAMES.join("|")}))|((#{MONTHNAMES.join("|")})( \d{1,2})?)|(\d{1,2}\/\d{1,2}(\/\d{2}\d{2}?)?))\b/i
 
   belongs_to :list
-  validates_presence_of :title, :on => :create
+  validates_presence_of :title, on: :create
   after_update :reposition
   after_create :move_before_completed
   after_save :destroy_on_empty_title
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
-  scope :completed, where(:completed => true)
-  acts_as_list :scope => :list
+  scope :completed, where(completed: true)
+  acts_as_list scope: :list
 
   def update_attributes_with_position(params)
     task_params = params.dup
@@ -70,7 +70,7 @@ class Task < ActiveRecord::Base
 
   def as_json(options)
     user = options.delete(:user)
-    {:task => {:id => id, :display_title => display_title, :title => title, :list_id => list_id, :list_color => list_color_for(user)}.merge(due_date ? {:due_date => due_date.strftime("%m/%d"), :full_date => due_date.strftime("%y/%m/%d")} : {})}
+    {task: {id: id, display_title: display_title, title: title, list_id: list_id, list_color: list_color_for(user)}.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})}
   end
 
   def completed=(state)

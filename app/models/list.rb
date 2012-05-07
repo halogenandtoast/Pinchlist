@@ -30,7 +30,7 @@ class List < ActiveRecord::Base
   private
 
   def create_proxy
-    self.proxies.create(:user => user)
+    self.proxies.create(user: user)
   end
 
   def within_subscription
