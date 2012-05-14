@@ -1,6 +1,6 @@
-- if current_user.expiration_date < Date.today
+- if current_user.ends_at < Date.today
   %p Your account has expired
 - else
-  %p Your account will expire on #{current_user.expiration_date}
+  %p Your account will expire on #{current_user.ends_at}
 %p
   = link_to "Click here to reenable your account", subscription_path, :method => :put

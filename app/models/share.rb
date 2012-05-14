@@ -6,6 +6,7 @@ class Share
   def initialize(params = {})
     @shared_list = List.find(params[:list_id])
     @email = params[:email]
+    @current_user_id = params[:current_user_id]
   end
 
   def save
@@ -13,7 +14,9 @@ class Share
       ActiveRecord::Base.transaction do
         @user = User.find_or_create_by_email(email)
         mail = if @user.new_record?
-          @user.invitation_to_share(@shared_list)
+          @user.invitation_to_share(@shared_list).tap do
+            Invitation.create(user_id: @current_user_id, invited_user_id: @user.id)
+          end
         else
           MemberMailer.share_list_email(user: @user, list: @shared_list)
         end

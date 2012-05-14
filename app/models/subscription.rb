@@ -29,7 +29,7 @@ class Subscription
   end
 
   def cancel!
-    stripe_transation do
+    stripe_transaction do
       customer.cancel_subscription(at_period_end: true)
       @user.update_attributes(status: 'cancelled')
     end

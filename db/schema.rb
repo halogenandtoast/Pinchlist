@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131044111) do
+ActiveRecord::Schema.define(:version => 20120513155509) do
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "invited_user_id"
+    t.boolean  "paid",            :default => false
+    t.boolean  "used_discount",   :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["invited_user_id"], :name => "index_invitations_on_invited_user_id"
+  add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
 
   create_table "list_proxies", :force => true do |t|
     t.integer  "user_id"

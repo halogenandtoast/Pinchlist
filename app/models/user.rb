@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
   def subscribe!(stripe_card_token)
     subscription.create(stripe_card_token)
+    give_discount_to_inviter
   end
 
   def cancel_subscription!
@@ -48,5 +49,14 @@ class User < ActiveRecord::Base
 
   def subscribed?
     subscription.current?
+  end
+
+  private
+
+  def give_discount_to_inviter
+    if invitation = Invitation.find_by_invited_user_id(id)
+      user = invitation.user
+      Discount.new(user).apply
+    end
   end
 end
