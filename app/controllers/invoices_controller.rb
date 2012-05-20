@@ -9,6 +9,7 @@ class InvoicesController < ApplicationController
       user = User.find_by_stripe_customer_token(stripe_customer_token)
       if user.has_credit?
         credit = [user.available_credit, amount].min
+        user.use_credit(credit)
         Stripe::InvoiceItem.create(
           :customer => stripe_customer_token,
           :amount => credit * -1,

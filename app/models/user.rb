@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
     available_credit > 0.0
   end
 
+  def use_credit(amount)
+    self.available_credit -= amount
+    save
+  end
+
   def lifetime_credit
     discounts.sum(:amount)
   end
