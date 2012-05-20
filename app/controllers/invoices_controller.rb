@@ -19,5 +19,6 @@ class InvoicesController < ApplicationController
         )
       end
     end
+    render json: "ok"
   end
 end
