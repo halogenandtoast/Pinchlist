@@ -24,7 +24,7 @@ class Subscription
         starts_at: Time.at(customer.subscription.current_period_start),
         ends_at: Time.at(customer.subscription.current_period_end),
         status: @customer.subscription.status,
-        account_balance: available_credit * -1
+        account_balance: @user.available_credit * -1
       )
     end
   end
