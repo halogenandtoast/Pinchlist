@@ -23,7 +23,8 @@ class Subscription
         stripe_customer_token: @customer.id,
         starts_at: Time.at(customer.subscription.current_period_start),
         ends_at: Time.at(customer.subscription.current_period_end),
-        status: @customer.subscription.status
+        status: @customer.subscription.status,
+        account_balance: available_credit
       )
     end
   end
