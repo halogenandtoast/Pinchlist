@@ -1,7 +1,7 @@
 require 'json'
 class InvoicesController < ApplicationController
   def create
-    json = JSON.parse(raw_post)
+    json = JSON.parse(request.raw_post)
     if json["type"] == "invoice.created"
       invoice_id = json["data"]["object"]["id"]
       stripe_customer_token = json["data"]["object"]["customer"]
