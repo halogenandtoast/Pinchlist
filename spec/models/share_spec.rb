@@ -30,7 +30,7 @@ end
 describe Share, 'create' do
   let(:email) { 'foo@example.com' }
   let(:mail) { stub('mail', :deliver => true) }
-  let(:user) { stub('user', :new_record? => true, :invitation_to_share => mail) }
+  let(:user) { stub('user', :id => 1, :new_record? => true, :invitation_to_share => mail) }
   let(:proxies) { stub('proxies', :create => true) }
   let(:list) { stub('list', :proxies => proxies, :user => false) }
 

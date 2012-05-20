@@ -8,6 +8,8 @@ Pinchlist::Application.routes.draw do
   resources :users, only: [:update]
   root :to => "home#index"
 
+  post "/stripe/invoice" => "invoices#create"
+
   match 'dashboard', :to => 'dashboards#show', :as => :dashboard
   resources :lists, :only => [:create, :update, :destroy] do
     resources :tasks, :only => [:create, :update], :shallow => true

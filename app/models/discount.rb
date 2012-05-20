@@ -1,11 +1,14 @@
-class Discount
-  def initialize(user)
-    @user = user
+class Discount < ActiveRecord::Base
+  belongs_to :user
+  after_create :apply_credit
+  def self.unused
+    where(used: false)
   end
 
-  def apply
-    customer = Stripe::Customer.retrieve(@user.stripe_customer_token)
-    customer.coupon = "1"
-    customer.save
+  private
+
+  def apply_credit
+    user.available_credit += amount
+    user.save
   end
 end

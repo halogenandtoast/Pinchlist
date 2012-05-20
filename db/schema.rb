@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513155509) do
+ActiveRecord::Schema.define(:version => 20120520191443) do
+
+  create_table "discounts", :force => true do |t|
+    t.integer  "invited_user_id"
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discounts", ["user_id"], :name => "index_discounts_on_user_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "user_id"
@@ -82,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20120513155509) do
     t.date     "ends_at"
     t.text     "status",                              :default => "inactive"
     t.string   "timezone",                            :default => "America/New_York"
+    t.integer  "available_credit",                    :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :list_proxies
   has_many :lists, :through => :list_proxies, :readonly => false
   has_many :owned_lists, :class_name => "List"
+  has_many :discounts
 
   delegate :inactive?, :active?, :cancelled?, :permanent?, :expired?, to: :subscription
   delegate :resubscribe!, to: :subscription
@@ -17,6 +18,14 @@ class User < ActiveRecord::Base
   def subscribe!(stripe_card_token)
     subscription.create(stripe_card_token)
     give_discount_to_inviter
+  end
+
+  def has_credit?
+    available_credit > 0.0
+  end
+
+  def lifetime_credit
+    discounts.sum(:amount)
   end
 
   def cancel_subscription!
@@ -56,7 +65,7 @@ class User < ActiveRecord::Base
   def give_discount_to_inviter
     if invitation = Invitation.find_by_invited_user_id(id)
       user = invitation.user
-      Discount.new(user).apply
+      Discount.create(invited_user_id: id, user_id: user.id, amount: 5000)
     end
   end
 end
