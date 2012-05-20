@@ -16,10 +16,12 @@ class Subscription
         email: @user.email,
         card: stripe_card_token
       }
+      plan = Stripe::Plan.retrieve(1)
       @customer = Stripe::Customer.create(params)
       @user.stripe_customer_token = @customer.id
       if @user.has_credit?
-        @user.use_credit(500)
+        amount = [@user.available_credit, plan.amount].min
+        @user.use_credit(amount)
       end
       @customer.update_subscription(plan: "1")
       @user.update_attributes(
