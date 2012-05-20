@@ -12,13 +12,15 @@ class Subscription
   def create(stripe_card_token)
     stripe_transaction do
       params = {
-        plan: Plan.first.id,
         description: @user.email,
         email: @user.email,
         card: stripe_card_token
       }
       @customer = Stripe::Customer.create(params)
-      Rails.logger.info("STATUS: #{@customer.subscription.status}")
+      if @user.has_credit?
+        @user.use_credit(500)
+      end
+      @customer.update_subscription(plan: "1")
       @user.update_attributes(
         stripe_customer_token: @customer.id,
         starts_at: Time.at(customer.subscription.current_period_start),

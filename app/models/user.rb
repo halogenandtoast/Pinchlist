@@ -25,6 +25,12 @@ class User < ActiveRecord::Base
   end
 
   def use_credit(amount)
+    Stripe::InvoiceItem.create(
+      :customer => stripe_customer_token,
+      :amount => amount * -1,
+      :currency => "usd",
+      :description => "Credit for inviting paid user"
+    )
     self.available_credit -= amount
     save
   end

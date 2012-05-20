@@ -10,12 +10,6 @@ class InvoicesController < ApplicationController
       if user.has_credit?
         credit = [user.available_credit, amount].min
         user.use_credit(credit)
-        Stripe::InvoiceItem.create(
-          :customer => stripe_customer_token,
-          :amount => credit * -1,
-          :currency => "usd",
-          :description => "Credit for inviting paid user"
-        )
       end
     end
     render json: "ok"
