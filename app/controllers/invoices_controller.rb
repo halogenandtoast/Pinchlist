@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
           :amount => credit * -1,
           :currency => "usd",
           :description => "Credit for inviting paid user",
-          :invoid => invoice_id
+          :invoice => invoice_id
         )
       end
     end
