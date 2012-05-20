@@ -17,12 +17,12 @@ class Subscription
         card: stripe_card_token
       }
       @customer = Stripe::Customer.create(params)
+      @user.stripe_customer_token = @customer.id
       if @user.has_credit?
         @user.use_credit(500)
       end
       @customer.update_subscription(plan: "1")
       @user.update_attributes(
-        stripe_customer_token: @customer.id,
         starts_at: Time.at(customer.subscription.current_period_start),
         ends_at: Time.at(customer.subscription.current_period_end),
         status: @customer.subscription.status,
