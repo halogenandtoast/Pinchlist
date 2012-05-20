@@ -14,8 +14,7 @@ class InvoicesController < ApplicationController
           :customer => stripe_customer_token,
           :amount => credit * -1,
           :currency => "usd",
-          :description => "Credit for inviting paid user",
-          :invoice => invoice_id
+          :description => "Credit for inviting paid user"
         )
       end
     end

@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   def give_discount_to_inviter
     if invitation = Invitation.find_by_invited_user_id(id)
       user = invitation.user
-      Discount.create(invited_user_id: id, user_id: user.id, amount: 5000)
+      Discount.create(invited_user_id: id, user_id: user.id, amount: 500)
     end
   end
 end
