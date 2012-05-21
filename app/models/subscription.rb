@@ -16,7 +16,7 @@ class Subscription
         email: @user.email,
         card: stripe_card_token
       }
-      plan = Stripe::Plan.retrieve(1)
+      plan = Stripe::Plan.retrieve("1")
       @customer = Stripe::Customer.create(params)
       @user.stripe_customer_token = @customer.id
       if @user.has_credit?
