@@ -1,5 +1,5 @@
 %h2 Upgrade to the full version
-%p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $5/mo and is billed automatically each month using the billing information you provide below.
+%p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $3/mo and is billed automatically each month using the billing information you provide below.
 = form_for(:subscription, url: subscription_path, html: {id: "new_subscription"}) do |form|
   = form.hidden_field :plan_id
   = form.hidden_field :stripe_card_token
