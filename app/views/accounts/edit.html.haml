@@ -9,10 +9,11 @@
       %p There was an error
       - current_user.errors.full_messages.each do |error|
         .error= error
-    %h2 Credits
-    %div Available credit: #{current_user.available_credit}
-    %div Lifetime earned: #{current_user.lifetime_credit}
-    %h2 Edit Your Account
+    - if current_user.discounts.any?
+      %h3 Credits
+      %div Available credit: #{Money.new(current_user.available_credit)}
+      %div Lifetime earned: #{Money.new(current_user.lifetime_credit)}
+    %h3 Edit Your Account
     = form_for(current_user, :url => account_path) do |form|
       %label.input{:for => "email"}
         %span Email Address
