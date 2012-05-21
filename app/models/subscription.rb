@@ -73,7 +73,7 @@ class Subscription
   end
 
   def last4
-    customer.card.last4
+    customer.active_card.last4
   end
 
   private
