@@ -3,8 +3,8 @@
     = render "logo"
     %h2 Sign up
     .info
-      %p listwerk is free for up to 3 lists. Unlimited lists costs $10/year, and you can upgrade at any time. By signing up for listwerk, you agree to the #{link_to "terms of service", legal_path}.
-      %p For the best experience, we recommend using listwerk with a modern browser, including the latest versions of Chrome, Safari, and Firefox.
+      %p Listwerk is free for up to 3 lists. Unlimited lists costs $3/mo, and you may upgrade at any time.
+      /%p For the best experience, we recommend using listwerk with a modern browser, including the latest versions of Chrome, Safari, and Firefox.
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       = f.hidden_field :timezone

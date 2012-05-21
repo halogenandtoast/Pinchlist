@@ -1,12 +1,15 @@
 #page.clearfix
   #content
-    = render "logo"
+    %h1
+      = link_to image_tag('logo-large.png'), root_url
+    %h2 
+      Make lists &#252;berfast.
     %p
-      A todo list app that requires less energy than your todos. Manage your lists in a single view with speed, simplicity, and happy colors. Use it for tasks, todos, stuff, and anything else you tend to forget. 3 lists are free. Unlimited lists are $5/month.
+      Listwerk is a simple task manager that allows you to spend more time <b>doing</b> things and less time <b>managing</b> them. Use it for tasks, todos, actions, stuff, and anything else you might forget. 3 lists are free. Unlimited lists are $3 per month.
       %br
-      = link_to 'Sign up', new_user_registration_path, :class => "signup"
-    %a#demo{:href => "#demo_video"} Watch the demo
-    = render "quicktime"
+      = link_to 'Sign up', new_user_registration_path, :class => "signup" 
+    / %a#demo{:href => "#demo_video"} Watch the demo   
+    / = render :partial => "shared/quicktime"
 .links
   %p#sign_in
     Already have an account?
@@ -23,3 +26,4 @@
     %p
       Forgot password?
       = link_to "Reset it.", 'users/password/new'
+
