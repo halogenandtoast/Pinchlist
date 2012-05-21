@@ -33,6 +33,12 @@ class Subscription
     end
   end
 
+  def credit(amount)
+    stripe_transaction do
+      @user.use_credit(amount)
+    end
+  end
+
   def cancel!
     stripe_transaction do
       customer.cancel_subscription(at_period_end: true)
@@ -66,7 +72,7 @@ class Subscription
     @user.ends_at
   end
 
-  private 
+  private
 
   def status
     @user.status
