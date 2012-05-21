@@ -1,6 +1,7 @@
 #page
   #content.form
-    = render "logo"
+    %h1
+      = link_to image_tag('logo-large.png'), root_url
     %h2 Set your password
     = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
       = devise_error_messages!
@@ -10,5 +11,6 @@
         = f.password_field :password
       %label.input{:for => "password_confirmation"} 
         %span Password confirmation
-      %p= f.submit "Save"
+        = f.password_field :password_confirmation
+      = f.submit "Save"
 = render :partial => "devise/shared/links"
