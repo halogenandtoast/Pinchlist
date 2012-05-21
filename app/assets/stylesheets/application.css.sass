@@ -314,7 +314,7 @@ td.shared_list
       min-height: 23px
       position: relative
       &:hover
-        cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
+        cursor: url(openhand.cur), move !important
         background-color: #E8F3F9
         border-top: 1px solid #C8E1F1
         border-color: #C8E1F1
@@ -323,7 +323,7 @@ td.shared_list
           .checkbox
             background-position: 0 -23px
       &:active
-        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+        cursor: url(closedhand.cur), move !important
       .task_title
         color: #111
         display: inline-block
@@ -380,10 +380,10 @@ td.shared_list
         margin-left: 3px
         color: #111
         &:active
-          cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+          cursor: url(closedhand.cur), move !important
         .task_title
           &:hover
-            cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+            cursor: url(closedhand.cur), move !important
       &.ui-placeholder-highlight
         background-color: #f6f6f6
         -webkit-border-radius: 2px
@@ -425,14 +425,14 @@ td.shared_list
     position: relative
     overflow: visible
     &:hover
-      cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move !important
+      cursor: url(openhand.cur), move !important
       .icons
         opacity: 1
       .share_link, .color_picker, .delete
         display: block
         opacity: 1
     &:active
-      cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+      cursor: url(closedhand.cur), move !important
     .icons
       position: absolute
       top: 0
@@ -562,7 +562,7 @@ td.shared_list
       &:hover
         cursor: pointer
       &:active
-        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move !important
+        cursor: url(closedhand.cur), move !important
   input
     float: left
     width: 100%
@@ -570,6 +570,23 @@ td.shared_list
 ::-webkit-input-placeholder
   color: #ddd
   font-weight: normal
+.list.public
+  li
+    &:hover
+      cursor: default !important
+      background-color: #fff
+      border-top: none
+      border-top: 1px solid #eee
+      border-bottom-color: #eee
+  .list_title
+    margin-bottom: 1px
+    &:hover
+      cursor: default !important
+    h3
+      &:hover
+        cursor: default !important
+  .task_title
+    padding-left: 0
 .newtask
   float: left
   margin: 0
