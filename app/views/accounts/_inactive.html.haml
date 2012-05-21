@@ -1,21 +1,2 @@
 %h2 Upgrade to the full version
-%p The trial version of Listwerk is limited to 3 lists. The full version allows for unlimited lists. It costs $10/yr and is billed automatically once a year using the billing information you provide below.
-= form_for(:subscription, url: subscription_path, html: {id: "new_subscription"}) do |form|
-  = form.hidden_field :plan_id
-  = form.hidden_field :stripe_card_token
-  - if current_user.stripe_card_token.present?
-    Credit card has been provided.
-  - else
-    %label.input{:for => "card_number"}
-      %span Card Number
-      = text_field_tag :card_number, nil, :name => nil
-    %label.input{:for => "card_code"}
-      %span CID
-      = text_field_tag :card_code, nil, :name => nil, :id => "card_cid"
-    %label.input{:for => "cc_exp"}
-      %span MM/YYYY
-      = text_field_tag :expiration, nil, :name => nil, :id => "card_exp"
-
-    #stripe_error
-      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-    = form.submit "Submit"
+%p Soon you'll be able to upgrade to a full account. We're still working out some of the details
