@@ -72,6 +72,10 @@ class Subscription
     @user.ends_at
   end
 
+  def last4
+    customer.card.last4
+  end
+
   private
 
   def status
