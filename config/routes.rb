@@ -18,6 +18,10 @@ Pinchlist::Application.routes.draw do
     resource :share, :only => [:create, :destroy]
   end
 
+  namespace :public do
+    resources :lists, :only => [:show]
+  end
+
   resources :tasks, :only => [:update]
   resource :subscription, :except => [:edit]
   resource :resubscription, :only => [:create]

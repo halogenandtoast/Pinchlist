@@ -1,0 +1,6 @@
+= content_tag_for(:li, task, :"data-edit-title" => task.title, :class => (task.completed ? 'completed' : nil)) do
+  %span.task_title
+    - if task.due_date?
+      %span.date= task.due_date.strftime("%m/%d")
+    %span.text
+      = task.display_title
