@@ -43,11 +43,18 @@ class ListProxy < ActiveRecord::Base
     self.list.user
   end
 
+  def generate_public_token
+    set_public_token
+    save
+  end
+
   private
 
   def set_public_token
     begin
-      self.public_token = ActiveSupport::SecureRandom.hex(13)
+      hex = ActiveSupport::SecureRandom.hex(8)
+      sha = Digest::SHA1.hexdigest(Time.now.to_s)
+      self.public_token = "#{hex}-#{sha}"
     end while ListProxy.exists?(public_token: self.public_token)
   end
 
