@@ -3,6 +3,7 @@ class ListProxy < ActiveRecord::Base
   belongs_to :list
   has_many :tasks, through: :list
   before_create :set_color
+  before_create :set_public_token
   after_destroy :notify_list
   acts_as_list scope: :user
   validates_associated :list
@@ -43,6 +44,12 @@ class ListProxy < ActiveRecord::Base
   end
 
   private
+
+  def set_public_token
+    begin
+      self.public_token = ActiveSupport::SecureRandom.hex(13)
+    end while ListProxy.exists?(public_token: self.public_token)
+  end
 
   def set_color
     self.color ||= "%06x" % (rand * 0xffffff)
