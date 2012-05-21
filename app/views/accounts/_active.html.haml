@@ -10,8 +10,8 @@
       Credit card has been provided.
     - else
       %label.input{:for => "card_number"}
-        %span Card Number
-        = text_field_tag :card_number, nil, :name => nil, placeholder: "**** **** **** #{current_user.subscription.last4}"
+        %span **** **** **** #{current_user.subscription.last4}
+        = text_field_tag :card_number, nil, :name => nil
       %label.input{:for => "card_code"}
         %span CID
         = text_field_tag :card_code, nil, :name => nil, :id => "card_cid"
