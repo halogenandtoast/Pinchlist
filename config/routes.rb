@@ -27,6 +27,7 @@ Pinchlist::Application.routes.draw do
   resource :resubscription, :only => [:create]
 
   namespace :admin do
+    resource :dashboard
     resources :users
   end
 end

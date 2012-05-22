@@ -1,6 +1,5 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_filter :authenticate_user!
-  before_filter :require_admin
 
   def index
     @users = User.all
@@ -13,11 +12,5 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.invite!(params[:user])
     redirect_to admin_users_path, :notice => "Invite sent"
-  end
-
-  protected
-
-  def require_admin
-    redirect_to root_path unless current_user.admin?
   end
 end
