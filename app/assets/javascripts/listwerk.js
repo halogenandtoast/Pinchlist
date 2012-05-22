@@ -349,7 +349,7 @@ $(document).ready(function(){
 
   enable_task_sorting();
   $("tr").sortable({
-      axis: "x",
+      axis: "xy",
       placeholder: 'ui-placeholder-highlight',
       items: '.list:not(.upcoming,.locked)',
       handle: '.list_title',
