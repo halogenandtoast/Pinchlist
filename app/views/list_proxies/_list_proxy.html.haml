@@ -10,5 +10,6 @@
     = form.text_field :title, :id => "new_task_title_#{list_proxy.list_id}", :autocomplete => "off", :maxlength => "500"
   %ul.tasks{ :data => { :id => list_proxy.list_id } }
     = render list_proxy.tasks.filtered(filter).by_position
-  = link_to 'History', list_archive_path(:list_id => list_proxy.list_id), :class => "list_link archive_link", :tabindex => "-1"
-  = link_to 'Public URL', public_list_path(list_proxy.public_token), :class => "list_link public_link", :tabindex => "-1"
+  .list_footer
+    = link_to 'History', list_archive_path(:list_id => list_proxy.list_id), :class => "list_link archive_link", :tabindex => "-1"
+    = link_to 'Public URL', public_list_path(list_proxy.public_token), :class => "list_link public_link", :tabindex => "-1"
