@@ -1,3 +1,4 @@
+require 'securerandom'
 class ListProxy < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   belongs_to :list
@@ -52,7 +53,7 @@ class ListProxy < ActiveRecord::Base
 
   def set_public_token
     begin
-      hex = ActiveSupport::SecureRandom.hex(8)
+      hex = SecureRandom.hex(8)
       sha = Digest::SHA1.hexdigest(Time.now.to_s)
       self.public_token = "#{hex}-#{sha}"
     end while ListProxy.exists?(public_token: self.public_token)

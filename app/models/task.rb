@@ -41,7 +41,8 @@ class Task < ActiveRecord::Base
   end
 
   def self.current
-    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
+    where(["(tasks.completed = ? OR (tasks.completed_at IS NULL OR tasks.completed_at > ?))", false, 7.days.ago.to_date])
+    # where(["tasks.completed_at IS NULL OR tasks.completed_at > ?", 7.days.ago.to_date])
   end
 
   def title=(new_title)
