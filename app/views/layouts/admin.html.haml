@@ -9,4 +9,7 @@
     = stylesheet_link_tag 'application', :media => "screen, print"
     = csrf_meta_tag
   %body{:class => "#{controller_name} #{action_name}"}
+    #header
+      %h1
+        = link_to image_tag('logo-small.png'), root_url
     = yield

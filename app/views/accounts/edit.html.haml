@@ -30,3 +30,7 @@
       = form.submit "Update"
 
     = render "accounts/#{current_user.status}"
+    %h3 Invite another user
+    = form_for(:user, url: invite_user_path, method: :post) do |form|
+      = form.email_field :email, placeholder: "Email address"
+      = form.submit "Invite"
