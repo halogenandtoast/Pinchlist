@@ -612,9 +612,26 @@ td.shared_list
   margin-right: 2px
   &:hover
     color: #3C82C6
+.public_link.locked
+  color: #ddd
 .archive_link
   border-right: 1px solid #e9e9e9
   padding: 0 5px 0 0
+.public_link_toggle
+  height: 16px
+  width: 16px
+  text-indent: -10000px
+  display: inline-block
+  overflow: hidden
+  vertical-align: middle
+  -webkit-border-radius: 2px
+  -moz-border-radius: 2px
+  &:hover
+    cursor: pointer
+  &.locked
+    background: #eee url(lock.png) 0 0 no-repeat
+  &.unlocked
+    background: #B8F1E3 url(lock.png) -16px 0 no-repeat
 #flash_alert, #flash_notice
   position: fixed
   bottom: 0
