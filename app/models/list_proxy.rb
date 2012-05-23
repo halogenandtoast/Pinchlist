@@ -52,11 +52,11 @@ class ListProxy < ActiveRecord::Base
   private
 
   def set_public_token
-    begin
-      hex = SecureRandom.hex(8)
-      sha = Digest::SHA1.hexdigest(Time.now.to_s)
-      self.public_token = "#{hex}-#{sha}"
-    end while ListProxy.exists?(public_token: self.public_token)
+    if self.public_token.nil?
+      begin
+        self.public_token = SecureRandom.hex(5)
+      end while ListProxy.exists?(slug: title.parameterize, public_token: self.public_token)
+    end
   end
 
   def set_color
