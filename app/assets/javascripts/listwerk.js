@@ -335,11 +335,12 @@ function hide_sharing() {
 function setup_sharing() {
   $(".share_link").click(function(e) {
       $(this).next(".share").toggle();
-      if($(this).next("share:visible")) {
-        if(visible_sharing) {
-          visible_sharing.hide();
+      if($(this).next(".share").is(":visible")) {
+        if(visible_sharing && visible_sharing != $(this).next(".share")[0]) {
+          $(document).unbind("mousedown", check_mouse_for_sharing);
+          $(visible_sharing).hide();
         }
-        visible_sharing = $(this).next(".share")
+        visible_sharing = $(this).next(".share")[0]
         $(document).bind("mousedown", check_mouse_for_sharing);
         $(".share input").focus();
       }
