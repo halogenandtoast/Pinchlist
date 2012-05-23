@@ -327,6 +327,7 @@ function check_mouse_for_sharing(event) {
 }
 
 function hide_sharing() {
+  visible_sharing = null;
   $(document).unbind("mousedown", check_mouse_for_sharing);
   $(".share").hide();
 }
