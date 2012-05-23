@@ -318,16 +318,25 @@ function setup_color_pickers() {
   });
 }
 
+function check_mouse_for_sharing(event) {
+  var selectorParent = $(event.target).parents(".share").length;
+  if(event.target == $(".share")[0] || selectorParent > 0) return;
+  hide_sharing();
+}
+
+function hide_sharing() {
+  $(document).unbind("mousedown", check_mouse_for_sharing);
+  $(".share").hide();
+}
+
 function setup_sharing() {
   $(".share_link").click(function(e) {
       $(this).next(".share").toggle();
       if($(this).next("share:visible")) {
+        $(document).bind("mousedown", check_mouse_for_sharing);
         $(".share input").focus();
       }
     });
-  $(".share").focusout(function(e) {
-    $(this).hide();
-  });
 }
 
 function preventFurtherSubmissions(e) {
