@@ -16,10 +16,11 @@ Pinchlist::Application.routes.draw do
     resource :proxy, :controller => :list_proxies, :only => [:update, :destroy]
     resource :archive, :controller => :list_proxies, :only => [:show]
     resource :share, :only => [:create, :destroy]
+    resource :lock, :only => [:update]
   end
 
   namespace :public do
-    resources :lists, :only => [:show]
+    get "lists/:id/:slug" => "lists#show", as: :list
   end
 
   resources :tasks, :only => [:update]

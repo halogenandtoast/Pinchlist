@@ -12,5 +12,5 @@
     = render list_proxy.tasks.filtered(filter).by_position
   .list_footer
     = link_to 'History', list_archive_path(:list_id => list_proxy.list_id), :class => "list_link archive_link", :tabindex => "-1"
-    %a.public_link_toggle.locked lock
-    = link_to 'Public URL', public_list_path(list_proxy.public_token), :class => "list_link public_link locked", :tabindex => "-1"
+    = link_to "lock", list_lock_path(list_proxy), class: "public_link_toggle #{list_proxy.public ? "unlocked" : "locked"}", method: :put, remote: true
+    = link_to 'Public URL', public_list_path(list_proxy.public_token, slug: list_proxy.slug), :class => "list_link public_link #{list_proxy.public ? 'unlocked' : 'locked'}", :tabindex => "-1"

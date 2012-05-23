@@ -5,6 +5,7 @@ class ListProxy < ActiveRecord::Base
   has_many :tasks, through: :list
   before_create :set_color
   before_create :set_public_token
+  before_save :set_slug
   after_destroy :notify_list
   acts_as_list scope: :user
   validates_associated :list
@@ -49,6 +50,15 @@ class ListProxy < ActiveRecord::Base
     save
   end
 
+  def self.public_from_params(params)
+    where(public: true, public_token: params[:id], slug: params[:slug]).first!
+  end
+
+  def toggle_public
+    self.public = !self.public
+    save
+  end
+
   private
 
   def set_public_token
@@ -61,6 +71,10 @@ class ListProxy < ActiveRecord::Base
 
   def set_color
     self.color ||= "%06x" % (rand * 0xffffff)
+  end
+
+  def set_slug
+    self.slug = title.parameterize
   end
 
   def notify_list

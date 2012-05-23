@@ -347,6 +347,22 @@ $(document).ready(function(){
       list_edit($(this));
   });
 
+  $(".public_link_toggle").live('click', function() {
+    $(this).toggleClass("locked")
+    $(this).toggleClass("unlocked")
+    $(this).siblings(".public_link").toggleClass("locked")
+    $(this).siblings(".public_link").toggleClass("unlocked")
+  })
+
+  $(".public_link.locked").live('click', function() {
+    if(confirm("Do you want to make this list public?")) {
+      $(this).siblings(".public_link_toggle").click()
+      return true;
+    } else {
+      return false;
+    }
+  })
+
   enable_task_sorting();
   $("tr").sortable({
       axis: "xy",

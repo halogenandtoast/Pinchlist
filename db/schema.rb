@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521163830) do
+ActiveRecord::Schema.define(:version => 20120523035811) do
 
   create_table "discounts", :force => true do |t|
     t.integer  "invited_user_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20120521163830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "public_token"
+    t.string   "slug",         :default => "list", :null => false
+    t.boolean  "public",       :default => false
   end
 
   create_table "lists", :force => true do |t|
