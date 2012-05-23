@@ -347,20 +347,24 @@ $(document).ready(function(){
       list_edit($(this));
   });
 
-  $(".public_link_toggle").live('click', function() {
+  var redirect_to_list = false;
+  $(".public_link_toggle").live('ajax:success', function(event) {
     $(this).toggleClass("locked")
     $(this).toggleClass("unlocked")
     $(this).siblings(".public_link").toggleClass("locked")
     $(this).siblings(".public_link").toggleClass("unlocked")
+    if(redirect_to_list) {
+      window.location = $(this).siblings(".public_link").attr("href")
+    }
   })
 
   $(".public_link.locked").live('click', function() {
+    var self = this;
     if(confirm("Do you want to make this list public?")) {
-      $(this).siblings(".public_link_toggle").click()
-      return true;
-    } else {
-      return false;
+      redirect_to_list = true;
+      $(this).siblings(".public_link_toggle").click();
     }
+    return false;
   })
 
   enable_task_sorting();
