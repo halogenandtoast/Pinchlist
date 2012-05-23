@@ -320,7 +320,7 @@ function setup_color_pickers() {
 
 function check_mouse_for_sharing(event) {
   var selectorParent = $(event.target).parents(".share").length;
-  if(event.target == $(".share")[0] || selectorParent > 0 || event.target == $(".share_link")[0]) return;
+  if(event.target == $(".share")[0] || selectorParent > 0 || $(".share_link").index(event.target) >= 0) return;
   hide_sharing();
 }
 
