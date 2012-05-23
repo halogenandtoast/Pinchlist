@@ -320,8 +320,10 @@ function setup_color_pickers() {
 
 function setup_sharing() {
   $(".share_link").click(function(e) {
-      $(this).next(".share").show();
-      $(".share input").focus();
+      $(this).next(".share").toggle();
+      if($(this).next("share:visible")) {
+        $(".share input").focus();
+      }
     });
   $(".share").focusout(function(e) {
     $(this).hide();
