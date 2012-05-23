@@ -615,6 +615,7 @@ td.shared_list
     color: #3C82C6
 .public_link.locked
   color: #ddd
+  cursor: text
 .archive_link
   border-right: 1px solid #e9e9e9
   padding: 0 5px 0 0
@@ -630,7 +631,10 @@ td.shared_list
   &:hover
     cursor: pointer
   &.locked
-    background: #eee url(lock.png) 0 0 no-repeat
+    background: #ddd url(lock.png) 0 0 no-repeat
+    opacity: .7
+    &:hover
+      opacity: 1
   &.unlocked
     background: #B8F1E3 url(lock.png) -16px 0 no-repeat
 #flash_alert, #flash_notice
@@ -684,7 +688,7 @@ td.shared_list
     text-decoration: none
     background-color: #C8E1F1
     color: #3C82C6
-    font-size: 12px
+    font-size: 14px
     padding: 6px 15px 6px 10px
     -webkit-border-radius: 2px
     -moz-border-radius: 2px
