@@ -318,9 +318,11 @@ function setup_color_pickers() {
   });
 }
 
+var visible_sharing;
+
 function check_mouse_for_sharing(event) {
   var selectorParent = $(event.target).parents(".share").length;
-  if(event.target == $(".share")[0] || selectorParent > 0 || $(".share_link").index(event.target) >= 0) return;
+  if(event.target == visible_sharing || selectorParent > 0 || $(".share_link").index(event.target) >= 0) return;
   hide_sharing();
 }
 
@@ -333,6 +335,10 @@ function setup_sharing() {
   $(".share_link").click(function(e) {
       $(this).next(".share").toggle();
       if($(this).next("share:visible")) {
+        if(visible_sharing) {
+          visible_sharing.hide();
+        }
+        visible_sharing = $(this).next(".share")
         $(document).bind("mousedown", check_mouse_for_sharing);
         $(".share input").focus();
       }
