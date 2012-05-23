@@ -5,6 +5,8 @@
       .input
         %span Enter an email address
         = form.text_field :email
+  - else
+    %input{type: "text", style: "width: 0; height: 0; background: transparent; border: none"}
   %ul.shared_users
     - list_proxy.shared_users.each do |user|
       %li[user, "list_#{list_proxy.list_id}"]
