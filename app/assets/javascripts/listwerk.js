@@ -336,6 +336,7 @@ function setup_sharing() {
         $(document).bind("mousedown", check_mouse_for_sharing);
         $(".share input").focus();
       }
+      return false;
     });
 }
 
