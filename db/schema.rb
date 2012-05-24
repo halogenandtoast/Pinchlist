@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523035811) do
+ActiveRecord::Schema.define(:version => 20120524042139) do
+
+  create_table "close_responses", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "discounts", :force => true do |t|
     t.integer  "invited_user_id"
@@ -22,6 +27,36 @@ ActiveRecord::Schema.define(:version => 20120523035811) do
   end
 
   add_index "discounts", ["user_id"], :name => "index_discounts_on_user_id"
+
+  create_table "discussion_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "discussion_events", :force => true do |t|
+    t.string   "response_type"
+    t.integer  "response_id"
+    t.integer  "user_id"
+    t.integer  "discussion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discussion_events", ["discussion_id"], :name => "index_discussion_events_on_discussion_id"
+
+  create_table "discussions", :force => true do |t|
+    t.integer  "category_id"
+    t.boolean  "private",     :default => false
+    t.string   "subject"
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "reply_count", :default => 0
+    t.boolean  "closed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+  end
 
   create_table "invitations", :force => true do |t|
     t.integer  "user_id"
@@ -59,6 +94,18 @@ ActiveRecord::Schema.define(:version => 20120523035811) do
     t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "reopen_responses", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reply_responses", :force => true do |t|
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "tasks", :force => true do |t|

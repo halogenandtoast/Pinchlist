@@ -1,0 +1,11 @@
+%h3= @category.name.pluralize
+= link_to "New Discussion", "#new_discussion"
+- if @discussions.any?
+  - @discussions.each do |discussion|
+    .discussion
+      = link_to discussion.subject, [:support, discussion]
+      #{discussion.reply_count} Replies
+- else
+  .empty
+    No discussions yet.
+= render "support/discussions/form", discussion: @discussion

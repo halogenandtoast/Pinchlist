@@ -6,6 +6,7 @@ gem 'newrelic_rpm'
 gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails', '~> 3.1.4'

@@ -1,0 +1,22 @@
+= form_for [:support, discussion] do |form|
+  - if signed_in?
+    %div
+      = form.label :private do
+        = form.check_box :private
+        This is a private discussion, don't let the public see it
+
+  - else
+    %div
+      = form.label :email
+      = form.email_field :email
+  - if discussion.category_id
+    = form.hidden_field :category_id
+  - else
+    %div
+      = form.label :category_id
+      = form.select :category_id, options_from_collection_for_select(DiscussionCategory.all, 'id', 'name')
+  %div
+    = form.label :subject
+    = form.text_field :subject
+  %div= form.text_area :message
+  %div= form.submit "Create"

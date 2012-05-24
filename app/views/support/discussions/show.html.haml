@@ -1,0 +1,12 @@
+%h3= @discussion.subject
+%p Posted by #{@discussion.email}
+%p= @discussion.message
+
+= render @events
+
+= form_for [:support, @discussion, @reply] do |form|
+  - unless signed_in?
+    = form.label :email
+    = form.email_field :email
+  = form.text_area :message
+  %div= form.submit "Reply"

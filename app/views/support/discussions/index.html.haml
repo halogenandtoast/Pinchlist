@@ -1,0 +1,3 @@
+- @categories.each do |category|
+  .discussion_category
+    = link_to category.name.pluralize, [:support, category]

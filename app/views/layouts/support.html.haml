@@ -9,4 +9,10 @@
     = stylesheet_link_tag 'application', :media => "screen, print"
     = csrf_meta_tag
   %body{:class => "#{controller_name} #{action_name}"}
-    = yield
+    - if signed_in?
+      Welcome #{current_user.email}
+      = link_to "Sign out", destroy_user_session_path
+    - else
+      = link_to "Sign in", new_user_session_path
+    #content
+      = yield

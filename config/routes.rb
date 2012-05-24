@@ -6,6 +6,8 @@ Pinchlist::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resource :account, only: [:edit, :update]
   resources :users, only: [:update]
+
+  get "", to: "support/home#show", contraints: { subdomain: 'support' }
   root :to => "home#index"
 
   post "/stripe/invoice" => "invoices#create"
@@ -30,5 +32,13 @@ Pinchlist::Application.routes.draw do
   namespace :admin do
     resource :dashboard
     resources :users
+  end
+
+  get "support" => "support/home#show"
+  namespace :support do
+    resources :discussions do
+      resources :reply_responses, only: [:create]
+    end
+    resources :discussion_categories, only: [:show]
   end
 end
