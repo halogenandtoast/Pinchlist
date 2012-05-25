@@ -11,13 +11,14 @@
         = link_to image_tag('logo-large.png'), root_url
     %h3 Why Listwerk?
     %p
-      There are no less than 7,938,492 applications and frameworks out there for getting things done. How do we know? We counted them. Why are there so many? We think it's because people get things done in different ways. Sadly, we've never found a method that functioned the way we function. So, we decided to build our own -- Listwerk. It might not work for you, but then again, it might. There are a few core principles that guide Listwerk's development.
+      There are no less than 7,938,492 "GTD" applications and frameworks out there. How do we know? We counted them. Why are there so many? We think it's because people get things done in different ways. Sadly, we couldn't find a product that functioned the way we function. So, we decided to build our own -- Listwerk. Odds are, it won't work for you, but then again, it might. There are a few core principles that guide Listwerk's development:
     %ul
-      %li It should be fast. 
-      %li No, even faster.
+      %li It should be fast. No, faster. 
       %li It should be easy to use.
       %li It should be flexible.
+      %li It should be powerful.
       %li It should be light-hearted and fun.
+      %li It should be aid, not a dsitraction.
     %p
       Listwerk was conceived and developed by Benjamin Lehn and Matthew Mongeau. They met in Atlanta in 2009, and began working on Listwerk in 2011. Benjamin currently places the pixels from Brooklyn, while Matthew crushes the bits from Boston.
 - unless signed_in?
@@ -44,3 +45,4 @@
     = link_to "About", 'about'
     = link_to "Blog", 'http://blog.listwerk.com'
     = link_to "Terms", 'terms'
+    Copyright 2011-#{Time.now.strftime("%y")} Listwerk. 

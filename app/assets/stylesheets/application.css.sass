@@ -41,11 +41,13 @@ body
       color: #aaa
 #footer_links
   position: fixed
-  top: -1px
+  bottom: -1px
   left: 5%
   background-color: #f9f9f9
   border: 1px solid #eee
   padding: 10px
+  color: #ccc
+  font-size: 12px
   a
     padding: 0 6px
     text-decoration: none
@@ -61,18 +63,19 @@ body
   text-align: left
   overflow: auto
   position: relative
-  width: 320px
+  width: 300px
   &.interior
     margin: 0
   #content
     height: auto
     overflow: auto
     margin-top: 50px
+    margin-bottom: 80px
     -webkit-border-radius: 4px
     position: relative
     h1
       font-size: 30px
-      margin: 80px 0 60px 0
+      margin: 50px 0 60px 0
       color: #333
       letter-spacing: -1px
       a
@@ -87,20 +90,22 @@ body
       color: #666
       font-weight: bold
     h3
-      font-size: 18px
+      font-size: 24px
       margin: 25px 0 15px
+      font-weight: normal
     h4
       margin: 25px 0 5px
       text-transform: uppercase
       font-size: 11px
     ul
-      margin: 0 0 10px
+      margin: 0 0 20px
       li
         list-style: none
         font-size: 16px
         padding: 2px
         margin: 2px 0
-        color: #999
+        color: #777
+        -webkit-font-smoothing: antialiased
     p
       margin: 10px 0 20px
       max-width: 100%
