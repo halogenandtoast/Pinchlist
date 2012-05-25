@@ -19,6 +19,7 @@
         = f.password_field :password_confirmation
       = f.submit "Sign up"
 = render :partial => "devise/shared/links"
+= render "footer"
 - content_for :javascripts do
   :javascript
     $(function() {
