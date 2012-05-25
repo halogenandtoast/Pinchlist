@@ -1,6 +1,6 @@
 Pinchlist::Application.routes.draw do
   get "about" => "pages#about"
-  get "legal" => "pages#legal"
+  get "terms" => "pages#legal"
   get "help" => "pages#help"
 
   devise_for :users, :controllers => { :registrations => "registrations" }

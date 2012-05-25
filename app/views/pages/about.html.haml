@@ -5,12 +5,42 @@
     = render "topbar"
 #page
   #content
+    - if current_user
+    - else
+      %h1
+        = link_to image_tag('logo-large.png'), root_url
     %h3 Why Listwerk?
     %p
-      There are countless applications and frameworks out there for getting things done. We attribute this to the fact that different methods work for different people. Unfortunately, we've never found a method that functioned the way we function. So, we decided to build our own -- Listwerk. There are a few core principles of Listwerk that guide it's development.
+      There are no less than 7,938,492 applications and frameworks out there for getting things done. How do we know? We counted them. Why are there so many? We think it's because people get things done in different ways. Sadly, we've never found a method that functioned the way we function. So, we decided to build our own -- Listwerk. It might not work for you, but then again, it might. There are a few core principles that guide Listwerk's development.
     %ul
       %li It should be fast. 
-      %li It should't be to serious.
-      %li It should be simple to use.
+      %li No, even faster.
+      %li It should be easy to use.
       %li It should be flexible.
-      %li It should be contextual, but should accomodate time-sensitive items as well.
+      %li It should be light-hearted and fun.
+    %p
+      Listwerk was conceived and developed by Benjamin Lehn and Matthew Mongeau. They met in Atlanta in 2009, and began working on Listwerk in 2011. Benjamin currently places the pixels from Brooklyn, while Matthew crushes the bits from Boston.
+- unless signed_in?
+  .links
+    %p#sign_in
+      Already have an account?
+      %a{:href => ""} Sign in
+      %br
+      New to Listwerk?
+      = link_to "Sign up.", new_user_registration_path
+    #login
+      = form_for :user, :url => new_user_session_path do |f|
+        %label.input{:for => "email"}
+          %span Email Address
+          = f.text_field :email
+        %label.input{:for => "password"}
+          %span Password
+          = f.password_field :password
+        = f.submit "Sign In"
+      %p
+        Forgot password?
+        = link_to "Reset it.", 'users/password/new'
+  #footer_links
+    = link_to "About", 'about'
+    = link_to "Blog", 'http://blog.listwerk.com'
+    = link_to "Terms", 'terms'
