@@ -1,15 +1,24 @@
 class List < ActiveRecord::Base
   SUBSCRIBED_LIMIT = 3
+
   belongs_to :user
   has_many :tasks, :dependent => :destroy
   has_many :proxies, :class_name => "ListProxy"
   has_many :users, :class_name => "User", :source => :user, :through => :proxies
-  validate :within_subscription, :on => :create
 
   after_create :create_proxy
 
-  scope :by_task_status, order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
-  scope :current_tasks, lambda { where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date]) }
+  validate :within_subscription, on: :create
+  validates :title, presence: true
+
+  def self.by_task_status
+    order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
+  end
+
+  def self.current_tasks
+    active_date = 7.days.ago.to_date
+    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])
+  end
 
   def title=(title)
     write_attribute(:title, title.blank? ? "List #{self.id}" : title)

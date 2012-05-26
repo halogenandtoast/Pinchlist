@@ -1,33 +1,37 @@
-Factory.sequence :email do |n|
-  "user#{n}@example.com"
-end
+FactoryGirl.define do
+  sequence(:email) { |n| "user#{n}@example.com" }
 
-Factory.define :user do |factory|
-  factory.email                 { Factory.next :email }
-  factory.password              { "password" }
-  factory.password_confirmation { "password" }
-end
+  factory :user do
+    email
+    password "password"
+    password_confirmation "password"
 
-Factory.define :list do |factory|
-  factory.association :user
-end
+    factory :user_with_list do
+      after(:create) do |user|
+        create(:list, user: user)
+      end
+    end
+  end
 
-Factory.define :list_proxy do |factory|
-  factory.association :list
-  factory.association :user
-  factory.after_create { |proxy| proxy.list.user = proxy.user; proxy.list.save }
-end
+  factory :list do
+    title "List"
+    user
+  end
 
-Factory.define :additional_list_proxy, :class => "ListProxy" do |factory|
-  factory.association :list
-  factory.association :user
-end
+  factory :list_proxy do
+    ignore do
+      list
+    end
 
-Factory.define :task do |factory|
-  factory.title { "Task Title" }
-  factory.association :list
-end
+    user
+  end
 
-Factory.define :completed_task, :parent => :task do |factory|
-  factory.completed true
+  factory :task do
+    title "Task Title"
+    list
+
+    factory :completed_task do
+      completed true
+    end
+  end
 end

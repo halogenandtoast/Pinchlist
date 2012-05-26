@@ -23,6 +23,7 @@ test: &test
   pool: 5
   username: root
   password:
+  min_messages: WARNING
 
 production:
   adapter: postgresql

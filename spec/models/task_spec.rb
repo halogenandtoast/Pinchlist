@@ -12,16 +12,16 @@ describe Task do
 
   context 'the first task' do
     it 'should start at order 1' do
-      task = Factory(:task)
+      task = create(:task)
       task.position.should == 1
     end
   end
 
   context 'additional tasks' do
     it 'should start at the correct order' do
-      user = Factory(:user)
-      list = Factory(:list)
-      first, second, third = [*1..3].map{|i| Factory(:task, :list => list) }
+      user = create(:user)
+      list = create(:list)
+      first, second, third = [*1..3].map{|i| create(:task, :list => list) }
       first.position.should == 1
       second.position.should == 2
       third.position.should == 3
@@ -30,7 +30,7 @@ describe Task do
 end
 
 describe Task, 'with an empty title' do
-  subject { Factory(:task) }
+  subject { create(:task) }
   it 'destroys itself' do
     subject.title = ""
     subject.save
@@ -44,25 +44,25 @@ describe Task, 'whose title has a due date' do
   end
 
   context 'in the front' do
-    subject { Factory(:task, :title => "@10/20 Build foo") }
+    subject { create(:task, :title => "@10/20 Build foo") }
     its(:due_date) { should == "#{Time.now.year}/10/20".to_date }
     its(:title) { should == 'Build foo' }
   end
 
   context 'in the back' do
-    subject { Factory(:task, :title => "Build foo @10/20") }
+    subject { create(:task, :title => "Build foo @10/20") }
     its(:due_date) { should == "#{Time.now.year}/10/20".to_date }
     its(:title) { should == 'Build foo' }
   end
 
   context 'in the middle' do
-    subject { Factory(:task, :title => "Build @10/20 foo") }
+    subject { create(:task, :title => "Build @10/20 foo") }
     its(:due_date) { should == "#{Time.now.year}/10/20".to_date }
     its(:title) { should == 'Build foo' }
   end
 
   context 'but starts with a !' do
-    subject { Factory(:task, :title => "!Build @10/20 foo") }
+    subject { create(:task, :title => "!Build @10/20 foo") }
     its(:due_date) { should == nil }
     its(:title) { should == '!Build @10/20 foo' }
   end
@@ -73,14 +73,14 @@ describe Task, 'whose title has a due date' do
 end
 
 describe Task, 'whose title has an invalid date' do
-  subject { Factory(:task, :title => "@31/31 Build foo") }
+  subject { create(:task, :title => "@31/31 Build foo") }
   its(:due_date) { should_not be }
   its(:title) { should == "@31/31 Build foo" }
 end
 
 describe Task, 'whose title has a chronic date format' do
   before { Timecop.freeze("2010/16/10") }
-  subject { Factory(:task, :title => "@wednesday do something") }
+  subject { create(:task, :title => "@wednesday do something") }
   its(:due_date) { should == Chronic.parse("wednesday").to_date }
   its(:title) { should == "do something" }
   after { Timecop.return }
@@ -88,7 +88,7 @@ end
 
 describe Task, 'whose title is changed from having a due date to not having one' do
   before { Timecop.freeze("2010/16/10") }
-  subject { Factory(:task, :title => "@10/20 Do foo") }
+  subject { create(:task, :title => "@10/20 Do foo") }
   it "should remove the due date" do
     subject.title = "Do foo"
     subject.due_date.should be_nil
@@ -98,8 +98,8 @@ end
 
 describe Task, '#upcoming' do
   before do
-    @upcoming_tasks = [*1..3].map { Factory(:task, :title => "@10/20 do foo") }
-    @other_tasks = [*1..3].map { Factory(:task, :title => "Other things") }
+    @upcoming_tasks = [*1..3].map { create(:task, :title => "@10/20 do foo") }
+    @other_tasks = [*1..3].map { create(:task, :title => "Other things") }
   end
   it 'knows upcoming tasks' do
     Task.upcoming.should == @upcoming_tasks
@@ -107,7 +107,7 @@ describe Task, '#upcoming' do
 end
 
 describe Task, 'completed' do
-  subject { Factory(:task, :title => "THE SUBJECT") }
+  subject { create(:task, :title => "THE SUBJECT") }
   before { Timecop.freeze(Date.parse("October 16, 2010")) }
   it 'sets its completed at date' do
     subject.update_attributes({:completed => true})
@@ -115,9 +115,9 @@ describe Task, 'completed' do
   end
   context "position" do
     let!(:user) { subject.list.user }
-    before { 2.times { Factory(:task, :list => subject.list) } }
+    before { 2.times { create(:task, :list => subject.list) } }
     context "with other completed tasks" do
-      before { 2.times { Factory(:task, :list => subject.list, :completed => true) } }
+      before { 2.times { create(:task, :list => subject.list, :completed => true) } }
       it 'is in the correct position' do
         subject.update_attributes(:completed => true)
         subject.position.should == 3
@@ -134,10 +134,10 @@ describe Task, 'completed' do
 end
 
 describe Task, '#list_color_for' do
-  let!(:list) { Factory(:list) }
+  let!(:list) { create(:list) }
   let!(:list_proxy) { list.proxies.first }
   let!(:user) { list.user }
-  subject { Factory(:task, :list => list) }
+  subject { create(:task, :list => list) }
   it "should retrieve the color for the user" do
     subject.list_color_for(user).should == list_proxy.color
   end
@@ -145,7 +145,7 @@ end
 
 describe Task, '#display_title' do
   context "title that starts with !"
-  subject { Factory(:task, :title => "!foo 25th") }
+  subject { create(:task, :title => "!foo 25th") }
   its(:display_title) { should == "foo 25th" }
 end
 
@@ -167,11 +167,11 @@ describe Task, '.filtered' do
 end
 
 describe Task, ".create" do
-  let!(:list) { Factory(:list) }
-  subject { Factory.build(:task, :list => list.reload) }
+  let!(:list) { create(:list) }
+  subject { build(:task, :list => list.reload) }
   before do
-    Factory(:task, :list => list.reload)
-    Factory(:completed_task, :list => list.reload)
+    create(:task, :list => list.reload)
+    create(:completed_task, :list => list.reload)
   end
   it "inserts before completed tasks" do
     subject.save
@@ -180,7 +180,7 @@ describe Task, ".create" do
 end
 
 describe Task, "#update" do
-  subject { Factory(:task, :title => "Do stuff on 10/10") }
+  subject { create(:task, :title => "Do stuff on 10/10") }
   it "removes the date when ! is added" do
     subject.update_attributes(:title => "!Do stuff on 10/10")
     subject.due_date.should be_nil
@@ -188,7 +188,7 @@ describe Task, "#update" do
 end
 
 describe Task, "#title=" do
-  subject { Factory(:task) }
+  subject { create(:task) }
   let(:titles) { ["Do stuff on Monday", "Do stuff next friday", "Do stuff Feb 24", "Do stuff 2/24", "Do stuff 2/24/03", "Do stuff 02/24/2003"] }
   it "removes the date string" do
     titles.each do |title|

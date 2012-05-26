@@ -7,8 +7,8 @@ describe User do
 end
 
 describe User, '#proxy_for' do
-  subject { Factory(:user) }
-  let(:list) { Factory(:list, :user => subject) }
+  subject { create(:user) }
+  let(:list) { create(:list, :user => subject) }
   let(:proxy) { mock("proxy") }
   let(:list_proxies) { mock("list proxies") }
 
@@ -27,11 +27,11 @@ describe User, '#proxy_for' do
 end
 
 describe User, "#tasks" do
-  subject { Factory(:user) }
-  let!(:list) { Factory(:list, :user => subject) }
-  let!(:tasks) { 3.times.map { Factory(:task, :list => list) } }
+  subject { create(:user) }
+  let!(:list) { create(:list, :user => subject) }
+  let!(:tasks) { 3.times.map { create(:task, :list => list) } }
   before do
-    3.times { Factory(:task) }
+    3.times { create(:task) }
   end
   it "returns the correct tasks" do
     subject.tasks.to_a =~ tasks

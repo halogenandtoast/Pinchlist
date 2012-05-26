@@ -1,5 +1,5 @@
 Given /^I have signed up with "(.*)\/(.*)"$/ do |email, password|
-  Factory :user, :email => email, :password => password, :password_confirmation => password
+  create :user, :email => email, :password => password, :password_confirmation => password
 end
 
 Given /^I sign in as "(.*)\/(.*)"$/ do |email, password|

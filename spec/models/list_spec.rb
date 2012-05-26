@@ -8,15 +8,15 @@ describe List do
 
   context 'when saved' do
     it 'creates a list proxy for the user' do
-      user = Factory(:user)
-      list = Factory(:list, :user => user)
+      user = create(:user)
+      list = create(:list, :user => user)
       list.proxies.first.user.should == user
     end
   end
 
   describe 'updated' do
     context 'with empty title' do
-      subject { Factory(:list) }
+      subject { create(:list) }
       it 'should set the title to the id' do
         subject.title = ""
         subject.title.should == "List #{subject.id}"
@@ -26,7 +26,7 @@ describe List do
 end
 
 describe List, '#check_for_proxies' do
-  subject { Factory(:list) }
+  subject { create(:list) }
   context 'with more proxies' do
     before do
       subject.stubs(:proxies).returns([1])
@@ -50,11 +50,11 @@ describe List, '#check_for_proxies' do
 end
 
 describe List, '#shared_users' do
-  let(:user) { Factory(:user) }
-  let(:expected_users)  { 3.times.map { Factory(:user) } }
-  subject { Factory(:list, :user => user) }
+  let(:user) { create(:user) }
+  let(:expected_users)  { 3.times.map { create(:user) } }
+  subject { create(:list, :user => user) }
   before do
-    expected_users.each { |user| Factory(:additional_list_proxy, :list => subject, :user => user) }
+    expected_users.each { |user| create(:list_proxy, list: subject, user: user) }
   end
   it "contains the correct users" do
     subject.shared_users.to_a.should =~ expected_users
@@ -62,7 +62,7 @@ describe List, '#shared_users' do
 end
 
 describe List, '#shared?' do
-  subject { Factory(:list) }
+  subject { create(:list) }
   context "when not shared" do
     it "is not shared" do
       subject.shared?.should be_false
@@ -70,7 +70,7 @@ describe List, '#shared?' do
   end
 
   context "when shared" do
-    before { Factory(:additional_list_proxy, :list => subject) }
+    before { create(:list_proxy, list: subject) }
     it "is shared" do
       subject.shared?.should be_true
     end

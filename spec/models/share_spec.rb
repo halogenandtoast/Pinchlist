@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Share, '#valid' do
-  let(:list) { Factory(:list) }
+  let(:list) { create(:list) }
   subject { Share.new(:list_id => list.id) }
   it { should validate_format_of(:email).with('foo@example.com') }
   it { should validate_format_of(:email).not_with('fooexample.com').with_message("Invalid email address") }

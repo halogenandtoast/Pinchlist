@@ -95,7 +95,7 @@ end
 
 When /^I have (\d+) lists?$/ do |count|
   user = User.first
-  count.to_i.times { Factory(:list, :user => user) }
+  count.to_i.times { create(:list, :user => user) }
 end
 
 Then /^I can not create another list$/ do

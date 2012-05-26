@@ -1,25 +1,29 @@
 require 'securerandom'
+
 class ListProxy < ActiveRecord::Base
+  acts_as_list scope: :user
+
   belongs_to :user, counter_cache: true
   belongs_to :list
   has_many :tasks, through: :list
+
   before_create :set_color
   before_create :set_public_token
   before_save :set_slug
   after_destroy :notify_list
-  acts_as_list scope: :user
+
   validates_associated :list
 
+  delegate :title, :shared?, to: :list
 
   def self.current_tasks
-   where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", 7.days.ago.to_date])
+    active_date = 7.days.ago.to_date
+   where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])
   end
 
   def self.by_task_status
    order("list_proxies.position ASC, tasks.completed ASC, tasks.position ASC")
   end
-
-  delegate :shared?, to: :list
 
   def shared_users
     list.users.where(["users.id != ?", user_id])
@@ -31,10 +35,6 @@ class ListProxy < ActiveRecord::Base
 
   def new_position=(position)
     self.insert_at(position)
-  end
-
-  def title
-    list.title
   end
 
   def owned_by?(user)

@@ -42,10 +42,10 @@ group :test do
   gem 'capybara-webkit'
   gem 'timecop'
   gem 'database_cleaner'
-  gem 'cucumber-rails', '1.1.1'
+  gem 'cucumber-rails', '1.1.1', require: false
   gem 'bourne'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 3.3.0'
   gem 'shoulda', "3.0.0.beta2"
   gem 'email_spec'
   gem 'fakeweb'
