@@ -667,12 +667,15 @@ td.shared_list
   &:hover
     cursor: pointer
   &.locked
-    background: #ddd url(lock.png) 0 0 no-repeat
+    background: url(lock.png) 0 0 no-repeat
     opacity: .7
     &:hover
       opacity: 1
+      background-color: #ddd
   &.unlocked
-    background: #B8F1E3 url(lock.png) -16px 0 no-repeat
+    background: url(lock.png) -16px 0 no-repeat
+    &:hover
+      background-color: #B8F1E3 
 #flash_alert, #flash_notice
   position: fixed
   bottom: 0
