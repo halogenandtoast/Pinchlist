@@ -318,40 +318,6 @@ function setup_color_pickers() {
   });
 }
 
-var visible_sharing;
-
-function check_mouse_for_sharing(event) {
-  var selectorParent = $(event.target).parents(".share").length;
-  if(event.target == visible_sharing || selectorParent > 0 || $(".share_link").index(event.target) >= 0) return;
-  hide_sharing();
-}
-
-function hide_sharing() {
-  visible_sharing = null;
-  $(document).unbind("mousedown", check_mouse_for_sharing);
-  $(".share").hide();
-}
-
-function setup_sharing() {
-  $(".share_link").click(function(e) {
-      $(this).next(".share").toggle();
-      if($(this).next(".share").is(":visible")) {
-        if(visible_sharing && visible_sharing != $(this).next(".share")[0]) {
-          $(document).unbind("mousedown", check_mouse_for_sharing);
-          $(visible_sharing).hide();
-        }
-        visible_sharing = $(this).next(".share")[0]
-        $(document).bind("mousedown", check_mouse_for_sharing);
-        $(".share input").focus();
-      }
-      return false;
-    });
-}
-
-$(".list_actions_link").click(function(e) {
-  $(this).next(".list_actions").toggle();
-});
-
 function preventFurtherSubmissions(e) {
   if($(this).data('disabled') == 'true') {
     $(e.target).trigger('ujs:everythingStopped');
@@ -440,7 +406,28 @@ $(document).ready(function(){
 
   //show sharing modal
 
-  setup_sharing();
+  $(".share_link").click(function(e) {
+    $(this).next(".share").toggle();
+    $(this).next(".share").find("input[type=text]").focus()
+  });
+
+  $(".share_link").bind( "clickoutside", function(e){
+    share = $(this).next(".share")
+    target = $(e.target).parents(".share")
+    if(target[0] != share[0]) {
+      $(this).next(".share").hide();
+    }
+  });
+
+  // show list actions
+
+  $(".list_actions_link").click(function(e) {
+    $(this).next(".list_actions").toggle();
+  });
+
+  $(".list_actions_link").bind( "clickoutside", function(){
+    $(this).next(".list_actions").hide();
+  });
 
   //load video.js
   $("video").VideoJS({
