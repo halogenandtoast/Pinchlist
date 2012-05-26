@@ -290,6 +290,7 @@ td
 td.shared_list
   .share_link
     display: block !important
+    opacity: 1 !important
 .list
   padding: 0 10px 12px 10px
   margin: 2px
@@ -450,7 +451,7 @@ td.shared_list
       cursor: url(openhand.cur), move !important
       .icons
         opacity: 1
-      .share_link, .color_picker, .delete
+      .share_link, .color_picker, .list_actions_link
         display: block
         opacity: 1
     &:active
@@ -470,7 +471,7 @@ td.shared_list
       text-indent: -10000px
       background: url(share.png) 0 0 no-repeat
       display: none
-    .share
+    .share, .list_actions
       overflow: visible
       display: none
       position: absolute
@@ -533,7 +534,7 @@ td.shared_list
           -moz-border-radius-bottomright: 2px
           margin: 0
           cursor: default !important
-          font-size: 10px
+          font-size: 11px
           min-height: 0
           height: 14px
           line-height: 1
@@ -559,8 +560,20 @@ td.shared_list
             -webkit-border-radius: 1px
             -moz-border-radius: 1px
             &:hover
-              background-color: #fff
-    .delete, .share_link, .color_picker
+              background-color: pink
+    .list_actions
+      right: 0
+      width: 120px
+      .delete
+        font-size: 11px
+        a
+          color: #aaa
+          text-decoration: none
+        &:hover
+          background-color: pink
+          a
+            color: #ea3a47
+    .list_actions_link, .share_link, .color_picker
       height: 18px
       width: 18px
       top: 4px
@@ -571,8 +584,8 @@ td.shared_list
         background-color: rgba(255, 255, 255, .3)
     .color_picker
       width: 21px
-    .delete
-      background: transparent url(delete.png) 0 0 no-repeat
+    .list_actions_link
+      background: transparent url(down-arrow.png) 0 0 no-repeat
       position: absolute
       right: 4px
       overflow: hidden
@@ -615,28 +628,27 @@ td.shared_list
   margin: 0
   padding: 0
   width: 100%
-.list:hover
-  .list_footer
-    display: block
-.list_footer
-  display: none
-  width: 100%
-  float: left
-  padding: 2px 0 5px 6px
-  border: 1px solid #eee
-  margin: 10px 0 0 -4px
-  background-color: #f9f9f9
-  -webkit-border-radius: 2px
-  -moz-border-radius: 2px
 .list_link
   text-decoration: none
   font-size: 11px
   color: #aaa
   margin-right: 2px
   &:hover
-    color: #3C82C6
+    color: #777
+  &.public_link
+    display: inline-block !important
+    width: 90px
+    overflow: none
+.list_actions 
+  ul
+    li
+      padding: 0 !important
+      height: auto !important
+  a
+    display: block
+    padding: 6px 0 6px 4px
 .public_link.locked
-  color: #ddd
+  color: #ccc
   cursor: text
 .archive_link
   border-right: 1px solid #e9e9e9
@@ -645,9 +657,11 @@ td.shared_list
   height: 16px
   width: 16px
   text-indent: -10000px
-  display: inline-block
   overflow: hidden
+  margin: 4px 4px 0 0
+  padding: 0 !important
   vertical-align: middle
+  float: right
   -webkit-border-radius: 2px
   -moz-border-radius: 2px
   &:hover

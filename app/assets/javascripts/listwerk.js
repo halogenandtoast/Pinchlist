@@ -348,6 +348,10 @@ function setup_sharing() {
     });
 }
 
+$(".list_actions_link").click(function(e) {
+  $(this).next(".list_actions").toggle();
+});
+
 function preventFurtherSubmissions(e) {
   if($(this).data('disabled') == 'true') {
     $(e.target).trigger('ujs:everythingStopped');

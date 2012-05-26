@@ -58,7 +58,9 @@ div.color_swatch
 #color_selector:before,
 #color_selector:after,
 .share:before,
-.share:after
+.share:after,
+.list_actions:before,
+.list_actions:after
   content: ""
   position: absolute
   z-index: 1000
@@ -71,10 +73,15 @@ div.color_swatch
   border-bottom: 8px solid #eee
 
 #color_selector:before,
-.share:before
+.share:before,
+.list_actions:before
   border-bottom-color: #ddd
   top: -8px
 
 .share:before,
-.share:after
+.share:after,
   left: 157px
+
+.list_actions:before,
+.list_actions:after
+  left: 106px

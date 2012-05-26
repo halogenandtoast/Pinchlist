@@ -5,12 +5,17 @@
     = link_to 'share', '#', :class => "share_link"
     = render 'sharing', :list_proxy => list_proxy
     .picker
-    = link_to 'delete list', list_proxy_path(:list_id => list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{list_proxy.title}?", :class => 'delete', :tabindex => "-1"
+    = link_to 'list actions', "#", :class => "list_actions_link"
+    .list_actions
+      %ul
+        %li
+          = link_to 'History', list_archive_path(:list_id => list_proxy.list_id), :class => "list_link archive_link", :tabindex => "-1"
+        %li
+          = link_to 'Public URL', public_list_path(list_proxy.public_token, slug: list_proxy.slug), :class => "list_link public_link #{list_proxy.public ? 'unlocked' : 'locked'}", :tabindex => "-1"
+          = link_to "lock", list_lock_path(list_proxy), class: "public_link_toggle #{list_proxy.public ? "unlocked" : "locked"}", method: :put, remote: true
+        %li.delete
+          = link_to 'Delete List', list_proxy_path(:list_id => list_proxy.list_id), :method => :delete, :confirm => "Are you sure you want to delete #{list_proxy.title}?", :tabindex => "-1"
   = form_for [list_proxy.list, Task.new], :remote => true, :html => { :class => 'newtask', :id => "new_task_#{list_proxy.list_id}" } do |form|
     = form.text_field :title, :id => "new_task_title_#{list_proxy.list_id}", :autocomplete => "off", :maxlength => "500"
   %ul.tasks{ :data => { :id => list_proxy.list_id } }
     = render list_proxy.tasks.filtered(filter).by_position
-  .list_footer
-    = link_to 'History', list_archive_path(:list_id => list_proxy.list_id), :class => "list_link archive_link", :tabindex => "-1"
-    = link_to "lock", list_lock_path(list_proxy), class: "public_link_toggle #{list_proxy.public ? "unlocked" : "locked"}", method: :put, remote: true
-    = link_to 'Public URL', public_list_path(list_proxy.public_token, slug: list_proxy.slug), :class => "list_link public_link #{list_proxy.public ? 'unlocked' : 'locked'}", :tabindex => "-1"
