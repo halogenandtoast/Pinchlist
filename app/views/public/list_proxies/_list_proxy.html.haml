@@ -5,3 +5,6 @@
     .picker
   %ul.tasks{ :data => { :id => list_proxy.list_id } }
     = render list_proxy.tasks.filtered(filter).by_position
+- unless signed_in?
+  %div.subscribe 
+    = link_to "Sign up for Listwerk", root_url
