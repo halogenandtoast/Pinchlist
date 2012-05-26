@@ -44,7 +44,7 @@ class List < ActiveRecord::Base
 
   def within_subscription
     if !user.subscribed? && user.list_proxies_count >= SUBSCRIBED_LIMIT
-      errors.add(:base, "Please upgrade to have additional lists.")
+      errors.add(:base, "Upgrade to create more lists.")
     end
   end
 end
