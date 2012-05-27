@@ -61,10 +61,10 @@ function list_edit(list_title) {
       '/lists/'+list_id,
       {'_method':'PUT', 'list': {'title': $(this).children('#list_title').val()}},
       function(data) {
-        $('#list_'+data.id+' .list_title form').replaceWith('<h3>'+data.title+'</h3>');
+        $('#list_'+data.id+' .list_title > form').replaceWith('<h3>'+data.title+'</h3>');
         // $('#list_'+data.list.id+' .color_picker').show();
         new_picker = $("<div class='.picker'>pick color</div>");
-        $('#list_'+data.id+' .delete').before(new_picker);
+        $('#list_'+data.id+' .share_link').before(new_picker);
         new_picker.colorPicker();
       },
       "json"

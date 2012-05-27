@@ -26,7 +26,7 @@ end
 
 When /^I click the delete link for "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
-  find("#list_#{list.id} a.delete").click
+  find("#list_#{list.id} .delete a").click
 end
 
 Then /^I should not see the list "([^"]*)"$/ do |title|
