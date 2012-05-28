@@ -39,6 +39,8 @@ class ListView extends Backbone.View
     "dropList" : "updatePosition"
     "click .list_actions_link" : "toggleListActions"
     "click .delete a" : "deleteList"
+    "click .list_title h3" : "editTitle"
+    "submit #new_list_title" : "updateListTitle"
 
   template: _.template($("#list_template").html())
 
@@ -104,6 +106,22 @@ class ListView extends Backbone.View
     if confirm @$(".delete a").data("confirm")
       @model.destroy
         success: => @remove()
+    false
+
+  editTitle: =>
+    form = $("<form id='new_list_title' class='list_title_form'></form")
+    input = $("<input type='text' name='list[title]' id='list_title' value='#{@model.get('title')}' />")
+    input.bind "keyup", (event) =>
+      if event.keyCode == 27
+        @$(".list_title_form").replaceWith("<h3>#{@model.get('title')}</h3>")
+    form.append(input)
+    @$(".list_title h3").replaceWith(form)
+    input.focus()
+
+  updateListTitle: =>
+    title = @$("#list_title").val()
+    @model.save(title: title)
+    @$("#new_list_title").replaceWith("<h3>#{title}</h3>")
     false
 
 class @DashboardView extends Backbone.View
