@@ -2,14 +2,12 @@
   #content
     %h1
       = link_to image_tag('logo-large.png'), root_url
-    %h2 
+    %h2
       Organize with color.
     %p
       Spend more time <b>doing</b> things and less time <b>managing</b> them. Use Listwerk for tasks, todos, actions, stuff, and anything else you might forget. 3 lists are free. Unlimited lists are $25 per year.
       %br
-      = link_to 'Sign up', new_user_registration_path, :class => "signup" 
-    / %a#demo{:href => "#demo_video"} Watch the demo   
-    / = render :partial => "shared/quicktime"
+      = link_to 'Sign up', new_user_registration_path, :class => "signup"
 - unless signed_in?
   .links
     %p#sign_in
@@ -28,4 +26,10 @@
         Forgot password?
         = link_to "Reset it.", 'users/password/new'
   = render "footer"
-
+- content_for :javascripts do
+  :javascript
+    $("#sign_in a").click(function() {
+      $("#login, #sign_in").toggle();
+      $('#user_email').focus();
+      return false;
+    });

@@ -43,7 +43,7 @@ class ListView extends Backbone.View
   template: _.template($("#list_template").html())
 
   initialize: ->
-    @model.tasks.on "add", @addTask
+    @model.tasks.on "add", @waitForTask
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
 
   render: ->
@@ -69,7 +69,11 @@ class ListView extends Backbone.View
   focus: ->
     @$("[name='task[title]']").focus()
 
+  waitForTask: (task) =>
+    task.on "sync", @addTask
+
   addTask: (task) =>
+    task.off "sync", @addTask
     view = new TaskView(model: task)
     @$(".tasks").append(view.render().el)
 
@@ -105,42 +109,42 @@ class ListView extends Backbone.View
 class @DashboardView extends Backbone.View
   el: "#listwerk"
   events:
-    "submit #new_list" : "create_list"
+    "submit #new_list" : "createList"
 
   initialize: ->
     @table = @$("#container > table")
-    @collection.on "add", @wait_for_list
+    @collection.on "add", @waitForList
     @render()
 
   render: ->
-    @draw_lists()
+    @drawLists()
     @$("tr").sortable(
       axis: "xy"
       items: ".list"
       handle: ".list_title"
       opacity: .95
-      update: @list_position_changed
+      update: @listPositionChanged
     )
     @$("#list_title").focus()
 
-  list_position_changed: (event, ui) =>
+  listPositionChanged: (event, ui) =>
     ui.item.trigger("dropList", ui.item.index())
 
-  draw_lists: =>
+  drawLists: =>
     @$el.find("tr").html("")
-    @collection.each(@add_list)
+    @collection.each(@addList)
 
-  wait_for_list: (list) =>
-    list.on "sync", @add_list
+  waitForList: (list) =>
+    list.on "sync", @addList
 
-  add_list: (list) =>
-    list.off "sync", @add_list
+  addList: (list) =>
+    list.off "sync", @addList
     view = new ListView(model: list)
     @table.find("tr").append(view.render().el)
     view.setupColorPicker()
     view.focus()
 
-  create_list: (event) ->
+  createList: (event) ->
     @collection.create(title: @$("#list_title").val())
     @$("#new_list input").val("")
     false
