@@ -6,5 +6,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require underscore
+//= require backbone
 //= require jstz.min.js
+//= require color-picker
+//= require clickoutside.min
 //= require_tree .

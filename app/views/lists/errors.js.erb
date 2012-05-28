@@ -1,5 +1,0 @@
-$("#list_errors").remove()
-notice = $("<span id='list_errors'>")
-notice.html("<%= @list.errors.full_messages.to_sentence %>")
-$("#new_list").append(notice)
-setTimeout("$('#list_errors').fadeOut()", 3000)

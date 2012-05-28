@@ -1,30 +1,79 @@
-#header
-  %h1
-    = link_to image_tag('logo-small.png'), root_url
-  = form_for @list, :remote => true do |form|
-    %label.input{:for => "title"}
-      %span New List
-      = form.text_field :title
+#listwerk
+  #header
+    %h1
+      = link_to image_tag('logo-small.png'), root_url
+    = form_for @list do |form|
+      %label.input{:for => "title"}
+        %span New List
+        = form.text_field :title
 
-  = render "topbar"
-#container
-  %table{:cellpadding => "0", :cellspacing => "0"}
-    %tr
-      - unless @upcoming_tasks.empty?
-        %td.list.upcoming
-          .list_title
-            %h3 Upcoming
-            .today #{Time.now.strftime("%m/%d")}
-          %ul.tasks#upcoming_tasks
-            - @upcoming_tasks.each do |task|
-              = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
-                %span.task_title
-                  %div.checkbox checked
-                  %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
-                    = task.due_date.strftime("%m/%d")
-                  %span.text= task.display_title
-      = render @list_proxies, :filter => :current, :locked => false
-      = render @locked_proxies, :filter => :current, :locked => true
-- unless current_user.subscribed?
-  %div.subscribe 
-    = link_to "Upgrade to the full version for unlimited lists", edit_account_path
+    = render "topbar"
+  #container
+    %table{:cellpadding => "0", :cellspacing => "0"}
+      %tr
+        - unless @upcoming_tasks.empty?
+          %td.list.upcoming
+            .list_title
+              %h3 Upcoming
+              .today #{Time.now.strftime("%m/%d")}
+            %ul.tasks#upcoming_tasks
+              - @upcoming_tasks.each do |task|
+                = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
+                  %span.task_title
+                    %div.checkbox checked
+                    %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
+                      = task.due_date.strftime("%m/%d")
+                    %span.text= task.display_title
+        -# = render @list_proxies, :filter => :current, :locked => false
+        -# = render @locked_proxies, :filter => :current, :locked => true
+  - unless current_user.subscribed?
+    %div.subscribe
+      = link_to "Upgrade to the full version for unlimited lists", edit_account_path
+
+
+  %script{type: "text/template", id: "task_template"}
+    <span class="task_title">
+    <div class="checkbox">check</div> <span class="text"><%= title %></span>
+    </span>
+
+  %script{type: "text/template", id: "list_template"}
+    <div class="list_title" data-background-color="<%= color %>" style="background-color: #<%= color %>;">
+    <h3><%= title %></h3>
+    <div class="icons" data-background-color="<%= color %>" style="background-color: #<%= color %>;"></div>
+    <a href="#" class="share_link">share</a>
+    <div class="share">
+    <h4>Sharing</h4>
+    <input style="width: 0; height: 0; background: transparent; border: 0; position: absolute;left:-10000px;" type="text">
+    <ul class="shared_users">
+    </ul>
+    </div>
+
+    <div class="picker" style="display: none; "></div><div class="color_picker" style="">&nbsp;</div>
+    <a href="#" class="list_actions_link">list actions</a>
+    <div class="list_actions">
+    <ul>
+    <li>
+    <a href="/lists/<%= id %>/archive" class="list_link archive_link" tabindex="-1">History</a>
+    </li>
+    <li>
+    <a href="/public/lists/<%= public_token %>/issues" class="list_link public_link locked" tabindex="-1">Public URL</a>
+    <a href="/lists/<%= id %>/lock" class="public_link_toggle locked" data-method="put" data-remote="true" rel="nofollow">lock</a>
+    </li>
+    <li class="delete">
+    <a href="/lists/<%= id %>/proxy" data-confirm="Are you sure you want to delete ISSUES?" data-method="delete" rel="nofollow" tabindex="-1">Delete List</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <form accept-charset="UTF-8" action="/lists/<%= id %>/tasks" class="newtask" data-remote="true" id="new_task_<%= id %>" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="pbG+zhQhM8ZYlT0GzIHAi5BBSj5tgY1GZ/R9eMcyk8I="></div>
+    <input autocomplete="off" id="new_task_title_<%= id %>" maxlength="500" name="task[title]" size="500" type="text">
+    </form>
+    <ul class="tasks ui-sortable" data-id="<%= id %>">
+    </ul>
+
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function() {
+      var lists = new Lists(#{@list_proxies.to_json})
+      var App = new DashboardView({collection: lists});
+    });

@@ -16,6 +16,17 @@ class ListProxy < ActiveRecord::Base
 
   delegate :title, :shared?, to: :list
 
+  def as_json(options = {})
+    {
+      title: title,
+      id: id,
+      color: color,
+      public_token: public_token,
+      slug: slug,
+      tasks: tasks
+    }
+  end
+
   def self.current_tasks
     active_date = 7.days.ago.to_date
    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])

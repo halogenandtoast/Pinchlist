@@ -69,8 +69,7 @@ class Task < ActiveRecord::Base
   end
 
   def as_json(options)
-    user = options.delete(:user)
-    {task: {id: id, display_title: display_title, title: title, list_id: list_id, list_color: list_color_for(user)}.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})}
+    {id: id, display_title: display_title, title: title, list_id: list_id}.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
   end
 
   def completed=(state)
