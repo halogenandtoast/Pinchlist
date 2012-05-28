@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   MONTHNAMES = (Date::MONTHNAMES+Date::ABBR_MONTHNAMES).compact
   REMOVE_DATE_MATCHER = /\b ((on|next) )?(((#{DAYNAMES.join("|")}))|((#{MONTHNAMES.join("|")})( \d{1,2})?)|(\d{1,2}\/\d{1,2}(\/\d{2}\d{2}?)?))\b/i
 
-  belongs_to :list
+  belongs_to :list_base
   validates_presence_of :title, on: :create
   after_update :reposition
   after_create :move_before_completed
@@ -14,14 +14,14 @@ class Task < ActiveRecord::Base
 
   scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
   scope :completed, where(completed: true)
-  acts_as_list scope: :list
+  acts_as_list scope: :list_base
 
   def update_attributes_with_position(params)
     task_params = params.dup
-    new_list_id = task_params.delete(:list_id)
-    if new_list_id
+    new_list_base_id = task_params.delete(:list_base_id)
+    if new_list_base_id
       remove_from_list
-      self.list_id = new_list_id
+      self.list_base_id = new_list_base_id
       move_to_bottom
     end
     update_attributes(task_params)
@@ -65,11 +65,17 @@ class Task < ActiveRecord::Base
   end
 
   def list_color_for(user)
-    user.proxy_for(list).color
+    user.list_for(list_base).color
   end
 
   def as_json(options)
-    {id: id, display_title: display_title, title: title, list_id: list_id}.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
+    {
+      id: id,
+      display_title: display_title,
+      title: title,
+      list_base_id: list_base_id,
+      position: position
+    }.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
   end
 
   def completed=(state)
@@ -107,7 +113,7 @@ class Task < ActiveRecord::Base
   end
 
   def position_before_completed
-    self['position'] = position_of_completed || task.list.tasks.count
+    self['position'] = position_of_completed || task.list_base.tasks.count
   end
 
   def move_before_completed
@@ -120,9 +126,9 @@ class Task < ActiveRecord::Base
 
   def position_of_completed
     if self.id
-      list.tasks.completed.where("id <> ?", self.id).minimum(:position)
+      list_base.tasks.completed.where("id <> ?", self.id).minimum(:position)
     else
-      list.tasks.completed.minimum(:position)
+      list_base.tasks.completed.minimum(:position)
     end
   end
 end

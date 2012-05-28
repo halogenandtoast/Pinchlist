@@ -11,19 +11,19 @@
   #container
     %table{:cellpadding => "0", :cellspacing => "0"}
       %tr
-        - unless @upcoming_tasks.empty?
-          %td.list.upcoming
-            .list_title
-              %h3 Upcoming
-              .today #{Time.now.strftime("%m/%d")}
-            %ul.tasks#upcoming_tasks
-              - @upcoming_tasks.each do |task|
-                = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
-                  %span.task_title
-                    %div.checkbox checked
-                    %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
-                      = task.due_date.strftime("%m/%d")
-                    %span.text= task.display_title
+        -# - unless @upcoming_tasks.empty?
+        -#   %td.list.upcoming
+        -#     .list_title
+        -#       %h3 Upcoming
+        -#       .today #{Time.now.strftime("%m/%d")}
+        -#     %ul.tasks#upcoming_tasks
+        -#       - @upcoming_tasks.each do |task|
+        -#         = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
+        -#           %span.task_title
+        -#             %div.checkbox checked
+        -#             %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
+        -#               = task.due_date.strftime("%m/%d")
+        -#             %span.text= task.display_title
         -# = render @list_proxies, :filter => :current, :locked => false
         -# = render @locked_proxies, :filter => :current, :locked => true
   - unless current_user.subscribed?
@@ -74,6 +74,6 @@
 - content_for :javascripts do
   :javascript
     $(document).ready(function() {
-      var lists = new Lists(#{@list_proxies.to_json})
+      var lists = new Lists(#{@lists.to_json})
       var App = new DashboardView({collection: lists});
     });
