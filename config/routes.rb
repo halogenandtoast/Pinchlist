@@ -1,4 +1,11 @@
 Pinchlist::Application.routes.draw do
+  namespace :api, defaults: { format: 'json' } do
+    resources :list_proxies, only: [:index, :update]
+    resources :lists, only: [:create, :update] do
+      resources :tasks, :only => [:index, :create]
+    end
+  end
+
   get "about" => "pages#about"
   get "terms" => "pages#legal"
   get "help" => "pages#help"
