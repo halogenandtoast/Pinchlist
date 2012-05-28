@@ -37,9 +37,9 @@
     </span>
 
   %script{type: "text/template", id: "list_template"}
-    <div class="list_title" data-background-color="<%= color %>" style="background-color: #<%= color %>;">
+    <div class="list_title">
     <h3><%= title %></h3>
-    <div class="icons" data-background-color="<%= color %>" style="background-color: #<%= color %>;"></div>
+    <div class="icons"></div>
     <a href="#" class="share_link">share</a>
     <div class="share">
     <h4>Sharing</h4>
@@ -48,7 +48,7 @@
     </ul>
     </div>
 
-    <div class="picker" style="display: none; "></div><div class="color_picker" style="">&nbsp;</div>
+    <div class="picker"></div>
     <a href="#" class="list_actions_link">list actions</a>
     <div class="list_actions">
     <ul>
@@ -60,7 +60,7 @@
     <a href="/lists/<%= id %>/lock" class="public_link_toggle locked" data-method="put" data-remote="true" rel="nofollow">lock</a>
     </li>
     <li class="delete">
-    <a href="/lists/<%= id %>/proxy" data-confirm="Are you sure you want to delete ISSUES?" data-method="delete" rel="nofollow" tabindex="-1">Delete List</a>
+    <a href="/lists/<%= id %>/proxy" data-confirm="Are you sure you want to delete <%= title %>?" data-method="delete" rel="nofollow" tabindex="-1">Delete List</a>
     </li>
     </ul>
     </div>

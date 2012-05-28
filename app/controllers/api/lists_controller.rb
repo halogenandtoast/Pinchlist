@@ -14,7 +14,16 @@ class Api::ListsController < Api::BaseController
 
   def update
     list = current_user.lists.find(params[:id])
-    list.update_attributes(params[:list].merge(new_position: params[:new_position]))
+    if params[:new_position]
+      params[:list].merge!(new_position: params[:new_position])
+    end
+    list.update_attributes(params[:list])
+    respond_with list
+  end
+
+  def destroy
+    list = current_user.lists.find(params[:id])
+    list.destroy
     respond_with list
   end
 

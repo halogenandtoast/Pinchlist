@@ -9,7 +9,6 @@ class List extends Backbone.Model
   urlRoot: "api/lists"
   initialize: (attributes) ->
     @tasks = new TaskList(attributes['tasks'])
-    @tasks.url = '/api/lists/'+@get("id")+'/tasks'
 
 class @Lists extends Backbone.Collection
   model: List
@@ -21,7 +20,7 @@ class TaskView extends Backbone.View
   tagName: "li"
   className: "task"
   events:
-    "drop" : "update_position"
+    "dropTask" : "updatePosition"
 
   template: _.template($("#task_template").html())
 
@@ -29,56 +28,79 @@ class TaskView extends Backbone.View
     @$el.html(@template(@model.toJSON()))
     this
 
-  update_position: (event, position) =>
+  updatePosition: (event, position) =>
     @model.save(new_position: position + 1)
 
 class ListView extends Backbone.View
   tagName: "td"
   className: "list"
   events:
-    "submit .newtask" : "create_task"
-    "drop" : "update_position"
+    "submit .newtask" : "createTask"
+    "dropList" : "updatePosition"
+    "click .list_actions_link" : "toggleListActions"
+    "click .delete a" : "deleteList"
 
   template: _.template($("#list_template").html())
 
   initialize: ->
-    @model.tasks.on "add", @add_task
+    @model.tasks.on "add", @addTask
+    @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
 
   render: ->
     @$el.html(@template(@model.toJSON()))
     @model.tasks.each (task) =>
-      @add_task(task)
+      @addTask(task)
     @$(".tasks").sortable(
       connectWith: ".tasks"
       helper: 'clone'
       items: "li"
       distance: 6
       opacity: .93
-      update: @task_position_changed
+      update: @taskPositionChanged
     )
+    @$(".list_title").css("background-color", '#'+@model.get("color"))
+    @$(".list_actions_link").bind "clickoutside", (event) =>
+      @$(".list_actions").hide()
     this
+
+  setupColorPicker: =>
+    @$(".picker").colorPicker(onColorChange: @changeColor)
 
   focus: ->
     @$("[name='task[title]']").focus()
 
-  add_task: (task) =>
+  addTask: (task) =>
     view = new TaskView(model: task)
     @$(".tasks").append(view.render().el)
 
-  add_all: =>
+  addAll: =>
     @tasks.each(@add_task)
 
-  create_task: =>
+  createTask: =>
     @model.tasks.create(title: @$("[name='task[title]']").val())
     @$("[name='task[title]']").val("")
     false
 
-  update_position: (event, position) =>
+  updatePosition: (event, position) =>
     @model.save(new_position: position + 1)
 
-  task_position_changed: (event, ui) =>
-    ui.item.trigger("drop", ui.item.index())
+  taskPositionChanged: (event, ui) =>
+    ui.item.trigger("dropTask", ui.item.index())
 
+  changeColor: (color) =>
+    @model.save(color: color.substring(1))
+
+  toggleListActions: =>
+    @$(".list_actions").toggle()
+
+  hideListActions: =>
+    @$(".list_actions").hide()
+
+  deleteList: =>
+    if confirm @$(".delete a").data("confirm")
+      @model.destroy
+        success: => @remove()
+    false
 
 class @DashboardView extends Backbone.View
   el: "#listwerk"
@@ -102,7 +124,7 @@ class @DashboardView extends Backbone.View
     @$("#list_title").focus()
 
   list_position_changed: (event, ui) =>
-    ui.item.trigger("drop", ui.item.index())
+    ui.item.trigger("dropList", ui.item.index())
 
   draw_lists: =>
     @$el.find("tr").html("")
@@ -115,6 +137,7 @@ class @DashboardView extends Backbone.View
     list.off "sync", @add_list
     view = new ListView(model: list)
     @table.find("tr").append(view.render().el)
+    view.setupColorPicker()
     view.focus()
 
   create_list: (event) ->
