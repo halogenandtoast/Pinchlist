@@ -2,15 +2,22 @@ class Api::TasksController < Api::BaseController
   respond_to :json
 
   def index
-    list_proxy = current_user.list_proxies.find(params[:list_id])
-    tasks = list_proxy.tasks
+    list = current_user.lists.find(params[:list_id])
+    tasks = list.tasks
     respond_with tasks
   end
 
   def create
-    list_proxy = current_user.list_proxies.find(params[:list_id])
-    list = list_proxy.list
-    task = list.tasks.create(params[:task])
+    list = current_user.lists.find(params[:list_id])
+    base = list.list_base
+    task = base.tasks.create(params[:task])
+    respond_with task
+  end
+
+  def update
+    list = current_user.lists.find(params[:list_id])
+    task = list.list_base.tasks.find(params[:id])
+    task.update_attributes(params[:task].merge(new_position: params[:new_position]))
     respond_with task
   end
 end

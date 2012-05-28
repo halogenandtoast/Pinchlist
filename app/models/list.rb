@@ -1,50 +1,106 @@
+require 'securerandom'
+
 class List < ActiveRecord::Base
-  SUBSCRIBED_LIMIT = 3
+  attr_accessor :new_position
+  acts_as_list scope: :user
 
-  belongs_to :user
-  has_many :tasks, :dependent => :destroy
-  has_many :proxies, :class_name => "ListProxy"
-  has_many :users, :class_name => "User", :source => :user, :through => :proxies
+  belongs_to :user, counter_cache: true
+  belongs_to :list_base
+  has_many :tasks, through: :list_base
 
-  after_create :create_proxy
+  before_create :set_color
+  before_create :set_public_token
+  before_validation :set_list_base
 
-  validate :within_subscription, on: :create
+  after_destroy :notify_list_base
+  before_save :set_slug
+
+  validates_associated :list_base
   validates :title, presence: true
+  validates :list_base_id, presence: true
 
-  def self.by_task_status
-    order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
+  delegate :shared?, to: :list_base
+
+  def as_json(options = {})
+    {
+      title: title,
+      id: id,
+      color: color,
+      public_token: public_token,
+      slug: slug,
+      tasks: tasks,
+      position: position
+    }
   end
 
   def self.current_tasks
     active_date = 7.days.ago.to_date
-    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])
+   where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])
   end
 
-  def title=(title)
-    write_attribute(:title, title.blank? ? "List #{self.id}" : title)
-  end
-
-  def check_for_proxies
-    destroy if proxies.empty?
-  end
-
-  def shared?
-    self.proxies.count > 1
+  def self.by_task_status
+   order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
   end
 
   def shared_users
-    users.where(["users.id != ?", user_id])
+    list_base.users.where(["users.id != ?", user_id])
+  end
+
+  def self.by_position
+    order("position ASC")
+  end
+
+  def new_position=(position)
+    self.insert_at(position)
+  end
+
+  def owned_by?(user)
+    owner == user
+  end
+
+  def owner
+    self.list_base.user
+  end
+
+  def generate_public_token
+    set_public_token
+    save
+  end
+
+  def self.public_from_params(params)
+    where(public: true, public_token: params[:id], slug: params[:slug]).first!
+  end
+
+  def toggle_public
+    self.public = !self.public
+    save
   end
 
   private
 
-  def create_proxy
-    self.proxies.create(user: user)
+  def set_public_token
+    if self.public_token.nil?
+      begin
+        self.public_token = SecureRandom.hex(5)
+      end while List.exists?(slug: title.parameterize, public_token: self.public_token)
+    end
   end
 
-  def within_subscription
-    if !user.subscribed? && user.list_proxies_count >= SUBSCRIBED_LIMIT
-      errors.add(:base, "Upgrade to create more lists.")
+  def set_color
+    self.color ||= "%06x" % (rand * 0xffffff)
+  end
+
+  def set_slug
+    self.slug = title.parameterize
+  end
+
+  def notify_list_base
+    self.list_base.check_for_lists
+  end
+
+  def set_list_base
+    if list_base_id.nil?
+      create_list_base(user: user)
     end
   end
 end

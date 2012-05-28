@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   attr_accessible :stripe_customer_token, :starts_at, :ends_at, :status
   attr_accessible :stripe_card_token
 
-  has_many :list_proxies
-  has_many :lists, :through => :list_proxies, :readonly => false
-  has_many :owned_lists, :class_name => "List"
+  has_many :lists
+  has_many :list_bases, :through => :lists, :readonly => false, source: :list_base
+  has_many :owned_lists, :class_name => "ListBase"
   has_many :discounts
 
   delegate :inactive?, :active?, :cancelled?, :permanent?, :expired?, to: :subscription
@@ -47,20 +47,20 @@ class User < ActiveRecord::Base
     subscription.update!(stripe_card_token)
   end
 
-  def proxy_for(list_or_id)
-    list_id = list_or_id.is_a?(List) ? list_or_id.id : list_or_id
-    list_proxies.find_by_list_id(list_id)
+  def list_for(list_base_or_id)
+    list_base_id = list_base_or_id.is_a?(ListBase) ? list_base_or_id.id : list_base_or_id
+    lists.find_by_list_base_id(list_base_id)
   end
 
   def tasks
-    Task.where(list_id: lists.map(&:id))
+    Task.where(list_id: list_bases.map(&:id))
   end
 
-  def invitation_to_share(list)
+  def invitation_to_share(list_base)
     generate_invitation_token
     self.invitation_sent_at = Time.now
     save(validate: false)
-    InvitationWithShareMailer.invitation_for(self, list)
+    InvitationWithShareMailer.invitation_for(self, list_base)
   end
 
   def subscription
