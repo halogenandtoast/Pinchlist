@@ -6,9 +6,7 @@
     %p
       Spend more time <em>doing</em> things and less time <em>managing</em> them. Use Listwerk for tasks, todos, actions, stuff, and anything else you might forget. 3 lists are free. Unlimited lists are $25 per year.
       %br
-      = link_to 'Sign up', new_user_registration_path, :class => "signup" 
-    / %a#demo{:href => "#demo_video"} Watch the demo   
-    / = render :partial => "shared/quicktime"
+      = link_to 'Sign up', new_user_registration_path, :class => "signup"
 - unless signed_in?
   .links
     #login
@@ -24,4 +22,10 @@
         Forgot password?
         = link_to "Reset it.", 'users/password/new'
   = render "footer"
-
+- content_for :javascripts do
+  :javascript
+    $("#sign_in a").click(function() {
+      $("#login, #sign_in").toggle();
+      $('#user_email').focus();
+      return false;
+    });

@@ -33,7 +33,11 @@
 
   %script{type: "text/template", id: "task_template"}
     <span class="task_title">
-    <div class="checkbox">check</div> <span class="text"><%= title %></span>
+    <div class="checkbox">check</div>
+    <% if(obj.due_date) { %>
+    <span class="date"><%= due_date %></span>
+    <% } %>
+    <span class="text"><%= title %></span>
     </span>
 
   %script{type: "text/template", id: "list_template"}
