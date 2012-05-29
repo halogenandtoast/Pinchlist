@@ -37,7 +37,7 @@
     <% if(obj.due_date) { %>
     <span class="date"><%= due_date %></span>
     <% } %>
-    <span class="text"><%= title %></span>
+    <span class="text"><%= display_title %></span>
     </span>
 
   %script{type: "text/template", id: "list_template"}
@@ -47,7 +47,9 @@
     <a href="#" class="share_link">share</a>
     <div class="share">
     <h4>Sharing</h4>
-    <input style="width: 0; height: 0; background: transparent; border: 0; position: absolute;left:-10000px;" type="text">
+    <% if(is_owner) { %>
+    <form><div class="input"><span>Enter an email address</span><input type="text" /></div></form>
+    <% } %>
     <ul class="shared_users">
     </ul>
     </div>
@@ -78,6 +80,6 @@
 - content_for :javascripts do
   :javascript
     $(document).ready(function() {
-      var lists = new Lists(#{@lists.to_json})
+      var lists = new Lists(#{@lists.to_json(user: current_user)})
       var App = new DashboardView({collection: lists});
     });

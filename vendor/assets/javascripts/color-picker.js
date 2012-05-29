@@ -95,8 +95,6 @@
   showSelector = function(){
     var selector = $("div#color_selector");
 
-    //alert($(selectorOwner).offset().top);
-
     selector.css({
       top: $(selectorOwner).offset().top + 24,
       left: $(selectorOwner).offset().left - $('#color_selector').width() + 22
@@ -111,7 +109,7 @@
    }
 
   toggleSelector = function(event){
-    selectorOwner = this;
+    selectorOwner = event.target;
     selectorShowing ? hideSelector() : showSelector();
   }
 
@@ -121,7 +119,7 @@
       $(selectorOwner).prev("input").val(selectedValue).change();
 
       //close the selector
-      settings.onColorChange.call(selectorOwner, selectedValue);
+      $(selectorOwner).trigger("colorchange", selectedValue)
       hideSelector();
     }
   };
