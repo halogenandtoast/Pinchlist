@@ -33,7 +33,7 @@ class List < ActiveRecord::Base
       position: position,
       is_owner: !!current_user && (current_user.id == owner.id),
       shared: shared?,
-      shared_user: shared_users
+      shared_users: shared_users
     }
   end
 

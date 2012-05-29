@@ -23,6 +23,21 @@ class @Lists extends Backbone.Collection
   comparator: (list) ->
     list.get("position")
 
+class ListShareView extends Backbone.View
+  events:
+    "submit .share_form" : "share"
+
+  template: _.template($("#share_template").html())
+
+  render: =>
+    @$el.html(@template(@model.toJSON()))
+    this
+
+  share: =>
+    email = @$(".share_email").val()
+    share = new Share(email: email, list_id: @model.get("id"))
+    share.save()
+
 class TaskView extends Backbone.View
   tagName: "li"
   className: "task"
@@ -83,7 +98,6 @@ class ListView extends Backbone.View
     "click .list_title h3" : "editTitle"
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
-    "submit .share_form" : "share"
 
   template: _.template($("#list_template").html())
 
@@ -92,6 +106,7 @@ class ListView extends Backbone.View
     @model.tasks.on "add", @waitForTask
     @model.tasks.on "reset", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
+    @share_view = new ListShareView(model: @model)
 
   render: =>
     @$el.html(@template(@model.toJSON()))
@@ -110,14 +125,11 @@ class ListView extends Backbone.View
       @$(".list_actions").hide()
     @$(".share_link").bind "clickoutside", (event) =>
       @$(".share").hide()
+
+    @$(".share").append(@share_view.render().el)
     @setupColorPicker()
     @focus()
     this
-
-  share: =>
-    email = @$(".share_email").val()
-    share = new Share(email: email, list_id: @model.get("id"))
-    share.save()
 
   setupColorPicker: =>
     @$(".picker").colorPicker()
