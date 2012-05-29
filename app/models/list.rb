@@ -19,7 +19,7 @@ class List < ActiveRecord::Base
   validates :title, presence: true
   validates :list_base_id, presence: true
 
-  delegate :shared?, to: :list_base
+  delegate :shares, :shared?, to: :list_base
 
   def as_json(options = {})
     current_user = options && options[:user]
@@ -32,7 +32,8 @@ class List < ActiveRecord::Base
       tasks: tasks,
       position: position,
       is_owner: !!current_user && (current_user.id == owner.id),
-      shared: shared?
+      shared: shared?,
+      shared_user: shared_users
     }
   end
 
@@ -47,6 +48,12 @@ class List < ActiveRecord::Base
 
   def shared_users
     list_base.users.where(["users.id != ?", user_id])
+  end
+
+  def share_with(user)
+    shared_list = dup
+    shared_list.user_id = user.id
+    shared_list.save
   end
 
   def self.by_position

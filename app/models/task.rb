@@ -74,7 +74,8 @@ class Task < ActiveRecord::Base
       display_title: display_title,
       title: title,
       list_base_id: list_base_id,
-      position: position
+      position: position,
+      completed: completed
     }.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
   end
 
