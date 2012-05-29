@@ -20,7 +20,7 @@ class Share
         else
           MemberMailer.share_list_email(user: @user, list: @shared_list)
         end
-        @shared_list.proxies.create(user: @user)
+        @shared_list.share_with(@user)
         mail.deliver
       end
       true

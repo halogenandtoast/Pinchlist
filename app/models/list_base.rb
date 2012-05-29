@@ -5,6 +5,7 @@ class ListBase < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :lists
   has_many :users, :class_name => "User", :source => :user, :through => :lists
+  has_many :shares
 
   validate :within_subscription, on: :create
 

@@ -1,7 +1,14 @@
 class Task extends Backbone.Model
-
+class Share extends Backbone.Model
+  urlRoot: "api/shares"
 class TaskList extends Backbone.Collection
   model: Task
+  initialize: ->
+    @bind "complete", @resetList
+
+  resetList: =>
+    @fetch()
+
   comparator: (task) ->
     task.get("position")
 
@@ -32,6 +39,8 @@ class TaskView extends Backbone.View
 
   render: =>
     @$el.html(@template(@model.toJSON()))
+    if @model.get("completed")
+      @$el.addClass("completed")
     this
 
   updatePosition: (event, position) =>
@@ -39,6 +48,10 @@ class TaskView extends Backbone.View
 
   toggleCompleted: (event) =>
     @$el.toggleClass("completed")
+    @model.save(
+      {completed: @$el.hasClass("completed")}
+      {success: ((model, response) -> model.trigger "complete") }
+    )
 
   editTask: (event) =>
     old_html = @$el.html()
@@ -70,12 +83,14 @@ class ListView extends Backbone.View
     "click .list_title h3" : "editTitle"
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
+    "submit .share_form" : "share"
 
   template: _.template($("#list_template").html())
 
   initialize: ->
     @model.on "sync", @render
     @model.tasks.on "add", @waitForTask
+    @model.tasks.on "reset", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
 
   render: =>
@@ -98,6 +113,11 @@ class ListView extends Backbone.View
     @setupColorPicker()
     @focus()
     this
+
+  share: =>
+    email = @$(".share_email").val()
+    share = new Share(email: email, list_id: @model.get("id"))
+    share.save()
 
   setupColorPicker: =>
     @$(".picker").colorPicker()
