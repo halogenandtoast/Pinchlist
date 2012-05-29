@@ -17,7 +17,12 @@ class Api::TasksController < Api::BaseController
   def update
     list = current_user.lists.find(params[:list_id])
     task = list.list_base.tasks.find(params[:id])
-    task.update_attributes(params[:task].merge(new_position: params[:new_position]))
-    respond_with task
+    if params[:new_position]
+      params[:task].merge!(new_position: params[:new_position])
+    end
+    if task.update_attributes(params[:task])
+      render json: task
+    else
+    end
   end
 end

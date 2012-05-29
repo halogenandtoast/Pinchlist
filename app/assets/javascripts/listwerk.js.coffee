@@ -21,15 +21,42 @@ class TaskView extends Backbone.View
   className: "task"
   events:
     "dropTask" : "updatePosition"
+    "click .checkbox" : "toggleCompleted"
+    "click .text" : "editTask"
+    "submit #edit_task" : "updateTask"
 
   template: _.template($("#task_template").html())
 
-  render: ->
+  initialize: ->
+    @model.on "sync", @render
+
+  render: =>
     @$el.html(@template(@model.toJSON()))
     this
 
   updatePosition: (event, position) =>
     @model.save(new_position: position + 1)
+
+  toggleCompleted: (event) =>
+    @$el.toggleClass("completed")
+
+  editTask: (event) =>
+    old_html = @$el.html()
+    input = $("<input type='text' id='task_title' value='#{@model.get("title")}' />")
+    input.bind "keyup", (event) =>
+      if event.keyCode == 27
+        @$el.html(old_html)
+    input.bind "blur", (event) =>
+      @$el.html(old_html)
+    form = $("<form id='edit_task'></form")
+    form.append(input)
+    @$el.html(form)
+    input.focus()
+
+  updateTask: (event) =>
+    title = $("#task_title").val()
+    @model.save(title: title)
+    false
 
 class ListView extends Backbone.View
   tagName: "td"
@@ -38,17 +65,20 @@ class ListView extends Backbone.View
     "submit .newtask" : "createTask"
     "dropList" : "updatePosition"
     "click .list_actions_link" : "toggleListActions"
+    "click .share_link" : "toggleSharing"
     "click .delete a" : "deleteList"
     "click .list_title h3" : "editTitle"
     "submit #new_list_title" : "updateListTitle"
+    "colorchange .color_picker" : "changeColor"
 
   template: _.template($("#list_template").html())
 
   initialize: ->
+    @model.on "sync", @render
     @model.tasks.on "add", @waitForTask
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
 
-  render: ->
+  render: =>
     @$el.html(@template(@model.toJSON()))
     @model.tasks.each (task) =>
       @addTask(task)
@@ -63,10 +93,14 @@ class ListView extends Backbone.View
     @$(".list_title").css("background-color", '#'+@model.get("color"))
     @$(".list_actions_link").bind "clickoutside", (event) =>
       @$(".list_actions").hide()
+    @$(".share_link").bind "clickoutside", (event) =>
+      @$(".share").hide()
+    @setupColorPicker()
+    @focus()
     this
 
   setupColorPicker: =>
-    @$(".picker").colorPicker(onColorChange: @changeColor)
+    @$(".picker").colorPicker()
 
   focus: ->
     @$("[name='task[title]']").focus()
@@ -93,7 +127,7 @@ class ListView extends Backbone.View
   taskPositionChanged: (event, ui) =>
     ui.item.trigger("dropTask", ui.item.index())
 
-  changeColor: (color) =>
+  changeColor: (event, color) =>
     @model.save(color: color.substring(1))
 
   toggleListActions: =>
@@ -101,6 +135,10 @@ class ListView extends Backbone.View
 
   hideListActions: =>
     @$(".list_actions").hide()
+
+  toggleSharing: =>
+    @$(".share").toggle()
+    @$(".share input[type=text]").focus()
 
   deleteList: =>
     if confirm @$(".delete a").data("confirm")
@@ -121,7 +159,6 @@ class ListView extends Backbone.View
   updateListTitle: =>
     title = @$("#list_title").val()
     @model.save(title: title)
-    @$("#new_list_title").replaceWith("<h3>#{title}</h3>")
     false
 
 class @DashboardView extends Backbone.View
@@ -159,8 +196,6 @@ class @DashboardView extends Backbone.View
     list.off "sync", @addList
     view = new ListView(model: list)
     @table.find("tr").append(view.render().el)
-    view.setupColorPicker()
-    view.focus()
 
   createList: (event) ->
     @collection.create(title: @$("#list_title").val())

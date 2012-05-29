@@ -22,6 +22,7 @@ class List < ActiveRecord::Base
   delegate :shared?, to: :list_base
 
   def as_json(options = {})
+    current_user = options && options[:user]
     {
       title: title,
       id: id,
@@ -29,7 +30,9 @@ class List < ActiveRecord::Base
       public_token: public_token,
       slug: slug,
       tasks: tasks,
-      position: position
+      position: position,
+      is_owner: !!current_user && (current_user.id == owner.id),
+      shared: shared?
     }
   end
 
