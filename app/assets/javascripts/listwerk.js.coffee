@@ -35,8 +35,12 @@ class ListShareView extends Backbone.View
 
   share: =>
     email = @$(".share_email").val()
+    @$(".share_email").val("")
     share = new Share(email: email, list_id: @model.get("id"))
     share.save()
+    @$(".shared_users").append("<li>#{email}</li>")
+    false
+
 
 class TaskView extends Backbone.View
   tagName: "li"
