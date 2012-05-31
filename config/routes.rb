@@ -3,7 +3,7 @@ Pinchlist::Application.routes.draw do
     resources :lists, only: [:create, :update, :destroy] do
       resources :tasks, :only => [:index, :create, :update]
     end
-    resources :shares, only: [:create]
+    resources :shares, only: [:create, :destroy]
   end
 
   get "about" => "pages#about"

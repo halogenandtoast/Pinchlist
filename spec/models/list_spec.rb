@@ -2,77 +2,98 @@ require 'spec_helper'
 
 describe List do
   it { should belong_to :user }
-  it { should have_many(:tasks).dependent(:destroy) }
-  it { should have_many(:proxies) }
-  it { should have_many(:users).through(:proxies) }
+  it { should belong_to :list_base }
+  it { should have_many(:tasks).through(:list_base) }
 
   context 'when saved' do
-    it 'creates a list proxy for the user' do
+    it 'receives a color' do
+      list = create(:list)
+      list.color.should_not be_nil
+    end
+  end
+
+  context 'the first list proxy' do
+    it 'should start at order 1' do
+      list = create(:list)
+      list.position.should == 1
+    end
+  end
+
+  context 'additional list proxies' do
+    it 'should start at the correct order' do
       user = create(:user)
-      list = create(:list, :user => user)
-      list.proxies.first.user.should == user
+      first, second, third = [*1..3].map{|i| create(:list, user: user) }
+      first.position.should == 1
+      second.position.should == 2
+      third.position.should == 3
     end
   end
 
-  describe 'updated' do
-    context 'with empty title' do
-      subject { create(:list) }
-      it 'should set the title to the id' do
-        subject.title = ""
-        subject.title.should == "List #{subject.id}"
-      end
+  context 'when destroyed' do
+    subject { create(:list) }
+    let!(:list_base) { subject.list_base }
+    before do
+      list_base.stubs(:check_for_proxies)
+    end
+
+    it 'notifies the list' do
+      subject.destroy
+      list_base.should have_received(:check_for_proxies)
     end
   end
 end
 
-describe List, '#check_for_proxies' do
-  subject { create(:list) }
-  context 'with more proxies' do
-    before do
-      subject.stubs(:proxies).returns([1])
-      subject.stubs(:destroy)
-    end
-    it "does not destroy the list" do
-      subject.check_for_proxies
-      subject.should have_received(:destroy).never
-    end
-  end
-  context 'without more proxies' do
-    before do
-      subject.stubs(:proxies).returns([])
-      subject.stubs(:destroy)
-    end
-    it "destroys the list" do
-      subject.check_for_proxies
-      subject.should have_received(:destroy)
-    end
+describe List, "#shared?" do
+  let!(:list_base) { create(:list_base) }
+  subject { create(:list, list_base: list_base) }
+  before { list_base.stubs(:shared?) }
+  it "delegates to list" do
+    subject.shared?
+    list_base.should have_received(:shared?)
   end
 end
 
-describe List, '#shared_users' do
-  let(:user) { create(:user) }
-  let(:expected_users)  { 3.times.map { create(:user) } }
-  subject { create(:list, :user => user) }
+describe List, "#shared_users" do
+  let(:list_base) { create(:list_base) }
+  subject { create(:list, list_base: list_base, user: list.user) }
+  let!(:other_proxy) { create(:list, list_base: subject.list_base) }
+  it "returns a list of users from the list" do
+    subject.shared_users.should == [other_proxy.user]
+  end
+end
+
+describe List, ".by_position" do
+  let!(:user) { create(:user) }
+
+  let!(:second) { create(:list, :user => user) }
+  let!(:third) { create(:list, :user => user) }
+  let!(:first) { create(:list, :user => user) }
+
   before do
-    expected_users.each { |user| create(:list_proxy, list: subject, user: user) }
+    first.update_attributes(:new_position => 1)
+    second.update_attributes(:new_position => 2)
   end
-  it "contains the correct users" do
-    subject.shared_users.to_a.should =~ expected_users
+
+  it "returns them in the correct position" do
+    [first,second,third].map(&:reload)
+    List.by_position.should == [first, second, third]
   end
 end
 
-describe List, '#shared?' do
-  subject { create(:list) }
-  context "when not shared" do
-    it "is not shared" do
-      subject.shared?.should be_false
-    end
+describe List, ".owned_by?" do
+  let(:user) { create(:user_with_list) }
+  let(:other_user) { create(:user) }
+  let(:list_base) { list.list_base }
+  let(:other_list) { create(:list, user: other_user, list_base: list_base) }
+  let(:list) { user.lists.first }
+
+  it "returns true for the owner" do
+    list.owned_by?(user).should be_true
+    other_list.owned_by?(user).should be_true
   end
 
-  context "when shared" do
-    before { create(:list_proxy, list: subject) }
-    it "is shared" do
-      subject.shared?.should be_true
-    end
+  it "returns false for the other user" do
+    list.owned_by?(other_user).should be_false
+    other_list.owned_by?(other_user).should be_false
   end
 end

@@ -33,7 +33,7 @@ class List < ActiveRecord::Base
       position: position,
       is_owner: !!current_user && (current_user.id == owner.id),
       shared: shared?,
-      shared_users: shared_users
+      shares: shares
     }
   end
 
@@ -44,6 +44,10 @@ class List < ActiveRecord::Base
 
   def self.by_task_status
    order("lists.position ASC, tasks.completed ASC, tasks.position ASC")
+  end
+
+  def shares
+    list_base.lists.reject{ |list| list.id == id }.map { |list| { id: list.id, email: list.user.email } }
   end
 
   def shared_users

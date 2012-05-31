@@ -1,6 +1,8 @@
 class Task extends Backbone.Model
 class Share extends Backbone.Model
   urlRoot: "api/shares"
+class ShareList extends Backbone.Collection
+  model: Share
 class TaskList extends Backbone.Collection
   model: Task
   initialize: ->
@@ -16,6 +18,7 @@ class List extends Backbone.Model
   urlRoot: "api/lists"
   initialize: (attributes) ->
     @tasks = new TaskList(attributes['tasks'])
+    @shares = new ShareList(attributes['shares'])
 
 class @Lists extends Backbone.Collection
   model: List
@@ -23,15 +26,34 @@ class @Lists extends Backbone.Collection
   comparator: (list) ->
     list.get("position")
 
-class ListShareView extends Backbone.View
+class ShareView extends Backbone.View
+  events:
+    "click .remove" : "deleteShare"
+  tagName: 'li'
+  template: _.template($("#share_template").html())
+  render: =>
+    @$el.html(@template(_.extend(@model.toJSON(), @options)))
+    this
+  deleteShare: =>
+    console.log(@model)
+    @model.destroy()
+    @remove()
+    false
+
+class ListSharesView extends Backbone.View
   events:
     "submit .share_form" : "share"
 
-  template: _.template($("#share_template").html())
+  template: _.template($("#share_list_template").html())
 
   render: =>
     @$el.html(@template(@model.toJSON()))
+    @model.shares.each @renderShare
     this
+
+  renderShare: (share) =>
+    view = new ShareView(model: share, is_owner: @model.get("is_owner"))
+    @$(".shared_users").append(view.render().el)
 
   share: =>
     email = @$(".share_email").val()
@@ -110,7 +132,7 @@ class ListView extends Backbone.View
     @model.tasks.on "add", @waitForTask
     @model.tasks.on "reset", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
-    @share_view = new ListShareView(model: @model)
+    @share_view = new ListSharesView(model: @model)
 
   render: =>
     @$el.html(@template(@model.toJSON()))

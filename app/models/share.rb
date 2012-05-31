@@ -9,6 +9,13 @@ class Share
     @current_user_id = params[:current_user_id]
   end
 
+  def as_json(options = {})
+    {
+      list_id: @shared_list.id,
+      email: @email
+    }
+  end
+
   def save
     if valid?
       ActiveRecord::Base.transaction do

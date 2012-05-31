@@ -13,16 +13,16 @@ FactoryGirl.define do
     end
   end
 
-  factory :list do
-    title "List"
+  factory :list_base do
     user
   end
 
-  factory :list_proxy do
+  factory :list do
     ignore do
-      list
+      list_base
     end
 
+    title "List"
     user
   end
 
