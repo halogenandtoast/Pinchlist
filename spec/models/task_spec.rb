@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Task do
-  it { should belong_to :list }
+  it { should belong_to :list_base }
   # it { should validate_presence_of :title }
 
   it "requires title on create" do
@@ -21,7 +21,7 @@ describe Task do
     it 'should start at the correct order' do
       user = create(:user)
       list = create(:list)
-      first, second, third = [*1..3].map{|i| create(:task, :list => list) }
+      first, second, third = [*1..3].map{|i| create(:task, :list_base => list.list_base) }
       first.position.should == 1
       second.position.should == 2
       third.position.should == 3
@@ -114,10 +114,10 @@ describe Task, 'completed' do
     subject.completed_at.should == "2010-10-16".to_date
   end
   context "position" do
-    let!(:user) { subject.list.user }
-    before { 2.times { create(:task, :list => subject.list) } }
+    let!(:user) { subject.list_base.user }
+    before { 2.times { create(:task, :list_base => subject.list_base) } }
     context "with other completed tasks" do
-      before { 2.times { create(:task, :list => subject.list, :completed => true) } }
+      before { 2.times { create(:task, :list_base => subject.list_base, :completed => true) } }
       it 'is in the correct position' do
         subject.update_attributes(:completed => true)
         subject.position.should == 3
@@ -133,15 +133,15 @@ describe Task, 'completed' do
   after { Timecop.return }
 end
 
-describe Task, '#list_color_for' do
-  let!(:list) { create(:list) }
-  let!(:list_proxy) { list.proxies.first }
-  let!(:user) { list.user }
-  subject { create(:task, :list => list) }
-  it "should retrieve the color for the user" do
-    subject.list_color_for(user).should == list_proxy.color
-  end
-end
+# describe Task, '#list_color_for' do
+#   let!(:list) { create(:list) }
+#   let!(:list_base) { list.list_base }
+#   let!(:user) { list.user }
+#   subject { create(:task, :list_base => list_base) }
+#   it "should retrieve the color for the user" do
+#     subject.list_color_for(user).should == list_proxy.color
+#   end
+# end
 
 describe Task, '#display_title' do
   context "title that starts with !"
@@ -168,10 +168,10 @@ end
 
 describe Task, ".create" do
   let!(:list) { create(:list) }
-  subject { build(:task, :list => list.reload) }
+  subject { build(:task, :list_base => list.list_base) }
   before do
-    create(:task, :list => list.reload)
-    create(:completed_task, :list => list.reload)
+    create(:task, :list_base => list.list_base)
+    create(:completed_task, :list_base => list.list_base)
   end
   it "inserts before completed tasks" do
     subject.save

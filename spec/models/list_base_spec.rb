@@ -25,7 +25,7 @@ describe ListBase do
   # end
 end
 
-describe ListBase, '#check_for_proxies' do
+describe ListBase, '#check_for_lists' do
   subject { create(:list_base) }
   context 'with more proxies' do
     before do
@@ -33,7 +33,7 @@ describe ListBase, '#check_for_proxies' do
       subject.stubs(:destroy)
     end
     it "does not destroy the list" do
-      subject.check_for_proxies
+      subject.check_for_lists
       subject.should have_received(:destroy).never
     end
   end
@@ -43,7 +43,7 @@ describe ListBase, '#check_for_proxies' do
       subject.stubs(:destroy)
     end
     it "destroys the list" do
-      subject.check_for_proxies
+      subject.check_for_lists
       subject.should have_received(:destroy)
     end
   end
@@ -62,7 +62,7 @@ describe ListBase, '#shared_users' do
 end
 
 describe ListBase, '#shared?' do
-  subject { create(:list_base) }
+  subject { create(:list).list_base }
   context "when not shared" do
     it "is not shared" do
       subject.shared?.should be_false

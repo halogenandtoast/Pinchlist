@@ -124,6 +124,7 @@ class ListView extends Backbone.View
     "click .list_title h3" : "editTitle"
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
+    "click .archive_link" : "showListArchive"
 
   template: _.template($("#list_template").html())
 
@@ -219,6 +220,9 @@ class ListView extends Backbone.View
     @model.save(title: title)
     false
 
+  showListArchive: =>
+    @$el.siblings(".list").hide()
+
 class @DashboardView extends Backbone.View
   el: "#listwerk"
   events:
@@ -252,7 +256,7 @@ class @DashboardView extends Backbone.View
 
   addList: (list) =>
     list.off "sync", @addList
-    view = new ListView(model: list)
+    view = new ListView(model: list, id: "list_#{list.id}")
     @table.find("tr").append(view.render().el)
 
   createList: (event) ->

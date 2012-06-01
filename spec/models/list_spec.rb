@@ -33,12 +33,12 @@ describe List do
     subject { create(:list) }
     let!(:list_base) { subject.list_base }
     before do
-      list_base.stubs(:check_for_proxies)
+      list_base.stubs(:check_for_lists)
     end
 
     it 'notifies the list' do
       subject.destroy
-      list_base.should have_received(:check_for_proxies)
+      list_base.should have_received(:check_for_lists)
     end
   end
 end
@@ -54,7 +54,8 @@ describe List, "#shared?" do
 end
 
 describe List, "#shared_users" do
-  let(:list_base) { create(:list_base) }
+  let(:list) { create(:list) }
+  let(:list_base) { list.list_base }
   subject { create(:list, list_base: list_base, user: list.user) }
   let!(:other_proxy) { create(:list, list_base: subject.list_base) }
   it "returns a list of users from the list" do
@@ -81,11 +82,11 @@ describe List, ".by_position" do
 end
 
 describe List, ".owned_by?" do
-  let(:user) { create(:user_with_list) }
+  let(:user) { create(:user) }
   let(:other_user) { create(:user) }
-  let(:list_base) { list.list_base }
-  let(:other_list) { create(:list, user: other_user, list_base: list_base) }
-  let(:list) { user.lists.first }
+  let(:other_list) { list.share_with(other_user) }
+  let(:list) { create(:list, user: user, list_base: list_base) }
+  let(:list_base) { create(:list_base, user: user) }
 
   it "returns true for the owner" do
     list.owned_by?(user).should be_true

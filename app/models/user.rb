@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def tasks
-    Task.where(list_id: list_bases.map(&:id))
+    Task.where(list_base_id: list_bases.map(&:id))
   end
 
   def invitation_to_share(list_base)

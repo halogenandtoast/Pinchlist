@@ -28,7 +28,10 @@ FactoryGirl.define do
 
   factory :task do
     title "Task Title"
-    list
+    list_base
+    ignore do
+      list
+    end
 
     factory :completed_task do
       completed true
