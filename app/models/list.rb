@@ -58,6 +58,7 @@ class List < ActiveRecord::Base
     shared_list = dup
     shared_list.user_id = user.id
     shared_list.save
+    shared_list
   end
 
   def self.by_position

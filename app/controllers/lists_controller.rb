@@ -27,4 +27,9 @@ class ListsController < ApplicationController
     list.destroy
     redirect_to dashboard_path, notice: 'List deleted.'
   end
+
+  def show
+    @list = current_user.lists.find(params[:id])
+    @tasks = @list.tasks.by_position
+  end
 end

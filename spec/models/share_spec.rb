@@ -31,8 +31,7 @@ describe Share, 'create' do
   let(:email) { 'foo@example.com' }
   let(:mail) { stub('mail', :deliver => true) }
   let(:user) { stub('user', :id => 1, :new_record? => true, :invitation_to_share => mail) }
-  let(:proxies) { stub('proxies', :create => true) }
-  let(:list) { stub('list', :proxies => proxies, :user => false) }
+  let(:list) { stub('list', :user => false, :share_with => true) }
 
   before do
     MemberMailer.stubs(:share_list_email => mail)
@@ -47,7 +46,7 @@ describe Share, 'create' do
 
   it "creates a proxy" do
     Share.new(:list_id => 2, :email => 'foo@example.com').save
-    proxies.should have_received(:create).with(has_entries(:user => user))
+    list.should have_received(:share_with).with(user)
   end
 end
 

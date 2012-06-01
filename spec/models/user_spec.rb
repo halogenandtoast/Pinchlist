@@ -1,35 +1,35 @@
 require 'spec_helper'
 
 describe User do
-  it { should have_many(:list_proxies) }
-  it { should have_many(:lists).through(:list_proxies) }
+  it { should have_many(:lists) }
+  it { should have_many(:list_bases).through(:lists) }
   it { should have_many(:owned_lists) }
 end
 
-describe User, '#proxy_for' do
+describe User, '#list_for' do
   subject { create(:user) }
-  let(:list) { create(:list, :user => subject) }
-  let(:proxy) { mock("proxy") }
-  let(:list_proxies) { mock("list proxies") }
+  let(:list_base) { create(:list_base, user: subject) }
+  let(:list) { mock("list") }
+  let(:lists) { mock("lists") }
 
   before do
-    list_proxies.stubs(:find_by_list_id).with(list.id).returns(proxy)
-    subject.stubs(:list_proxies).returns(list_proxies)
+    lists.stubs(:find_by_list_base_id).with(list_base.id).returns(list)
+    subject.stubs(:lists).returns(lists)
   end
 
   it "returns the correct proxy when given a list object" do
-    subject.proxy_for(list).should == proxy
+    subject.list_for(list_base).should == list
   end
 
   it "returns the correct proxy when given a list id" do
-    subject.proxy_for(list.id).should == proxy
+    subject.list_for(list_base.id).should == list
   end
 end
 
 describe User, "#tasks" do
   subject { create(:user) }
-  let!(:list) { create(:list, :user => subject) }
-  let!(:tasks) { 3.times.map { create(:task, :list => list) } }
+  let!(:list) { create(:list, user: subject) }
+  let!(:tasks) { 3.times.map { create(:task, list_base: list.list_base) } }
   before do
     3.times { create(:task) }
   end

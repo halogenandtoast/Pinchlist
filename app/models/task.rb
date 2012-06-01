@@ -64,9 +64,9 @@ class Task < ActiveRecord::Base
     self.insert_at(position)
   end
 
-  def list_color_for(user)
-    user.list_for(list_base).color
-  end
+  # def list_color_for(user)
+  #   user.list_for(list_base).color
+  # end
 
   def as_json(options)
     {
@@ -82,6 +82,10 @@ class Task < ActiveRecord::Base
   def completed=(state)
     self[:completed] = state
     self.completed_at = state ? Date.today : nil
+  end
+
+  def list=(list)
+    self.list_base_id = list.list_base.id
   end
 
   private
