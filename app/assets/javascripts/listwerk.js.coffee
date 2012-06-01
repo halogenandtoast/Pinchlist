@@ -221,7 +221,8 @@ class ListView extends Backbone.View
     false
 
   showListArchive: =>
-    @$el.siblings(".list").hide()
+    @$el.css("zoom", 1.2)
+    @$el.siblings(".list").css("opacity", 0.2)
 
 class @DashboardView extends Backbone.View
   el: "#listwerk"
