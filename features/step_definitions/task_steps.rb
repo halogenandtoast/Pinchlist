@@ -34,7 +34,7 @@ end
 
 When /^I click the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("#list_#{task.list.id} li:contains('#{task.display_title}') span.text").click
+  find("li:contains('#{task.display_title}') span.text").click
 end
 
 
@@ -65,8 +65,8 @@ end
 When /^I drag the task "([^"]*)" over "([^"]*)"$/ do |task_title_1, task_title_2|
   task_1 = Task.find_by_title!(task_title_1)
   task_2 = Task.find_by_title!(task_title_2)
-  page.execute_script %{ update_task_position($('#task_#{task_2.id}'), $('#task_#{task_2.id}').index() + 1) }
-  sleep 2
+  page.execute_script("$('#task_#{task_2.id}').insertBefore($('#task_#{task_1.id}'));")
+  page.execute_script("$('#task_#{task_2.id}').parents('.tasks').trigger('sortupdate', {item:$('#task_#{task_2.id}')});")
 end
 
 Then /^I should see the task "([^"]*)" before "([^"]*)"$/ do |task_title_1, task_title_2|

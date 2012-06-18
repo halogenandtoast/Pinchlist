@@ -35,7 +35,11 @@
     <span class="task_title">
     <div class="checkbox">check</div>
     <% if(obj.due_date) { %>
+    <% if(obj.color) { %>
+    <span class="date" style="color: #<%= color %>"><%= due_date %></span>
+    <% } else { %>
     <span class="date"><%= due_date %></span>
+    <% } %>
     <% } %>
     <span class="text"><%= display_title %></span>
     </span>
@@ -53,6 +57,14 @@
     <% if(is_owner) { %>
     <a href='#' class='remove'>remove</a>
     <% } %>
+
+  %script{type: "text/template", id: "upcoming_list_template"}
+    <div class="list_title">
+    <h3>Upcoming</h3>
+    <div class="today"></div>
+    </div>
+    <ul class="tasks" id="upcoming_tasks">
+    </ul>
 
   %script{type: "text/template", id: "list_template"}
     <div class="list_title">

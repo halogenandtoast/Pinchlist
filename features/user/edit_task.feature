@@ -29,11 +29,11 @@ Feature: Edit a task
   Scenario: Renaming a task in the upcoming list and changing it's due date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following list proxy exists:
-      | list           | user                    | color  |
-      | title: My List | email: user@example.com | 009000 |
+    And the following list exists:
+      | title   | user                    | color  |
+      | My List | email: user@example.com | 009000 |
     And the following task exists:
-      | title        | list           |
+      | title               | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I click the upcoming task "Ride a shark"
@@ -55,7 +55,7 @@ Feature: Edit a task
       | title   | user                    |
       | My List | email: user@example.com |
     And the following task exists:
-      | title        | list           |
+      | title               | list           |
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I click the task "Ride a shark"
@@ -100,15 +100,15 @@ Feature: Edit a task
     When I go to the dashboard page
     And I drag the task "Ride a shark" over "Resurrect a mammoth"
     When I go to the dashboard page
-    Then I should see the task "Ride a shark" before "Resurrect a mammoth"
+    Then I should see the task "Resurrect a mammoth" before "Ride a shark"
 
   @javascript
   Scenario: Upcoming tasks should sort by date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following list proxy exists:
-      | list           | user                    | position |
-      | title: My List | email: user@example.com | 1        |
+    And the following list exists:
+      | title   | user                    | position |
+      | My List | email: user@example.com | 1        |
     And the following tasks exist:
       | list           | title      |
       | title: My List | @10/20 Foo |

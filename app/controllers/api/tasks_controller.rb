@@ -21,8 +21,14 @@ class Api::TasksController < Api::BaseController
       params[:task].merge!(new_position: params[:new_position])
     end
     if task.update_attributes(params[:task])
-      render json: task
+      render json: task.reload
     else
     end
+  end
+
+  def destroy
+    list = current_user.lists.find(params[:list_id])
+    task = list.list_base.tasks.find(params[:id])
+    respond_with task.destroy
   end
 end

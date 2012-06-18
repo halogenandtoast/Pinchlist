@@ -49,9 +49,9 @@ Feature: In order to track what needs to be done
   Scenario: Adding a task with a due date
     Given today is "October 16, 2010"
     Given I am signed in as "user@example.com/password"
-    And the following list proxy exists:
-      | list           | user                    | color  |
-      | title: My List | email: user@example.com | 009000 |
+    And the following list exists:
+      | title   | user                    | color  |
+      | My List | email: user@example.com | 009000 |
     When I am on the dashboard page
     And I fill in "My List"'s task title with "@10/20 Learn to ride a shark"
     And I submit "My List"'s task form
@@ -75,9 +75,9 @@ Feature: In order to track what needs to be done
 
   Scenario: Adding a task with more than 255 characters
     Given I am signed in as "user@example.com/password"
-    And the following list proxy exists:
-      | list           | user                    |
-      | title: My List | email: user@example.com |
+    And the following list exists:
+      | title   | user                    |
+      | My List | email: user@example.com |
     When I am on the dashboard page
     And I fill in "My List"'s task title with 400 "a"
     And I submit "My List"'s task form
