@@ -12,6 +12,8 @@ class TaskList extends Backbone.Collection
     @fetch()
 
   comparator: (task) ->
+    console.log(task)
+    console.log(task.get("position"))
     task.get("position")
 
 class List extends Backbone.Model
@@ -26,6 +28,15 @@ class @Lists extends Backbone.Collection
   comparator: (list) ->
     list.get("position")
 
+class UpcomingTaskList extends Backbone.Collection
+  model: Task
+  comparator: (task) ->
+    task.get("due_date")
+
+  add_with_color: (task, color) ->
+    task.color = color
+    @add(task)
+
 class ShareView extends Backbone.View
   events:
     "click .remove" : "deleteShare"
@@ -35,7 +46,6 @@ class ShareView extends Backbone.View
     @$el.html(@template(_.extend(@model.toJSON(), @options)))
     this
   deleteShare: =>
-    console.log(@model)
     @model.destroy()
     @remove()
     false
@@ -79,7 +89,8 @@ class TaskView extends Backbone.View
     @model.on "sync", @render
 
   render: =>
-    @$el.html(@template(@model.toJSON()))
+    @$el.html(@template(_.extend(@model.toJSON(), @options)))
+    @$el.id = "task_#{@model.id}"
     if @model.get("completed")
       @$el.addClass("completed")
     this
@@ -109,8 +120,36 @@ class TaskView extends Backbone.View
 
   updateTask: (event) =>
     title = $("#task_title").val()
-    @model.save(title: title)
+    if title == ""
+      @model.destroy()
+    else
+      @model.save(title: title)
     false
+
+class UpcomingListView extends Backbone.View
+  tagName: "td"
+  className: "upcoming list"
+  template: _.template($("#upcoming_list_template").html())
+
+  initialize: =>
+    @collection.on "add", @render
+    @collection.on "change", @render
+
+  render: =>
+    @$el.html(@template())
+    @renderCollection()
+    this
+
+  renderCollection: =>
+    @$(".tasks").html("")
+    if @collection.empty
+      @$el.hide()
+    else
+      @addTask(task) for task in @collection.models
+
+  addTask: (task) =>
+    view = new TaskView(model: task, id: "upcoming_task_#{task.id}", color: task.color)
+    @$(".tasks").append(view.render().el)
 
 class ListView extends Backbone.View
   tagName: "td"
@@ -125,6 +164,7 @@ class ListView extends Backbone.View
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
     "click .archive_link" : "showListArchive"
+    "sortupdate .tasks" : "taskPositionChanged"
 
   template: _.template($("#list_template").html())
 
@@ -132,8 +172,10 @@ class ListView extends Backbone.View
     @model.on "sync", @render
     @model.tasks.on "add", @waitForTask
     @model.tasks.on "reset", @render
+    @model.tasks.on "destroy", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
     @share_view = new ListSharesView(model: @model)
+    @background_color = @model.get("color")
 
   render: =>
     @$el.html(@template(@model.toJSON()))
@@ -145,9 +187,9 @@ class ListView extends Backbone.View
       items: "li"
       distance: 6
       opacity: .93
-      update: @taskPositionChanged
     )
-    @$(".list_title").css("background-color", '#'+@model.get("color"))
+    @$(".tasks").on "sortupdate", @taskPositionChanged
+    @$(".list_title").css("background-color", '#'+@background_color)
     @$(".list_actions_link").bind "clickoutside", (event) =>
       @$(".list_actions").hide()
     @$(".share_link").bind "clickoutside", (event) =>
@@ -169,7 +211,7 @@ class ListView extends Backbone.View
 
   addTask: (task) =>
     task.off "sync", @addTask
-    view = new TaskView(model: task)
+    view = new TaskView(model: task, id: "task_#{task.id}")
     @$(".tasks").append(view.render().el)
 
   addAll: =>
@@ -181,7 +223,7 @@ class ListView extends Backbone.View
     false
 
   updatePosition: (event, position) =>
-    @model.save(new_position: position + 1)
+    @model.save({new_position: position + 1}, {silent: true})
 
   taskPositionChanged: (event, ui) =>
     ui.item.trigger("dropTask", ui.item.index())
@@ -228,11 +270,30 @@ class @DashboardView extends Backbone.View
   el: "#listwerk"
   events:
     "submit #new_list" : "createList"
+    "sortupdate tr": "listPositionChanged"
 
   initialize: ->
     @table = @$("#container > table")
+    @upcoming = new UpcomingTaskList
+    @upcoming_view = new UpcomingListView(collection: @upcoming)
+    @setupUpcoming()
     @collection.on "add", @waitForList
+    @collection.on "change", @setupUpcoming
     @render()
+
+  setupUpcoming: (list) =>
+    @upcoming.reset([])
+    @trackTasks(list.tasks) for list in @collection.models
+    @drawUpcoming()
+
+  drawUpcoming: =>
+    @visitTasks(list.tasks, list.get("color")) for list in @collection.models
+
+  trackTasks: (tasks) =>
+    tasks.on "change", @drawUpcoming
+
+  visitTasks: (tasks, color) =>
+    @upcoming.add_with_color(task, color) for task in tasks.models when task.has("due_date")
 
   render: ->
     @drawLists()
@@ -241,7 +302,6 @@ class @DashboardView extends Backbone.View
       items: ".list"
       handle: ".list_title"
       opacity: .95
-      update: @listPositionChanged
     )
     @$("#list_title").focus()
 
@@ -250,6 +310,7 @@ class @DashboardView extends Backbone.View
 
   drawLists: =>
     @$el.find("tr").html("")
+    @table.find("tr").append(@upcoming_view.render().el)
     @collection.each(@addList)
 
   waitForList: (list) =>

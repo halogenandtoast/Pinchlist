@@ -1,7 +1,7 @@
 Pinchlist::Application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     resources :lists, only: [:create, :update, :destroy] do
-      resources :tasks, :only => [:index, :create, :update]
+      resources :tasks, :only => [:index, :create, :update, :destroy]
     end
     resources :shares, only: [:create, :destroy]
   end

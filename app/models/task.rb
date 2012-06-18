@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   after_create :move_before_completed
   after_save :destroy_on_empty_title
 
-  scope :upcoming, where("tasks.due_date IS NOT NULL").order("tasks.completed, tasks.due_date asc")
+  scope :upcoming, where("tasks.due_date IS NOT NULL AND tasks.completed = ?", false).order("tasks.due_date asc")
   scope :completed, where(completed: true)
   acts_as_list scope: :list_base
 
@@ -63,10 +63,6 @@ class Task < ActiveRecord::Base
   def new_position=(position)
     self.insert_at(position)
   end
-
-  # def list_color_for(user)
-  #   user.list_for(list_base).color
-  # end
 
   def as_json(options)
     {

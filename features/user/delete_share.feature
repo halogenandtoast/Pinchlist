@@ -6,9 +6,9 @@ Feature: Sharing a list
       | email                | password | password confirmation |
       | receiver@example.com | password | password              |
     And I am signed in as "user@example.com/password"
-    And the following list proxy exists for "user@example.com":
-      | list          |
-      | title: Shared |
+    And the following list exists for "user@example.com":
+      | title  |
+      | Shared |
     When I am on the dashboard page
     And I click the share icon
     And I fill in share email with "receiver@example.com"

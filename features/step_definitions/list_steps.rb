@@ -35,7 +35,7 @@ end
 
 When /^I click the list title "([^"]*)"$/ do |title|
   list = List.find_by_title!(title)
-  page.evaluate_script %{ list_edit($('#list_#{list.id} .list_title h3')) }
+  find(".list_title h3").click
 end
 
 When /^I fill in the list title for "([^"]*)" with "([^"]*)"$/ do |title, value|
@@ -53,8 +53,8 @@ end
 When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2|
   list_1 = List.find_by_title!(list_title_1)
   list_2 = List.find_by_title!(list_title_2)
-  page.execute_script %{ update_list_position($('#list_#{list_2.id}'), $('.list:not(.upcoming)').index('#list_#{list_2.id}')) }
-  sleep 2
+  page.execute_script("$('#list_#{list_2.id}').insertBefore($('#list_#{list_1.id}'));")
+  page.execute_script("$('tr').trigger('sortupdate', {item:$('#list_#{list_2.id}')});")
 end
 
 Then /^I should see the list "([^"]*)" before "([^"]*)"$/ do |list_title_1, list_title_2|
@@ -76,7 +76,6 @@ Then /^the list "([^"]*)" should have the color "([^"]*)"$/ do |list_title, colo
   rgb_matcher = "rgb(#{rgb.join(", ")})"
   within "#list_#{list.id}" do
     page.should have_css(".list_title[style*='background-color: ##{color}'],.list_title[style*='background-color: #{rgb_matcher}']")
-    page.should have_css(".icons[style*='background-color: ##{color}'],.icons[style*='background-color: #{rgb_matcher}']")
   end
 end
 

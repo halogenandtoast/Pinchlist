@@ -94,9 +94,9 @@ Feature: View upcoming tasks
   Scenario: Upcoming tasks have colors
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
-    And the following list proxy exists:
-      | list            | user                    | color  |
-      | title: Colorful | email: user@example.com | FF00FF |
+    And the following list exists:
+      | title    | user                    | color  |
+      | Colorful | email: user@example.com | FF00FF |
     And the following task exists:
       | title         | list            |
       | @10/20 A task | title: Colorful |
