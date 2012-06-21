@@ -12,8 +12,6 @@ class TaskList extends Backbone.Collection
     @fetch()
 
   comparator: (task) ->
-    console.log(task)
-    console.log(task.get("position"))
     task.get("position")
 
 class List extends Backbone.Model
@@ -30,6 +28,12 @@ class @Lists extends Backbone.Collection
 
 class UpcomingTaskList extends Backbone.Collection
   model: Task
+  initialize: ->
+    @bind "complete", @resetList
+
+  resetList: =>
+    @remove(@where(completed: true))
+
   comparator: (task) ->
     task.get("due_date")
 
@@ -134,6 +138,7 @@ class UpcomingListView extends Backbone.View
   initialize: =>
     @collection.on "add", @render
     @collection.on "change", @render
+    @collection.on "remove", @render
 
   render: =>
     @$el.html(@template())
@@ -212,7 +217,10 @@ class ListView extends Backbone.View
   addTask: (task) =>
     task.off "sync", @addTask
     view = new TaskView(model: task, id: "task_#{task.id}")
-    @$(".tasks").append(view.render().el)
+    if @$(".tasks .completed").length > 0
+      @$(".tasks .completed").before(view.render().el)
+    else
+      @$(".tasks").append(view.render().el)
 
   addAll: =>
     @tasks.each(@add_task)
@@ -293,7 +301,7 @@ class @DashboardView extends Backbone.View
     tasks.on "change", @drawUpcoming
 
   visitTasks: (tasks, color) =>
-    @upcoming.add_with_color(task, color) for task in tasks.models when task.has("due_date")
+    @upcoming.add_with_color(task, color) for task in tasks.models when task.has("due_date") && !task.get("completed")
 
   render: ->
     @drawLists()
