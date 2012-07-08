@@ -423,6 +423,7 @@ $(document).ready(function(){
 
   $(".list_actions_link").click(function(e) {
     $(this).next(".list_actions").toggle();
+    return false;
   });
 
   $(".list_actions_link").bind( "clickoutside", function(){
