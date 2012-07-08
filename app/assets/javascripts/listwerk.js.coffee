@@ -147,11 +147,9 @@ class UpcomingListView extends Backbone.View
 
   renderCollection: =>
     @$(".tasks").html("")
-    console.log(@collection)
     if @collection.isEmpty()
       @$el.hide()
     else
-      console.log("HERE")
       @$el.show()
       @addTask(task) for task in @collection.models
 
@@ -286,7 +284,6 @@ class @DashboardView extends Backbone.View
   initialize: ->
     @table = @$("#container > table")
     @upcoming = new UpcomingTaskList
-    console.log(@upcoming)
     @upcoming_view = new UpcomingListView(collection: @upcoming)
     @setupUpcoming()
     @collection.on "add", @waitForList
