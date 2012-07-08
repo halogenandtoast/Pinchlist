@@ -422,6 +422,7 @@ $(document).ready(function(){
   // show list actions
 
   $(".list_actions_link").click(function(e) {
+    e.preventDefault();
     $(this).next(".list_actions").toggle();
     return false;
   });
