@@ -1,3 +1,4 @@
+@javascript
 Feature: Edit a task
   And I fill in "My List"'s task title with "@10/21 Learn to ride a shark"
   And I submit "My List"'s task form
@@ -5,7 +6,6 @@ Feature: Edit a task
   As a user
   I want to click and edit the title
 
-  @javascript
   Scenario: Renaming a task in the upcoming list
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -25,7 +25,6 @@ Feature: Edit a task
     Then I should see the upcoming task "Lasso a shark"
     And I should see the task "Lasso a shark"
 
-  @javascript
   Scenario: Renaming a task in the upcoming list and changing it's due date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -47,7 +46,6 @@ Feature: Edit a task
     Then I should see the upcoming task "Lasso a shark" with a due date of "10/30"
     And I should see the task "Lasso a shark" with a due date of "10/30"
 
-  @javascript
   Scenario: Renaming a task in it's list
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -67,8 +65,8 @@ Feature: Edit a task
     Then I should see the upcoming task "Lasso a shark"
     And I should see the task "Lasso a shark"
 
-  @javascript
-  Scenario: Renaming a task via blur
+  @selenium
+  Scenario: Renaming a task via blur should cancel
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
     And the following list exists:
@@ -81,13 +79,9 @@ Feature: Edit a task
     And I click the task "Ride a shark"
     And I fill in the title for "Ride a shark" with "@10/20 Lasso a shark"
     And I blur the title form for "Ride a shark"
-    Then I should see the upcoming task "Lasso a shark"
-    And I should see the task "Lasso a shark"
-    When I go to the dashboard page
-    Then I should see the upcoming task "Lasso a shark"
-    And I should see the task "Lasso a shark"
+    Then I should see the upcoming task "Ride a shark"
+    And I should see the task "Ride a shark"
 
-  @javascript
   Scenario: Reordering a task
     Given I am signed in as "user@example.com/password"
     And the following lists exist:
@@ -102,7 +96,6 @@ Feature: Edit a task
     When I go to the dashboard page
     Then I should see the task "Resurrect a mammoth" before "Ride a shark"
 
-  @javascript
   Scenario: Upcoming tasks should sort by date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -120,7 +113,6 @@ Feature: Edit a task
     Then I should see the upcoming task "Learn to ride a shark" before "Foo"
     And I should see the upcoming task "Foo" before "Learn to ride a jellyfish"
 
-  @javascript
   Scenario: Editing a task that escapes the due date
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

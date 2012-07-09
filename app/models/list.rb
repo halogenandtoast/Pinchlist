@@ -1,12 +1,14 @@
 require 'securerandom'
 
 class List < ActiveRecord::Base
+  SUBSCRIBED_LIMIT = 3
+
   attr_accessor :new_position
   acts_as_list scope: :user
 
   belongs_to :user, counter_cache: true
   belongs_to :list_base
-  has_many :tasks, through: :list_base
+  has_many :tasks, through: :list_base, before_add: :set_list_base_id
 
   before_create :set_color
   before_create :set_public_token
@@ -118,4 +120,9 @@ class List < ActiveRecord::Base
       create_list_base(user: user)
     end
   end
+
+  def set_list_base_id(task)
+    task.list_base = list_base
+  end
+
 end

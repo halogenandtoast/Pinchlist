@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
   after_update :reposition
   after_create :move_before_completed
   after_save :destroy_on_empty_title
+  attr_accessible :title, :new_position, :completed
 
   scope :upcoming, where("tasks.due_date IS NOT NULL AND tasks.completed = ?", false).order("tasks.due_date asc")
   scope :completed, where(completed: true)
@@ -89,7 +90,7 @@ class Task < ActiveRecord::Base
   def parse_date_format(str)
     Timelord.set_date(Time.zone.now.to_date)
     self.due_date = Timelord.parse(str, :american)
-  rescue
+  rescue Exception => e
   end
 
   def date_from_format(str)

@@ -1,9 +1,9 @@
+@javascript
 Feature: Edit a list
   In order to change details about a list
   As a user
   I want to click and edit the title or reorder the list
 
-  @javascript
   Scenario: Renaming a list
     Given I am signed in as "user@example.com/password"
     And the following list exists:
@@ -17,7 +17,6 @@ Feature: Edit a list
     When I go to the dashboard page
     Then I should see the list "My Really Awesome List"
 
-  @javascript
   Scenario: Reordering a list
     Given I am signed in as "user@example.com/password"
     And the following lists exist:
@@ -29,7 +28,6 @@ Feature: Edit a list
     When I go to the dashboard page
     Then I should see the list "My Other List" before "My List"
 
-  @javascript
   Scenario: Changing the color of a list
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -45,8 +43,6 @@ Feature: Edit a list
     When I change the color of "My List" to "990099"
     And I see the upcoming task "My Task" has a due date color of "990099"
 
-
-  @javascript
   Scenario: Changing the color of a list with a new task
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

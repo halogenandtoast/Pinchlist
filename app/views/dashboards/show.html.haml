@@ -2,30 +2,15 @@
   #header
     %h1
       = link_to image_tag('logo-small.png'), root_url
-    = form_for @list do |form|
-      %label.input{:for => "title"}
+    %form#new_list.new_list
+      %label.input{for: "title"}
         %span New List
-        = form.text_field :title
+        %input#list_title{name: "list[title]", size: 30, type: "text"}
 
     = render "topbar"
   #container
     %table{:cellpadding => "0", :cellspacing => "0"}
       %tr
-        -# - unless @upcoming_tasks.empty?
-        -#   %td.list.upcoming
-        -#     .list_title
-        -#       %h3 Upcoming
-        -#       .today #{Time.now.strftime("%m/%d")}
-        -#     %ul.tasks#upcoming_tasks
-        -#       - @upcoming_tasks.each do |task|
-        -#         = content_tag_for(:li, task, :upcoming, :"data-edit-title" => task.title, :"data-list" => task.list_id, :class => (task.completed ? 'completed' : nil)) do
-        -#           %span.task_title
-        -#             %div.checkbox checked
-        -#             %span.date{:"data-full-date" => task.due_date.strftime("%y/%m/%d"), :style => "color: ##{task.list_color_for(current_user)}"}
-        -#               = task.due_date.strftime("%m/%d")
-        -#             %span.text= task.display_title
-        -# = render @list_proxies, :filter => :current, :locked => false
-        -# = render @locked_proxies, :filter => :current, :locked => true
   - unless current_user.subscribed?
     %div.subscribe
       = link_to "Upgrade to the full version for unlimited lists", edit_account_path

@@ -1,3 +1,4 @@
+@javascript
 Feature: Deleting a list
 
   Scenario: Deleting a list
@@ -7,6 +8,4 @@ Feature: Deleting a list
       | My List | email: user@example.com |
     When I am on the dashboard page
     And I click the delete link for "My List"
-    Then I should see "List deleted."
-    And I should not see the list "My List"
-
+    Then I should not see the list "My List"

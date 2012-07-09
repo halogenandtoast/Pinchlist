@@ -44,22 +44,16 @@ When /^I check the task "([^"]*)"$/ do |title|
 end
 
 When /^I fill in the title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|
-  task = Task.find_by_title!(title)
-  within "#task_#{task.id}" do
-    fill_in 'task_title', :with => new_title
-  end
+  page.execute_script %{ $("#task_title").val('#{new_title}') }
 end
 
 When /^I submit the title form for "([^"]*)"$/ do |title|
-  task = Task.find_by_title!(title)
-  page.execute_script %{ $("#task_#{task.id} form").trigger('submit') }
-  sleep 2
+  find("#edit_task").trigger("submit")
 end
 
 When /^I blur the title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  page.execute_script %{ $('#task_#{task.id} form input').trigger('blur') }
-  sleep 2
+  find("body").click
 end
 
 When /^I drag the task "([^"]*)" over "([^"]*)"$/ do |task_title_1, task_title_2|

@@ -19,16 +19,11 @@ When /^I check the upcoming task "([^"]*)"$/ do |title|
 end
 
 When /^I fill in the upcoming title for "([^"]*)" with "([^"]*)"$/ do |title, new_title|
-  task = Task.find_by_title!(title)
-  within "#upcoming_task_#{task.id}" do
-    fill_in 'task_title', :with => new_title
-  end
+  page.execute_script %{ $("#task_title").val('#{new_title}') }
 end
 
 When /^I submit the upcoming title form for "([^"]*)"$/ do |title|
-  task = Task.find_by_title!(title)
-  page.execute_script %{ $('#upcoming_task_#{task.id} form').trigger('submit') }
-  sleep 2
+  find("#edit_task").trigger("submit")
 end
 
 Then /^the upcoming title field for "([^"]*)" should contain "([^"]*)"$/ do |original_title, expected_title|
@@ -50,7 +45,7 @@ Then /^I should not see the upcoming task "([^"]*)"$/ do |title|
 end
 
 Then /^I do not see the upcoming tasks list$/ do
-  page.should_not have_css("#upcoming_tasks")
+  page.find("#upcoming_tasks").visible?.should be_false
 end
 
 Then /^I see the upcoming task "([^"]*)" has a due date color of "([^"]*)"$/ do |title, color|
