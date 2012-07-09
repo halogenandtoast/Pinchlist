@@ -1,4 +1,10 @@
 class Task extends Backbone.Model
+  editable_text: =>
+    if @has?("due_date")
+      "@#{@get('due_date')} #{@get('title')}"
+    else
+      @get('title')
+
 class Share extends Backbone.Model
   urlRoot: "api/shares"
 class ShareList extends Backbone.Collection
@@ -111,7 +117,7 @@ class TaskView extends Backbone.View
 
   editTask: (event) =>
     old_html = @$el.html()
-    input = $("<input type='text' id='task_title' value='#{@model.get("title")}' />")
+    input = $("<input type='text' id='task_title' value='#{@model.editable_text()}' />")
     input.bind "keyup", (event) =>
       if event.keyCode == 27
         @$el.html(old_html)
@@ -127,6 +133,7 @@ class TaskView extends Backbone.View
     if title == ""
       @model.destroy()
     else
+      @model.unset("due_date", silent: true)
       @model.save(title: title)
     false
 
@@ -181,7 +188,6 @@ class ListView extends Backbone.View
     @model.tasks.on "destroy", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
     @share_view = new ListSharesView(model: @model)
-    @background_color = @model.get("color")
 
   render: =>
     @$el.html(@template(@model.toJSON()))
@@ -195,7 +201,7 @@ class ListView extends Backbone.View
       opacity: .93
     )
     @$(".tasks").on "sortupdate", @taskPositionChanged
-    @$(".list_title").css("background-color", '#'+@background_color)
+    @$(".list_title").css("background-color", '#'+@model.get("color"))
     @$(".list_actions_link").bind "clickoutside", (event) =>
       @$(".list_actions").hide()
     @$(".share_link").bind "clickoutside", (event) =>
@@ -232,7 +238,7 @@ class ListView extends Backbone.View
     false
 
   updatePosition: (event, position) =>
-    @model.save({new_position: position + 1}, {silent: true})
+    @model.save({new_position: position}, {silent: true})
 
   taskPositionChanged: (event, ui) =>
     ui.item.trigger("dropTask", ui.item.index())
@@ -291,11 +297,11 @@ class @DashboardView extends Backbone.View
     @render()
 
   setupUpcoming: (list) =>
-    @upcoming.reset([])
     @trackTasks(list.tasks) for list in @collection.models
     @drawUpcoming()
 
   drawUpcoming: =>
+    @upcoming.reset([])
     @visitTasks(list.tasks, list.get("color")) for list in @collection.models
 
   trackTasks: (tasks) =>

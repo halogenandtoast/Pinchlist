@@ -18,7 +18,7 @@ class Api::ListsController < Api::BaseController
       params[:list].merge!(new_position: params[:new_position])
     end
     list.update_attributes(params[:list])
-    respond_with list
+    render json: list.reload
   end
 
   def destroy

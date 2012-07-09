@@ -1,6 +1,4 @@
 class ListBase < ActiveRecord::Base
-  SUBSCRIBED_LIMIT = 3
-
   belongs_to :user
   has_many :tasks, :dependent => :destroy
   has_many :lists
@@ -37,7 +35,7 @@ class ListBase < ActiveRecord::Base
   private
 
   def within_subscription
-    if !user.subscribed? && user.lists_count >= SUBSCRIBED_LIMIT
+    if !user.subscribed? && user.lists_count >= List::SUBSCRIBED_LIMIT
       errors.add(:base, "Upgrade to create more lists.")
     end
   end

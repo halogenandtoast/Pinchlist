@@ -81,8 +81,7 @@ end
 
 When /^I change the color of "([^"]*)" to "([^"]*)"$/ do |list_title, color|
   list = List.find_by_title!(list_title)
-  page.execute_script("toggleSelector.call($('#list_#{list.id} .picker'));")
-  page.execute_script("$.changeColor('#{color}')")
+  page.execute_script %{$("#list_#{list.id} .color_picker").trigger("colorchange", "##{color}")}
 end
 
 Then /^"([^"]*)" should have no tasks$/ do |list_title|

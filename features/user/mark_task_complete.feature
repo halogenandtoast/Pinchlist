@@ -15,11 +15,9 @@ Feature: Marking a task complete
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I check the upcoming task "Ride a shark"
-    Then I should see the completed upcoming task "Ride a shark"
-    And I should see the completed task "Ride a shark" in "My List"
-    Then I go to the dashboard page
-    And I should see the completed upcoming task "Ride a shark"
-    And I should see the completed task "Ride a shark" in "My List"
+    Then I should see the completed task "Ride a shark" in "My List"
+    When I go to the dashboard page
+    Then I should see the completed task "Ride a shark" in "My List"
 
   @javascript
   Scenario: Marking a normal task as complete
@@ -33,8 +31,6 @@ Feature: Marking a task complete
       | @10/20 Ride a shark | title: My List |
     When I go to the dashboard page
     And I check the task "Ride a shark"
-    Then I should see the completed upcoming task "Ride a shark"
-    And I should see the completed task "Ride a shark" in "My List"
+    Then I should see the completed task "Ride a shark" in "My List"
     When I go to the dashboard page
-    Then I should see the completed upcoming task "Ride a shark"
-    And I should see the completed task "Ride a shark" in "My List"
+    Then I should see the completed task "Ride a shark" in "My List"

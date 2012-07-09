@@ -1,3 +1,4 @@
+@javascript
 Feature: View upcoming tasks
   In order to see what I should do next
   As a user
@@ -8,7 +9,6 @@ Feature: View upcoming tasks
     When I am on the dashboard page
     Then I do not see the upcoming tasks list
 
-  @javascript
   Scenario: Creating an upcoming task
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -21,7 +21,6 @@ Feature: View upcoming tasks
     Then I should see the task "Do stuff"
     And I should see the upcoming task "Do stuff"
 
-  @javascript
   Scenario: Destroying an upcoming task
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -38,7 +37,6 @@ Feature: View upcoming tasks
     Then I should see the task "Something without a date"
     And I do not see the upcoming tasks list
 
-  @javascript
   Scenario: Editing a task to be upcoming
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"
@@ -89,7 +87,6 @@ Feature: View upcoming tasks
       Then I should see the following upcoming tasks in order:
         | One more thing |
         | Something else |
-        | Something      |
 
   Scenario: Upcoming tasks have colors
     Given today is "October 16, 2010"

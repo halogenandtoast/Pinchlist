@@ -9,14 +9,14 @@ class Api::TasksController < Api::BaseController
 
   def create
     list = current_user.lists.find(params[:list_id])
-    base = list.list_base
-    task = base.tasks.create(params[:task])
+    task = list.tasks.build(params[:task])
+    task.save
     respond_with task
   end
 
   def update
     list = current_user.lists.find(params[:list_id])
-    task = list.list_base.tasks.find(params[:id])
+    task = list.tasks.find(params[:id])
     if params[:new_position]
       params[:task].merge!(new_position: params[:new_position])
     end
@@ -28,7 +28,7 @@ class Api::TasksController < Api::BaseController
 
   def destroy
     list = current_user.lists.find(params[:list_id])
-    task = list.list_base.tasks.find(params[:id])
+    task = list.tasks.find(params[:id])
     respond_with task.destroy
   end
 end
