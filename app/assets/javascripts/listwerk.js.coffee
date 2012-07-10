@@ -58,6 +58,7 @@ class ShareView extends Backbone.View
   deleteShare: =>
     @model.destroy()
     @remove()
+    @trigger "unshared"
     false
 
 class ListSharesView extends Backbone.View
@@ -73,6 +74,7 @@ class ListSharesView extends Backbone.View
 
   renderShare: (share) =>
     view = new ShareView(model: share, is_owner: @model.get("is_owner"))
+    view.on "unshared", @checkForShares
     @$(".shared_users").append(view.render().el)
 
   share: =>
@@ -80,8 +82,13 @@ class ListSharesView extends Backbone.View
     @$(".share_email").val("")
     share = new Share(email: email, list_id: @model.get("id"))
     share.save()
-    @$(".shared_users").append("<li>#{email}</li>")
+    @renderShare(share)
+    @trigger "shared"
     false
+
+  checkForShares: =>
+    if @model.shares.isEmpty
+      @trigger "unshared"
 
 
 class TaskView extends Backbone.View
@@ -188,6 +195,8 @@ class ListView extends Backbone.View
     @model.tasks.on "destroy", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
     @share_view = new ListSharesView(model: @model)
+    @share_view.on "shared", @shareList
+    @share_view.on "unshared", @unshareList
 
   render: =>
     @$el.html(@template(@model.toJSON()))
@@ -204,6 +213,8 @@ class ListView extends Backbone.View
     @$(".list_title").css("background-color", '#'+@model.get("color"))
     @$(".list_actions_link").bind "clickoutside", (event) =>
       @$(".list_actions").hide()
+    if @model.get("shared")
+      @shareList()
     @$(".share_link").bind "clickoutside", (event) =>
       @$(".share").hide()
 
@@ -211,6 +222,12 @@ class ListView extends Backbone.View
     @setupColorPicker()
     @focus()
     this
+
+  shareList: =>
+    @$el.addClass("shared_list")
+
+  unshareList: =>
+    @$el.removeClass("shared_list")
 
   setupColorPicker: =>
     @$(".picker").colorPicker()

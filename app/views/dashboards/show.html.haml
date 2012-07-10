@@ -32,7 +32,7 @@
   %script{type: "text/template", id: "share_list_template"}
     <h4>Sharing</h4>
     <% if(is_owner) { %>
-    <form class="share_form"><div class="input"><span>Enter an email address</span><input type="text" class="share_email" /></div></form>
+    <form class="share_form"><div class="input"><span>Enter an email address</span><input type="text" name='share[email]' class="share_email" /></div></form>
     <% } %>
     <ul class="shared_users">
     </ul>
@@ -83,6 +83,7 @@
     </ul>
 
 - content_for :javascripts do
+  = javascript_include_tag "listwerk"
   :javascript
     $(document).ready(function() {
       var lists = new Lists(#{@lists.to_json(user: current_user)})

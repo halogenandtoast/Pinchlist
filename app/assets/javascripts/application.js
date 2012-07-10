@@ -12,4 +12,3 @@
 //= require jstz.min.js
 //= require color-picker
 //= require clickoutside.min
-//= require_tree .

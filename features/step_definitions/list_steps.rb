@@ -111,3 +111,9 @@ Then /^I can create another list$/ do
   # page.execute_script("$('#new_list').submit()")
   # all(".list").count.should == count + 1
 end
+
+Given /^"([^"]*)" has a "([^"]*)" list$/ do |email, list_title|
+  user = User.find_by_email(email)
+  list_base = create(:list_base, user: user)
+  create(:list, title: list_title, list_base: list_base, user: user)
+end
