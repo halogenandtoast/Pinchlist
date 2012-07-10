@@ -81,9 +81,10 @@ class ListSharesView extends Backbone.View
     email = @$(".share_email").val()
     @$(".share_email").val("")
     share = new Share(email: email, list_id: @model.get("id"))
-    share.save()
-    @renderShare(share)
-    @trigger "shared"
+    share.save {},
+      success: =>
+        @renderShare(share)
+        @trigger "shared"
     false
 
   checkForShares: =>
