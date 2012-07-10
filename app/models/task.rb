@@ -72,8 +72,13 @@ class Task < ActiveRecord::Base
       title: title,
       list_base_id: list_base_id,
       position: position,
-      completed: completed
+      completed: completed,
+      archived: archived?
     }.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
+  end
+
+  def archived?
+    self.completed_at && self.completed_at.to_datetime < 7.days.ago
   end
 
   def completed=(state)
