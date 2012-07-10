@@ -111,6 +111,8 @@ class TaskView extends Backbone.View
     @$el.id = "task_#{@model.id}"
     if @model.get("completed")
       @$el.addClass("completed")
+    if @model.get("archived")
+      @$el.addClass("archived")
     this
 
   updatePosition: (event, position) =>
@@ -185,6 +187,7 @@ class ListView extends Backbone.View
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
     "click .archive_link" : "showListArchive"
+    "click .return" : "hideListArchive"
     "sortupdate .tasks" : "taskPositionChanged"
 
   template: _.template($("#list_template").html())
@@ -222,6 +225,7 @@ class ListView extends Backbone.View
     @$(".share").append(@share_view.render().el)
     @setupColorPicker()
     @focus()
+    @hideListArchive()
     this
 
   shareList: =>
@@ -296,8 +300,15 @@ class ListView extends Backbone.View
     false
 
   showListArchive: =>
-    @$el.css("zoom", 1.2)
-    @$el.siblings(".list").css("opacity", 0.2)
+    @$el.siblings(".list").hide()
+    @$(".archived").show()
+    @$(".return").show()
+
+  hideListArchive: =>
+    if @$el[0].parentNode != null
+      @$el.siblings(".list").show()
+    @$(".archived").hide()
+    @$(".return").hide()
 
 class @DashboardView extends Backbone.View
   el: "#listwerk"
