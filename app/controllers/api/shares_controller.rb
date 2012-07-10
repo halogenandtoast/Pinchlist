@@ -5,7 +5,7 @@ class Api::SharesController < Api::BaseController
     if list.owned_by?(current_user)
       share = Share.new(params[:share].merge(list_id: list.id, current_user_id: current_user.id))
       share.save
-      respond_with share
+      render json: share
     end
   end
 

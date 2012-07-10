@@ -6,9 +6,7 @@ Feature: Sharing a list
       | email                | password | password confirmation |
       | receiver@example.com | password | password              |
     And I am signed in as "user@example.com/password"
-    And the following list exists:
-      | title  | user                    |
-      | Shared | email: user@example.com |
+    And "user@example.com" has a "Shared" list
     When I am on the dashboard page
     Then I should see that the list is not shared
     And I click the share icon
@@ -33,9 +31,7 @@ Feature: Sharing a list
 
   Scenario: Sharing a list with a non-member
     Given I am signed in as "user@example.com/password"
-    And the following list exists:
-      | title  | user |
-      | Shared | email: user@example.com |
+    And "user@example.com" has a "Shared" list
     When I am on the dashboard page
     And I click the share icon
     And I fill in share email with "receiver@example.com"
@@ -59,9 +55,7 @@ Feature: Sharing a list
       | email                | password | password confirmation |
       | receiver@example.com | password | password              |
     And I am signed in as "user@example.com/password"
-    And the following list exists
-      | title  | user                    |
-      | Shared | email: user@example.com |
+    And "user@example.com" has a "Shared" list
     When I am on the dashboard page
     And I click the share icon
     And I fill in share email with "receiver@example.com"
@@ -79,9 +73,7 @@ Feature: Sharing a list
       | email                | password | password confirmation |
       | receiver@example.com | password | password              |
     And I am signed in as "user@example.com/password"
-    And the following list exists:
-      | title  | user                    |
-      | Shared | email: user@example.com |
+    And "user@example.com" has a "Shared" list
     When I am on the dashboard page
     And I click the share icon
     And I fill in share email with "receiver"
