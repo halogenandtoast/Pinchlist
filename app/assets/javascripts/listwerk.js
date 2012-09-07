@@ -396,12 +396,10 @@ $(document).ready(function(){
     $(this).hide();
     $(".stop").show();
   });
-  //show sign in form
-  $("#sign_in a").click(function() {
 
-    $("#login, #sign_in").toggle();
+  //focus sign in form
+  $(function() {
     $('#user_email').focus();
-    return false;
   });
 
   //show sharing modal

@@ -12,9 +12,6 @@
     / = render :partial => "shared/quicktime"
 - unless signed_in?
   .links
-    %p#sign_in
-      Already have an account?
-      %a{:href => ""} Sign in
     #login
       = form_for :user, :url => new_user_session_path do |f|
         %label.input{:for => "email"}
