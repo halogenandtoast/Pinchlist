@@ -4,25 +4,25 @@
     = link_to image_tag('logo-small.png')
     // else
     // = link_to image_tag('logo-small-grey.png')
-  #hidden_lists
-    %ul
-      %li
-        %a{"data-background-color" => "", :style => "background-color: #72ACDD"}
-          List Name
-          %span Reactivate
-      %li
-        %a{"data-background-color" => "", :style => "background-color: #DDBD29"}
-          Longer List Name
-          %span Reactivate
-      %li
-        %a{"data-background-color" => "", :style => "background-color: #58DDAA"}
-          Even Longer List Name
-          %span Reactivate
   = form_for @list, :remote => true do |form|
     %label.input{:for => "title"}
       %span New List
       = form.text_field :title
   = render "topbar"
+#hidden_lists
+  %ul
+    %li
+      %a{"data-background-color" => "", :style => "background-color: #72ACDD"}
+        List Name
+        %span Reactivate
+    %li
+      %a{"data-background-color" => "", :style => "background-color: #DDBD29"}
+        Longer List Name
+        %span Reactivate
+    %li
+      %a{"data-background-color" => "", :style => "background-color: #58DDAA"}
+        Even Longer List Name
+        %span Reactivate
 #container
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr
