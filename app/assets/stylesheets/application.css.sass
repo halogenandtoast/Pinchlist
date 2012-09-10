@@ -218,6 +218,9 @@ body
     margin: 8px 0 0 12px
     letter-spacing: -1px
     color: #333
+    &:hover
+      a
+        opacity: .8
     a
       color: #333
       text-decoration: none
@@ -235,7 +238,62 @@ body
       &:focus
         opacity: 1
         outline: none
-  ul
+  #hidden_lists
+    position: absolute
+    top: 42px
+    left: 0
+    height: auto
+    width: 250px
+    overflow: none
+    font-size: 11px
+    z-index: 500
+    background-color: #fff
+    box-shadow: 2px 0 2px rgba(0,0,0, .3)
+    margin-left: -252px
+    ul
+      padding: 6px
+      border-radius: 2px
+      li
+        list-style-type: none
+        font-size: 12px
+        a
+          color: #fff
+          font-weight: bold
+          padding: 5px 10px
+          display: block
+          margin: 0 0 1px
+          &:hover
+            cursor: pointer
+          span
+            font-size: 7px
+            font-weight: normal
+            letter-spacing: 1px 
+            -webkit-font-smoothing: antialiased
+            text-transform: uppercase
+            display: none
+            float: right
+            margin: 3px 0 0 0
+            color: rgba(255,255,255, .6)
+          &:hover
+            span
+              display: inline
+        &:first-child
+          a
+            border-top-right-radius: 2px
+            -webkit-border-top-right-radius: 2px
+            -moz-border-top-right-radius: 2px
+            border-top-left-radius: 2px
+            -webkit-border-top-left-radius: 2px
+            -moz-border-top-left-radius: 2px
+        &:last-child
+          a
+            border-bottom-right-radius: 2px
+            -webkit-border-bottom-right-radius: 2px
+            -moz-border-bottom-right-radius: 2px
+            border-bottom-left-radius: 2px
+            -webkit-border-bottom-left-radius: 2px
+            -moz-border-bottom-left-radius: 2px
+  ul#util
     position: absolute
     min-width: 200px
     max-width: 300px
@@ -255,10 +313,10 @@ body
         font-weight: bold
         margin: -1px 0 0 0
       a
-        color: #ccc
+        color: #aaa
         text-decoration: none
         &:hover
-          color: #aaa
+          color: #999
 #container
   position: absolute
   top: 41px

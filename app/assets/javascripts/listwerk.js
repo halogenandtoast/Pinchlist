@@ -429,10 +429,16 @@ $(document).ready(function(){
     $(this).next(".list_actions").hide();
   });
 
-  //load video.js
-  $("video").VideoJS({
-    controlsHiding: false,
-  });
+  // toggle hidden lists container
+  $('#dash_logo').toggle(function(){
+      $('#hidden_lists').animate({marginLeft: "0"}, 150);
+      return
+   },
+   function(){
+      $('#hidden_lists').animate({marginLeft: "-252px"}, 150);
+   });
+
+
 
   setTimeout(function() { $('#flash').fadeOut(800); }, 6000);
 
