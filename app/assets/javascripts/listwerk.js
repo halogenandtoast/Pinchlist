@@ -429,13 +429,15 @@ $(document).ready(function(){
     $(this).next(".list_actions").hide();
   });
 
-  // toggle hidden lists container
+  // toggle hidden list menu 
   $('#dash_logo').toggle(function(){
-      $('#hidden_lists').animate({marginLeft: "0"}, 150);
+      $('#hidden_lists').animate({marginLeft: "0"}, 220);
+      $('#container').animate({paddingLeft: "252px"}, 220);
       return
    },
    function(){
-      $('#hidden_lists').animate({marginLeft: "-252px"}, 150);
+      $('#hidden_lists').animate({marginLeft: "-252px"}, 220);
+      $('#container').animate({paddingLeft: "0px"}, 220);
    });
 
 
