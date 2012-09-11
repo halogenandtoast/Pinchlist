@@ -1,7 +1,9 @@
 #header
-  %h1#hidden_toggle
-    // add has_hidden class to link if user has hidden lists
-    = link_to '', '', :class => "has_hidden"
+  %ul#hidden_toggle
+    %li{ :style => "background-color: #53D8FF" }
+    %li{ :style => "background-color: #FF5674" }
+    %li{ :style => "background-color: #58DDAA" }
+    %li{ :style => "background-color: #bbb" }
   = form_for @list, :remote => true do |form|
     %label.input{:for => "title"}
       %span New List
@@ -10,11 +12,11 @@
 #hidden_lists
   %ul
     %li
-      %a{"data-background-color" => "", :style => "background-color: #72ACDD"}
+      %a{"data-background-color" => "", :style => "background-color: #53D8FF"}
         List Name
         %span activate
     %li
-      %a{"data-background-color" => "", :style => "background-color: #DDBD29"}
+      %a{"data-background-color" => "", :style => "background-color: #FF5674"}
         Longer List Name
         %span activate
     %li
