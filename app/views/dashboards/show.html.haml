@@ -1,9 +1,7 @@
 #header
-  %h1#dash_logo
-    // if hidden lists
-    = link_to image_tag('logo-small.png')
-    // else
-    // = link_to image_tag('logo-small-grey.png')
+  %h1#hidden_toggle
+    // add has_hidden class to link if user has hidden lists
+    = link_to '', '', :class => "has_hidden"
   = form_for @list, :remote => true do |form|
     %label.input{:for => "title"}
       %span New List
@@ -14,15 +12,15 @@
     %li
       %a{"data-background-color" => "", :style => "background-color: #72ACDD"}
         List Name
-        %span Reactivate
+        %span activate
     %li
       %a{"data-background-color" => "", :style => "background-color: #DDBD29"}
         Longer List Name
-        %span Reactivate
+        %span activate
     %li
       %a{"data-background-color" => "", :style => "background-color: #58DDAA"}
         Even Longer List Name
-        %span Reactivate
+        %span activate
 #container
   %table{:cellpadding => "0", :cellspacing => "0"}
     %tr
