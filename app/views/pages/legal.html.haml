@@ -6,8 +6,7 @@
 #page
   #content
     - unless signed_in?
-      %h1
-        = link_to image_tag('logo-large.png'), root_url
+      = render "logo"
     %h3 Privacy Policy
     %p The following policy dictates the manner in which Listwerk collects and uses information gathered from users of this service.
 
@@ -63,24 +62,5 @@
       not be bound by any updates until 30 days after we send you an email
       notifying you of the changes.
 
-- unless signed_in?
-  .links
-    %p#sign_in
-      Already have an account?
-      %a{:href => ""} Sign in
-      %br
-      New to Listwerk?
-      = link_to "Sign up.", new_user_registration_path
-    #login
-      = form_for :user, :url => new_user_session_path do |f|
-        %label.input{:for => "email"}
-          %span Email Address
-          = f.text_field :email
-        %label.input{:for => "password"}
-          %span Password
-          = f.password_field :password
-        = f.submit "Sign In"
-      %p
-        Forgot password?
-        = link_to "Reset it.", 'users/password/new'
-  = render "footer"
+// = render :partial => "devise/shared/links"
+= render "footer"

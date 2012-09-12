@@ -1,11 +1,10 @@
 #page.clearfix
   #content
-    %h1
-      = link_to image_tag('logo-large.png'), root_url
+    = render "logo"
     %h2 
       Organize with color.
     %p
-      Spend more time <b>doing</b> things and less time <b>managing</b> them. Use Listwerk for tasks, todos, actions, stuff, and anything else you might forget. 3 lists are free. Unlimited lists are $25 per year.
+      Spend more time <em>doing</em> things and less time <em>managing</em> them. Use Listwerk for tasks, todos, actions, stuff, and anything else you might forget. 3 lists are free. Unlimited lists are $25 per year.
       %br
       = link_to 'Sign up', new_user_registration_path, :class => "signup" 
     / %a#demo{:href => "#demo_video"} Watch the demo   
