@@ -209,17 +209,39 @@ body
           background: #222 url(play.png) 0 0 no-repeat
         .stop
           background: #222 url(stop.png) 0 0 no-repeat
+#help
+  position: fixed
+  top: 0
+  right: 0
+  height: 100%
+  background-color: #292929
+  padding: 0 30px
+  width: 220px
+  overflow: auto
+  display: none
+  .close
+    position: absolute
+    top: 10px
+    right: 10px
+    font-size: 12px
+    color: #fff
+    &:hover
+      cursor: pointer
+      color: #ccc
   dl
+    margin-top: 30px
     dt
       font-size: 11px
       font-weight: bold
       line-height: 1.4
       text-transform: uppercase
+      color: #5EC1FF
       -webkit-font-smoothing: antialiased
     dd
       font-size: 11px
       line-height: 1.4
       margin: 0 0 20px 0
+      color: #aaa
       -webkit-font-smoothing: antialiased
 #header
   width: 100%
@@ -284,6 +306,7 @@ body
         text-decoration: none
         &:hover
           color: #aaa
+          cursor: pointer
 #container
   position: absolute
   top: 41px
