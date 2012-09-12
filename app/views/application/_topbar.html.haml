@@ -1,5 +1,6 @@
 %ul#util
-  %li.help_link Help
+  %li
+    %a.help_link Help
   %li= link_to 'Sign Out', destroy_user_session_path, :tabindex => "-1"
   %li.username= link_to current_user.email, edit_account_path, :tabindex => "-1"
 = render "help"
