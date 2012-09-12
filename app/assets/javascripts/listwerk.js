@@ -429,6 +429,17 @@ $(document).ready(function(){
     $(this).next(".list_actions").hide();
   });
 
+  // Show help
+  $(".help_link").click(function(e) {
+    $("#help").show();
+    return false;
+  });
+
+  $("#help .close").click(function(e) {
+    $("#help").hide();
+    return false;
+  });
+
   //load video.js
   $("video").VideoJS({
     controlsHiding: false,
