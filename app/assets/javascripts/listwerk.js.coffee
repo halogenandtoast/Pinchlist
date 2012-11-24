@@ -306,7 +306,7 @@ class ListView extends Backbone.View
 
   hideListArchive: =>
     if @$el[0].parentNode != null
-      @$el.siblings(".list").show()
+      @$el.siblings(".list:not(.upcoming)").show()
     @$(".archived").hide()
     @$(".return").hide()
 
