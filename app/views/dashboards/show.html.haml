@@ -89,4 +89,12 @@
     $(document).ready(function() {
       var lists = new Lists(#{@lists.to_json(user: current_user)})
       var App = new DashboardView({collection: lists});
+      $(".help_link").click(function(e) {
+        $("#help").show();
+        return false;
+      });
+      $("#help .close").click(function(e) {
+        $("#help").hide();
+        return false;
+      });
     });
