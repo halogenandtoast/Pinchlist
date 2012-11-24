@@ -24,8 +24,6 @@
   = render "footer"
 - content_for :javascripts do
   :javascript
-    $("#sign_in a").click(function() {
-      $("#login, #sign_in").toggle();
+    $(document).ready(function() {
       $('#user_email').focus();
-      return false;
     });
