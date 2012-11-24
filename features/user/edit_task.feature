@@ -65,7 +65,6 @@ Feature: Edit a task
     Then I should see the upcoming task "Lasso a shark"
     And I should see the task "Lasso a shark"
 
-  @selenium
   Scenario: Renaming a task via blur should cancel
     Given today is "October 16, 2010"
     And I am signed in as "user@example.com/password"

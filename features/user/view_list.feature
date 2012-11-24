@@ -1,3 +1,4 @@
+@javascript
 Feature: Viewing list archive
   In order to see things I've already done
   As a user
@@ -24,5 +25,5 @@ Feature: Viewing list archive
       | Something else    |
       | One more thing    |
       | And another thing |
-      | Something         |
       | Finished          |
+      | Something         |

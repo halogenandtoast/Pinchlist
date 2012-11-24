@@ -53,8 +53,8 @@ end
 
 When /^I blur the title form for "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("body").click
-  sleep 1
+  page.execute_script %{ $("#task_title").trigger("blur") }
+  # sleep 1
 end
 
 When /^I drag the task "([^"]*)" over "([^"]*)"$/ do |task_title_1, task_title_2|
