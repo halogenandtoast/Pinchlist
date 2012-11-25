@@ -209,7 +209,7 @@ class ListView extends Backbone.View
     @$(".tasks").sortable(
       connectWith: ".tasks"
       helper: 'clone'
-      items: "li"
+      items: "li:not(.completed)"
       distance: 6
       opacity: .93
     )
@@ -343,7 +343,7 @@ class @DashboardView extends Backbone.View
     @drawLists()
     @$("tr").sortable(
       axis: "xy"
-      items: ".list"
+      items: ".list:not(.upcoming, .locked)"
       handle: ".list_title"
       opacity: .95
     )
