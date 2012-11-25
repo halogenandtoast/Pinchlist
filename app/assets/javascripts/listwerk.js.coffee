@@ -247,7 +247,7 @@ class ListView extends Backbone.View
     task.off "sync", @addTask
     view = new TaskView(model: task, id: "task_#{task.id}")
     if @$(".tasks .completed").length > 0
-      @$(".tasks .completed").before(view.render().el)
+      @$(".tasks .completed:first").before(view.render().el)
     else
       @$(".tasks").append(view.render().el)
 
