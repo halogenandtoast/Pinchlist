@@ -117,6 +117,8 @@ class TaskView extends Backbone.View
 
   updatePosition: (event, list, position) =>
     @model.save(new_position: position + 1, new_list_id: list.get("id"))
+    @model.collection.remove(@model)
+    list.tasks.add(@model, {silent: true})
 
   toggleCompleted: (event) =>
     @$el.toggleClass("completed")
