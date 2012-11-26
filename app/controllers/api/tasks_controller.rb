@@ -20,7 +20,11 @@ class Api::TasksController < Api::BaseController
     if params[:new_position]
       params[:task].merge!(new_position: params[:new_position])
     end
-    if task.update_attributes(params[:task])
+
+    list_id = params.fetch(:new_list_id, list.id)
+    new_list = current_user.lists.find(list_id)
+
+    if update_task_with_list_base(task, new_list.list_base)
       render json: task.reload
     else
     end
@@ -30,5 +34,16 @@ class Api::TasksController < Api::BaseController
     list = current_user.lists.find(params[:list_id])
     task = list.tasks.find(params[:id])
     respond_with task.destroy
+  end
+
+  private
+
+  def update_task_with_list_base(task, list_base)
+    logger.info "FOO: #{task.list_base_id} => #{list_base.id}"
+    if task.list_base_id != list_base.id
+      task.update_attributes_with_list_swap(params[:task].merge(list_base_id: list_base.id))
+    else
+      task.update_attributes(params[:task])
+    end
   end
 end

@@ -115,8 +115,8 @@ class TaskView extends Backbone.View
       @$el.addClass("archived")
     this
 
-  updatePosition: (event, position) =>
-    @model.save(new_position: position + 1)
+  updatePosition: (event, list, position) =>
+    @model.save(new_position: position + 1, new_list_id: list.get("id"))
 
   toggleCompleted: (event) =>
     @$el.toggleClass("completed")
@@ -263,7 +263,9 @@ class ListView extends Backbone.View
     @model.save({new_position: position}, {silent: true})
 
   taskPositionChanged: (event, ui) =>
-    ui.item.trigger("dropTask", ui.item.index())
+    td = $(ui.item).parents("td").get(0)
+    if @$el.get(0) == td
+      ui.item.trigger("dropTask", [@model, ui.item.index()])
 
   changeColor: (event, color) =>
     @model.save(color: color.substring(1))
