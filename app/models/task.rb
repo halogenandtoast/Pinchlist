@@ -17,7 +17,7 @@ class Task < ActiveRecord::Base
   scope :completed, where(completed: true)
   acts_as_list scope: :list_base
 
-  def update_attributes_with_position(params)
+  def update_attributes_with_list_swap(params)
     task_params = params.dup
     new_list_base_id = task_params.delete(:list_base_id)
     if new_list_base_id
