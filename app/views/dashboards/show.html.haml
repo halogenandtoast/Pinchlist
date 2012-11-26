@@ -67,8 +67,8 @@
     <a href="#" class="list_link archive_link" tabindex="-1">History</a>
     </li>
     <li>
-    <a href="/public/lists/<%= public_token %>/issues" class="list_link public_link locked" tabindex="-1">Public URL</a>
-    <a href="/lists/<%= id %>/lock" class="public_link_toggle locked" data-method="put" data-remote="true" rel="nofollow">lock</a>
+    <a href="/public/lists/<%= public_token %>/<%= slug %>" class="list_link public_link <%= public ? 'unlocked' : 'locked' %>" tabindex="-1">Public URL</a>
+    <a href="/lists/<%= id %>/lock" class="public_link_toggle <%= public ? 'unlocked' : 'locked' %>" data-method="put" data-remote="true" rel="nofollow"><%= public ? 'lock' : 'unlock' %></a>
     </li>
     <li class="delete">
     <a href="/lists/<%= id %>/proxy" data-confirm="Are you sure you want to delete <%= title %>?" data-method="delete" rel="nofollow" tabindex="-1">Delete List</a>

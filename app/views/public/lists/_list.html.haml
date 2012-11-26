@@ -1,0 +1,10 @@
+%td.public[list]
+  .list_title{:"data-background-color" => list.color, :style => "background-color: ##{list.color};"}
+    %h3= list.title
+    .icons{:"data-background-color" => list.color, :style => "background-color: ##{list.color};"}
+    .picker
+  %ul.tasks{ :data => { :id => list.id } }
+    = render list.tasks.filtered(filter).by_position
+- unless signed_in?
+  %div.subscribe 
+    = link_to "Sign up for Listwerk", root_url

@@ -25,6 +25,14 @@ class List extends Backbone.Model
   initialize: (attributes) ->
     @tasks = new TaskList(attributes['tasks'])
     @shares = new ShareList(attributes['shares'])
+  toggleLock: (callback) ->
+    @save({public: !@get("public")}, { success: callback })
+  isLocked: ->
+    !@get("public")
+  isUnlocked: ->
+    @get("public")
+  publicUrl: ->
+    "public/lists/#{@get("public_token")}/#{@get("slug")}"
 
 class @Lists extends Backbone.Collection
   model: List
@@ -186,6 +194,8 @@ class ListView extends Backbone.View
     "click .share_link" : "toggleSharing"
     "click .delete a" : "deleteList"
     "click .list_title h3" : "editTitle"
+    "click .public_link" : "getPublicList"
+    "click .public_link_toggle" : "toggleLock"
     "submit #new_list_title" : "updateListTitle"
     "colorchange .color_picker" : "changeColor"
     "click .archive_link" : "showListArchive"
@@ -313,6 +323,32 @@ class ListView extends Backbone.View
       @$el.siblings(".list:not(.upcoming)").show()
     @$(".archived").hide()
     @$(".return").hide()
+
+  getPublicList: (event) =>
+    if @model.isLocked()
+      if confirm("Do you want to make this list public?")
+        @performToggleLock (unlocked) =>
+          if unlocked
+            window.location = @model.publicUrl()
+        false
+      else
+        false
+    else
+      true
+
+  toggleLock: =>
+    @performToggleLock()
+    false
+
+  performToggleLock: (callback) =>
+    @model.toggleLock =>
+      @$(".public_link_toggle").toggleClass("locked")
+      @$(".public_link_toggle").toggleClass("unlocked")
+      @$(".public_link").toggleClass("locked")
+      @$(".public_link").toggleClass("unlocked")
+      if callback
+        callback(@model.isUnlocked())
+
 
 class @DashboardView extends Backbone.View
   el: "#listwerk"
