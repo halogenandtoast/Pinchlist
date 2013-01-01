@@ -1,4 +1,6 @@
 class ListProxiesController < ApplicationController
+  before_filter :authenticate_user!
+
   def update
     @list_proxy = current_user.proxy_for(params[:list_id])
     @list_proxy.update_attributes(params[:list_proxy])
