@@ -30,15 +30,10 @@ describe List do
   end
 
   context 'when destroyed' do
-    subject { create(:list) }
-    let!(:list_base) { subject.list_base }
-    before do
-      list_base.stubs(:check_for_lists)
-    end
-
     it 'notifies the list' do
-      subject.destroy
-      list_base.should have_received(:check_for_lists)
+      list = create(:list)
+      list.destroy
+      list.list_base.should be_destroyed
     end
   end
 end

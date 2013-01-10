@@ -40,7 +40,7 @@ end
 
 describe Task, 'whose title has a due date' do
   before do
-    Timecop.freeze(2011, 10, 1)
+    Timecop.freeze(Time.local(2011, 10, 1))
   end
 
   context 'in the front' do
@@ -79,7 +79,7 @@ describe Task, 'whose title has an invalid date' do
 end
 
 describe Task, 'whose title has a chronic date format' do
-  before { Timecop.freeze("2010/16/10") }
+  before { Timecop.freeze(Time.local(2010, 10, 16)) }
   subject { create(:task, :title => "@wednesday do something") }
   its(:due_date) { should == Chronic.parse("wednesday").to_date }
   its(:title) { should == "do something" }
@@ -87,7 +87,7 @@ describe Task, 'whose title has a chronic date format' do
 end
 
 describe Task, 'whose title is changed from having a due date to not having one' do
-  before { Timecop.freeze("2010/16/10") }
+  before { Timecop.freeze(Time.local(2010, 10, 16)) }
   subject { create(:task, :title => "@10/20 Do foo") }
   it "should remove the due date" do
     subject.title = "Do foo"
@@ -108,7 +108,7 @@ end
 
 describe Task, 'completed' do
   subject { create(:task, :title => "THE SUBJECT") }
-  before { Timecop.freeze(Date.parse("October 16, 2010")) }
+  before { Timecop.freeze(Time.local(2010, 10, 16)) }
   it 'sets its completed at date' do
     subject.update_attributes({:completed => true})
     subject.completed_at.should == "2010-10-16".to_date

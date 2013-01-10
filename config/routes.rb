@@ -13,6 +13,11 @@ Pinchlist::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resource :account, only: [:edit, :update]
   resources :users, only: [:update]
+
+  authenticated :user do
+    root :to => "dashboards#show"
+  end
+
   root :to => "home#index"
 
   post "/stripe/invoice" => "invoices#create"

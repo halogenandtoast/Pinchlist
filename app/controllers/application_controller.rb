@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_timezone
+  before_filter :authenticate_user!
 
   def set_timezone
     if signed_in?
