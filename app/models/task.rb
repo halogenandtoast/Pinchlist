@@ -65,7 +65,7 @@ class Task < ActiveRecord::Base
     self.insert_at(position)
   end
 
-  def as_json(options)
+  def as_json(options = {})
     {
       id: id,
       display_title: display_title,

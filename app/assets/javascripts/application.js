@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery-ui
 //= require underscore
 //= require backbone
 //= require jstz.min.js
