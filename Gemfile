@@ -1,17 +1,20 @@
 source "https://rubygems.org"
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.14'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'newrelic_rpm'
 gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
+gem 'rails_autolink'
 
 group :assets do
-  gem 'sass-rails', '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.0'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
 end
+
 gem 'pg'
 gem 'devise'
 gem 'haml'

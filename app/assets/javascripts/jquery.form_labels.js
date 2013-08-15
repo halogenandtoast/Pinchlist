@@ -26,14 +26,14 @@
         }
     };
 
-    $('input, textarea').live('keydown', toggleLabel);
-    $('input, textarea').live('paste', toggleLabel);
-    $('select').live('change', toggleLabel);
+    $('input, textarea').on('keydown', toggleLabel);
+    $('input, textarea').on('paste', toggleLabel);
+    $('select').on('change', toggleLabel);
 
-    $('input, textarea').live('focusin', function() {
+    $('input, textarea').on('focusin', function() {
         $(this).prev('span').css('color', '#E2D264');
     });
-    $('input, textarea').live('focusout', function() {
+    $('input, textarea').on('focusout', function() {
         $(this).prev('span').css('color', '#eee');
     });
 

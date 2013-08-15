@@ -4,4 +4,4 @@
     - if task.due_date?
       %span.date= task.due_date.strftime("%m/%d")
     %span.text
-      = task.display_title
+      = auto_link task.display_title

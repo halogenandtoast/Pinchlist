@@ -333,12 +333,12 @@ $(document).ready(function(){
   setup_single_and_double_click($("#upcoming_tasks li span.task_title, #upcoming_tasks li span.date"), "upcoming");
   setup_single_and_double_click($(".list:not(.upcoming,.locked) li span.task_title, .list:not(.upcoming,.locked) li span.date"), "");
 
-  $(".list:not(.upcoming,.locked) .list_title h3").live('click', function() {
+  $(".list:not(.upcoming,.locked) .list_title h3").on('click', function() {
       list_edit($(this));
   });
 
   var redirect_to_list = false;
-  $(".public_link_toggle").live('ajax:success', function(event) {
+  $(".public_link_toggle").on('ajax:success', function(event) {
     $(this).toggleClass("locked")
     $(this).toggleClass("unlocked")
     $(this).siblings(".public_link").toggleClass("locked")
@@ -348,7 +348,7 @@ $(document).ready(function(){
     }
   })
 
-  $(".public_link.locked").live('click', function() {
+  $(".public_link.locked").on('click', function() {
     var self = this;
     if(confirm("Do you want to make this list public?")) {
       redirect_to_list = true;
@@ -378,7 +378,7 @@ $(document).ready(function(){
   });
 
   $("form[data-remote]").bind("submit", preventFurtherSubmissions);
-  $("form[data-remote]").live("ajax:success", function() {
+  $("form[data-remote]").on("ajax:success", function() {
     $(this).removeData('disabled');
   });
 
