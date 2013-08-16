@@ -9,6 +9,7 @@ gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
+gem 'rails_12factor'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
