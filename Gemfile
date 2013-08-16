@@ -10,6 +10,8 @@ gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
 gem 'rails_12factor'
+gem 'dalli'
+gem 'memcachier'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'

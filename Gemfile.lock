@@ -73,6 +73,7 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
+    dalli (2.6.4)
     database_cleaner (1.1.1)
     devise (3.0.2)
       bcrypt-ruby (~> 3.0)
@@ -115,6 +116,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     metaclass (0.0.1)
     method_source (0.8.2)
     mime-types (1.24)
@@ -236,6 +238,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.0.0)
   cucumber-rails
+  dalli
   database_cleaner
   devise
   devise_invitable!
@@ -248,6 +251,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  memcachier
   newrelic_rpm
   pg
   pry
