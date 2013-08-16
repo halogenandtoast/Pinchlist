@@ -3,12 +3,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessor :stripe_card_token
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :timezone
-  attr_accessible :stripe_customer_token, :starts_at, :ends_at, :status
-  attr_accessible :stripe_card_token
 
   has_many :lists
-  has_many :list_bases, :through => :lists, :readonly => false, source: :list_base
+  has_many :list_bases, through: :lists, source: :list_base
   has_many :owned_lists, :class_name => "ListBase"
   has_many :discounts
 

@@ -19,6 +19,7 @@ Feature: In order to track what needs to be done
       | title   | user                    |
       | My List | email: user@example.com |
     When I am on the dashboard page
+    And I expand the list actions
     And I follow "History"
     And I fill in "My List"'s task title with "Learn to ride a shark"
     And I submit "My List"'s task form

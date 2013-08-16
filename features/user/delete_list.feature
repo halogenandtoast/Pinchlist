@@ -7,5 +7,6 @@ Feature: Deleting a list
       | title   | user                    |
       | My List | email: user@example.com |
     When I am on the dashboard page
+    And I expand the list actions
     And I click the delete link for "My List"
     Then I should not see the list "My List"

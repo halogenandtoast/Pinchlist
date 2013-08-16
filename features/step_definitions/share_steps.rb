@@ -1,4 +1,5 @@
 When /^I click the share icon$/ do
+  find(".list").hover
   find("a.share_link").click
 end
 
@@ -31,6 +32,9 @@ Then /^the list "([^"]*)" should be shared with "([^"]*)"$/ do |title, email|
 end
 
 Then /^I should see that the list is shared with "([^"]*)"$/ do |email|
+  unless has_css?(".shared_users", visible: true)
+    find(".share_link").click
+  end
   within '.shared_users' do
     page.should have_content(email)
   end
@@ -43,11 +47,11 @@ Then /^I should not see that the list is shared with "([^"]*)"$/ do |email|
 end
 
 Then /^I should see that the list is shared$/ do
-  first(".share_link").visible?.should be_true
+  find(".share_link").visible?.should be_true
 end
 
 Then /^I should see that the list is not shared$/ do
-  first(".share_link").visible?.should be_false
+  page.should have_css(".share_link", visible: false)
 end
 
 Then /^the share email field is blank$/ do

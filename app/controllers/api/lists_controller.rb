@@ -7,17 +7,12 @@ class Api::ListsController < Api::BaseController
   end
 
   def create
-    list = List.new(params[:list].merge(user: current_user))
-    list.save
-    respond_with list
+    respond_with List.create(new_list_params)
   end
 
   def update
     list = current_user.lists.find(params[:id])
-    if params[:new_position]
-      params[:list].merge!(new_position: params[:new_position])
-    end
-    list.update_attributes(params[:list])
+    list.update_attributes(edit_list_params)
     render json: list.reload
   end
 
@@ -27,4 +22,23 @@ class Api::ListsController < Api::BaseController
     respond_with list
   end
 
+  private
+
+  def new_list_params
+    list_params.merge(user: current_user)
+  end
+
+  def edit_list_params
+    if params[:new_position]
+      list_params.merge(new_position: params[:new_position])
+    else
+      list_params
+    end
+  end
+
+  def list_params
+    params.
+      require(:list).
+      permit(:title, :color)
+  end
 end

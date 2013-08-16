@@ -12,29 +12,30 @@ When /^I submit "([^"]*)"'s task form$/ do |title|
 end
 
 Then /^I should see the task "([^"]*)"$/ do |task_title|
-  page.should have_css(".list:not(.upcoming) li:contains('#{task_title}')")
+  page.should have_css(".list:not(.upcoming) li", text: task_title)
 end
 
 Then /^I should see the upcoming task "([^"]*)"$/ do |task_title|
-  page.should have_css("#upcoming_tasks li:contains('#{task_title}')")
+  page.should have_css("#upcoming_tasks li", text: task_title)
 end
 
 Then /^I should see the task "([^"]*)" followed by the task "([^"]*)"$/ do |task1, task2|
-  page.should have_css("li:contains('#{task1}') ~ li:contains('#{task2}')")
+  task_titles = all("li.task span.text").map(&:text)
+  task_titles.should == [task1, task2]
 end
 
 Then /^I should see the task "([^"]*)" with a due date of "([^"]*)"$/ do |task_title, due_date|
   task = Task.find_by_title!(task_title)
-  page.should have_css("#task_#{task.id} span.date:contains('#{due_date}')")
+  page.should have_css("#task_#{task.id} span.date", text: due_date)
 end
 
 Then /^I should not see the task "([^"]*)"$/ do |task|
-  page.should_not have_css("li:contains('#{task}')")
+  page.should_not have_css("li", text: task)
 end
 
 When /^I click the task "([^"]*)"$/ do |title|
   task = Task.find_by_title!(title)
-  find("li:contains('#{task.display_title}') span.text").click
+  find(".list:not(.upcoming) li.task span.text", text: task.display_title).click
 end
 
 
@@ -78,7 +79,7 @@ When /^I fill in "([^"]*)"'s task title with (\d+) "([^"]*)"$/ do |title, count,
 end
 
 Then /^I should see the task with (\d+) "([^"]*)"$/ do |count, value|
-  page.should have_css(".list:not(.upcoming) li:contains('#{value * count.to_i}')")
+  page.should have_css(".list:not(.upcoming) li", text: value * count.to_i)
 end
 
 Then /^I should see the upcoming task "([^"]*)" before "([^"]*)"$/ do |task_title_1, task_title_2|

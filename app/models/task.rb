@@ -11,10 +11,9 @@ class Task < ActiveRecord::Base
   after_update :reposition
   after_create :move_before_completed
   after_save :destroy_on_empty_title
-  attr_accessible :title, :new_position, :completed
 
-  scope :upcoming, where("tasks.due_date IS NOT NULL AND tasks.completed = ?", false).order("tasks.due_date asc")
-  scope :completed, where(completed: true)
+  scope :upcoming, -> { where("tasks.due_date IS NOT NULL AND tasks.completed = ?", false).order("tasks.due_date asc") }
+  scope :completed, -> { where(completed: true) }
   acts_as_list scope: :list_base
 
   def update_attributes_with_list_swap(params)
@@ -37,7 +36,7 @@ class Task < ActiveRecord::Base
     when :current
       current
     else
-      scoped
+      all
     end
   end
 

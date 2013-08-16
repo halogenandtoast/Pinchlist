@@ -1,16 +1,15 @@
 Then /^I should see the following upcoming tasks in order:$/ do |table|
-  css_matcher = table.raw.flatten.map { |title| "li:contains('#{title}')" }.join(' ~ ')
-  within '#upcoming_tasks' do
-    page.should have_css(css_matcher)
-  end
+  expected_titles = table.raw.flatten
+  task_titles = all("#upcoming_tasks li.task span.text").map(&:text)
+  expected_titles.should == task_titles
 end
 
 Then /^I should see the completed upcoming task "([^"]*)"$/ do |title|
-  page.should have_css("#upcoming_tasks li.completed:contains('#{title}')")
+  page.should have_css("#upcoming_tasks li.completed", text: title)
 end
 
 When /^I click the upcoming task "([^"]*)"$/ do |title|
-  find("#upcoming_tasks li:contains('#{title}') span.text").click
+  find("#upcoming_tasks li", text: title).find("span.text").click
 end
 
 When /^I check the upcoming task "([^"]*)"$/ do |title|
@@ -33,19 +32,19 @@ end
 
 Then /^I should see the upcoming task "([^"]*)" with a due date of "([^"]*)"$/ do |title, due_date|
   within '#upcoming_tasks' do
-    page.should have_css("li span.date:contains('#{due_date}')")
-    page.should have_css("li span.task_title:contains('#{title}')")
+    page.should have_css("li span.date", text: due_date)
+    page.should have_css("li span.task_title", text: title)
   end
 end
 
 Then /^I should not see the upcoming task "([^"]*)"$/ do |title|
   within '#upcoming_tasks' do
-    page.should have_no_css("li span.task_title:contains('#{title}')")
+    page.should have_no_css("li span.task_title", text: title)
   end
 end
 
 Then /^I do not see the upcoming tasks list$/ do
-  page.find("#upcoming_tasks").visible?.should be_false
+  page.should have_no_css("#upcoming_tasks")
 end
 
 Then /^I see the upcoming task "([^"]*)" has a due date color of "([^"]*)"$/ do |title, color|

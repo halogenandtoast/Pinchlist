@@ -2,6 +2,10 @@ When /^I fill in the list title with "([^"]*)"$/ do |title|
   fill_in 'list_title', :with => title
 end
 
+When /^I expand the list actions/ do
+  find(".list_actions_link").click
+end
+
 Then /^I should see the list "([^"]*)"$/ do |title|
   page.should have_content(title)
 end
@@ -13,15 +17,15 @@ end
 
 Then /^I should see the completed task "([^"]*)" in "([^"]*)"$/ do |title, list_title|
   list = List.find_by_title!(list_title)
-  page.should have_css("#list_#{list.id} li.completed:contains('#{title}')")
+  page.should have_css("#list_#{list.id} li.completed", text: title)
 end
 
 Then /^I should see the following "([^"]*)" tasks in order:$/ do |title, table|
-  css_matcher = table.raw.flatten.map { |task_title| "li:contains('#{task_title}')" }.join(' ~ ')
   list = List.find_by_title!(title)
-  within "#list_#{list.id}" do
-    page.should have_css(css_matcher)
-  end
+  expected_titles = table.raw.flatten
+  task_titles = all("#list_#{list.id} li.task span.text").map(&:text)
+
+  expected_titles.should == task_titles
 end
 
 When /^I click the delete link for "([^"]*)"$/ do |title|
@@ -30,7 +34,7 @@ When /^I click the delete link for "([^"]*)"$/ do |title|
 end
 
 Then /^I should not see the list "([^"]*)"$/ do |title|
-  page.should_not have_css(".list:contains('#{title}')")
+  page.should_not have_css(".list", text: title)
 end
 
 When /^I click the list title "([^"]*)"$/ do |title|
@@ -54,7 +58,7 @@ When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2
   list_1 = List.find_by_title!(list_title_1)
   list_2 = List.find_by_title!(list_title_2)
   page.execute_script("$('#list_#{list_2.id}').insertBefore($('#list_#{list_1.id}'));")
-  page.execute_script("$('tr').trigger('sortupdate', {item:$('#list_#{list_2.id}')});")
+  page.execute_script("$('.tasks').trigger('sortupdate', {item:$('#list_#{list_2.id}')});")
 end
 
 Then /^I should see the list "([^"]*)" before "([^"]*)"$/ do |list_title_1, list_title_2|
@@ -66,6 +70,7 @@ end
 When /^I follow the archive link for "([^"]*)"$/ do |list_title|
   list = List.find_by_title!(list_title)
   within "#list_#{list.id}" do
+    find(".list_actions_link").click
     find(".archive_link").click
   end
 end

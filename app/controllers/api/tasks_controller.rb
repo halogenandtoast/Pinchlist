@@ -9,7 +9,7 @@ class Api::TasksController < Api::BaseController
 
   def create
     list = current_user.lists.find(params[:list_id])
-    task = list.tasks.build(params[:task])
+    task = list.tasks.build(task_params)
     task.save
     respond_with task
   end
@@ -17,9 +17,6 @@ class Api::TasksController < Api::BaseController
   def update
     list = current_user.lists.find(params[:list_id])
     task = list.tasks.find(params[:id])
-    if params[:new_position]
-      params[:task].merge!(new_position: params[:new_position])
-    end
 
     list_id = params.fetch(:new_list_id, list.id)
     new_list = current_user.lists.find(list_id)
@@ -39,11 +36,24 @@ class Api::TasksController < Api::BaseController
   private
 
   def update_task_with_list_base(task, list_base)
-    logger.info "FOO: #{task.list_base_id} => #{list_base.id}"
     if task.list_base_id != list_base.id
-      task.update_attributes_with_list_swap(params[:task].merge(list_base_id: list_base.id))
+      task.update_attributes_with_list_swap(update_task_params.merge(list_base_id: list_base.id))
     else
-      task.update_attributes(params[:task])
+      task.update_attributes(update_task_params)
     end
+  end
+
+  def update_task_params
+    if params[:new_position]
+      task_params.merge(new_position: params[:new_position])
+    else
+      task_params
+    end
+  end
+
+  def task_params
+    params.
+      require(:task).
+      permit(:title, :completed)
   end
 end

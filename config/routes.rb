@@ -1,4 +1,5 @@
 Pinchlist::Application.routes.draw do
+  root to: "home#index"
   namespace :api, defaults: { format: 'json' } do
     resources :lists, only: [:create, :update, :destroy] do
       resources :tasks, :only => [:index, :create, :update, :destroy]
@@ -14,15 +15,14 @@ Pinchlist::Application.routes.draw do
   resource :account, only: [:edit, :update]
   resources :users, only: [:update]
 
-  authenticated :user do
-    root :to => "dashboards#show"
+  devise_scope :user do
+    root to: "dashboards#show", as: :dashboard_root
   end
 
-  root :to => "home#index"
 
   post "/stripe/invoice" => "invoices#create"
 
-  match 'dashboard', :to => 'dashboards#show', :as => :dashboard
+  get 'dashboard', to: 'dashboards#show', as: :dashboard
   resources :lists, :only => [:show, :create, :update, :destroy] do
     resources :tasks, :only => [:create, :update], :shallow => true
     resource :proxy, :controller => :list_proxies, :only => [:update, :destroy]

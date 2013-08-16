@@ -35,7 +35,7 @@ describe Share, 'create' do
 
   before do
     MemberMailer.stubs(:share_list_email => mail)
-    User.stubs(:find_or_create_by_email).with(email).returns(user)
+    User.stubs(:find_or_create_by).with(email: email).returns(user)
     List.stubs(:find).with(2).returns(list)
   end
 
