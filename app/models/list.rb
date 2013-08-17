@@ -10,6 +10,7 @@ class List < ActiveRecord::Base
   belongs_to :list_base
   has_many :tasks, through: :list_base, before_add: :set_list_base_id
 
+  before_create :ensure_within_limit
   before_create :set_color
   before_create :set_public_token
   before_validation :set_list_base
@@ -124,6 +125,14 @@ class List < ActiveRecord::Base
 
   def set_list_base_id(task)
     task.list_base = list_base
+  end
+
+  def ensure_within_limit
+    unless user.subscribed?
+      if user.lists.count >= SUBSCRIBED_LIMIT
+        errors.add(:base, "Upgrade to create more lists.")
+      end
+    end
   end
 
 end

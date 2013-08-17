@@ -406,6 +406,13 @@ class @DashboardView extends Backbone.View
     @table.find("tr").append(view.render().el)
 
   createList: (event) ->
-    @collection.create(title: @$("#list_title").val())
+    @collection.create(title: @$("#list_title").val(), {
+      error: (model, xhr, options)->
+        $("#list_errors").remove()
+        notice = $("<span id='list_errors'>")
+        notice.html("Upgrade to create more lists.")
+        $("#new_list").append(notice)
+        setTimeout("$('#list_errors').fadeOut()", 3000)
+    })
     @$("#new_list input").val("")
     false
