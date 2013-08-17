@@ -30,3 +30,6 @@
       = form.submit "Update"
 
     = render "accounts/#{current_user.status}"
+
+- content_for :javascripts do
+  = javascript_include_tag "subscriptions"

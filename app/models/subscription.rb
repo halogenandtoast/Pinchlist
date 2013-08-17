@@ -27,8 +27,7 @@ class Subscription
       @user.update_attributes(
         starts_at: Time.at(customer.subscription.current_period_start),
         ends_at: Time.at(customer.subscription.current_period_end),
-        status: @customer.subscription.status,
-        account_balance: @user.available_credit * -1
+        status: @customer.subscription.status
       )
     end
   end
