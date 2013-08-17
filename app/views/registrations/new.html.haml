@@ -8,11 +8,9 @@
       = devise_error_messages!
       = f.hidden_field :timezone
       %label.input{:for => "email"}
-        %span Email Address
-        = f.text_field :email
+        = f.text_field :email, placeholder: "Email Address"
       %label.input{:for => "password"} 
-        %span Password
-        = f.password_field :password
+        = f.password_field :password, placeholder: "Password"
       %label.input{:for => "password_confirmation"} 
         %span Password confirmation
         = f.password_field :password_confirmation

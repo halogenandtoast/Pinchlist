@@ -16,14 +16,11 @@
     %h3 Edit Your Account
     = form_for(current_user, :url => account_path) do |form|
       %label.input{:for => "email"}
-        %span Email Address
-        = form.text_field :email
+        = form.text_field :email, placeholder: "Email Address"
       %label.input{:for => "password"}
-        %span New Password
-        = form.password_field :password
+        = form.password_field :password, placeholder: "New Password"
       %label.input{:for => "password_confirmation"}
-        %span New Password confirmation
-        = form.password_field :password_confirmation
+        = form.password_field :password_confirmation, placeholder: "New Password confirmation"
       %label.select{:for => "timezone"}
         %span Time zone
         = form.select :timezone, time_zone_options_for_select(current_user.timezone)

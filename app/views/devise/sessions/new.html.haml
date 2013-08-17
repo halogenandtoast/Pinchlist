@@ -4,11 +4,9 @@
     %h2 Sign in
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %label.input{:for => "email"}
-        %span Email Address
-        = f.text_field :email
+        = f.text_field :email, placeholder: "Email Address"
       %label.input{:for => "password"} 
-        %span Password
-        = f.password_field :password
+        = f.password_field :password, placeholder: "Password"
       - if devise_mapping.rememberable?
         .checkbox.remember
           = f.check_box :remember_me

@@ -4,8 +4,7 @@
       = link_to image_tag('logo-small.png'), root_url
     %form#new_list.new_list
       %label.input{for: "title"}
-        %span New List
-        %input#list_title{name: "list[title]", size: 30, type: "text"}
+        %input#list_title{name: "list[title]", size: 30, type: "text", placeholder: "New List"}
 
     = render "topbar"
   #container

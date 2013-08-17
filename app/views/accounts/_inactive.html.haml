@@ -7,14 +7,11 @@
     Credit card has been provided.
   - else
     %label.input{:for => "card_number"}
-      %span Card Number
-      = text_field_tag :card_number, nil, :name => nil
+      = text_field_tag :card_number, nil, :name => nil, placeholder: "Card Number"
     %label.input{:for => "card_code"}
-      %span CID
-      = text_field_tag :card_code, nil, :name => nil, :id => "card_cid"
+      = text_field_tag :card_code, nil, :name => nil, :id => "card_cid", placeholder: "CID"
     %label.input{:for => "cc_exp"}
-      %span MM/YYYY
-      = text_field_tag :expiration, nil, :name => nil, :id => "card_exp"
+      = text_field_tag :expiration, nil, :name => nil, :id => "card_exp", placeholder: "MM/YYYY"
 
     #stripe_error
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>

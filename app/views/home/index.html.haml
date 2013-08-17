@@ -12,11 +12,9 @@
     #login
       = form_for :user, :url => new_user_session_path do |f|
         %label.input{:for => "email"}
-          %span Email Address
-          = f.text_field :email
+          = f.text_field :email, placeholder: "Email Address"
         %label.input{:for => "password"}
-          %span Password
-          = f.password_field :password
+          = f.password_field :password, placeholder: "Password"
         = f.submit "Sign In"
       %p
         Forgot password?

@@ -12,15 +12,12 @@
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
       %label.input{:for => "email"}
-        %span Email Address
-        = f.text_field :email
+        = f.text_field :email, placeholder: "Email Address"
       / %i (leave blank if you don't want to change it)
       %label.input{:for => "password"}
-        %span New Password
-        = f.password_field :password
+        = f.password_field :password, placeholder: "New Password"
       %label.input{:for => "password_confirmation"}
-        %span New Password confirmation
-        = f.password_field :password_confirmation
+        = f.password_field :password_confirmation, placeholder: "New Password confirmation"
       %label.select{:for => "timezone"}
         %span Time zone
       = f.select :timezone, ActiveSupport::TimeZone::MAPPING

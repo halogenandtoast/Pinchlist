@@ -5,8 +5,7 @@
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
       = devise_error_messages!
       %label.input{:for => "email"}
-        %span Email Address
-        = f.text_field :email
+        = f.text_field :email, placeholder: "Email Address"
       = f.submit "Reset"
 = render :partial => "devise/shared/links"
 = render "footer"
