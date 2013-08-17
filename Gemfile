@@ -9,9 +9,12 @@ gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
-gem 'rails_12factor'
-gem 'dalli'
-gem 'memcachier'
+
+group :production do
+  gem 'rails_12factor'
+  gem 'dalli'
+  gem 'memcachier'
+end
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
@@ -30,6 +33,7 @@ gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'hoptoad_notifier'
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'pry'
 end

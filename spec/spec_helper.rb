@@ -13,6 +13,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
+
+  config.include Devise::TestHelpers, :type => :controller
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -28,6 +30,9 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
-  config.include Devise::TestHelpers, :type => :controller
+  config.use_transactional_fixtures = false
+  config.infer_base_class_for_anonymous_controllers = false
+  config.order = "random"
 end
+
+Capybara.javascript_driver = :webkit

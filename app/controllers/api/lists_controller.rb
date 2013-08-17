@@ -39,6 +39,6 @@ class Api::ListsController < Api::BaseController
   def list_params
     params.
       require(:list).
-      permit(:title, :color)
+      permit(:title, :color, :public)
   end
 end
