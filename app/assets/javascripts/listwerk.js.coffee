@@ -11,12 +11,6 @@ class ShareList extends Backbone.Collection
   model: Share
 class TaskList extends Backbone.Collection
   model: Task
-  initialize: ->
-    @bind "complete", @resetList
-
-  resetList: =>
-    @fetch()
-
   comparator: (task) ->
     task.get("position")
 
@@ -24,6 +18,7 @@ class List extends Backbone.Model
   urlRoot: "api/lists"
   initialize: (attributes) ->
     @tasks = new TaskList(attributes['tasks'])
+    @tasks.url = "api/lists/#{@get("id")}/tasks"
     @shares = new ShareList(attributes['shares'])
   toggleLock: (callback) ->
     @save({public: !@get("public")}, { success: callback })
@@ -111,9 +106,6 @@ class TaskView extends Backbone.View
 
   template: _.template($("#task_template").html())
 
-  initialize: ->
-    @model.on "sync", @render
-
   render: =>
     @$el.html(@template(_.extend(@model.toJSON(), @options)))
     @$el.id = "task_#{@model.id}"
@@ -132,7 +124,8 @@ class TaskView extends Backbone.View
     @$el.toggleClass("completed")
     @model.save(
       {completed: @$el.hasClass("completed")}
-      {success: ((model, response) -> model.trigger "complete") }
+      success: (model, response) =>
+        @model.trigger("complete", @$el)
     )
 
   editTask: (event) =>
@@ -152,9 +145,10 @@ class TaskView extends Backbone.View
     title = $("#task_title").val()
     if title == ""
       @model.destroy()
+      @$el.remove()
     else
       @model.unset("due_date", silent: true)
-      @model.save(title: title)
+      @model.save({title: title}, success: @render)
     false
 
 class UpcomingListView extends Backbone.View
@@ -166,6 +160,7 @@ class UpcomingListView extends Backbone.View
     @collection.on "add", @render
     @collection.on "change", @render
     @collection.on "remove", @render
+    @collection.on "reset", @render
 
   render: =>
     @$el.html(@template())
@@ -205,10 +200,6 @@ class ListView extends Backbone.View
   template: _.template($("#list_template").html())
 
   initialize: ->
-    @model.on "sync", @render
-    @model.tasks.on "add", @waitForTask
-    @model.tasks.on "reset", @render
-    @model.tasks.on "destroy", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
     @share_view = new ListSharesView(model: @model)
     @share_view.on "shared", @shareList
@@ -252,11 +243,9 @@ class ListView extends Backbone.View
   focus: ->
     @$("[name='task[title]']").focus()
 
-  waitForTask: (task) =>
-    task.on "sync", @addTask
 
   addTask: (task) =>
-    task.off "sync", @addTask
+    task.on "complete", @completeTask
     view = new TaskView(model: task, id: "task_#{task.id}")
     if @$(".tasks .completed").length > 0
       @$(".tasks .completed:first").before(view.render().el)
@@ -266,8 +255,19 @@ class ListView extends Backbone.View
   addAll: =>
     @tasks.each(@add_task)
 
+  completeTask: (view) =>
+    if view.hasClass("completed")
+      view.insertAfter(@$el.find(".task:last"))
+    else if @$el.find(".task:not(.completed)")
+      view.insertAfter(@$el.find(".task:not(.completed):not(##{view.id}):last"))
+    view.effect('highlight', {color: "#ACF4C8"}, 1000)
+
   createTask: =>
-    @model.tasks.create(title: @$("[name='task[title]']").val())
+    @model.tasks.create({title: @$("[name='task[title]']").val()},
+      success: (task, xhr) =>
+        @addTask(task)
+        @$("#task_#{task.get("id")}").effect('highlight', {color: "#ACF4C8"}, 1000)
+    )
     @$("[name='task[title]']").val("")
     false
 
