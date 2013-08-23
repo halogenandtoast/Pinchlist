@@ -64,18 +64,6 @@ class Task < ActiveRecord::Base
     self.insert_at(position)
   end
 
-  def as_json(options = {})
-    {
-      id: id,
-      display_title: display_title,
-      title: title,
-      list_base_id: list_base_id,
-      position: position,
-      completed: completed,
-      archived: archived?
-    }.merge(due_date ? {due_date: due_date.strftime("%m/%d"), full_date: due_date.strftime("%y/%m/%d")} : {})
-  end
-
   def archived?
     self.completed_at && self.completed_at.to_datetime < 7.days.ago
   end

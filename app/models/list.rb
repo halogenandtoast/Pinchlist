@@ -24,23 +24,6 @@ class List < ActiveRecord::Base
 
   delegate :shares, :shared?, to: :list_base
 
-  def as_json(options = {})
-    current_user = options && options[:user]
-    {
-      title: title,
-      id: id,
-      color: color,
-      public_token: public_token,
-      slug: slug,
-      tasks: tasks,
-      position: position,
-      is_owner: !!current_user && (current_user.id == owner.id),
-      shared: shared?,
-      shares: shares,
-      public: public
-    }
-  end
-
   def self.current_tasks
     active_date = 7.days.ago.to_date
    where(["(tasks.completed_at IS NULL OR tasks.completed_at > ?)", active_date])

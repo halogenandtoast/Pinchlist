@@ -9,6 +9,7 @@ gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
+gem "active_model_serializers", "~> 0.8.0"
 
 group :production do
   gem 'rails_12factor'
@@ -36,6 +37,8 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'pry'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
