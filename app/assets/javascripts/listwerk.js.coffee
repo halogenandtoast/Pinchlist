@@ -144,8 +144,9 @@ class TaskView extends Backbone.View
   updateTask: (event) =>
     title = $("#task_title").val()
     if title == ""
+      $("#task_#{@model.get('id')}").remove()
+      $("#upcoming_task_#{@model.get('id')}").remove()
       @model.destroy()
-      @$el.remove()
     else
       @model.unset("due_date", silent: true)
       @model.save({title: title}, success: @render)
