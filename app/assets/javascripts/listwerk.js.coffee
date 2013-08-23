@@ -406,6 +406,7 @@ class @DashboardView extends Backbone.View
     list.off "sync", @addList
     view = new ListView(model: list, id: "list_#{list.id}")
     @table.find("tr").append(view.render().el)
+    view.$el.find("input").focus()
 
   createList: (event) ->
     @collection.create(title: @$("#list_title").val(), {
