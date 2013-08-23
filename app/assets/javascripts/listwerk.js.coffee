@@ -200,6 +200,7 @@ class ListView extends Backbone.View
   template: _.template($("#list_template").html())
 
   initialize: ->
+    @model.on "reset", @render
     @model.tasks.url = "/api/lists/#{@model.get("id")}/tasks"
     @share_view = new ListSharesView(model: @model)
     @share_view.on "shared", @shareList
@@ -312,6 +313,7 @@ class ListView extends Backbone.View
   updateListTitle: =>
     title = @$("#list_title").val()
     @model.save(title: title)
+    @render()
     false
 
   showListArchive: =>
