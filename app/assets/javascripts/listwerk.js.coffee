@@ -275,6 +275,7 @@ class ListView extends Backbone.View
     @model.save({new_position: position}, {silent: true})
 
   taskPositionChanged: (event, ui) =>
+    event.stopPropagation()
     td = $(ui.item).parents("td").get(0)
     if @$el.get(0) == td
       ui.item.trigger("dropTask", [@model, ui.item.index()])
@@ -390,6 +391,7 @@ class @DashboardView extends Backbone.View
     @$("#list_title").focus()
 
   listPositionChanged: (event, ui) =>
+    event.stopPropagation();
     ui.item.trigger("dropList", ui.item.index())
 
   drawLists: =>

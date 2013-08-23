@@ -58,7 +58,8 @@ When /^I drag the list "([^"]*)" over "([^"]*)"$/ do |list_title_1, list_title_2
   list_1 = List.find_by_title!(list_title_1)
   list_2 = List.find_by_title!(list_title_2)
   page.execute_script("$('#list_#{list_2.id}').insertBefore($('#list_#{list_1.id}'));")
-  page.execute_script("$('.tasks').trigger('sortupdate', {item:$('#list_#{list_2.id}')});")
+  page.execute_script("$('#list_#{list_2.id}').parents('tr').trigger('sortupdate', {item:$('#list_#{list_2.id}')});")
+  sleep 1
 end
 
 Then /^I should see the list "([^"]*)" before "([^"]*)"$/ do |list_title_1, list_title_2|
