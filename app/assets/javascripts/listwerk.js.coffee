@@ -39,6 +39,7 @@ class UpcomingTaskList extends Backbone.Collection
   model: Task
   initialize: ->
     @bind "complete", @resetList
+    @bind "destroy", @remove
 
   resetList: =>
     @remove(@where(completed: true))
@@ -106,6 +107,9 @@ class TaskView extends Backbone.View
 
   template: _.template($("#task_template").html())
 
+  initialize: =>
+    @listenTo(@model, "change", @render)
+
   render: =>
     @$el.html(@template(_.extend(@model.toJSON(), @options)))
     @$el.id = "task_#{@model.id}"
@@ -159,9 +163,6 @@ class UpcomingListView extends Backbone.View
 
   initialize: =>
     @collection.on "add", @render
-    @collection.on "change", @render
-    @collection.on "remove", @render
-    @collection.on "reset", @render
 
   render: =>
     @$el.html(@template())
@@ -178,7 +179,13 @@ class UpcomingListView extends Backbone.View
 
   addTask: (task) =>
     view = new TaskView(model: task, id: "upcoming_task_#{task.id}", color: task.color)
+    @listenToOnce(task, "destroy", @check)
     @$(".tasks").append(view.render().el)
+
+  check: (task) =>
+    @collection.remove(task)
+    if @collection.isEmpty()
+      @$el.hide()
 
 class ListView extends Backbone.View
   tagName: "td"
