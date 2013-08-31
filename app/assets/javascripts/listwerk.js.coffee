@@ -109,6 +109,7 @@ class TaskView extends Backbone.View
 
   initialize: =>
     @listenTo(@model, "change", @render)
+    @listenTo(@model, "change:completed", @checkCompleted)
 
   render: =>
     @$el.html(@template(_.extend(@model.toJSON(), @options)))
@@ -119,6 +120,10 @@ class TaskView extends Backbone.View
     if @model.get("archived")
       @$el.addClass("archived")
     this
+
+  checkCompleted: (model) =>
+    if model.get('completed')
+      @trigger('completed', @$el)
 
   updatePosition: (event, list, position) =>
     @model.save(new_position: position + 1, new_list_id: list.get("id"))
@@ -264,6 +269,7 @@ class ListView extends Backbone.View
   addTask: (task) =>
     task.on "complete", @completeTask
     view = new TaskView(model: task, id: "task_#{task.id}")
+    @listenTo(view, "completed", @completed)
     if @$(".tasks .completed").length > 0
       @$(".tasks .completed:first").before(view.render().el)
     else
@@ -273,12 +279,16 @@ class ListView extends Backbone.View
     @tasks.each(@add_task)
 
   completeTask: (view) =>
-    if view.parents(".upcoming").length == 0
       if view.hasClass("completed")
-        view.insertAfter(@$el.find(".task:last"))
+        @completed(view)
       else if @$el.find(".task:not(.completed)")
         view.insertAfter(@$el.find(".task:not(.completed):not(##{view.id}):last"))
+
       view.effect('highlight', {color: "#ACF4C8"}, 1000)
+
+  completed: (view) =>
+    if view.parents("#upcoming_tasks").length == 0
+      view.insertAfter(@$el.find(".task:last"))
     else
       view.remove()
 
