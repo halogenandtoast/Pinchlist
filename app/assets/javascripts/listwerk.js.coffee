@@ -114,6 +114,7 @@ class TaskView extends Backbone.View
     @$el.html(@template(_.extend(@model.toJSON(), @options)))
     @$el.id = "task_#{@model.id}"
     if @model.get("completed")
+      @model.unset("due_date", silent: true)
       @$el.addClass("completed")
     if @model.get("archived")
       @$el.addClass("archived")
@@ -272,11 +273,15 @@ class ListView extends Backbone.View
     @tasks.each(@add_task)
 
   completeTask: (view) =>
-    if view.hasClass("completed")
-      view.insertAfter(@$el.find(".task:last"))
-    else if @$el.find(".task:not(.completed)")
-      view.insertAfter(@$el.find(".task:not(.completed):not(##{view.id}):last"))
-    view.effect('highlight', {color: "#ACF4C8"}, 1000)
+    if view.parents(".upcoming").length == 0
+      if view.hasClass("completed")
+        view.insertAfter(@$el.find(".task:last"))
+      else if @$el.find(".task:not(.completed)")
+        view.insertAfter(@$el.find(".task:not(.completed):not(##{view.id}):last"))
+      view.effect('highlight', {color: "#ACF4C8"}, 1000)
+    else
+      view.remove()
+
 
   createTask: =>
     @model.tasks.create({title: @$("[name='task[title]']").val()},
