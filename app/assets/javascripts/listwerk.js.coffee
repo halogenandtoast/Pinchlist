@@ -153,7 +153,10 @@ class TaskView extends Backbone.View
       @model.destroy()
     else
       @model.unset("due_date", silent: true)
-      @model.save({title: title}, success: @render)
+      @model.save({title: title}, {
+        success: (model, xhr, options) =>
+          model.trigger("change")
+      })
     false
 
 class UpcomingListView extends Backbone.View
@@ -163,6 +166,7 @@ class UpcomingListView extends Backbone.View
 
   initialize: =>
     @collection.on "add", @render
+    @collection.on "change", @verifyTasks
 
   render: =>
     @$el.html(@template())
@@ -184,6 +188,9 @@ class UpcomingListView extends Backbone.View
 
   check: (task) =>
     @collection.remove(task)
+    @verifyTasks()
+
+  verifyTasks: =>
     if @collection.isEmpty()
       @$el.hide()
 
