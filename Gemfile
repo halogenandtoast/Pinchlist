@@ -1,11 +1,11 @@
 source "https://rubygems.org"
-ruby '2.0.0'
+ruby '2.1.3'
 
 gem 'rails', '4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'newrelic_rpm'
-gem 'rack-ssl', :require => 'rack/ssl'
+# gem 'rack-ssl', :require => 'rack/ssl'
 gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
