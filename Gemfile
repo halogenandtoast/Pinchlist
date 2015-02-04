@@ -32,6 +32,7 @@ gem 'timelord', '0.0.6'
 gem 'acts_as_list'
 gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'hoptoad_notifier'
+gem 'delayed_job'
 
 group :development, :test do
   gem 'quiet_assets'
