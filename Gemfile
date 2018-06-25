@@ -25,7 +25,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'pg'
+gem 'pg', '~> 0.21'
 gem 'devise'
 gem 'haml'
 gem 'sass'
