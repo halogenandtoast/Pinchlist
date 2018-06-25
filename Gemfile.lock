@@ -96,7 +96,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.2.7)
     execjs (2.0.1)
     factory_girl (3.6.2)
       activesupport (>= 3.0.0)
@@ -120,7 +120,7 @@ GEM
     jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.8.0)
+    json (2.1.0)
     launchy (2.3.0)
       addressable (~> 2.3)
     mail (2.5.4)
@@ -283,3 +283,9 @@ DEPENDENCIES
   timecop
   timelord (= 0.0.6)
   uglifier
+
+RUBY VERSION
+   ruby 2.5.1p57
+
+BUNDLED WITH
+   1.16.2
