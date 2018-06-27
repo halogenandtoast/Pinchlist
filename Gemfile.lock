@@ -150,9 +150,6 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    hoptoad_notifier (2.4.11)
-      activesupport
-      builder
     htmlentities (4.3.4)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
@@ -332,7 +329,6 @@ DEPENDENCIES
   factory_girl_rails (~> 3.6.0)
   fakeweb
   haml
-  hoptoad_notifier
   jquery-rails
   jquery-ui-rails
   launchy
