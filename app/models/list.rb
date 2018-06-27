@@ -102,7 +102,7 @@ class List < ActiveRecord::Base
 
   def set_list_base
     if list_base_id.nil?
-      create_list_base(user: user)
+      self.list_base = ListBase.create(user: user)
     end
   end
 
