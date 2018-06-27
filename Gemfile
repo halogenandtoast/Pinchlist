@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'rails', '4.2.8'
+gem 'rails', '5.2.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'newrelic_rpm'
@@ -20,12 +20,12 @@ group :production do
 end
 
 group :assets do
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
+  gem 'sass-rails', '~> 5.0.0'
+  gem 'coffee-rails', '~> 4.2.0'
   gem 'uglifier'
 end
 
-gem 'pg', '~> 0.21'
+gem 'pg'
 gem 'devise'
 gem 'haml'
 gem 'sass'
@@ -37,7 +37,6 @@ gem 'hoptoad_notifier'
 gem 'delayed_job'
 
 group :development, :test do
-  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'pry'
   gem 'better_errors'
