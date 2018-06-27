@@ -1,4 +1,4 @@
-class AddListsCountToUsers < ActiveRecord::Migration
+class AddListsCountToUsers < ActiveRecord::Migration[4.2]
   class User < ActiveRecord::Base
     has_many :list_proxies
   end

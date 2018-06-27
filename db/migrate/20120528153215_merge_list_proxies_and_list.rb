@@ -1,4 +1,4 @@
-class MergeListProxiesAndList < ActiveRecord::Migration
+class MergeListProxiesAndList < ActiveRecord::Migration[4.2]
   def up
     add_column :list_proxies, :title, :string
     update("UPDATE list_proxies set title = lists.title FROM lists WHERE list_proxies.list_id = lists.id")

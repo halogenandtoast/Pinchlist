@@ -1,4 +1,4 @@
-class DropPlanIdFromUsers < ActiveRecord::Migration
+class DropPlanIdFromUsers < ActiveRecord::Migration[4.2]
   def up
     remove_column :users, :plan_id
   end

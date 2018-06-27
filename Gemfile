@@ -37,6 +37,7 @@ gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'delayed_job'
 
 group :development, :test do
+  gem 'listen'
   gem 'rspec-rails'
   gem 'pry'
   gem 'better_errors'

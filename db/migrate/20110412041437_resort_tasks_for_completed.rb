@@ -1,4 +1,4 @@
-class ResortTasksForCompleted < ActiveRecord::Migration
+class ResortTasksForCompleted < ActiveRecord::Migration[4.2]
   def self.up
     List.all.each do |list|
       tasks = list.tasks.where(:completed => false).order("tasks.position ASC").to_a

@@ -1,4 +1,4 @@
-class RemovePermanentFromUsers < ActiveRecord::Migration
+class RemovePermanentFromUsers < ActiveRecord::Migration[4.2]
   def up
     remove_column :users, :permanent
   end

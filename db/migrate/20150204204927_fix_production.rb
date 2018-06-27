@@ -1,4 +1,4 @@
-class FixProduction < ActiveRecord::Migration
+class FixProduction < ActiveRecord::Migration[4.2]
   def change
     unless column_exists? :users, :reset_password_sent_at
       add_column :users, :reset_password_sent_at, :datetime

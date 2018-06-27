@@ -1,4 +1,4 @@
-class CreateListProxies < ActiveRecord::Migration
+class CreateListProxies < ActiveRecord::Migration[4.2]
   def self.up
     create_table :list_proxies do |t|
       t.integer :user_id

@@ -1,4 +1,4 @@
-class CreateListProxiesFromLists < ActiveRecord::Migration
+class CreateListProxiesFromLists < ActiveRecord::Migration[4.2]
   def self.up
     connection.execute(<<-SQL)
       INSERT INTO list_proxies(list_id, user_id, position, color, created_at, updated_at) SELECT id, user_id, position, color, created_at, updated_at FROM lists;

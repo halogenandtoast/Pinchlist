@@ -1,4 +1,4 @@
-class CreateDiscounts < ActiveRecord::Migration
+class CreateDiscounts < ActiveRecord::Migration[4.2]
   def change
     create_table :discounts do |t|
       t.integer :invited_user_id

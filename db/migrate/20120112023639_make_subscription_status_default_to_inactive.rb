@@ -1,4 +1,4 @@
-class MakeSubscriptionStatusDefaultToInactive < ActiveRecord::Migration
+class MakeSubscriptionStatusDefaultToInactive < ActiveRecord::Migration[4.2]
   def up
     change_column :subscriptions, :status, :text, default: "inactive"
   end

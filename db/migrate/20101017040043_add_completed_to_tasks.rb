@@ -1,4 +1,4 @@
-class AddCompletedToTasks < ActiveRecord::Migration
+class AddCompletedToTasks < ActiveRecord::Migration[4.2]
   def self.up
     add_column :tasks, :completed, :boolean, :default => false
   end

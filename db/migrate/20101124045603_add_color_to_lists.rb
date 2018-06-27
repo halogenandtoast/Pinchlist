@@ -1,4 +1,4 @@
-class AddColorToLists < ActiveRecord::Migration
+class AddColorToLists < ActiveRecord::Migration[4.2]
   def self.up
     add_column :lists, :color, :string
     List.all.each do |list|

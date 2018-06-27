@@ -1,4 +1,4 @@
-class MoveSubscriptionDataOntoUser < ActiveRecord::Migration
+class MoveSubscriptionDataOntoUser < ActiveRecord::Migration[4.2]
   def up
     change_table(:users) do |t|
       t.integer :plan_id

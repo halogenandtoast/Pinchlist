@@ -1,4 +1,4 @@
-class PromoteAllUsersToPermanent < ActiveRecord::Migration
+class PromoteAllUsersToPermanent < ActiveRecord::Migration[4.2]
   def up
     update("UPDATE users SET status='permanent'")
   end
