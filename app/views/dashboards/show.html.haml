@@ -86,7 +86,7 @@
   = javascript_include_tag "listwerk"
   :javascript
     $(document).ready(function() {
-      var lists = new Lists(#{j ActiveModel::ArraySerializer.new(@lists, scope: current_user).to_json})
+      var lists = new Lists(#{raw ActiveModel::ArraySerializer.new(@lists, scope: current_user).to_json})
       var App = new DashboardView({collection: lists});
       $(".help_link").click(function(e) {
         $("#help").show();
