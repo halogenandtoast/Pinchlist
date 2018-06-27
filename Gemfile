@@ -12,6 +12,7 @@ gem 'thin'
 gem 'stripe'
 gem 'rails_autolink'
 gem "active_model_serializers", "~> 0.8.0"
+gem 'bootsnap'
 
 group :production do
   gem 'rails_12factor'
