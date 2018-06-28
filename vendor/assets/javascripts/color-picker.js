@@ -14,25 +14,25 @@
     settings = $.extend({}, defaults, options);
     if(this.length > 0) buildSelector();
     return this.each(function(i) {
-      buildPicker(this)});
+      buildPicker(this, i)});
   };
 
   var selectorOwner;
   var selectorShowing = false;
 
-  buildPicker = function(element){
+  buildPicker = function(element, i){
     //build color picker
-    control = $("<div class='color_picker'>&nbsp;</div>")
+    control = $("<div class='color_picker' id='color_picker_" + i + "'>&nbsp;</div>")
     control.css('background-color', $(element).val());
 
     //bind click event to color picker
-    control.bind("click", toggleSelector);
+    control.on("click", toggleSelector);
 
     //add the color picker section
     $(element).after(control);
 
     //add even listener to input box
-    $(element).bind("change", function() {
+    $(element).on("change", function() {
       selectedValue = toHex($(element).val());
       $(element).next(".color_picker").css("background-color", selectedValue);
     });
@@ -93,12 +93,13 @@
   }
 
   showSelector = function(){
-    var selector = $("div#color_selector");
+    var selector = $($("div#color_selector")[0]);
 
     selector.css({
       top: $(selectorOwner).offset().top + 24,
       left: $(selectorOwner).offset().left - $('#color_selector').width() + 22
     });
+
     hexColor = $(selectorOwner).prev("input").val();
     $("input#color_value").val(hexColor);
     selector.show();
