@@ -61,6 +61,7 @@ class Task < ActiveRecord::Base
   end
 
   def new_position=(position)
+    save
     self.insert_at(position)
   end
 
